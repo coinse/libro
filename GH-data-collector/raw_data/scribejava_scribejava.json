@@ -1,0 +1,334 @@
+[
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Added setFollowRedirects() method to Request object",
+                "url": "https://github.com/scribejava/scribejava/pull/387",
+                "resourcePath": "/scribejava/scribejava/pull/387",
+                "createdAt": "2013-06-05T12:35:56Z",
+                "number": 387,
+                "mergeCommit": {
+                    "oid": "0b856b5b4ff1d61f622fb4c90e9652c37e3430e8",
+                    "message": "Merge a4851d8d9f6845b43d94f1ac4528ae63e3385fd8 into ad55e225a668facb367956b47d7230fd4d253413",
+                    "commitUrl": "https://github.com/scribejava/scribejava/commit/0b856b5b4ff1d61f622fb4c90e9652c37e3430e8",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "ad55e225a668facb367956b47d7230fd4d253413",
+                                "message": "Merge pull request #362 from NetForce1/master\n\nmake status message available on response"
+                            },
+                            {
+                                "oid": "a4851d8d9f6845b43d94f1ac4528ae63e3385fd8",
+                                "message": "Added setFollowRedirects() method to Request object to handle following HTTP redirects or not"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "src/main/java/org/scribe/model/Request.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0NjEzMDcxNjphNDg1MWQ4ZDlmNjg0NWI0M2Q5NGYxYWM0NTI4YWU2M2UzMzg1ZmQ4",
+                                "url": "https://github.com/scribejava/scribejava/pull/387/commits/a4851d8d9f6845b43d94f1ac4528ae63e3385fd8"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 380,
+                                "url": "https://github.com/scribejava/scribejava/issues/380",
+                                "title": "Need to disable redirects on HttpUrlConnection",
+                                "bodyHTML": "<p dir=\"auto\">We have a use case where we need to disable redirects on the HttpUrlConnection object.  We thought of a couple of ways we could do this:</p>\n<ol dir=\"auto\">\n<li>use a RequestTuner to call the setInstanceFollowRedirects(false) method of the connection object, but this won't work because the connection variable in the Request object is private.</li>\n<li>Add a getConnection() method to the Request object to return the connection object</li>\n<li>Call setConnection() to override the connection object, but since this method is protected, we can't call it from outside of the OAuthRequest object.</li>\n</ol>\n<p dir=\"auto\">I'd be more than happy to submit a pull request to fix one of these issues or provide a method to enable or disable redirects on the Request object directly.  Would you be willing to pull that in and release it as 1.3.4?</p>\n<p dir=\"auto\">Thanks.</p>",
+                                "resourcePath": "/scribejava/scribejava/issues/380",
+                                "createdAt": "2013-05-23T17:59:08Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "allow whitespace around callback and urls - fixes #474",
+                "url": "https://github.com/scribejava/scribejava/pull/478",
+                "resourcePath": "/scribejava/scribejava/pull/478",
+                "createdAt": "2014-04-04T08:28:17Z",
+                "number": 478,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "src/main/java/org/scribe/builder/ServiceBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "src/main/java/org/scribe/utils/Preconditions.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "src/test/java/org/scribe/builder/ServiceBuilderTest.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "src/test/java/org/scribe/utils/PreconditionsTest.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MTQzNzIzNTE6MmU2M2VjNDM2ZmI3ZjA0MzViZmU0Njk1YTk5ZmUxNjQ1ODhhYzg4Zg==",
+                                "url": "https://github.com/scribejava/scribejava/pull/478/commits/2e63ec436fb7f0435bfe4695a99fe164588ac88f"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 474,
+                                "url": "https://github.com/scribejava/scribejava/issues/474",
+                                "title": "The regex at `Preconditions` should accept whitespaces",
+                                "bodyHTML": "<p dir=\"auto\">That regex(URL_PATTERN) isnt allowing any spaces arround the url, we should trim it for the users or give a more specific error.</p>",
+                                "resourcePath": "/scribejava/scribejava/issues/474",
+                                "createdAt": "2014-03-26T20:29:29Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Updated Imgur API",
+                "url": "https://github.com/scribejava/scribejava/pull/599",
+                "resourcePath": "/scribejava/scribejava/pull/599",
+                "createdAt": "2016-01-13T04:01:02Z",
+                "number": 599,
+                "mergeCommit": {
+                    "oid": "2552a58933df265bbc8afaea6cda8800b0a2c6be",
+                    "message": "Merge 53805cbbddf72645e9bbcb0c1651b7a133cf12ba into 7f29ed8e276ad6198865ccb0df41d2cfb1506fae",
+                    "commitUrl": "https://github.com/scribejava/scribejava/commit/2552a58933df265bbc8afaea6cda8800b0a2c6be",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "7f29ed8e276ad6198865ccb0df41d2cfb1506fae",
+                                "message": "Merge pull request #597 from Rabrg/master\n\nRemoved included API keys and secrets from examples"
+                            },
+                            {
+                                "oid": "53805cbbddf72645e9bbcb0c1651b7a133cf12ba",
+                                "message": "Imgur API PR fixes"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "changelog"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "DELETED",
+                                "path": "scribejava-apis/src/main/java/com/github/scribejava/apis/ImgUrApi.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "scribejava-apis/src/main/java/com/github/scribejava/apis/ImgurApi.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "scribejava-apis/src/main/java/com/github/scribejava/apis/service/ImgurOAuthServiceImpl.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "scribejava-apis/src/test/java/com/github/scribejava/apis/examples/ImgurExample.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0NTU4NTIwODA6NTM4MDVjYmJkZGY3MjY0NWU5YmJjYjBjMTY1MWI3YTEzM2NmMTJiYQ==",
+                                "url": "https://github.com/scribejava/scribejava/pull/599/commits/53805cbbddf72645e9bbcb0c1651b7a133cf12ba"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 593,
+                                "url": "https://github.com/scribejava/scribejava/issues/593",
+                                "title": "Imgur example fails",
+                                "bodyHTML": "<p dir=\"auto\">Running ImgUrExample throws the following exception</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"Exception in thread &quot;main&quot; com.github.scribejava.core.exceptions.OAuthException: Response body is incorrect. Can't extract token and secret from this: 'OAuth Verification Failed: The consumer_key &amp;quot;2200fe7bc74292b&amp;quot; token &amp;quot;&amp;quot; combination does not exist or is not enabled.'\n    at com.github.scribejava.core.extractors.TokenExtractorImpl.extract(TokenExtractorImpl.java:39)\n    at com.github.scribejava.core.extractors.TokenExtractorImpl.extract(TokenExtractorImpl.java:29)\n    at com.github.scribejava.core.oauth.OAuth10aServiceImpl.getRequestToken(OAuth10aServiceImpl.java:58)\n    at me.rabrg.imgur.ImgUrExample.main(ImgUrExample.java:29)\n    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n    at java.lang.reflect.Method.invoke(Method.java:497)\n    at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)\"><pre class=\"notranslate\"><code>Exception in thread \"main\" com.github.scribejava.core.exceptions.OAuthException: Response body is incorrect. Can't extract token and secret from this: 'OAuth Verification Failed: The consumer_key &amp;quot;2200fe7bc74292b&amp;quot; token &amp;quot;&amp;quot; combination does not exist or is not enabled.'\n    at com.github.scribejava.core.extractors.TokenExtractorImpl.extract(TokenExtractorImpl.java:39)\n    at com.github.scribejava.core.extractors.TokenExtractorImpl.extract(TokenExtractorImpl.java:29)\n    at com.github.scribejava.core.oauth.OAuth10aServiceImpl.getRequestToken(OAuth10aServiceImpl.java:58)\n    at me.rabrg.imgur.ImgUrExample.main(ImgUrExample.java:29)\n    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n    at java.lang.reflect.Method.invoke(Method.java:497)\n    at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144)\n</code></pre></div>\n<p dir=\"auto\">It's not because the  API key and API secret are incorrect, as I've tried two different sets and both failed with that error.</p>",
+                                "resourcePath": "/scribejava/scribejava/issues/593",
+                                "createdAt": "2016-01-03T18:22:28Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "OAuthException delivered to onError callback",
+                "url": "https://github.com/scribejava/scribejava/pull/864",
+                "resourcePath": "/scribejava/scribejava/pull/864",
+                "createdAt": "2018-07-27T15:40:31Z",
+                "number": 864,
+                "mergeCommit": {
+                    "oid": "b1afe2ffc3648908f5114b933243ec3b478aa1f9",
+                    "message": "deliver OAuth exceptions from OAuthAsyncCompletionHandler\n\n- ok http client",
+                    "commitUrl": "https://github.com/scribejava/scribejava/commit/b1afe2ffc3648908f5114b933243ec3b478aa1f9",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "d7597b46f1384c7308ac28429d9a955ddeb71649",
+                                "message": "deliver OAuth exceptions from OAuthAsyncCompletionHandler\n\n- ning http client"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "scribejava-core/src/test/java/com/github/scribejava/core/extractors/OAuth2AccessTokenExtractorTest.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "scribejava-httpclient-apache/src/main/java/com/github/scribejava/httpclient/apache/OAuthAsyncCompletionHandler.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "scribejava-httpclient-apache/src/test/java/com/github/scribejava/httpclient/apache/OauthAsyncCompletionHandlerTest.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "scribejava-httpclient-ning/src/main/java/com/github/scribejava/httpclient/ning/OAuthAsyncCompletionHandler.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "scribejava-httpclient-ning/src/test/java/com/github/scribejava/httpclient/ning/MockResponse.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "scribejava-httpclient-ning/src/test/java/com/github/scribejava/httpclient/ning/OauthAsyncCompletionHandlerTest.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "scribejava-httpclient-okhttp/src/main/java/com/github/scribejava/httpclient/okhttp/OAuthAsyncCompletionHandler.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "scribejava-httpclient-okhttp/src/main/java/com/github/scribejava/httpclient/okhttp/OkHttpFuture.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "scribejava-httpclient-okhttp/src/test/java/com/github/scribejava/httpclient/okhttp/MockCall.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "scribejava-httpclient-okhttp/src/test/java/com/github/scribejava/httpclient/okhttp/OauthAsyncCompletionHandlerTest.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MjA0NDY4NjQyOmIxYWZlMmZmYzM2NDg5MDhmNTExNGI5MzMyNDNlYzNiNDc4YWExZjk=",
+                                "url": "https://github.com/scribejava/scribejava/pull/864/commits/b1afe2ffc3648908f5114b933243ec3b478aa1f9"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 862,
+                                "url": "https://github.com/scribejava/scribejava/issues/862",
+                                "title": "OAuthException not delivered to onError callback",
+                                "bodyHTML": "<p dir=\"auto\">I am using the async interface with the ApacheHttpClient<br>\nI try to get an access token, but I have an authentication issue.<br>\nSo I get an error method back from the server.<br>\nThat error is not handled correctly:</p>\n<ul dir=\"auto\">\n<li>sendAccessTokenRequest* methods no not check the status code. The conversion is tried, even is the status code is not 200.</li>\n<li>OAuth2AccessToken*Extractor throws a RuntimeException (OAuthException), which is not cought anywhere.  OAuthAsyncCompletionHandler only catches IOException, JDKHttpClient.executeAsync only catches  InterruptedException | ExecutionException | IOException. No RuntimeException</li>\n</ul>",
+                                "resourcePath": "/scribejava/scribejava/issues/862",
+                                "createdAt": "2018-07-11T10:27:25Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

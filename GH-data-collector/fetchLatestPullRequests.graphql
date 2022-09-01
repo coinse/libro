@@ -1,0 +1,31 @@
+query fetchLatestPullRequests($name: String!, $owner: String!) {
+    repository(name: $name, owner: $owner) {
+        pullRequests(last: 1) {
+            edges {
+                node {
+                    number
+                    createdAt
+                    resourcePath
+                    url
+                    closingIssuesReferences(first: 50) {
+                        edges {
+                            node {
+                                number
+                                createdAt
+                                resourcePath
+                                url
+                                labels(first: 5) {
+                                    edges {
+                                        node {
+                                            name
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

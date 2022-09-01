@@ -1,0 +1,27 @@
+[2017-07-24T11:21:34,221][WARN ][o.e.i.w.ShardIndexWarmerService] [Z6tXLYo] [test-index][3] failed to warm-up global ordinals for [_parent]
+org.elasticsearch.ElasticsearchException: java.util.concurrent.ExecutionException: java.lang.IllegalStateException: unexpected docvalues type NONE for field '_parent' (expected one of [SORTED, SORTED_SET]). Re-index with correct docvalues type.
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVOrdinalsIndexFieldData.loadGlobal(SortedSetDVOrdinalsIndexFieldData.java:120) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVOrdinalsIndexFieldData.loadGlobal(SortedSetDVOrdinalsIndexFieldData.java:45) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.IndexWarmer$FieldDataWarmer.lambda$warmReader$1(IndexWarmer.java:141) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:569) [elasticsearch-5.5.0.jar:5.5.0]
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_92]
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_92]
+        at java.lang.Thread.run(Thread.java:745) [?:1.8.0_92]
+Caused by: java.util.concurrent.ExecutionException: java.lang.IllegalStateException: unexpected docvalues type NONE for field '_parent' (expected one of [SORTED, SORTED_SET]). Re-index with correct docvalues type.
+        at org.elasticsearch.common.cache.Cache.computeIfAbsent(Cache.java:404) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache$IndexFieldCache.load(IndicesFieldDataCache.java:154) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVOrdinalsIndexFieldData.loadGlobal(SortedSetDVOrdinalsIndexFieldData.java:115) ~[elasticsearch-5.5.0.jar:5.5.0]
+        ... 6 more
+Caused by: java.lang.IllegalStateException: unexpected docvalues type NONE for field '_parent' (expected one of [SORTED, SORTED_SET]). Re-index with correct docvalues type.
+        at org.apache.lucene.index.DocValues.checkField(DocValues.java:212) ~[lucene-core-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:29:46]
+        at org.apache.lucene.index.DocValues.getSortedSet(DocValues.java:306) ~[lucene-core-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:29:46]
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVBytesAtomicFieldData.getOrdinalsValues(SortedSetDVBytesAtomicFieldData.java:53) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.fielddata.ordinals.GlobalOrdinalsBuilder.build(GlobalOrdinalsBuilder.java:63) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVOrdinalsIndexFieldData.localGlobalDirect(SortedSetDVOrdinalsIndexFieldData.java:127) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVOrdinalsIndexFieldData.localGlobalDirect(SortedSetDVOrdinalsIndexFieldData.java:45) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache$IndexFieldCache.lambda$load$1(IndicesFieldDataCache.java:157) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.common.cache.Cache.computeIfAbsent(Cache.java:401) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache$IndexFieldCache.load(IndicesFieldDataCache.java:154) ~[elasticsearch-5.5.0.jar:5.5.0]
+        at org.elasticsearch.index.fielddata.plain.SortedSetDVOrdinalsIndexFieldData.loadGlobal(SortedSetDVOrdinalsIndexFieldData.java:115) ~[elasticsearch-5.5.0.jar:5.5.0]
+        ... 6 more
+

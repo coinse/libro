@@ -1,0 +1,24 @@
+[2017-02-16T18:43:12,635][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.lang.IllegalStateException: No match found
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:125) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.cli.Command.main(Command.java:88) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) ~[elasticsearch-5.2.1.jar:5.2.1]
+Caused by: java.lang.IllegalStateException: No match found
+	at java.util.regex.Matcher.group(Matcher.java:536) ~[?:1.8.0_112]
+	at org.elasticsearch.monitor.os.OsProbe.getControlGroups(OsProbe.java:216) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.monitor.os.OsProbe.getCgroup(OsProbe.java:414) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.monitor.os.OsProbe.osStats(OsProbe.java:466) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.monitor.os.OsService.<init>(OsService.java:45) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.monitor.MonitorService.<init>(MonitorService.java:45) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.node.Node.<init>(Node.java:345) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.node.Node.<init>(Node.java:232) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Bootstrap$6.<init>(Bootstrap.java:241) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:241) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:333) ~[elasticsearch-5.2.1.jar:5.2.1]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-5.2.1.jar:5.2.1]
+	... 6 more
+

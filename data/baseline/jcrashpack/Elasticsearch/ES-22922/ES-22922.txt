@@ -1,0 +1,16 @@
+elasticsearch-5.2.0/bin/elasticsearch-plugin remove
+-> Removing ...
+Exception in thread "main" java.lang.NullPointerException
+	at sun.nio.fs.UnixPath.normalizeAndCheck(UnixPath.java:77)
+	at sun.nio.fs.UnixPath.<init>(UnixPath.java:71)
+	at sun.nio.fs.UnixFileSystem.getPath(UnixFileSystem.java:281)
+	at sun.nio.fs.AbstractPath.resolve(AbstractPath.java:53)
+	at org.elasticsearch.plugins.RemovePluginCommand.execute(RemovePluginCommand.java:68)
+	at org.elasticsearch.plugins.RemovePluginCommand.execute(RemovePluginCommand.java:59)
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54)
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122)
+	at org.elasticsearch.cli.MultiCommand.execute(MultiCommand.java:69)
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122)
+	at org.elasticsearch.cli.Command.main(Command.java:88)
+	at org.elasticsearch.plugins.PluginCli.main(PluginCli.java:47)
+

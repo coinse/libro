@@ -1,0 +1,1437 @@
+[
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Dependency management for mimepull is redundant and the managed version is incompatible with Java 8",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31145",
+                "resourcePath": "/spring-projects/spring-boot/pull/31145",
+                "createdAt": "2022-05-23T05:58:05Z",
+                "number": 31145,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-dependencies/build.gradle"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s44Q6m82gAoN2I3ZWEzNGQ2ZTRiZDAzYWJmNTkwZjlmOGE2ZGMzZGU0YTZlZWZlOQ",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31145/commits/7b7ea34d6e4bd03abf590f9f8a6dc3de4a6eefe9"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31133,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31133",
+                                "title": "Mimepull 1.10.0 dependency breaks compatibility with Java 8 for Spring Boot 2.7.0",
+                                "bodyHTML": "<p dir=\"auto\">In Spring Boot 2.7.0, <a href=\"https://github.com/eclipse-ee4j/metro-mimepull\">mimepull</a> has been upgraded to 1.10.0 (<a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"1206830262\" data-permission-text=\"Title is private\" data-url=\"https://github.com/spring-projects/spring-boot/issues/30725\" data-hovercard-type=\"issue\" data-hovercard-url=\"/spring-projects/spring-boot/issues/30725/hovercard\" href=\"https://github.com/spring-projects/spring-boot/issues/30725\">#30725</a>).<br>\nIt seems this version has been built with Java 11 (<a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"1194477756\" data-permission-text=\"Title is private\" data-url=\"https://github.com/eclipse-ee4j/metro-mimepull/issues/61\" data-hovercard-type=\"pull_request\" data-hovercard-url=\"/eclipse-ee4j/metro-mimepull/pull/61/hovercard\" href=\"https://github.com/eclipse-ee4j/metro-mimepull/pull/61\">eclipse-ee4j/metro-mimepull#61</a>), making Spring Boot 2.7.0 incompatible with Java 8 if the library is loaded (unless you override the version of course).</p>\n<p dir=\"auto\">For instance, here is the error during the startup of a Spring Boot application using Jersey:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.lang.UnsupportedClassVersionError: org/jvnet/mimepull/MIMEConfig has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0\n\tat org.glassfish.hk2.utilities.cache.LRUHybridCache.compute(LRUHybridCache.java:292)\n\tat org.glassfish.hk2.utilities.reflection.internal.ClassReflectionHelperImpl.getAllMethods(ClassReflectionHelperImpl.java:85)\n\tat org.jvnet.hk2.internal.Utilities.findInitializerMethods(Utilities.java:1400)\n\tat org.jvnet.hk2.internal.DefaultClassAnalyzer.getInitializerMethods(DefaultClassAnalyzer.java:83)\n\tat org.glassfish.jersey.inject.hk2.JerseyClassAnalyzer.getInitializerMethods(JerseyClassAnalyzer.java:218)\n\tat org.jvnet.hk2.internal.Utilities.getInitMethods(Utilities.java:196)\n\tat org.jvnet.hk2.internal.ClazzCreator.initialize(ClazzCreator.java:121)\n\tat org.jvnet.hk2.internal.ClazzCreator.initialize(ClazzCreator.java:156)\n\tat org.jvnet.hk2.internal.SystemDescriptor.internalReify(SystemDescriptor.java:716)\n....\"><pre class=\"notranslate\"><code>java.lang.RuntimeException: java.util.concurrent.ExecutionException: java.lang.UnsupportedClassVersionError: org/jvnet/mimepull/MIMEConfig has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0\n\tat org.glassfish.hk2.utilities.cache.LRUHybridCache.compute(LRUHybridCache.java:292)\n\tat org.glassfish.hk2.utilities.reflection.internal.ClassReflectionHelperImpl.getAllMethods(ClassReflectionHelperImpl.java:85)\n\tat org.jvnet.hk2.internal.Utilities.findInitializerMethods(Utilities.java:1400)\n\tat org.jvnet.hk2.internal.DefaultClassAnalyzer.getInitializerMethods(DefaultClassAnalyzer.java:83)\n\tat org.glassfish.jersey.inject.hk2.JerseyClassAnalyzer.getInitializerMethods(JerseyClassAnalyzer.java:218)\n\tat org.jvnet.hk2.internal.Utilities.getInitMethods(Utilities.java:196)\n\tat org.jvnet.hk2.internal.ClazzCreator.initialize(ClazzCreator.java:121)\n\tat org.jvnet.hk2.internal.ClazzCreator.initialize(ClazzCreator.java:156)\n\tat org.jvnet.hk2.internal.SystemDescriptor.internalReify(SystemDescriptor.java:716)\n....\n</code></pre></div>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31133",
+                                "createdAt": "2022-05-20T12:10:25Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "type: bug" } },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Values in a spring.data.cassandra.config file can't override some defaults defined in CassandraProperties",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31238",
+                "resourcePath": "/spring-projects/spring-boot/pull/31238",
+                "createdAt": "2022-06-02T09:57:05Z",
+                "number": 31238,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/cassandra/CassandraAutoConfiguration.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/cassandra/CassandraProperties.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/java/org/springframework/boot/autoconfigure/cassandra/CassandraAutoConfigurationTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/resources/org/springframework/boot/autoconfigure/cassandra/override-defaults.conf"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s449whc2gAoNTkwZTMxNjVmMzY3NDM1ZmQ4MmM1NjU0N2VkMzBmZWQxMWMzOTBiOA",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31238/commits/590e3165f367435fd82c56547ed30fed11c390b8"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31025,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31025",
+                                "title": "CassandraAutoconfiguration leads to ignored parameters in db-config.conf",
+                                "bodyHTML": "<p dir=\"auto\">We are using the cassandra driver specific configuration file <code class=\"notranslate\">db-config.conf</code> via the property:</p>\n<div class=\"highlight highlight-source-yaml notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"spring:\n  data:\n    cassandra:\n      config: file:/db-config.conf\"><pre><span class=\"pl-ent\">spring</span>:\n  <span class=\"pl-ent\">data</span>:\n    <span class=\"pl-ent\">cassandra</span>:\n      <span class=\"pl-ent\">config</span>: <span class=\"pl-s\">file:/db-config.conf</span></pre></div>\n<p dir=\"auto\">The problem now is that even when I do not define further spring-boot <code class=\"notranslate\">CassandraProperties</code> in the yaml, there are default values already set and these properties are ignored in the <code class=\"notranslate\">db-config.conf</code>. file. The reason seem to be, because the <code class=\"notranslate\">db-config.conf</code> properties are loaded as fallback after the default spring boot <code class=\"notranslate\">CassandraProperties</code>. Spring Boot <code class=\"notranslate\">CassandraProperties</code> should win, but only if they are actively set.</p>\n<p dir=\"auto\">The following Cassandra properties always initialized and so always ignored in <code class=\"notranslate\">db-config.conf</code></p>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/46843697/168272455-9e4a00d6-6809-4598-a65f-9cff202fda0d.png\"><img src=\"https://user-images.githubusercontent.com/46843697/168272455-9e4a00d6-6809-4598-a65f-9cff202fda0d.png\" alt=\"initCassandraProperties\" style=\"max-width: 100%;\"></a></p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31025",
+                                "createdAt": "2022-05-13T11:22:16Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Restore custom favicon documentation",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31224",
+                "resourcePath": "/spring-projects/spring-boot/pull/31224",
+                "createdAt": "2022-05-31T13:34:16Z",
+                "number": 31224,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-docs/src/docs/asciidoc/anchor-rewrite.properties"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-docs/src/docs/asciidoc/web/servlet.adoc"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s44vhCF2gAoMDUzYzlkODg1MTNmMjlmMGVkMjhmYzc5YzU0ODVhMTA0ZjkyZTJhZg",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31224/commits/053c9d88513f29f0ed28fc79c5485a104f92e2af"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31026,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31026",
+                                "title": "Custom Favicon missing in the documentation",
+                                "bodyHTML": "\n<p dir=\"auto\">Hello,</p>\n<p dir=\"auto\">I'm opening this issue because it seems the part about the custom Favicon is missing in the documentation.<br>\nStarting from Spring Boot version 2.4.0 there is no more mention about custom Favicon in the documentation.</p>\n<p dir=\"auto\">The last time we can find it in the documentation it's in version 2.3.9 here : <a href=\"https://docs.spring.io/spring-boot/docs/2.3.9.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-favicon\" rel=\"nofollow\">https://docs.spring.io/spring-boot/docs/2.3.9.RELEASE/reference/htmlsingle/#boot-features-spring-mvc-favicon</a></p>\n<p dir=\"auto\">Why this part have been removed ?</p>\n<p dir=\"auto\">Thank you very much.<br>\nBest regards,</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31026",
+                                "createdAt": "2022-05-13T11:53:38Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Typos in documentation (\"spring-factories\" instead of \"spring.factories\") ",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31203",
+                "resourcePath": "/spring-projects/spring-boot/pull/31203",
+                "createdAt": "2022-05-30T10:43:23Z",
+                "number": 31203,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-docs/src/docs/asciidoc/howto/data-initialization.adoc"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s44rHB02gAoMDUzMGNhYzAxZTYzNzUxNzE5ODBhZTVkNWVjMDJmYzVjMjk2NDIwMg",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31203/commits/0530cac01e6375171980ae5d5ec02fc5c2964202"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31199,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31199",
+                                "title": "Typos in Documentation(spring.factories --> spring-factories)",
+                                "bodyHTML": "<p dir=\"auto\">There are two typos <code class=\"notranslate\">META-INF/spring-factories</code> in chapter <a href=\"https://github.com/spring-projects/spring-boot/blob/main/spring-boot-project/spring-boot-docs/src/docs/asciidoc/howto/data-initialization.adoc\">Database Initialization</a>，correct is ‘META-INF/spring.factories’</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31199",
+                                "createdAt": "2022-05-30T05:54:14Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "type: documentation"
+                                            }
+                                        },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Document that when using Lombok it must be configured to run before spring-boot-configuration-processor",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31190",
+                "resourcePath": "/spring-projects/spring-boot/pull/31190",
+                "createdAt": "2022-05-27T13:31:42Z",
+                "number": 31190,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-docs/src/docs/asciidoc/configuration-metadata/annotation-processor.adoc"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s44lWXD2gAoYjQ1YmZhNmEzN2QxMzVlMTY3MmVlNGNhNDNjZjNiOTNlNzViZWExNw",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31190/commits/b45bfa6a37d135e1672ee4ca43cf3b93e75bea17"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 30986,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/30986",
+                                "title": "Document ordering of Lombok and spring-boot-configuration-processor annotation processors",
+                                "bodyHTML": "<p dir=\"auto\">I just made the same mistake as the reporter in <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"704164117\" data-permission-text=\"Title is private\" data-url=\"https://github.com/spring-projects/spring-boot/issues/23405\" data-hovercard-type=\"issue\" data-hovercard-url=\"/spring-projects/spring-boot/issues/23405/hovercard\" href=\"https://github.com/spring-projects/spring-boot/issues/23405\">#23405</a> that I had <code class=\"notranslate\">spring-boot-configuration-processor</code> ordered before <code class=\"notranslate\">lombok</code> in my pom.xml and thus combining <code class=\"notranslate\">@lombok.Value</code> with <code class=\"notranslate\">@ConstructorBinding</code> didn't work with the configuration-processor.</p>\n<p dir=\"auto\">It would be great to have an info box in the <a href=\"https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#appendix.configuration-metadata.annotation-processor\" rel=\"nofollow\">Configuration Metadata</a> mentioning the importance of the order of the dependencies if using Lombok.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/30986",
+                                "createdAt": "2022-05-12T08:55:57Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "type: documentation"
+                                            }
+                                        },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Normalize DataSize inputs via removing all whitespaces",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31481",
+                "resourcePath": "/spring-projects/spring-boot/pull/31481",
+                "createdAt": "2022-06-21T12:39:54Z",
+                "number": 31481,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/convert/StringToDataSizeConverter.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/convert/StringToDataSizeConverterTests.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46Bssa2gAoZDc5OWNiNmM5ZTI4YThmOTdiNDM0YjdiNzAwYjRkYTI0OGQ2ZTlhNg",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31481/commits/d799cb6c9e28a8f97b434b7b700b4da248d6e9a6"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 28357,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/28357",
+                                "title": "JarFileWrapper may cause many FinalReferences causing GC pressure",
+                                "bodyHTML": "<p dir=\"auto\">Forward port of issue <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"1027078948\" data-permission-text=\"Title is private\" data-url=\"https://github.com/spring-projects/spring-boot/issues/28356\" data-hovercard-type=\"issue\" data-hovercard-url=\"/spring-projects/spring-boot/issues/28356/hovercard\" href=\"https://github.com/spring-projects/spring-boot/issues/28356\">#28356</a> to 2.6.x.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/28357",
+                                "createdAt": "2021-10-15T04:49:09Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "type: regression"
+                                            }
+                                        },
+                                        {
+                                            "node": {
+                                                "name": "status: forward-port"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Use pattern matching for instanceof where appropriate",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31475",
+                "resourcePath": "/spring-projects/spring-boot/pull/31475",
+                "createdAt": "2022-06-20T16:22:24Z",
+                "number": 31475,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/builder/SpringApplicationBuilderTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/context/config/ConfigDataEnvironmentPostProcessorTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/convert/ConversionServiceArguments.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/jackson/NameAndAge.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/jdbc/DataSourceBuilderTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/web/embedded/jetty/JettyServletWebServerFactoryTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/web/embedded/tomcat/TomcatServletWebServerFactoryTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/web/reactive/context/AnnotationConfigReactiveWebServerApplicationContextTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/web/reactive/server/AbstractReactiveWebServerFactoryTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContextTests.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s459hFC2gAoYWE5MTJlYWI5NDgzMWY4ZmRlNWQ3NzllNjMwOTIzM2Y0NGRkZmJhZQ",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31475/commits/aa912eab94831f8fde5d779e6309233f44ddfbae"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 28181,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/28181",
+                                "title": "Use pattern matching for instanceof where appropriate",
+                                "bodyHTML": "<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"if (obj instanceof String) {\n    String s = (String) obj;\n    // use s\n}\"><pre><span class=\"pl-k\">if</span> (<span class=\"pl-s1\">obj</span> <span class=\"pl-k\">instanceof</span> <span class=\"pl-smi\">String</span>) {\n    <span class=\"pl-smi\">String</span> <span class=\"pl-s1\">s</span> = (<span class=\"pl-smi\">String</span>) <span class=\"pl-s1\">obj</span>;\n    <span class=\"pl-c\">// use s</span>\n}</pre></div>\n<p dir=\"auto\">becomes</p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"if (obj instanceof String s) {\n    // use s\n}\"><pre><span class=\"pl-k\">if</span> (<span class=\"pl-s1\">obj</span> <span class=\"pl-k\">instanceof</span> <span class=\"pl-smi\">String</span> <span class=\"pl-s1\">s</span>) {\n    <span class=\"pl-c\">// use s</span>\n}</pre></div>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/28181",
+                                "createdAt": "2021-10-02T08:15:57Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "type: task" } },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        },
+                                        { "node": { "name": "theme: java-17" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Use java.util.HexFormat where appropriate",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31477",
+                "resourcePath": "/spring-projects/spring-boot/pull/31477",
+                "createdAt": "2022-06-21T06:32:17Z",
+                "number": 31477,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/tunnel/payload/HttpTunnelPayload.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/main/java/org/springframework/boot/buildpack/platform/docker/type/VolumeName.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-loader-tools/src/main/java/org/springframework/boot/loader/tools/Digest.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46ARuc2gAoNDEzM2JhNjk3YWNjMGNmOWQxOTExOGRhZDZjYTM1ZWI5OTY3OGJkNQ",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31477/commits/4133ba697acc0cf9d19118dad6ca35eb99678bd5"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 28154,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/28154",
+                                "title": "Adopt java.util.HexFormat",
+                                "bodyHTML": "<p dir=\"auto\">There are a few places in Boot where we work with hex strings, for example:</p>\n<p dir=\"auto\"><div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/spring-projects/spring-boot/blob/ea68672594a1abc302a669fee9c794abb1f28b3e/spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/main/java/org/springframework/boot/buildpack/platform/docker/type/VolumeName.java#L126-L132\">spring-boot/spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/main/java/org/springframework/boot/buildpack/platform/docker/type/VolumeName.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n        Lines 126 to 132\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/spring-projects/spring-boot/commit/ea68672594a1abc302a669fee9c794abb1f28b3e\">ea68672</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L126\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"126\"></td>\n          <td id=\"LC126\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-k\">private</span> <span class=\"pl-k\">static</span> <span class=\"pl-smi\">String</span> <span class=\"pl-en\">asHexString</span>(<span class=\"pl-smi\">byte</span>[] <span class=\"pl-s1\">digest</span>, <span class=\"pl-smi\">int</span> <span class=\"pl-s1\">digestLength</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L127\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"127\"></td>\n          <td id=\"LC127\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-s1\">Assert</span>.<span class=\"pl-en\">isTrue</span>(<span class=\"pl-s1\">digestLength</span> &lt;= <span class=\"pl-s1\">digest</span>.<span class=\"pl-s1\">length</span>, </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L128\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"128\"></td>\n          <td id=\"LC128\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t() -&gt; <span class=\"pl-s\">\"DigestLength must be less than or equal to \"</span> + <span class=\"pl-s1\">digest</span>.<span class=\"pl-s1\">length</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L129\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"129\"></td>\n          <td id=\"LC129\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-smi\">byte</span>[] <span class=\"pl-s1\">shortDigest</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">byte</span>[<span class=\"pl-c1\">6</span>]; </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L130\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"130\"></td>\n          <td id=\"LC130\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-s1\">System</span>.<span class=\"pl-en\">arraycopy</span>(<span class=\"pl-s1\">digest</span>, <span class=\"pl-c1\">0</span>, <span class=\"pl-s1\">shortDigest</span>, <span class=\"pl-c1\">0</span>, <span class=\"pl-s1\">shortDigest</span>.<span class=\"pl-s1\">length</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L131\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"131\"></td>\n          <td id=\"LC131\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-k\">return</span> <span class=\"pl-s1\">String</span>.<span class=\"pl-en\">format</span>(<span class=\"pl-s\">\"%0\"</span> + <span class=\"pl-s1\">digestLength</span> + <span class=\"pl-s\">\"x\"</span>, <span class=\"pl-k\">new</span> <span class=\"pl-smi\">BigInteger</span>(<span class=\"pl-c1\">1</span>, <span class=\"pl-s1\">shortDigest</span>)); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L132\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"132\"></td>\n          <td id=\"LC132\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> } </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n</p>\n<p dir=\"auto\"><div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/spring-projects/spring-boot/blob/ea68672594a1abc302a669fee9c794abb1f28b3e/spring-boot-project/spring-boot-tools/spring-boot-loader-tools/src/main/java/org/springframework/boot/loader/tools/Digest.java#L56-L62\">spring-boot/spring-boot-project/spring-boot-tools/spring-boot-loader-tools/src/main/java/org/springframework/boot/loader/tools/Digest.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n        Lines 56 to 62\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/spring-projects/spring-boot/commit/ea68672594a1abc302a669fee9c794abb1f28b3e\">ea68672</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L56\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"56\"></td>\n          <td id=\"LC56\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-k\">private</span> <span class=\"pl-k\">static</span> <span class=\"pl-smi\">String</span> <span class=\"pl-en\">bytesToHex</span>(<span class=\"pl-smi\">byte</span>[] <span class=\"pl-s1\">bytes</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L57\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"57\"></td>\n          <td id=\"LC57\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-smi\">StringBuilder</span> <span class=\"pl-s1\">hex</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">StringBuilder</span>(); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L58\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"58\"></td>\n          <td id=\"LC58\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-k\">for</span> (<span class=\"pl-smi\">byte</span> <span class=\"pl-s1\">b</span> : <span class=\"pl-s1\">bytes</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L59\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"59\"></td>\n          <td id=\"LC59\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-s1\">hex</span>.<span class=\"pl-en\">append</span>(<span class=\"pl-s1\">String</span>.<span class=\"pl-en\">format</span>(<span class=\"pl-s\">\"%02x\"</span>, <span class=\"pl-s1\">b</span>)); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L60\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"60\"></td>\n          <td id=\"LC60\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L61\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"61\"></td>\n          <td id=\"LC61\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-k\">return</span> <span class=\"pl-s1\">hex</span>.<span class=\"pl-en\">toString</span>(); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L62\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"62\"></td>\n          <td id=\"LC62\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> } </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n</p>\n<p dir=\"auto\"><div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/spring-projects/spring-boot/blob/ea68672594a1abc302a669fee9c794abb1f28b3e/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/system/ApplicationTemp.java#L163-L171\">spring-boot/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/system/ApplicationTemp.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n        Lines 163 to 171\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/spring-projects/spring-boot/commit/ea68672594a1abc302a669fee9c794abb1f28b3e\">ea68672</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L163\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"163\"></td>\n          <td id=\"LC163\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-k\">private</span> <span class=\"pl-smi\">String</span> <span class=\"pl-en\">toHexString</span>(<span class=\"pl-smi\">byte</span>[] <span class=\"pl-s1\">bytes</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L164\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"164\"></td>\n          <td id=\"LC164\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-smi\">char</span>[] <span class=\"pl-s1\">hex</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">char</span>[<span class=\"pl-s1\">bytes</span>.<span class=\"pl-s1\">length</span> * <span class=\"pl-c1\">2</span>]; </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L165\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"165\"></td>\n          <td id=\"LC165\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-k\">for</span> (<span class=\"pl-smi\">int</span> <span class=\"pl-s1\">i</span> = <span class=\"pl-c1\">0</span>; <span class=\"pl-s1\">i</span> &lt; <span class=\"pl-s1\">bytes</span>.<span class=\"pl-s1\">length</span>; <span class=\"pl-s1\">i</span>++) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L166\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"166\"></td>\n          <td id=\"LC166\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-smi\">int</span> <span class=\"pl-s1\">b</span> = <span class=\"pl-s1\">bytes</span>[<span class=\"pl-s1\">i</span>] &amp; <span class=\"pl-c1\">0xFF</span>; </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L167\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"167\"></td>\n          <td id=\"LC167\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-s1\">hex</span>[<span class=\"pl-s1\">i</span> * <span class=\"pl-c1\">2</span>] = <span class=\"pl-c1\">HEX_CHARS</span>[<span class=\"pl-s1\">b</span> &gt;&gt;&gt; <span class=\"pl-c1\">4</span>]; </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L168\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"168\"></td>\n          <td id=\"LC168\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-s1\">hex</span>[<span class=\"pl-s1\">i</span> * <span class=\"pl-c1\">2</span> + <span class=\"pl-c1\">1</span>] = <span class=\"pl-c1\">HEX_CHARS</span>[<span class=\"pl-s1\">b</span> &amp; <span class=\"pl-c1\">0x0F</span>]; </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L169\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"169\"></td>\n          <td id=\"LC169\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L170\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"170\"></td>\n          <td id=\"LC170\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-k\">return</span> <span class=\"pl-k\">new</span> <span class=\"pl-smi\">String</span>(<span class=\"pl-s1\">hex</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L171\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"171\"></td>\n          <td id=\"LC171\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> } </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n</p>\n<p dir=\"auto\">Where appropriate, we should use Java 17's <code class=\"notranslate\">java.util.HexFormat</code> instead.</p>\n<p dir=\"auto\"><a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"1004110657\" data-permission-text=\"Title is private\" data-url=\"https://github.com/spring-projects/spring-boot/issues/28101\" data-hovercard-type=\"issue\" data-hovercard-url=\"/spring-projects/spring-boot/issues/28101/hovercard\" href=\"https://github.com/spring-projects/spring-boot/issues/28101\">#28101</a> is a prerequisite for this.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/28154",
+                                "createdAt": "2021-09-30T16:51:40Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "type: task" } },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        },
+                                        { "node": { "name": "theme: java-17" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Use InputStream.transferTo() when possible",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31494",
+                "resourcePath": "/spring-projects/spring-boot/pull/31494",
+                "createdAt": "2022-06-22T10:15:52Z",
+                "number": 31494,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/main/java/org/springframework/boot/buildpack/platform/docker/DockerApi.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-gradle-plugin/src/main/java/org/springframework/boot/gradle/tasks/bundling/BootZipCopyAction.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-gradle-plugin/src/main/java/org/springframework/boot/gradle/tasks/bundling/LoaderZipEntries.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-jarmode-layertools/src/main/java/org/springframework/boot/jarmode/layertools/ExtractCommand.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-loader-tools/src/main/java/org/springframework/boot/loader/tools/SizeCalculatingEntryWriter.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-loader/src/test/java/org/springframework/boot/loader/jar/JarFileTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-integration-tests/spring-boot-server-tests/src/intTest/java/org/springframework/boot/context/embedded/AbstractApplicationLauncher.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-integration-tests/spring-boot-server-tests/src/intTest/java/org/springframework/boot/context/embedded/BootRunApplicationLauncher.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-integration-tests/spring-boot-server-tests/src/intTest/java/org/springframework/boot/context/embedded/ExplodedApplicationLauncher.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-integration-tests/spring-boot-server-tests/src/intTest/java/org/springframework/boot/context/embedded/IdeApplicationLauncher.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46G6nm2gAoZmE1MGVjNTlkNjAzMWNhZDhhMzk5Yjc1YWNhZTJmOWFiMjc1MDc4Nw",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31494/commits/fa50ec59d6031cad8a399b75acae2f9ab2750787"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 28221,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/28221",
+                                "title": "Use InputStream.transferTo when possible",
+                                "bodyHTML": "<p dir=\"auto\">Added in JDK 9, might be a nice alternative to <code class=\"notranslate\">StreamUtils</code>. Possibly also worth raising with Framework.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/28221",
+                                "createdAt": "2021-10-06T23:19:10Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: declined"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Use switch expressions where appropriate",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31527",
+                "resourcePath": "/spring-projects/spring-boot/pull/31527",
+                "createdAt": "2022-06-24T14:00:16Z",
+                "number": 31527,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/error/BasicErrorController.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-test-autoconfigure/src/main/java/org/springframework/boot/test/autoconfigure/filter/FilterAnnotations.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-buildpack-platform/src/main/java/org/springframework/boot/buildpack/platform/docker/LogUpdateEvent.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/AotProcessor.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/logging/DeferredLog.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/embedded/jetty/JettyServletWebServerFactory.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-websocket-jetty/src/main/java/smoketest/websocket/jetty/snake/Location.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-websocket-tomcat/src/main/java/smoketest/websocket/tomcat/snake/Location.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-websocket-undertow/src/main/java/smoketest/websocket/undertow/snake/Location.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46ULpa2gAoNzE3ZGE5ZmRhZWNiNTVkYWU3YzJkODc3ZTk0YjcyMWI4ZjU2NGI3OQ",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31527/commits/717da9fdaecb55dae7c2d877e94b721b8f564b79"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 28180,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/28180",
+                                "title": "Use switch expressions where appropriate",
+                                "bodyHTML": "<p dir=\"auto\">I don't think we make much use of switch statements, but we should see if there are places where using switch expressions will make the code more concise.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/28180",
+                                "createdAt": "2021-10-02T08:13:18Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "type: task" } },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        },
+                                        { "node": { "name": "theme: java-17" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Trailing whitespace in the value of a property is hard to identify in failure analysis descriptions",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31566",
+                "resourcePath": "/spring-projects/spring-boot/pull/31566",
+                "createdAt": "2022-07-03T22:08:34Z",
+                "number": 31566,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": ".gitignore"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/diagnostics/analyzer/BindFailureAnalyzer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/diagnostics/analyzer/BindValidationFailureAnalyzer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/diagnostics/analyzer/UnboundConfigurationPropertyFailureAnalyzer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/diagnostics/analyzer/BindFailureAnalyzerTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/diagnostics/analyzer/BindValidationFailureAnalyzerTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot/src/test/java/org/springframework/boot/diagnostics/analyzer/UnboundConfigurationPropertyFailureAnalyzerTests.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46wnxM2gAoZjYzMDgyZWI1NGRlZmQ3ZDQ4NzQ3NjY2NWEzMTRiMjg5NmVhNzk4NQ",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31566/commits/f63082eb54defd7d487476665a314b2896ea7985"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31407,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31407",
+                                "title": "Trailing whitespace in the value of a property is hard to identify in failure analysis descriptions",
+                                "bodyHTML": "<p dir=\"auto\">I think we should quote or somehow delimit the value that's output in the failure analysis. It looks like this at the moment:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"Property: spring.servlet.multipart.file-size-threshold\nValue: 2KB \nOrigin: class path resource [application.properties]:24:46\nReason: failed to convert java.lang.String to org.springframework.util.unit.DataSize\"><pre class=\"notranslate\"><code>Property: spring.servlet.multipart.file-size-threshold\nValue: 2KB \nOrigin: class path resource [application.properties]:24:46\nReason: failed to convert java.lang.String to org.springframework.util.unit.DataSize\n</code></pre></div>\n<p dir=\"auto\">I think something like this would be better:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"Property: spring.servlet.multipart.file-size-threshold\nValue: &quot;2KB &quot;\nOrigin: class path resource [application.properties]:24:46\nReason: failed to convert java.lang.String to org.springframework.util.unit.DataSize\"><pre class=\"notranslate\"><code>Property: spring.servlet.multipart.file-size-threshold\nValue: \"2KB \"\nOrigin: class path resource [application.properties]:24:46\nReason: failed to convert java.lang.String to org.springframework.util.unit.DataSize\n</code></pre></div>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31407",
+                                "createdAt": "2022-06-16T20:12:07Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Support multipart uploads with @RestControllerEndpoint when the management server is running on a separate port",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31554",
+                "resourcePath": "/spring-projects/spring-boot/pull/31554",
+                "createdAt": "2022-06-30T15:33:53Z",
+                "number": 31554,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/web/servlet/WebMvcEndpointChildContextConfiguration.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-actuator/src/main/java/smoketest/actuator/SampleRestControllerEndpoint.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-actuator/src/test/java/smoketest/actuator/ManagementDifferentPortAndEndpointWithExceptionHandlerSampleActuatorApplicationTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-actuator/src/test/java/smoketest/actuator/ManagementDifferentPortAndEndpointWithMultipartUploadSampleActuatorApplicationTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-actuator/src/test/resources/test-file.txt"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46pqIw2gAoYzFlYzVlZjJkYTc4OGIwNmVjNDk2ZjNlNTljZWFjYTZkZjMxMDg0NA",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31554/commits/c1ec5ef2da788b06ec496f3e59ceaca6df310844"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 18286,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/18286",
+                                "title": "Support multipart uploads with @RestControllerEndpoint when the management server is running on a separate port",
+                                "bodyHTML": "<p dir=\"auto\">Hello,</p>\n<p dir=\"auto\">i'm trying to implement custom <code class=\"notranslate\">@RestControllerEndpoint</code>  with a method that accepts <code class=\"notranslate\">MultipartFile</code> as parameter. Everything works when actuator endpoints are in the same context as main application (port 8080.) After I set up dedicated context for actuator end-points with <code class=\"notranslate\">management.server.port=9000</code> I've got this exception:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"2019-09-19 13:32:49.196 ERROR 21724 --- [nio-9000-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: Failed to parse multipart servlet request; nested exception is java.lang.IllegalStateException: Unable to process parts as no multi-part configuration has been provided] with root cause\n\njava.lang.IllegalStateException: Unable to process parts as no multi-part configuration has been provided\n\tat org.apache.catalina.connector.Request.parseParts(Request.java:2802) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.connector.Request.getParts(Request.java:2770) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.connector.RequestFacade.getParts(RequestFacade.java:1098) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.parseRequest(StandardMultipartHttpServletRequest.java:94) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.&lt;init&gt;(StandardMultipartHttpServletRequest.java:87) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.multipart.support.StandardServletMultipartResolver.resolveMultipart(StandardServletMultipartResolver.java:87) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.DispatcherServlet.checkMultipart(DispatcherServlet.java:1176) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1011) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]\"><pre class=\"notranslate\"><code>2019-09-19 13:32:49.196 ERROR 21724 --- [nio-9000-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.multipart.MultipartException: Failed to parse multipart servlet request; nested exception is java.lang.IllegalStateException: Unable to process parts as no multi-part configuration has been provided] with root cause\n\njava.lang.IllegalStateException: Unable to process parts as no multi-part configuration has been provided\n\tat org.apache.catalina.connector.Request.parseParts(Request.java:2802) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.connector.Request.getParts(Request.java:2770) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.connector.RequestFacade.getParts(RequestFacade.java:1098) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.parseRequest(StandardMultipartHttpServletRequest.java:94) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.multipart.support.StandardMultipartHttpServletRequest.&lt;init&gt;(StandardMultipartHttpServletRequest.java:87) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.multipart.support.StandardServletMultipartResolver.resolveMultipart(StandardServletMultipartResolver.java:87) ~[spring-web-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.DispatcherServlet.checkMultipart(DispatcherServlet.java:1176) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1011) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.9.RELEASE.jar:5.1.9.RELEASE]\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.24.jar:9.0.24]\n\tat java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]\n</code></pre></div>\n<p dir=\"auto\">It seems that multipart config is not configured for the actuator context in this case.<br>\nI was able to fix the problem by adding dependency to <code class=\"notranslate\">commons-fileupload</code> and registering <code class=\"notranslate\">CommonsMultipartResolver</code> bean. This seems to fix multi-part config for the actuator context. Still, I don't want to bring <code class=\"notranslate\">commons-fileupload</code> dependency with the project.</p>\n<p dir=\"auto\">SpringBoot 2.1.8. Please see sample project attached. Look at README.md file in the project for curl commands to execute.<br>\n<a href=\"https://github.com/spring-projects/spring-boot/files/3633246/actuator-multi-part.tar.gz\">actuator-multi-part.tar.gz</a></p>\n<p dir=\"auto\">Regards,<br>\nSergei</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/18286",
+                                "createdAt": "2019-09-19T21:19:04Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "type: enhancement"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Remove Jolokia references from the documentation",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31549",
+                "resourcePath": "/spring-projects/spring-boot/pull/31549",
+                "createdAt": "2022-06-29T12:30:56Z",
+                "number": 31549,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-docs/src/docs/asciidoc/actuator/endpoints.adoc"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-docs/src/docs/asciidoc/anchor-rewrite.properties"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s46kFGn2gAoMzM2NjMyZWVjZTViODA5ZjVhMWE3MzZkNWQwZWZlYzkxMTZjMzY5Yw",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31549/commits/336632eece5b809f5a1a736d5d0efec9116c369c"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31545,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31545",
+                                "title": "Remove Jolokia from documentation",
+                                "bodyHTML": "<p dir=\"auto\">Commit <a class=\"commit-link\" data-hovercard-type=\"commit\" data-hovercard-url=\"https://github.com/spring-projects/spring-boot/commit/85f9949513806d564730c2ef6e27171d9563b5dd/hovercard\" href=\"https://github.com/spring-projects/spring-boot/commit/85f9949513806d564730c2ef6e27171d9563b5dd\"><tt>85f9949</tt></a> dropped support for Jolokia (because it <a href=\"https://github.com/rhuss/jolokia/issues/451\" data-hovercard-type=\"issue\" data-hovercard-url=\"/rhuss/jolokia/issues/451/hovercard\">doesn't use JakartaEE APIs</a>), but it is still mentioned in the documentation. Remove it.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31545",
+                                "createdAt": "2022-06-29T07:48:37Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Add a configuration property for the trusted proxies of Tomcat's Remote IP valve",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31576",
+                "resourcePath": "/spring-projects/spring-boot/pull/31576",
+                "createdAt": "2022-07-05T13:28:57Z",
+                "number": 31576,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/embedded/TomcatWebServerFactoryCustomizer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/java/org/springframework/boot/autoconfigure/web/ServerPropertiesTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/java/org/springframework/boot/autoconfigure/web/embedded/TomcatWebServerFactoryCustomizerTests.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s462yFh2gAoMDkxZDkzZjcyZDRjZTk2OTgxNmJjNjQ3N2NlZjUzY2UwYzg2NWRlNA",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31576/commits/091d93f72d4ce969816bc6477cef53ce0c865de4"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31542,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31542",
+                                "title": "Add a configuration property for the trusted proxies of Tomcat's Remote IP valve",
+                                "bodyHTML": "<p dir=\"auto\">Tomcat's <em>RemoteIpValve</em> supports both <em>internal proxies</em> as well as <em>trusted proxies</em>.  <em>Internal proxies</em> default to the private IP spaces, but <em>trusted proxies</em> defaults to nothing.</p>\n<p dir=\"auto\"><em>Internal proxies</em> can be customized by setting <em>server.tomcat.remoteip.internal-proxies</em> which is later honored by <em>TomcatWebServerFactoryCustomizer</em>, but <em>trusted proxies</em> is not honored by it.</p>\n<p dir=\"auto\">When using third party proxies with public IPs (e.g. Cloudflare Access), it is desirable to include their IPs to be ignored by the <em>RemoteIpValve</em>.  To do this through configuration, the only option is to <em>replace</em> the <em>internal proxies</em> pattern list since the <em>trusted proxies</em> list is not exposed to be configurable.</p>\n<p dir=\"auto\">My suggestion is to also expose <em>trusted proxies</em> for configuration.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31542",
+                                "createdAt": "2022-06-28T17:10:46Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "type: enhancement"
+                                            }
+                                        },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "HealthContributor beans managed by a CompositeHealthContributor are recreated on each call",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31676",
+                "resourcePath": "/spring-projects/spring-boot/pull/31676",
+                "createdAt": "2022-07-12T01:47:45Z",
+                "number": 31676,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/NamedContributorsMapAdapter.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-actuator/src/test/java/org/springframework/boot/actuate/health/NamedContributorsMapAdapterTests.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s47Oz5F2gAoOTE1OWJmNTY1YzdiODM2MTU2N2Q0NTFmYzA5YzFhNGE5YmE2YjAxYw",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31676/commits/9159bf565c7b8361567d451fc09c1a4a9ba6b01c"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 29640,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/29640",
+                                "title": "HealthContributor beans managed by a CompositeHealthContributor are recreated on each call",
+                                "bodyHTML": "\n<p dir=\"auto\">Spring Boot (tested with 2.6.3) aggregates multiple instances of the same health indicator</p>\n<ul dir=\"auto\">\n<li>Every aggregated health indicator gets recreated every time the health endpoint is pulled.</li>\n<li>Non aggregated health indicator instances are reused.</li>\n</ul>\n<p dir=\"auto\">This lifecycle inconsistency seems unintended to me.</p>\n<p dir=\"auto\">Demo: <a href=\"https://github.com/schuch/actuator-test\">https://github.com/schuch/actuator-test</a></p>\n<p dir=\"auto\">Fire up the application and call <a href=\"http://localhost:8080/actuator/health\" rel=\"nofollow\">http://localhost:8080/actuator/health</a> multiple times, then view the log.</p>\n<p dir=\"auto\">This will be logged for every request:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"created TestHealthIndicator for 1\ncreated TestHealthIndicator for 2\"><pre class=\"notranslate\"><code>created TestHealthIndicator for 1\ncreated TestHealthIndicator for 2\n</code></pre></div>\n<p dir=\"auto\">This is logged only once at startup:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"created SingleHealthIndicator\"><pre class=\"notranslate\"><code>created SingleHealthIndicator\n</code></pre></div>\n<p dir=\"auto\">Sample Log:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"2022-02-03 16:14:22.972  INFO 27776 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1857 ms\n2022-02-03 16:14:23.174  INFO 27776 --- [           main] com.example.demo.SingleHealthIndicator   : created SingleHealthIndicator\n2022-02-03 16:14:23.197  INFO 27776 --- [           main] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:23.199  INFO 27776 --- [           main] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:23.801  INFO 27776 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'\n2022-02-03 16:14:23.849  INFO 27776 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''\n2022-02-03 16:14:23.868  INFO 27776 --- [           main] com.example.demo.DemoApplication         : Started DemoApplication in 3.43 seconds (JVM running for 5.703)\n2022-02-03 16:14:25.243  INFO 27776 --- [1)-10.180.42.16] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:25.244  INFO 27776 --- [1)-10.180.42.16] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:25.248  INFO 27776 --- [2)-10.180.42.16] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'\n2022-02-03 16:14:25.249  INFO 27776 --- [2)-10.180.42.16] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'\n2022-02-03 16:14:25.251  INFO 27776 --- [2)-10.180.42.16] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms\n2022-02-03 16:14:46.794  INFO 27776 --- [nio-8080-exec-1] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:46.794  INFO 27776 --- [nio-8080-exec-1] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:48.749  INFO 27776 --- [nio-8080-exec-2] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:48.749  INFO 27776 --- [nio-8080-exec-2] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:49.693  INFO 27776 --- [nio-8080-exec-3] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:49.694  INFO 27776 --- [nio-8080-exec-3] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:51.387  INFO 27776 --- [nio-8080-exec-4] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:51.387  INFO 27776 --- [nio-8080-exec-4] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:52.051  INFO 27776 --- [nio-8080-exec-5] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:52.051  INFO 27776 --- [nio-8080-exec-5] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\"><pre class=\"notranslate\"><code>2022-02-03 16:14:22.972  INFO 27776 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1857 ms\n2022-02-03 16:14:23.174  INFO 27776 --- [           main] com.example.demo.SingleHealthIndicator   : created SingleHealthIndicator\n2022-02-03 16:14:23.197  INFO 27776 --- [           main] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:23.199  INFO 27776 --- [           main] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:23.801  INFO 27776 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'\n2022-02-03 16:14:23.849  INFO 27776 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''\n2022-02-03 16:14:23.868  INFO 27776 --- [           main] com.example.demo.DemoApplication         : Started DemoApplication in 3.43 seconds (JVM running for 5.703)\n2022-02-03 16:14:25.243  INFO 27776 --- [1)-10.180.42.16] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:25.244  INFO 27776 --- [1)-10.180.42.16] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:25.248  INFO 27776 --- [2)-10.180.42.16] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'\n2022-02-03 16:14:25.249  INFO 27776 --- [2)-10.180.42.16] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'\n2022-02-03 16:14:25.251  INFO 27776 --- [2)-10.180.42.16] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms\n2022-02-03 16:14:46.794  INFO 27776 --- [nio-8080-exec-1] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:46.794  INFO 27776 --- [nio-8080-exec-1] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:48.749  INFO 27776 --- [nio-8080-exec-2] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:48.749  INFO 27776 --- [nio-8080-exec-2] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:49.693  INFO 27776 --- [nio-8080-exec-3] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:49.694  INFO 27776 --- [nio-8080-exec-3] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:51.387  INFO 27776 --- [nio-8080-exec-4] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:51.387  INFO 27776 --- [nio-8080-exec-4] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n2022-02-03 16:14:52.051  INFO 27776 --- [nio-8080-exec-5] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 1\n2022-02-03 16:14:52.051  INFO 27776 --- [nio-8080-exec-5] com.example.demo.TestHealthIndicator     : created TestHealthIndicator for 2\n</code></pre></div>\n<p dir=\"auto\">This behavior makes it impossible to keep state in health indicators after initialization.</p>\n<p dir=\"auto\">E.g. <code class=\"notranslate\">SolrHealthIndicator</code> has a heuristic approach to detect the suitable status check method.<br>\nThe recreation of the health indicator makes it pointless to <a href=\"https://github.com/spring-projects/spring-boot/blob/2.6.x/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/solr/SolrHealthIndicator.java#L44\">store the check method</a>.<br>\nAlso unnecessary 404 errors are raised in the solr log for every health check.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/29640",
+                                "createdAt": "2022-02-03T15:36:10Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Add auto-configuration for JdkClientHttpConnector",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31709",
+                "resourcePath": "/spring-projects/spring-boot/pull/31709",
+                "createdAt": "2022-07-13T14:07:14Z",
+                "number": 31709,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/reactive/function/client/ClientHttpConnectorAutoConfiguration.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/reactive/function/client/ClientHttpConnectorConfiguration.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/java/org/springframework/boot/autoconfigure/web/reactive/function/client/ClientHttpConnectorAutoConfigurationTests.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s47Vucd2gAoNjJhNzkwNDFkZTU4ZmViM2M0MGZhOWM1MjM4OWRmMWVkZTAwYTI4Yw",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31709/commits/62a79041de58feb3c40fa9c52389df1ede00a28c"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31479,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31479",
+                                "title": "Add auto-configuration for JdkClientHttpConnector",
+                                "bodyHTML": "<p dir=\"auto\">Spring Framework 6 introduces <code class=\"notranslate\">JdkClientHttpConnector</code>, a <code class=\"notranslate\">ClientHttpConnector</code> based on the JDK HttpClient. Would be nice if Spring Boot would support an auto-configuration for it. With this you could use the WebClient out of the box, without Netty, Apache HttpClient, etc.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31479",
+                                "createdAt": "2022-06-21T11:47:40Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": " Using 'ImportAutoConfigurationImportSelector' in the jar package loaded by a custom class loader throws ClassNotFoundException",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31798",
+                "resourcePath": "/spring-projects/spring-boot/pull/31798",
+                "createdAt": "2022-07-20T06:17:10Z",
+                "number": 31798,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/ImportAutoConfigurationImportSelector.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s47tA4q2gAoOWU4MGUzODMwNWIxZmRiOTgwY2RjOGU2OWEzZmQwMjgyZTYxOTQyYg",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31798/commits/9e80e38305b1fdb980cdc8e69a3fd0282e61942b"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31787,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31787",
+                                "title": "Using 'ImportAutoConfigurationImportSelector' in the jar package loaded by the custom class loader will raise `ClassNotFoundException`.",
+                                "bodyHTML": "<p dir=\"auto\">I try to use 'UrlClassLoader' to load a jar package. In this jar package, an 'AnnotationConfigApplicationContext' will be started, and the '@ImportAutoConfiguration' annotation will be used. At this time, my application will throw an 'IllegalargumentException' caused by 'ClassNotFoundException'.</p>\n<p dir=\"auto\">I have a simple example. (<a href=\"https://github.com/aoyvx/CustomClassLoaderExample\">https://github.com/aoyvx/CustomClassLoaderExample</a>).<br>\nThe following stack will be thrown when the module'app-one 'is run.</p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"Exception in thread &quot;main&quot; java.lang.IllegalArgumentException: Could not find class [org.example.impl.SimpleConfig]\n\tat org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:334)\n\tat org.springframework.boot.autoconfigure.ImportAutoConfigurationImportSelector.getAnnotations(ImportAutoConfigurationImportSelector.java:132)\n\tat org.springframework.boot.autoconfigure.ImportAutoConfigurationImportSelector.getCandidateConfigurations(ImportAutoConfigurationImportSelector.java:77)\n\tat org.springframework.boot.autoconfigure.AutoConfigurationImportSelector.getAutoConfigurationEntry(AutoConfigurationImportSelector.java:125)\n\tat org.springframework.boot.autoconfigure.AutoConfigurationImportSelector$AutoConfigurationGroup.process(AutoConfigurationImportSelector.java:440)\n\tat org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorGrouping.getImports(ConfigurationClassParser.java:879)\n\tat org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorGroupingHandler.processGroupImports(ConfigurationClassParser.java:809)\n\tat org.springframework.context.annotation.ConfigurationClassParser$DeferredImportSelectorHandler.process(ConfigurationClassParser.java:780)\n\tat org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:193)\n\tat org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)\n\tat org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)\n\tat org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)\n\tat org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)\n\tat org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)\n\tat org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)\n\tat org.example.impl.EchoApp.init(EchoApp.java:15)\n\tat com.example.app.App.main(App.java:15)\nCaused by: java.lang.ClassNotFoundException: org.example.impl.SimpleConfig\n\tat java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)\n\tat java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)\n\tat java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)\n\tat java.base/java.lang.Class.forName0(Native Method)\n\tat java.base/java.lang.Class.forName(Class.java:467)\n\tat org.springframework.util.ClassUtils.forName(ClassUtils.java:284)\n\tat org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:324)\n\t... 16 more\nDisconnected from the target VM, address: '127.0.0.1:54192', transport: 'socket'\n\nProcess finished with exit code 1\"><pre><span class=\"pl-smi\">Exception</span> <span class=\"pl-s1\">in</span> <span class=\"pl-s1\">thread</span> <span class=\"pl-s\">\"main\"</span> <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">lang</span>.<span class=\"pl-s1\">IllegalArgumentException</span>: <span class=\"pl-s1\">Could</span> <span class=\"pl-s1\">not</span> <span class=\"pl-s1\">find</span> <span class=\"pl-s1\">class</span> [<span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">example</span>.<span class=\"pl-s1\">impl</span>.<span class=\"pl-s1\">SimpleConfig</span>]\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">util</span>.<span class=\"pl-s1\">ClassUtils</span>.<span class=\"pl-s1\">resolveClassName</span>(<span class=\"pl-smi\">ClassUtils</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">334</span>)\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">boot</span>.<span class=\"pl-s1\">autoconfigure</span>.<span class=\"pl-s1\">ImportAutoConfigurationImportSelector</span>.<span class=\"pl-en\">getAnnotations</span>(<span class=\"pl-smi\">ImportAutoConfigurationImportSelector</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">132</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">boot</span>.<span class=\"pl-s1\">autoconfigure</span>.<span class=\"pl-s1\">ImportAutoConfigurationImportSelector</span>.<span class=\"pl-en\">getCandidateConfigurations</span>(<span class=\"pl-smi\">ImportAutoConfigurationImportSelector</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">77</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">boot</span>.<span class=\"pl-s1\">autoconfigure</span>.<span class=\"pl-s1\">AutoConfigurationImportSelector</span>.<span class=\"pl-en\">getAutoConfigurationEntry</span>(<span class=\"pl-smi\">AutoConfigurationImportSelector</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">125</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">boot</span>.<span class=\"pl-s1\">autoconfigure</span>.<span class=\"pl-s1\">AutoConfigurationImportSelector$AutoConfigurationGroup</span>.<span class=\"pl-en\">process</span>(<span class=\"pl-smi\">AutoConfigurationImportSelector</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">440</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">annotation</span>.<span class=\"pl-s1\">ConfigurationClassParser$DeferredImportSelectorGrouping</span>.<span class=\"pl-en\">getImports</span>(<span class=\"pl-smi\">ConfigurationClassParser</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">879</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">annotation</span>.<span class=\"pl-s1\">ConfigurationClassParser$DeferredImportSelectorGroupingHandler</span>.<span class=\"pl-en\">processGroupImports</span>(<span class=\"pl-smi\">ConfigurationClassParser</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">809</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">annotation</span>.<span class=\"pl-s1\">ConfigurationClassParser$DeferredImportSelectorHandler</span>.<span class=\"pl-en\">process</span>(<span class=\"pl-smi\">ConfigurationClassParser</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">780</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">annotation</span>.<span class=\"pl-s1\">ConfigurationClassParser</span>.<span class=\"pl-en\">parse</span>(<span class=\"pl-smi\">ConfigurationClassParser</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">193</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">annotation</span>.<span class=\"pl-s1\">ConfigurationClassPostProcessor</span>.<span class=\"pl-en\">processConfigBeanDefinitions</span>(<span class=\"pl-smi\">ConfigurationClassPostProcessor</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">331</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">annotation</span>.<span class=\"pl-s1\">ConfigurationClassPostProcessor</span>.<span class=\"pl-en\">postProcessBeanDefinitionRegistry</span>(<span class=\"pl-smi\">ConfigurationClassPostProcessor</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">247</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">support</span>.<span class=\"pl-s1\">PostProcessorRegistrationDelegate</span>.<span class=\"pl-en\">invokeBeanDefinitionRegistryPostProcessors</span>(<span class=\"pl-smi\">PostProcessorRegistrationDelegate</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">311</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">support</span>.<span class=\"pl-s1\">PostProcessorRegistrationDelegate</span>.<span class=\"pl-en\">invokeBeanFactoryPostProcessors</span>(<span class=\"pl-smi\">PostProcessorRegistrationDelegate</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">112</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">support</span>.<span class=\"pl-s1\">AbstractApplicationContext</span>.<span class=\"pl-en\">invokeBeanFactoryPostProcessors</span>(<span class=\"pl-smi\">AbstractApplicationContext</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">746</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">context</span>.<span class=\"pl-s1\">support</span>.<span class=\"pl-s1\">AbstractApplicationContext</span>.<span class=\"pl-en\">refresh</span>(<span class=\"pl-smi\">AbstractApplicationContext</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">564</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">example</span>.<span class=\"pl-s1\">impl</span>.<span class=\"pl-s1\">EchoApp</span>.<span class=\"pl-en\">init</span>(<span class=\"pl-smi\">EchoApp</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">15</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">com</span>.<span class=\"pl-s1\">example</span>.<span class=\"pl-s1\">app</span>.<span class=\"pl-s1\">App</span>.<span class=\"pl-en\">main</span>(<span class=\"pl-smi\">App</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">15</span>)\n<span class=\"pl-s1\">Caused</span> <span class=\"pl-s1\">by</span>: <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">lang</span>.<span class=\"pl-s1\">ClassNotFoundException</span>: <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">example</span>.<span class=\"pl-s1\">impl</span>.<span class=\"pl-s1\">SimpleConfig</span>\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">base</span>/<span class=\"pl-s1\">jdk</span>.<span class=\"pl-s1\">internal</span>.<span class=\"pl-s1\">loader</span>.<span class=\"pl-s1\">BuiltinClassLoader</span>.<span class=\"pl-en\">loadClass</span>(<span class=\"pl-smi\">BuiltinClassLoader</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">641</span>)\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">base</span>/<span class=\"pl-s1\">jdk</span>.<span class=\"pl-s1\">internal</span>.<span class=\"pl-s1\">loader</span>.<span class=\"pl-s1\">ClassLoaders$AppClassLoader</span>.<span class=\"pl-s1\">loadClass</span>(<span class=\"pl-smi\">ClassLoaders</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">188</span>)\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">base</span>/<span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">lang</span>.<span class=\"pl-s1\">ClassLoader</span>.<span class=\"pl-en\">loadClass</span>(<span class=\"pl-smi\">ClassLoader</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">520</span>)\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">base</span>/<span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">lang</span>.<span class=\"pl-s1\">Class</span>.<span class=\"pl-s1\">forName0</span>(<span class=\"pl-smi\">Native</span> <span class=\"pl-s1\">Method</span>)\n\t<span class=\"pl-s1\">at</span> <span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">base</span>/<span class=\"pl-s1\">java</span>.<span class=\"pl-s1\">lang</span>.<span class=\"pl-s1\">Class</span>.<span class=\"pl-en\">forName</span>(<span class=\"pl-smi\">Class</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">467</span>)\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">util</span>.<span class=\"pl-s1\">ClassUtils</span>.<span class=\"pl-s1\">forName</span>(<span class=\"pl-smi\">ClassUtils</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">284</span>)\n\t<span class=\"pl-smi\">at</span> <span class=\"pl-s1\">org</span>.<span class=\"pl-s1\">springframework</span>.<span class=\"pl-s1\">util</span>.<span class=\"pl-s1\">ClassUtils</span>.<span class=\"pl-en\">resolveClassName</span>(<span class=\"pl-smi\">ClassUtils</span>.<span class=\"pl-smi\">java</span>:<span class=\"pl-c1\">324</span>)\n\t... <span class=\"pl-c1\">16</span> <span class=\"pl-s1\">more</span>\n<span class=\"pl-smi\">Disconnected</span> <span class=\"pl-s1\">from</span> <span class=\"pl-smi\">the</span> <span class=\"pl-s1\">target</span> <span class=\"pl-c1\">VM</span>, <span class=\"pl-s1\">address</span>: <span class=\"pl-s\">'127.0.0.1:54192'</span>, <span class=\"pl-s1\">transport</span>: <span class=\"pl-s\">'socket'</span>\n\n<span class=\"pl-s1\">Process</span> <span class=\"pl-s1\">finished</span> <span class=\"pl-k\">with</span> <span class=\"pl-s1\">exit</span> <span class=\"pl-s1\">code</span> <span class=\"pl-c1\">1</span></pre></div>\n<p dir=\"auto\">I modified <code class=\"notranslate\">ImportAutoConfigurationImportSelector#getExclusions</code> and <code class=\"notranslate\">ImportAutoConfigurationImportSelector#getAnnotations</code>   in module <code class=\"notranslate\">app-b</code>, replace <code class=\"notranslate\">null </code> with <code class=\"notranslate\">getBeanClassLoader()</code>. at this time, the program can run normally.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31787",
+                                "createdAt": "2022-07-19T08:33:50Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "type: bug" } },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Jar Handler never clears PROTOCOL_HANDLER system property",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31870",
+                "resourcePath": "/spring-projects/spring-boot/pull/31870",
+                "createdAt": "2022-07-26T14:36:02Z",
+                "number": 31870,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-tools/spring-boot-loader/src/main/java/org/springframework/boot/loader/jar/Handler.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s48Hik82gAoN2RhMzkxZWVkOWI0ZDQxNjRmNWI2MTU0MDI2MmEyNjIxODE0ODhjMw",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31870/commits/7da391eed9b4d4164f5b61540262a262181488c3"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31838,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31838",
+                                "title": "There seems to be a section of wrong logic in org.springframework.boot.loader.jar.Handler#captureJarContextUrl",
+                                "bodyHTML": "<p dir=\"auto\">Looking at the following code, handlers will never be null.<br>\n<div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/spring-projects/spring-boot/blob/47516b50c39bd6ea924a1f6720ce6d4a71088651/spring-boot-project/spring-boot-tools/spring-boot-loader/src/main/java/org/springframework/boot/loader/jar/Handler.java#L414-L440\">spring-boot/spring-boot-project/spring-boot-tools/spring-boot-loader/src/main/java/org/springframework/boot/loader/jar/Handler.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n        Lines 414 to 440\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/spring-projects/spring-boot/commit/47516b50c39bd6ea924a1f6720ce6d4a71088651\">47516b5</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L414\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"414\"></td>\n          <td id=\"LC414\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-k\">static</span> <span class=\"pl-smi\">void</span> <span class=\"pl-en\">captureJarContextUrl</span>() { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L415\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"415\"></td>\n          <td id=\"LC415\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t<span class=\"pl-k\">if</span> (<span class=\"pl-en\">canResetCachedUrlHandlers</span>()) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L416\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"416\"></td>\n          <td id=\"LC416\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-smi\">String</span> <span class=\"pl-s1\">handlers</span> = <span class=\"pl-s1\">System</span>.<span class=\"pl-en\">getProperty</span>(<span class=\"pl-c1\">PROTOCOL_HANDLER</span>, <span class=\"pl-s\">\"\"</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L417\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"417\"></td>\n          <td id=\"LC417\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-k\">try</span> { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L418\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"418\"></td>\n          <td id=\"LC418\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t<span class=\"pl-s1\">System</span>.<span class=\"pl-en\">clearProperty</span>(<span class=\"pl-c1\">PROTOCOL_HANDLER</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L419\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"419\"></td>\n          <td id=\"LC419\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t<span class=\"pl-k\">try</span> { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L420\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"420\"></td>\n          <td id=\"LC420\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t<span class=\"pl-en\">resetCachedUrlHandlers</span>(); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L421\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"421\"></td>\n          <td id=\"LC421\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t<span class=\"pl-s1\">jarContextUrl</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">URL</span>(<span class=\"pl-s\">\"jar:file:context.jar!/\"</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L422\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"422\"></td>\n          <td id=\"LC422\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t<span class=\"pl-smi\">URLConnection</span> <span class=\"pl-s1\">connection</span> = <span class=\"pl-s1\">jarContextUrl</span>.<span class=\"pl-en\">openConnection</span>(); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L423\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"423\"></td>\n          <td id=\"LC423\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t<span class=\"pl-k\">if</span> (<span class=\"pl-s1\">connection</span> <span class=\"pl-k\">instanceof</span> <span class=\"pl-smi\">JarURLConnection</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L424\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"424\"></td>\n          <td id=\"LC424\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t\t<span class=\"pl-s1\">jarContextUrl</span> = <span class=\"pl-c1\">null</span>; </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L425\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"425\"></td>\n          <td id=\"LC425\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L426\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"426\"></td>\n          <td id=\"LC426\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L427\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"427\"></td>\n          <td id=\"LC427\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t<span class=\"pl-k\">catch</span> (<span class=\"pl-smi\">Exception</span> <span class=\"pl-s1\">ex</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L428\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"428\"></td>\n          <td id=\"LC428\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L429\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"429\"></td>\n          <td id=\"LC429\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L430\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"430\"></td>\n          <td id=\"LC430\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-k\">finally</span> { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L431\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"431\"></td>\n          <td id=\"LC431\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t<span class=\"pl-k\">if</span> (<span class=\"pl-s1\">handlers</span> == <span class=\"pl-c1\">null</span>) { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L432\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"432\"></td>\n          <td id=\"LC432\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t<span class=\"pl-s1\">System</span>.<span class=\"pl-en\">clearProperty</span>(<span class=\"pl-c1\">PROTOCOL_HANDLER</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L433\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"433\"></td>\n          <td id=\"LC433\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L434\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"434\"></td>\n          <td id=\"LC434\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t<span class=\"pl-k\">else</span> { </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L435\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"435\"></td>\n          <td id=\"LC435\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t\t<span class=\"pl-s1\">System</span>.<span class=\"pl-en\">setProperty</span>(<span class=\"pl-c1\">PROTOCOL_HANDLER</span>, <span class=\"pl-s1\">handlers</span>); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L436\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"436\"></td>\n          <td id=\"LC436\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L437\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"437\"></td>\n          <td id=\"LC437\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L438\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"438\"></td>\n          <td id=\"LC438\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t\t<span class=\"pl-en\">resetCachedUrlHandlers</span>(); </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L439\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"439\"></td>\n          <td id=\"LC439\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> \t} </td>\n        </tr>\n\n        <tr class=\"border-0\">\n          <td id=\"L440\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"440\"></td>\n          <td id=\"LC440\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> } </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n</p>\n<p dir=\"auto\">Therefore, whether the branch handlers==null can be deleted.</p>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31838",
+                                "createdAt": "2022-07-22T06:23:38Z",
+                                "labels": {
+                                    "edges": [
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Disable auto-detection in tests that start Hazelcast",
+                "url": "https://github.com/spring-projects/spring-boot/pull/31863",
+                "resourcePath": "/spring-projects/spring-boot/pull/31863",
+                "createdAt": "2022-07-26T09:06:07Z",
+                "number": 31863,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-actuator-autoconfigure/src/test/resources/hazelcast.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-actuator/src/test/resources/hazelcast.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/java/org/springframework/boot/autoconfigure/hazelcast/HazelcastAutoConfigurationServerTests.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/resources/hazelcast.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/resources/hazelcast.yaml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/resources/org/springframework/boot/autoconfigure/hazelcast/hazelcast-specific.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "spring-boot-project/spring-boot-autoconfigure/src/test/resources/org/springframework/boot/autoconfigure/hazelcast/hazelcast-specific.yaml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAGAU1s48GK6I2gAoZGQxM2FiM2NjMTk0ZWY4ZjkyNGM1NTg5MjY2YTM0NzNlZjdhYWNlNg",
+                                "url": "https://github.com/spring-projects/spring-boot/pull/31863/commits/dd13ab3cc194ef8f924c5589266a3473ef7aace6"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 31715,
+                                "url": "https://github.com/spring-projects/spring-boot/issues/31715",
+                                "title": "Disable auto-detection in tests that start Hazelcast",
+                                "bodyHTML": "<p dir=\"auto\">Programmatically, it's something like:</p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"getAutoDetectionConfig().setEnabled(false)\"><pre><span class=\"pl-en\">getAutoDetectionConfig</span>().<span class=\"pl-en\">setEnabled</span>(<span class=\"pl-c1\">false</span>)</pre></div>\n<p dir=\"auto\">In YAML:</p>\n<div class=\"highlight highlight-source-yaml notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"hazelcast:\n  network:\n    join:\n      auto-detection:\n        enabled: false\"><pre><span class=\"pl-ent\">hazelcast</span>:\n  <span class=\"pl-ent\">network</span>:\n    <span class=\"pl-ent\">join</span>:\n      <span class=\"pl-ent\">auto-detection</span>:\n        <span class=\"pl-ent\">enabled</span>: <span class=\"pl-c1\">false</span></pre></div>\n<p dir=\"auto\">And in XML:</p>\n<div class=\"highlight highlight-text-xml notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"&lt;hazelcast&gt;\n    ...\n    &lt;network&gt;\n        &lt;join&gt;\n            &lt;auto-detection enabled=&quot;false&quot; /&gt;\n            ...\n        &lt;/join&gt;\n    &lt;/network&gt;\n    ...\n&lt;/hazelcast&gt;\"><pre>&lt;<span class=\"pl-ent\">hazelcast</span>&gt;\n    ...\n    &lt;<span class=\"pl-ent\">network</span>&gt;\n        &lt;<span class=\"pl-ent\">join</span>&gt;\n            &lt;<span class=\"pl-ent\">auto-detection</span> <span class=\"pl-e\">enabled</span>=<span class=\"pl-s\"><span class=\"pl-pds\">\"</span>false<span class=\"pl-pds\">\"</span></span> /&gt;\n            ...\n        &lt;/<span class=\"pl-ent\">join</span>&gt;\n    &lt;/<span class=\"pl-ent\">network</span>&gt;\n    ...\n&lt;/<span class=\"pl-ent\">hazelcast</span>&gt;</pre></div>\n<p dir=\"auto\">When configured correctly, the node should log the following:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"WARNING: [192.168.178.45]:5701 [dev] [4.2.5] No join method is enabled! Starting standalone.\"><pre class=\"notranslate\"><code>WARNING: [192.168.178.45]:5701 [dev] [4.2.5] No join method is enabled! Starting standalone.\n</code></pre></div>\n<p dir=\"auto\">We don't want to see this:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"INFO: [192.168.178.45]:5701 [dev] [4.2.5] Using Multicast discovery\"><pre class=\"notranslate\"><code>INFO: [192.168.178.45]:5701 [dev] [4.2.5] Using Multicast discovery\n</code></pre></div>",
+                                "resourcePath": "/spring-projects/spring-boot/issues/31715",
+                                "createdAt": "2022-07-13T19:51:31Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "type: task" } },
+                                        {
+                                            "node": {
+                                                "name": "status: superseded"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

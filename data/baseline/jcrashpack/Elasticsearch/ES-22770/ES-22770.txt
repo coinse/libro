@@ -1,0 +1,17 @@
+[2017-01-24T16:36:35,858][DEBUG][o.e.a.s.TransportSearchAction] [XXX_coordinator] [574] Failed to execute fetch phase
+org.elasticsearch.transport.RemoteTransportException: [XXX_data][192.168.10.154:64935][indices:data/read/search[phase/fetch/id]]
+Caused by: java.lang.NullPointerException
+	at org.elasticsearch.search.fetch.subphase.ParentFieldSubFetchPhase.getParentId(ParentFieldSubFetchPhase.java:66) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.search.fetch.subphase.ParentFieldSubFetchPhase.hitExecute(ParentFieldSubFetchPhase.java:49) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.search.fetch.FetchPhase.execute(FetchPhase.java:163) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.search.SearchService.executeFetchPhase(SearchService.java:502) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.action.search.SearchTransportService$13.messageReceived(SearchTransportService.java:356) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.action.search.SearchTransportService$13.messageReceived(SearchTransportService.java:353) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:69) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.transport.TcpTransport$RequestHandler.doRun(TcpTransport.java:1385) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:527) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) ~[?:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) ~[?:1.8.0_45]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_45]
+

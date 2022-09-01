@@ -1,0 +1,770 @@
+diff --git a/src/test/java/org/assertj/core/api/InstanceOfAssertFactoriesTest.java b/src/test/java/org/assertj/core/api/InstanceOfAssertFactoriesTest.java
+index 38489d908..7a2bdc8da 100644
+--- a/src/test/java/org/assertj/core/api/InstanceOfAssertFactoriesTest.java
++++ b/src/test/java/org/assertj/core/api/InstanceOfAssertFactoriesTest.java
+@@ -117,13 +117,11 @@ import static org.assertj.core.api.InstanceOfAssertFactories.map;
+ import static org.assertj.core.api.InstanceOfAssertFactories.optional;
+ import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
+ import static org.assertj.core.api.InstanceOfAssertFactories.stream;
++import static org.assertj.core.api.InstanceOfAssertFactories.throwable;
+ import static org.assertj.core.api.InstanceOfAssertFactories.type;
+ import static org.assertj.core.test.Maps.mapOf;
+ import static org.mockito.Mockito.mock;
+ 
+-import org.assertj.core.util.Strings;
+-import org.junit.jupiter.api.Test;
+-
+ import java.io.ByteArrayInputStream;
+ import java.io.File;
+ import java.math.BigDecimal;
+@@ -172,6 +170,9 @@ import java.util.stream.IntStream;
+ import java.util.stream.LongStream;
+ import java.util.stream.Stream;
+ 
++import org.assertj.core.util.Strings;
++import org.junit.jupiter.api.Test;
++
+ /**
+  * @author Stefano Cordio
+  */
+@@ -380,7 +381,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void boolean_2d_array_factory_should_allow_boolean_2d_array_assertions() {
+     // GIVEN
+-    Object value = new boolean[][] {{ true, false }, { false, true }};
++    Object value = new boolean[][] { { true, false }, { false, true } };
+     // WHEN
+     Boolean2DArrayAssert result = assertThat(value).asInstanceOf(BOOLEAN_2D_ARRAY);
+     // THEN
+@@ -410,7 +411,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void byte_2d_array_factory_should_allow_byte_2d_array_assertions() {
+     // GIVEN
+-    Object value = new byte[][] {{ 0, 1 }, { 2, 3 }};
++    Object value = new byte[][] { { 0, 1 }, { 2, 3 } };
+     // WHEN
+     Byte2DArrayAssert result = assertThat(value).asInstanceOf(BYTE_2D_ARRAY);
+     // THEN
+@@ -440,7 +441,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void char_2d_array_factory_should_allow_char_2d_array_assertions() {
+     // GIVEN
+-    Object value = new char[][] {{ 'a', 'b' }, { 'c', 'd' }};
++    Object value = new char[][] { { 'a', 'b' }, { 'c', 'd' } };
+     // WHEN
+     Char2DArrayAssert result = assertThat(value).asInstanceOf(CHAR_2D_ARRAY);
+     // THEN
+@@ -480,7 +481,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void double_2d_array_factory_should_allow_double_2d_array_assertions() {
+     // GIVEN
+-    Object value = new double[][] {{ 0.0, 1.0 }, { 2.0, 3.0 }};
++    Object value = new double[][] { { 0.0, 1.0 }, { 2.0, 3.0 } };
+     // WHEN
+     Double2DArrayAssert result = assertThat(value).asInstanceOf(DOUBLE_2D_ARRAY);
+     // THEN
+@@ -550,7 +551,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void float_2d_array_factory_should_allow_float_2d_array_assertions() {
+     // GIVEN
+-    Object value = new float[][] {{ 0.0f, 1.0f }, { 2.0f, 3.0f }};
++    Object value = new float[][] { { 0.0f, 1.0f }, { 2.0f, 3.0f } };
+     // WHEN
+     Float2DArrayAssert result = assertThat(value).asInstanceOf(FLOAT_2D_ARRAY);
+     // THEN
+@@ -580,7 +581,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void int_2d_array_factory_should_allow_int_2d_array_assertions() {
+     // GIVEN
+-    Object value = new int[][] {{ 0, 1 }, { 2, 3 }};
++    Object value = new int[][] { { 0, 1 }, { 2, 3 } };
+     // WHEN
+     Int2DArrayAssert result = assertThat(value).asInstanceOf(INT_2D_ARRAY);
+     // THEN
+@@ -610,7 +611,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void long_2d_array_factory_should_allow_long_2d_array_assertions() {
+     // GIVEN
+-    Object value = new long[][] {{ 0L, 1L }, { 2L, 3L }};
++    Object value = new long[][] { { 0L, 1L }, { 2L, 3L } };
+     // WHEN
+     Long2DArrayAssert result = assertThat(value).asInstanceOf(LONG_2D_ARRAY);
+     // THEN
+@@ -640,7 +641,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void array_2d_factory_should_allow_2d_array_assertions() {
+     // GIVEN
+-    Object value = new Object[][] {{ 0, "" }, { 3.0, 'b'}};
++    Object value = new Object[][] { { 0, "" }, { 3.0, 'b' } };
+     // WHEN
+     Object2DArrayAssert<Object> result = assertThat(value).asInstanceOf(ARRAY_2D);
+     // THEN
+@@ -680,7 +681,7 @@ class InstanceOfAssertFactoriesTest {
+   @Test
+   void short_2d_array_factory_should_allow_short_2d_array_assertions() {
+     // GIVEN
+-    Object value = new short[][] {{ 0, 1 }, { 2, 3 }};
++    Object value = new short[][] { { 0, 1 }, { 2, 3 } };
+     // WHEN
+     Short2DArrayAssert result = assertThat(value).asInstanceOf(SHORT_2D_ARRAY);
+     // THEN
+@@ -998,6 +999,16 @@ class InstanceOfAssertFactoriesTest {
+     result.hasMessage("message");
+   }
+ 
++  @Test
++  void typed_throwable_factory_should_allow_typed_throwable_assertions() {
++    // GIVEN
++    Object value = new RuntimeException("message");
++    // WHEN
++    AbstractThrowableAssert<?, RuntimeException> result = assertThat(value).asInstanceOf(throwable(RuntimeException.class));
++    // THEN
++    result.hasMessage("message");
++  }
++
+   @Test
+   void char_sequence_factory_should_allow_char_sequence_assertions() {
+     // GIVEN
+diff --git a/src/test/java/org/assertj/core/api/ThrowableAssertBaseTest.java b/src/test/java/org/assertj/core/api/ThrowableAssertBaseTest.java
+index 8841b4ca4..78e17b108 100644
+--- a/src/test/java/org/assertj/core/api/ThrowableAssertBaseTest.java
++++ b/src/test/java/org/assertj/core/api/ThrowableAssertBaseTest.java
+@@ -22,12 +22,12 @@ import org.assertj.core.internal.Throwables;
+  * @author Olivier Michallat
+  * @author Libor Ondrusek
+  */
+-public abstract class ThrowableAssertBaseTest extends BaseTestTemplate<ThrowableAssert, Throwable> {
++public abstract class ThrowableAssertBaseTest extends BaseTestTemplate<ThrowableAssert<Throwable>, Throwable> {
+   protected Throwables throwables;
+ 
+   @Override
+-  protected ThrowableAssert create_assertions() {
+-    return new ThrowableAssert(new Throwable("throwable message"));
++  protected ThrowableAssert<Throwable> create_assertions() {
++    return new ThrowableAssert<>(new Throwable("throwable message"));
+   }
+ 
+   @Override
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_extracting_with_Function_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_extracting_with_Function_Test.java
+new file mode 100644
+index 000000000..4e53179cb
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_extracting_with_Function_Test.java
+@@ -0,0 +1,19 @@
++package org.assertj.core.api.throwable;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++import org.junit.jupiter.api.Test;
++
++class ThrowableAssert_extracting_with_Function_Test {
++
++  @Test
++  void should_allow_type_specific_extractor() {
++    // GIVEN
++    Exception cause = new Exception("boom!");
++    ClassNotFoundException exception = new ClassNotFoundException("message", cause);
++    // WHEN/THEN
++    assertThat(exception).extracting(ClassNotFoundException::getException)
++                         .isSameAs(cause);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseExactlyInstanceOf_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseExactlyInstanceOf_Test.java
+index 877359bda..bbcfd8504 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseExactlyInstanceOf_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseExactlyInstanceOf_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for {@link ThrowableAssert#hasCauseExactlyInstanceOf(Class)}.
+- * 
+  * @author Jean-Christophe Gay
+  */
+ class ThrowableAssert_hasCauseExactlyInstanceOf_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasCauseExactlyInstanceOf(Exception.class);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseInstanceOf_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseInstanceOf_Test.java
+index 0068d1d75..dca68e761 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseInstanceOf_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseInstanceOf_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for {@link ThrowableAssert#hasCauseInstanceOf(Class)}.
+- * 
+  * @author Jean-Christophe Gay
+  */
+ class ThrowableAssert_hasCauseInstanceOf_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasCauseInstanceOf(Exception.class);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseReference_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseReference_Test.java
+index 690a80931..cf99674d7 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseReference_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCauseReference_Test.java
+@@ -19,10 +19,10 @@ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ class ThrowableAssert_hasCauseReference_Test extends ThrowableAssertBaseTest {
+ 
+-  private Throwable npe = new NullPointerException();
++  private final Throwable npe = new NullPointerException();
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasCauseReference(npe);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCause_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCause_Test.java
+index 89fe90e68..e04ff201d 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCause_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasCause_Test.java
+@@ -23,10 +23,10 @@ import org.junit.jupiter.api.Test;
+ 
+ class ThrowableAssert_hasCause_Test extends ThrowableAssertBaseTest {
+ 
+-  private Throwable npe = new NullPointerException();
++  private final Throwable npe = new NullPointerException();
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasCause(npe);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContainingAll_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContainingAll_Test.java
+index d0e24a99b..e7ccb868f 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContainingAll_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContainingAll_Test.java
+@@ -12,21 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
+-import org.assertj.core.api.ThrowableAssert;
+-import org.assertj.core.api.ThrowableAssertBaseTest;
+-
+ import static org.mockito.Mockito.verify;
+ 
++import org.assertj.core.api.ThrowableAssert;
++import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageContainingAll(CharSequence...)}</code>.
+- * 
+  * @author Phillip Webb
+  */
+ class ThrowableAssert_hasMessageContainingAll_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageContainingAll("able", "message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_Test.java
+index 71c370c5e..3a42da970 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_Test.java
+@@ -12,21 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
+-import org.assertj.core.api.ThrowableAssert;
+-import org.assertj.core.api.ThrowableAssertBaseTest;
+-
+ import static org.mockito.Mockito.verify;
+ 
++import org.assertj.core.api.ThrowableAssert;
++import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageContaining(String)}</code>.
+- * 
+  * @author Joel Costigliola
+  */
+ class ThrowableAssert_hasMessageContaining_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageContaining("able");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_with_String_format_syntax_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_with_String_format_syntax_Test.java
+index b51636649..c8ad4bcb4 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_with_String_format_syntax_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageContaining_with_String_format_syntax_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageContaining(String, Object...)}</code>.
+- *
+  * @author Krishna Chaithanya Ganta
+  */
+ class ThrowableAssert_hasMessageContaining_with_String_format_syntax_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageContaining("able %s", "message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_Test.java
+index 9d3597879..86d0a550f 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_Test.java
+@@ -12,21 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
+-import org.assertj.core.api.ThrowableAssert;
+-import org.assertj.core.api.ThrowableAssertBaseTest;
+-
+ import static org.mockito.Mockito.verify;
+ 
++import org.assertj.core.api.ThrowableAssert;
++import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageEndingWith(String)}</code>.
+- * 
+  * @author Joel Costigliola
+  */
+ class ThrowableAssert_hasMessageEndingWith_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageEndingWith("age");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_with_String_format_syntax_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_with_String_format_syntax_Test.java
+index 1e9bc638d..433685416 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_with_String_format_syntax_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageEndingWith_with_String_format_syntax_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageEndingWith(String, Object...)}</code>.
+- *
+  * @author Krishna Chaithanya Ganta
+  */
+ class ThrowableAssert_hasMessageEndingWith_with_String_format_syntax_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageEndingWith("%sage", "mess");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageFindingMatch_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageFindingMatch_Test.java
+index ac1733360..3f5edf3ed 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageFindingMatch_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageFindingMatch_Test.java
+@@ -18,17 +18,14 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageFindingMatch(String)} </code>.
+- *
+  * @author David Haccoun
+- *
+  */
+ class ThrowableAssert_hasMessageFindingMatch_Test extends ThrowableAssertBaseTest {
+ 
+   private static final String REGEX = "dummy regex";
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageFindingMatch(REGEX);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageMatchingRegex_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageMatchingRegex_Test.java
+index f184135f1..2f1a53a18 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageMatchingRegex_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageMatchingRegex_Test.java
+@@ -18,8 +18,6 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageMatching(String)}</code>.
+- * 
+  * @author Libor Ondrusek
+  */
+ class ThrowableAssert_hasMessageMatchingRegex_Test extends ThrowableAssertBaseTest {
+@@ -27,7 +25,7 @@ class ThrowableAssert_hasMessageMatchingRegex_Test extends ThrowableAssertBaseTe
+   public static final String REGEX = "Given id='\\d{2,4}' not exists";
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageMatching(REGEX);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContainingAny_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContainingAny_Test.java
+index 119589fd0..a55fb06bb 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContainingAny_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContainingAny_Test.java
+@@ -12,20 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
++import static org.mockito.Mockito.verify;
++
+ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+-import static org.mockito.Mockito.verify;
+-
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageNotContainingAny(String)}</code>.
+- * 
+  * @author Phillip Webb
+  */
+ class ThrowableAssert_hasMessageNotContainingAny_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageNotContainingAny("catchable", "message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContaining_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContaining_Test.java
+index 1fa9570be..dfded8de7 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContaining_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageNotContaining_Test.java
+@@ -12,21 +12,19 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
++import static org.mockito.Mockito.verify;
++
+ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+-import static org.mockito.Mockito.verify;
+-
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageNotContaining(String)}</code>.
+- * 
+  * @author Sandra Parsick
+  * @author Georg Berky
+  */
+ class ThrowableAssert_hasMessageNotContaining_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageNotContaining("catchable");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_Test.java
+index c3ef1bcdb..d7483403f 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_Test.java
+@@ -12,21 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
+-import org.assertj.core.api.ThrowableAssert;
+-import org.assertj.core.api.ThrowableAssertBaseTest;
+-
+ import static org.mockito.Mockito.verify;
+ 
++import org.assertj.core.api.ThrowableAssert;
++import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageStartingWith(String)}</code>.
+- * 
+  * @author Joel Costigliola
+  */
+ class ThrowableAssert_hasMessageStartingWith_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageStartingWith("throw");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_with_String_format_syntax_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_with_String_format_syntax_Test.java
+index e53cea1da..ed6d567e9 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_with_String_format_syntax_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessageStartingWith_with_String_format_syntax_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessageStartingWith(String, Object...)}</code>.
+- *
+  * @author Krishna Chaithanya Ganta
+  */
+ class ThrowableAssert_hasMessageStartingWith_with_String_format_syntax_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessageStartingWith("throw%s", "able");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_Test.java
+index a89e014be..f5b2dc4a0 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_Test.java
+@@ -12,21 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
+-import org.assertj.core.api.ThrowableAssert;
+-import org.assertj.core.api.ThrowableAssertBaseTest;
+-
+ import static org.mockito.Mockito.verify;
+ 
++import org.assertj.core.api.ThrowableAssert;
++import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasMessage(String)}</code>.
+- * 
+  * @author Joel Costigliola
+  */
+ class ThrowableAssert_hasMessage_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessage("throwable message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_with_String_format_syntax_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_with_String_format_syntax_Test.java
+index 7d295a5a9..6d1fbc7f7 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_with_String_format_syntax_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasMessage_with_String_format_syntax_Test.java
+@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
+ class ThrowableAssert_hasMessage_with_String_format_syntax_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasMessage("throwable message %s", "foo");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoCause_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoCause_Test.java
+index 8c176a05f..cb0c94b49 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoCause_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoCause_Test.java
+@@ -12,21 +12,18 @@
+  */
+ package org.assertj.core.api.throwable;
+ 
+-import org.assertj.core.api.ThrowableAssert;
+-import org.assertj.core.api.ThrowableAssertBaseTest;
+-
+ import static org.mockito.Mockito.verify;
+ 
++import org.assertj.core.api.ThrowableAssert;
++import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasNoCause()}</code>.
+- * 
+  * @author Joel Costigliola
+  */
+ class ThrowableAssert_hasNoCause_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasNoCause();
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoSuppressedExceptions_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoSuppressedExceptions_Test.java
+index 1ef04e2e4..fd9a4b9ec 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoSuppressedExceptions_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoSuppressedExceptions_Test.java
+@@ -19,13 +19,10 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ import org.junit.jupiter.api.Test;
+ 
+-/**
+- * Tests for {@link org.assertj.core.api.ThrowableAssert#hasNoSuppressedExceptions()}.
+- */
+ class ThrowableAssert_hasNoSuppressedExceptions_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasNoSuppressedExceptions();
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseExactlyInstanceOf_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseExactlyInstanceOf_Test.java
+index 65e985aad..8d54102d9 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseExactlyInstanceOf_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseExactlyInstanceOf_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for {@link org.assertj.core.api.ThrowableAssert#hasRootCauseExactlyInstanceOf(Class)}.
+- * 
+  * @author Jean-Christophe Gay
+  */
+ class ThrowableAssert_hasRootCauseExactlyInstanceOf_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasRootCauseExactlyInstanceOf(Exception.class);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseInstanceOf_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseInstanceOf_Test.java
+index 9af720d29..7095dd69a 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseInstanceOf_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseInstanceOf_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for {@link org.assertj.core.api.ThrowableAssert#hasRootCauseInstanceOf(Class)}.
+- * 
+  * @author Jean-Christophe Gay
+  */
+ class ThrowableAssert_hasRootCauseInstanceOf_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasRootCauseInstanceOf(Exception.class);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_Test.java
+index b3d5b5c53..26981d0bb 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_Test.java
+@@ -20,7 +20,7 @@ import org.assertj.core.api.ThrowableAssertBaseTest;
+ class ThrowableAssert_hasRootCauseMessage_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasRootCauseMessage("message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_with_String_format_syntax_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_with_String_format_syntax_Test.java
+index b1b2dc0b8..58ee0691f 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_with_String_format_syntax_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_with_String_format_syntax_Test.java
+@@ -17,14 +17,12 @@ import static org.mockito.Mockito.verify;
+ 
+ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+-import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.api.Test;
+ 
+-@DisplayName("ThrowableAssert hasRootCauseMessageWithStringFormat")
+ class ThrowableAssert_hasRootCauseMessage_with_String_format_syntax_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasRootCauseMessage("%s %s", "expected", "message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCause_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCause_Test.java
+index 3c8b53475..4da28db0b 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCause_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCause_Test.java
+@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
+ 
+ class ThrowableAssert_hasRootCause_Test extends ThrowableAssertBaseTest {
+ 
+-  private Throwable npe = new NullPointerException();
++  private final Throwable npe = new NullPointerException();
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasRootCause(npe);
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_Test.java
+index e00c2ab4f..4468f2430 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_Test.java
+@@ -17,16 +17,13 @@ import static org.mockito.Mockito.verify;
+ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+-
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasStackTraceContaining(String)}</code>.
+- * 
+  * @author Daniel Zlotin
+  */
+ class ThrowableAssert_hasStackTraceContaining_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasStackTraceContaining("able");
+   }
+ 
+@@ -34,5 +31,5 @@ class ThrowableAssert_hasStackTraceContaining_Test extends ThrowableAssertBaseTe
+   protected void verify_internal_effects() {
+     verify(throwables).assertHasStackTraceContaining(getInfo(assertions), getActual(assertions), "able");
+   }
+-  
++
+ }
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_with_String_format_syntax_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_with_String_format_syntax_Test.java
+index e33fa1194..fc1aab55b 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_with_String_format_syntax_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_with_String_format_syntax_Test.java
+@@ -18,14 +18,12 @@ import org.assertj.core.api.ThrowableAssert;
+ import org.assertj.core.api.ThrowableAssertBaseTest;
+ 
+ /**
+- * Tests for <code>{@link ThrowableAssert#hasStackTraceContaining(String, Object...)}</code>.
+- *
+  * @author Krishna Chaithanya Ganta
+  */
+ class ThrowableAssert_hasStackTraceContaining_with_String_format_syntax_Test extends ThrowableAssertBaseTest {
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasStackTraceContaining("able%s", " message");
+   }
+ 
+diff --git a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasSuppressedException_Test.java b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasSuppressedException_Test.java
+index d9396ec10..6775c181b 100644
+--- a/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasSuppressedException_Test.java
++++ b/src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasSuppressedException_Test.java
+@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
+ 
+ class ThrowableAssert_hasSuppressedException_Test extends ThrowableAssertBaseTest {
+ 
+-  private Throwable npe = new NullPointerException();
++  private final Throwable npe = new NullPointerException();
+ 
+   @Override
+-  protected ThrowableAssert invoke_api_method() {
++  protected ThrowableAssert<Throwable> invoke_api_method() {
+     return assertions.hasSuppressedException(npe);
+   }
+ 

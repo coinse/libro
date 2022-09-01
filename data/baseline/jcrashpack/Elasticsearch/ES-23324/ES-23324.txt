@@ -1,0 +1,4 @@
+java.lang.ArrayIndexOutOfBoundsException: -2
+	at org.elasticsearch.action.search.SearchPhaseController.sortDocs(SearchPhaseController.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.action.search.SearchQueryThenFetchAsyncAction.moveToSecondPhase(SearchQueryThenFetchAsyncAction.java:80) ~[elasticsearch-5.1.2.jar:5.1.2]
+

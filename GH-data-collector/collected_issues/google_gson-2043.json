@@ -1,0 +1,7 @@
+{
+  "issue_id": 2018,
+  "issue_url": "https://github.com/google/gson/issues/2018",
+  "title": "Drop support for Java 6",
+  "description": "<p dir=\"auto\">Continuing to support Java 6 causes considerable headaches. Building with <code class=\"notranslate\">-source 6 -target 6</code> is not supported in JDK versions after 11. I don't think we need to support further back than Java 7 even for the most ancient Android devices still in use.</p>",
+  "description_text": "Continuing to support Java 6 causes considerable headaches. Building with -source 6 -target 6 is not supported in JDK versions after 11. I don't think we need to support further back than Java 7 even for the most ancient Android devices still in use."
+}

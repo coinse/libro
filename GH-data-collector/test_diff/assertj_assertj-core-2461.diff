@@ -1,0 +1,780 @@
+diff --git a/src/test/java/org/assertj/core/api/boolean2darray/Boolean2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/boolean2darray/Boolean2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..70f4c516d
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/boolean2darray/Boolean2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,38 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.boolean2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Boolean2DArrayAssert;
++import org.assertj.core.api.Boolean2DArrayAssertBaseTest;
++import org.junit.jupiter.api.DisplayName;
++
++/**
++ * Tests for <code>{@link Boolean2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++@DisplayName("Boolean2DArrayAssert hasRowSize")
++class Boolean2DArrayAssert_hasNumberOfRows_Test extends Boolean2DArrayAssertBaseTest {
++
++  @Override
++  protected Boolean2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/byte2darray/Byte2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/byte2darray/Byte2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..4b3375b28
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/byte2darray/Byte2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,38 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.byte2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Byte2DArrayAssert;
++import org.assertj.core.api.Byte2DArrayAssertBaseTest;
++import org.junit.jupiter.api.DisplayName;
++
++/**
++ * Tests for <code>{@link Byte2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++@DisplayName("Byte2DArrayAssert hasRowSize")
++class Byte2DArrayAssert_hasNumberOfRows_Test extends Byte2DArrayAssertBaseTest {
++
++  @Override
++  protected Byte2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/char2darray/Char2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/char2darray/Char2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..ad0a8cc41
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/char2darray/Char2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,36 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.char2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Char2DArrayAssert;
++import org.assertj.core.api.Char2DArrayAssertBaseTest;
++
++/**
++ * Tests for <code>{@link Char2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++class Char2DArrayAssert_hasNumberOfRows_Test extends Char2DArrayAssertBaseTest {
++
++  @Override
++  protected Char2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/double2darray/Double2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/double2darray/Double2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..e32fcb2f7
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/double2darray/Double2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,36 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.double2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Double2DArrayAssert;
++import org.assertj.core.api.Double2DArrayAssertBaseTest;
++
++/**
++ * Tests for <code>{@link Double2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++class Double2DArrayAssert_hasNumberOfRows_Test extends Double2DArrayAssertBaseTest {
++
++  @Override
++  protected Double2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/float2darray/Float2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/float2darray/Float2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..9d4eef987
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/float2darray/Float2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,36 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.float2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Float2DArrayAssert;
++import org.assertj.core.api.Float2DArrayAssertBaseTest;
++
++/**
++ * Tests for <code>{@link Float2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++class Float2DArrayAssert_hasNumberOfRows_Test extends Float2DArrayAssertBaseTest {
++
++  @Override
++  protected Float2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/int2darray/Int2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/int2darray/Int2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..ce375140a
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/int2darray/Int2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,36 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.int2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Int2DArrayAssert;
++import org.assertj.core.api.Int2DArrayAssertBaseTest;
++
++/**
++ * Tests for <code>{@link Int2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++class Int2DArrayAssert_hasNumberOfRows_Test extends Int2DArrayAssertBaseTest {
++
++  @Override
++  protected Int2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/long2darray/Long2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/long2darray/Long2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..1a881cecc
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/long2darray/Long2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,36 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.long2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Long2DArrayAssert;
++import org.assertj.core.api.Long2DArrayAssertBaseTest;
++
++/**
++ * Tests for <code>{@link Long2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++class Long2DArrayAssert_hasNumberOfRows_Test extends Long2DArrayAssertBaseTest {
++
++  @Override
++  protected Long2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/object2darray/Object2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/object2darray/Object2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..24673d77e
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/object2darray/Object2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,38 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.object2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Object2DArrayAssert;
++import org.assertj.core.api.Object2DArrayAssertBaseTest;
++import org.junit.jupiter.api.DisplayName;
++
++/**
++ * Tests for <code>{@link Object2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++@DisplayName("Object2DArrayAssert hasRowSize")
++class Object2DArrayAssert_hasNumberOfRows_Test extends Object2DArrayAssertBaseTest {
++
++  @Override
++  protected Object2DArrayAssert<Object> invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/short2darray/Short2DArrayAssert_hasNumberOfRows_Test.java b/src/test/java/org/assertj/core/api/short2darray/Short2DArrayAssert_hasNumberOfRows_Test.java
+new file mode 100644
+index 000000000..ef982d1b8
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/short2darray/Short2DArrayAssert_hasNumberOfRows_Test.java
+@@ -0,0 +1,36 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.short2darray;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.Short2DArrayAssert;
++import org.assertj.core.api.Short2DArrayAssertBaseTest;
++
++/**
++ * Tests for <code>{@link Short2DArrayAssert#hasNumberOfRows(int)}</code>.
++ * 
++ * @author Sekar Mylsamy
++ */
++class Short2DArrayAssert_hasNumberOfRows_Test extends Short2DArrayAssertBaseTest {
++
++  @Override
++  protected Short2DArrayAssert invoke_api_method() {
++    return assertions.hasNumberOfRows(1);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(arrays).assertNumberOfRows(getInfo(assertions), getActual(assertions), 1);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/internal/arrays2d/Arrays2D_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/arrays2d/Arrays2D_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..1f91fcde1
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/arrays2d/Arrays2D_assertNumberOfRows_Test.java
+@@ -0,0 +1,66 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.arrays2d;
++
++import static org.assertj.core.api.BDDAssertions.then;
++import static org.assertj.core.error.ShouldHaveDimensions.shouldHaveFirstDimension;
++import static org.assertj.core.error.ShouldNotBeNull.shouldNotBeNull;
++import static org.assertj.core.test.TestData.someInfo;
++import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
++
++import java.util.stream.Stream;
++
++import org.junit.jupiter.api.Test;
++import org.junit.jupiter.params.ParameterizedTest;
++import org.junit.jupiter.params.provider.MethodSource;
++
++class Arrays2D_assertNumberOfRows_Test extends Arrays2D_BaseTest {
++
++  @Test
++  void should_fail_if_actual_is_null() {
++    // GIVEN
++    char[][] actual = null;
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> arrays.assertNumberOfRows(someInfo(), failures, actual, 1));
++    // THEN
++    then(assertionError).hasMessage(shouldNotBeNull().create());
++  }
++
++  @ParameterizedTest
++  @MethodSource("arrays2d")
++  void should_fail_if_number_of_rows_of_actual_is_not_equal_to_expected_size(char[][] actual) {
++    // GIVEN
++    int expectedNumberOfRows = 2;
++    // WHEN
++    AssertionError assertionError = expectAssertionError(
++      () -> arrays.assertNumberOfRows(someInfo(), failures, actual, expectedNumberOfRows));
++    // THEN
++    then(assertionError).hasMessage(shouldHaveFirstDimension(actual, actual.length, expectedNumberOfRows).create());
++  }
++
++  @ParameterizedTest
++  @MethodSource("arrays2d")
++  void should_pass_if_number_of_rows_of_actual_is_equal_to_expected_size(char[][] actual) {
++    // GIVEN
++    int expectedNumberOfRows = 3;
++    // WHEN / THEN
++    arrays.assertNumberOfRows(someInfo(), failures, actual, expectedNumberOfRows);
++  }
++
++  private static Stream<char[][]> arrays2d() {
++    return Stream.of(new char[][] { { 'a', 'b', 'c' }, { 'd', 'e', 'f' }, { 'g', 'h', 'i' } },
++                     new char[][] { { 'a' }, { 'b' }, { 'c', 'd' } },
++                     new char[][] { { 'a', 'b' }, { 'c' }, { 'd', 'e', 'f' } });
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/boolean2darrays/Boolean2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/boolean2darrays/Boolean2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..5bac9f925
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/boolean2darrays/Boolean2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.boolean2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Boolean2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Boolean2DArrays_assertNumberOfRows_Test extends Boolean2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    boolean2dArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/byte2darrays/Byte2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/byte2darrays/Byte2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..e77a21be5
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/byte2darrays/Byte2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.byte2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Byte2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Byte2DArrays_assertNumberOfRows_Test extends Byte2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    byte2dArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/char2darrays/Char2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/char2darrays/Char2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..e308457ee
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/char2darrays/Char2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.char2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Char2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Char2DArrays_assertNumberOfRows_Test extends Char2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    char2DArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/double2darrays/Double2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/double2darrays/Double2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..c5ad4ccfd
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/double2darrays/Double2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.double2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Double2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Double2DArrays_assertNumberOfRows_Test extends Double2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    double2dArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/float2darrays/Float2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/float2darrays/Float2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..249907c65
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/float2darrays/Float2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.float2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Float2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Float2DArrays_assertNumberOfRows_Test extends Float2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    float2dArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/int2darrays/Int2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/int2darrays/Int2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..10e020ad7
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/int2darrays/Int2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.int2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Int2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Int2DArrays_assertNumberOfRows_Test extends Int2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    int2DArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/long2darrays/Long2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/long2darrays/Long2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..695cf3d57
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/long2darrays/Long2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.long2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Long2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Long2DArrays_assertNumberOfRows_Test extends Long2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    long2dArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/object2darrays/Object2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/object2darrays/Object2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..99716c146
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/object2darrays/Object2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.object2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Object2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Object2DArrays_assertNumberOfRows_Test extends Object2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    object2dArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/short2darrays/Short2DArrays_assertNumberOfRows_Test.java b/src/test/java/org/assertj/core/internal/short2darrays/Short2DArrays_assertNumberOfRows_Test.java
+new file mode 100644
+index 000000000..ac0d33810
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/short2darrays/Short2DArrays_assertNumberOfRows_Test.java
+@@ -0,0 +1,30 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.internal.short2darrays;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.internal.Short2DArraysBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Short2DArrays_assertNumberOfRows_Test extends Short2DArraysBaseTest {
++
++  @Test
++  void should_delegate_to_Arrays2D() {
++    // WHEN
++    short2DArrays.assertNumberOfRows(info, actual, 2);
++    // THEN
++    verify(arrays2d).assertNumberOfRows(info, failures, actual, 2);
++  }
++
++}

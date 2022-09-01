@@ -1,0 +1,7 @@
+{
+  "issue_id": 1686,
+  "issue_url": "https://github.com/jhy/jsoup/issues/1686",
+  "title": "Document::location does not contain fragment identifier",
+  "description": "<p dir=\"auto\">Hi,</p>\n<p dir=\"auto\">It is important for me to get the fragment id of a page from jsoup <em>Document</em>s.<br>\nIs it possible to get the URL intact as passed to the <em>Jsoup::connect</em> method?</p>\n<p dir=\"auto\">The original URL that I pass to <em>Jsoup::connect</em> method has a fragment identifier at its end.<br>\nBut <em>Document::location</em> or <em>Document::baseUri</em> do not contain the id.</p>\n<p dir=\"auto\">For example, <code class=\"notranslate\">https://developer.android.com/jetpack/androidx/releases/annotation</code><strong><code class=\"notranslate\">#annotation-1.4.0-alpha01</code></strong><br>\nbecomes <code class=\"notranslate\">https://developer.android.com/jetpack/androidx/releases/annotation</code>.</p>",
+  "description_text": "Hi,\nIt is important for me to get the fragment id of a page from jsoup Documents.\nIs it possible to get the URL intact as passed to the Jsoup::connect method?\nThe original URL that I pass to Jsoup::connect method has a fragment identifier at its end.\nBut Document::location or Document::baseUri do not contain the id.\nFor example, https://developer.android.com/jetpack/androidx/releases/annotation#annotation-1.4.0-alpha01\nbecomes https://developer.android.com/jetpack/androidx/releases/annotation."
+}

@@ -1,0 +1,15 @@
+java.io.IOException: Unable to parse response body for Response{requestLine=GET /_search/scroll HTTP/1.1, host=http://unrouted.ds-apicore-misc-01.ds:80, response=HTTP/1.1 200 OK}
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:394)
+	at org.elasticsearch.client.RestHighLevelClient.performRequestAndParseEntity(RestHighLevelClient.java:361)
+	at org.elasticsearch.client.RestHighLevelClient.searchScroll(RestHighLevelClient.java:321)
+	...
+Caused by: java.lang.NullPointerException
+	at java.util.Objects.requireNonNull(Objects.java:203)
+	at org.elasticsearch.index.Index.<init>(Index.java:53)
+	at org.elasticsearch.action.search.ShardSearchFailure.fromXContent(ShardSearchFailure.java:213)
+	at org.elasticsearch.action.search.SearchResponse.fromXContent(SearchResponse.java:297)
+	at org.elasticsearch.client.RestHighLevelClient.parseEntity(RestHighLevelClient.java:505)
+	at org.elasticsearch.client.RestHighLevelClient.lambda$performRequestAndParseEntity$2(RestHighLevelClient.java:361)
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:392)
+	... 39 more
+

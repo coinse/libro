@@ -1,0 +1,23 @@
+RemoteTransportException[[192.168.1.100-node2][192.168.1.100:29300][indices:data/read/suggest[s]]]; nested: ElasticsearchException[failed to execute suggest]; nested: NullPointerException;
+Caused by: ElasticsearchException[failed to execute suggest]; nested: NullPointerException;
+        at org.elasticsearch.action.suggest.TransportSuggestAction.shardOperation(TransportSuggestAction.java:152)
+        at org.elasticsearch.action.suggest.TransportSuggestAction.shardOperation(TransportSuggestAction.java:61)
+        at org.elasticsearch.action.support.broadcast.TransportBroadcastAction$ShardTransportHandler.messageReceived(TransportBroadcastAction.java:282)
+        at org.elasticsearch.action.support.broadcast.TransportBroadcastAction$ShardTransportHandler.messageReceived(TransportBroadcastAction.java:278)
+        at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:75)
+        at org.elasticsearch.transport.netty.MessageChannelHandler$RequestHandler.doRun(MessageChannelHandler.java:300)
+        at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+        at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NullPointerException
+        at org.elasticsearch.search.suggest.context.ContextMapping$ContextQuery.toAutomaton(ContextMapping.java:264)
+        at org.elasticsearch.search.suggest.completion.AnalyzingCompletionLookupProvider$2.getLookup(AnalyzingCompletionLookupProvider.java:279)
+        at org.elasticsearch.search.suggest.completion.Completion090PostingsFormat$CompletionTerms.getLookup(Completion090PostingsFormat.java:264)
+        at org.elasticsearch.search.suggest.completion.CompletionSuggester.innerExecute(CompletionSuggester.java:69)
+        at org.elasticsearch.search.suggest.completion.CompletionSuggester.innerExecute(CompletionSuggester.java:44)
+        at org.elasticsearch.search.suggest.Suggester.execute(Suggester.java:41)
+        at org.elasticsearch.search.suggest.SuggestPhase.execute(SuggestPhase.java:85)
+        at org.elasticsearch.action.suggest.TransportSuggestAction.shardOperation(TransportSuggestAction.java:147)
+        ... 9 more
+

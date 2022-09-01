@@ -1,0 +1,40 @@
+[2016-09-01 03:30:26,331][INFO ][tribe                    ] [elk-edata04-101_tribe] [e100] removing index [voicelog-2016.08.26]
+[2016-09-01 03:30:26,332][WARN ][tribe                    ] [elk-edata04-101_tribe] failed to process [cluster event from e100, zen-disco-receive(from master [{elk-edata05-100}{Kf1SqrhFR9ywP_fMAB_Jdw}{10.120.69.109}{10.120.69.109:9300}{master=true}])]
+java.lang.NullPointerException
+[2016-09-01 03:30:26,741][WARN ][cluster.service          ] [elk-edata04-101_tribe/e100] failed to notify ClusterStateListener
+java.lang.ClassCastException: org.elasticsearch.license.plugin.core.LicensesMetaData cannot be cast to org.elasticsearch.license.plugin.core.LicensesMetaData
+    at org.elasticsearch.license.plugin.core.LicensesService.clusterChanged(LicensesService.java:466)
+    at org.elasticsearch.cluster.service.InternalClusterService.runTasksForExecutor(InternalClusterService.java:610)
+    at org.elasticsearch.cluster.service.InternalClusterService$UpdateTask.run(InternalClusterService.java:772)
+    at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.runAndClean(PrioritizedEsThreadPoolExecutor.java:231)
+    at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.run(PrioritizedEsThreadPoolExecutor.java:194)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+[2016-09-01 03:30:26,748][INFO ][tribe                    ] [elk-edata04-101_tribe] [e100] removing index [voicelog-2016.08.26]
+[2016-09-01 03:30:26,748][WARN ][tribe                    ] [elk-edata04-101_tribe] failed to process [cluster event from e100, zen-disco-receive(from master [{elk-edata05-100}{Kf1SqrhFR9ywP_fMAB_Jdw}{10.120.69.109}{10.120.69.109:9300}{master=true}])]
+java.lang.NullPointerException
+[2016-09-01 03:30:31,685][WARN ][cluster.service          ] [elk-edata04-101_tribe/e100] failed to notify ClusterStateListener
+java.lang.ClassCastException: org.elasticsearch.license.plugin.core.LicensesMetaData cannot be cast to org.elasticsearch.license.plugin.core.LicensesMetaData
+    at org.elasticsearch.license.plugin.core.LicensesService.clusterChanged(LicensesService.java:466)
+    at org.elasticsearch.cluster.service.InternalClusterService.runTasksForExecutor(InternalClusterService.java:610)
+    at org.elasticsearch.cluster.service.InternalClusterService$UpdateTask.run(InternalClusterService.java:772)
+    at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.runAndClean(PrioritizedEsThreadPoolExecutor.java:231)
+    at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.run(PrioritizedEsThreadPoolExecutor.java:194)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+[2016-09-02 18:28:18,359][WARN ][rest.suppressed          ] path: /_cat/indices, params: {}
+java.lang.NullPointerException
+    at org.elasticsearch.rest.action.cat.RestIndicesAction.buildTable(RestIndicesAction.java:345)
+    at org.elasticsearch.rest.action.cat.RestIndicesAction.access$100(RestIndicesAction.java:52)
+    at org.elasticsearch.rest.action.cat.RestIndicesAction$1$1$1.buildResponse(RestIndicesAction.java:111)
+    at org.elasticsearch.rest.action.cat.RestIndicesAction$1$1$1.buildResponse(RestIndicesAction.java:108)
+    at org.elasticsearch.rest.action.support.RestResponseListener.processResponse(RestResponseListener.java:43)
+    at org.elasticsearch.rest.action.support.RestActionListener.onResponse(RestActionListener.java:49)
+    at org.elasticsearch.action.support.ThreadedActionListener$1.doRun(ThreadedActionListener.java:89)
+    at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+

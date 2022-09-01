@@ -1,0 +1,70 @@
+[2017-10-02T19:50:28,790][WARN ][o.e.c.a.s.ShardStateAction] [master-01] [logstash-2017.09.20][4] received shard failed for shard id [[logstash-2017.09.20][4]
+], allocation id [lW_4BSVGSc6phnI1vLEPWg], primary term [0], message [failed recovery], failure [RecoveryFailedException[[logstash-2017.09.20][4]: Recovery failed 
+on {data-02}{Af43AKvBRf6r-PTr2s9KRg}{O1R6sKwAQK2FyYYmdFLjPA}{redacted}{redacted:9300}{aws_availability_zone=us-west-2c, ml.max_open_jobs=10, ml.enabled=
+true}]; nested: IndexShardRecoveryException[failed recovery]; nested: IndexShardRestoreFailedException[restore failed]; nested: IndexShardRestoreFailedException[fa
+iled to restore snapshot [snapshot_0/e_wavyGfTD-SwXC-imkF0g]]; nested: IndexShardRestoreFailedException[Failed to recover index]; nested: FileAlre
+adyExistsException[/var/lib/elasticsearch/nodes/0/indices/crXjrjtwTEqkK6_ITG1HVQ/4/index/_22g.si]; ]
+org.elasticsearch.indices.recovery.RecoveryFailedException: [logstash-2017.09.20][4]: Recovery failed on {data-02}{Af43AKvBRf6r-PTr2s9KRg}{O1R6sKwAQK2FyYYmdFL
+jPA}{redacted}{redacted:9300}{aws_availability_zone=us-west-2c, ml.max_open_jobs=10, ml.enabled=true}
+        at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$2(IndexShard.java:1511) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:569) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) ~[?:1.8.0_141]
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) ~[?:1.8.0_141]
+        at java.lang.Thread.run(Thread.java:748) [?:1.8.0_141]
+Caused by: org.elasticsearch.index.shard.IndexShardRecoveryException: failed recovery
+        at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:299) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.recoverFromRepository(StoreRecovery.java:232) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.restoreFromRepository(IndexShard.java:1243) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$2(IndexShard.java:1507) ~[elasticsearch-5.6.2.jar:5.6.2]
+        ... 4 more
+Caused by: org.elasticsearch.index.snapshots.IndexShardRestoreFailedException: restore failed
+        at org.elasticsearch.index.shard.StoreRecovery.restore(StoreRecovery.java:405) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromRepository$4(StoreRecovery.java:234) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:257) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.recoverFromRepository(StoreRecovery.java:232) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.restoreFromRepository(IndexShard.java:1243) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$2(IndexShard.java:1507) ~[elasticsearch-5.6.2.jar:5.6.2]
+        ... 4 more
+Caused by: org.elasticsearch.index.snapshots.IndexShardRestoreFailedException: failed to restore snapshot [snapshot_0/e_wavyGfTD-SwXC-imkF0g]
+        at org.elasticsearch.repositories.blobstore.BlobStoreRepository.restoreShard(BlobStoreRepository.java:993) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.restore(StoreRecovery.java:400) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromRepository$4(StoreRecovery.java:234) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:257) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.recoverFromRepository(StoreRecovery.java:232) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.restoreFromRepository(IndexShard.java:1243) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$2(IndexShard.java:1507) ~[elasticsearch-5.6.2.jar:5.6.2]
+        ... 4 more
+Caused by: org.elasticsearch.index.snapshots.IndexShardRestoreFailedException: Failed to recover index
+        at org.elasticsearch.repositories.blobstore.BlobStoreRepository$RestoreContext.restore(BlobStoreRepository.java:1679) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.repositories.blobstore.BlobStoreRepository.restoreShard(BlobStoreRepository.java:991) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.restore(StoreRecovery.java:400) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromRepository$4(StoreRecovery.java:234) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:257) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.recoverFromRepository(StoreRecovery.java:232) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.restoreFromRepository(IndexShard.java:1243) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$2(IndexShard.java:1507) ~[elasticsearch-5.6.2.jar:5.6.2]
+        ... 4 more
+Caused by: java.nio.file.FileAlreadyExistsException: /var/lib/elasticsearch/nodes/0/indices/crXjrjtwTEqkK6_ITG1HVQ/4/index/_22g.si
+        at sun.nio.fs.UnixException.translateToIOException(UnixException.java:88) ~[?:?]
+        at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102) ~[?:?]
+        at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107) ~[?:?]
+        at sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:214) ~[?:?]
+        at java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:434) ~[?:1.8.0_141]
+        at java.nio.file.Files.newOutputStream(Files.java:216) ~[?:1.8.0_141]
+        at org.apache.lucene.store.FSDirectory$FSIndexOutput.<init>(FSDirectory.java:413) ~[lucene-core-6.6.1.jar:6.6.1 9aa465a89b64ff2dabe7b4d50c472de32c298683 - varunthacker - 2017-08-29 21:54:39]
+        at org.apache.lucene.store.FSDirectory$FSIndexOutput.<init>(FSDirectory.java:409) ~[lucene-core-6.6.1.jar:6.6.1 9aa465a89b64ff2dabe7b4d50c472de32c298683 - varunthacker - 2017-08-29 21:54:39]
+        at org.apache.lucene.store.FSDirectory.createOutput(FSDirectory.java:253) ~[lucene-core-6.6.1.jar:6.6.1 9aa465a89b64ff2dabe7b4d50c472de32c298683 - varunthacker - 2017-08-29 21:54:39]
+        at org.apache.lucene.store.RateLimitedFSDirectory.createOutput(RateLimitedFSDirectory.java:40) ~[elasticsearch-5.6.2.jar:6.6.1 9aa465a89b64ff2dabe7b4d50c472de32c298683 - varunthacker - 2017-08-29 21:54:39]
+        at org.apache.lucene.store.FilterDirectory.createOutput(FilterDirectory.java:73) ~[lucene-core-6.6.1.jar:6.6.1 9aa465a89b64ff2dabe7b4d50c472de32c298683 - varunthacker - 2017-08-29 21:54:39]
+        at org.elasticsearch.index.store.Store.createVerifyingOutput(Store.java:463) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.repositories.blobstore.BlobStoreRepository$RestoreContext.restoreFile(BlobStoreRepository.java:1734) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.repositories.blobstore.BlobStoreRepository$RestoreContext.restore(BlobStoreRepository.java:1676) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.repositories.blobstore.BlobStoreRepository.restoreShard(BlobStoreRepository.java:991) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.restore(StoreRecovery.java:400) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromRepository$4(StoreRecovery.java:234) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:257) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.StoreRecovery.recoverFromRepository(StoreRecovery.java:232) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.restoreFromRepository(IndexShard.java:1243) ~[elasticsearch-5.6.2.jar:5.6.2]
+        at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$2(IndexShard.java:1507) ~[elasticsearch-5.6.2.jar:5.6.2]
+        ... 4 more
+

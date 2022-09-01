@@ -1,0 +1,76 @@
+[
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Update fetched project page tree on mutation",
+                "url": "https://github.com/HangarMC/Hangar/pull/804",
+                "resourcePath": "/HangarMC/Hangar/pull/804",
+                "createdAt": "2022-07-30T13:31:27Z",
+                "number": 804,
+                "mergeCommit": {
+                    "oid": "c0e09345d1462c23df58131753ee5ed381a2912b",
+                    "commitUrl": "https://github.com/HangarMC/Hangar/commit/c0e09345d1462c23df58131753ee5ed381a2912b"
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "frontend/src/components/modals/NewPageModal.vue"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "frontend/src/components/projects/ProjectPageMarkdown.vue"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "frontend/src/pages/[user]/[project].vue"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "src/main/java/io/papermc/hangar/controller/internal/projects/ProjectPageController.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOEJPZdc48XDsN2gAoOWRjMGY2OGEwMjdlZjIxYzdlYjljM2U2NmZmNmU5Y2E5YmI1N2Y2OA",
+                                "url": "https://github.com/HangarMC/Hangar/pull/804/commits/9dc0f68a027ef21c7eb9c3e66ff6e9ca9bb57f68"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 713,
+                                "url": "https://github.com/HangarMC/Hangar/issues/713",
+                                "title": "New page only listed after refresh",
+                                "bodyHTML": "<p><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/59464084/174513303-c5d08a86-f907-4b17-a0c2-8f18aa2b63fa.png\"><img width=\"324\" alt=\"image\" src=\"https://user-images.githubusercontent.com/59464084/174513303-c5d08a86-f907-4b17-a0c2-8f18aa2b63fa.png\" style=\"max-width: 100%;\"></a></p>\n<p dir=\"auto\">I created a page called <code class=\"notranslate\">Support</code>, but it didn't appear in the list of pages. <a href=\"https://hangar.benndorf.dev/ArcanePlugins/LevelledMobs\" rel=\"nofollow\">Link to resource page</a></p>",
+                                "resourcePath": "/HangarMC/Hangar/issues/713",
+                                "createdAt": "2022-06-20T02:12:34Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "bug" } },
+                                        { "node": { "name": "frontend" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

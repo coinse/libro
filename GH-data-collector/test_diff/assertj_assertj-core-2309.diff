@@ -1,0 +1,216 @@
+diff --git a/src/test/java/org/assertj/core/api/charsequence/CharSequenceAssert_containsAnyOf_Test.java b/src/test/java/org/assertj/core/api/charsequence/CharSequenceAssert_containsAnyOf_Test.java
+new file mode 100644
+index 000000000..67adc8a3f
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/charsequence/CharSequenceAssert_containsAnyOf_Test.java
+@@ -0,0 +1,33 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2021 the original author or authors.
++ */
++package org.assertj.core.api.charsequence;
++
++import static org.assertj.core.util.Arrays.array;
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.CharSequenceAssert;
++import org.assertj.core.api.CharSequenceAssertBaseTest;
++
++class CharSequenceAssert_containsAnyOf_Test extends CharSequenceAssertBaseTest {
++
++  @Override
++  protected CharSequenceAssert invoke_api_method() {
++    return assertions.containsAnyOf("a", "b", "c");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(strings).assertContainsAnyOf(getInfo(assertions), getActual(assertions), array("a", "b", "c"));
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/error/ShouldContainAnyOf_create_Test.java b/src/test/java/org/assertj/core/error/ShouldContainAnyOf_create_Test.java
+index ad68b9dc2..ec25473e6 100644
+--- a/src/test/java/org/assertj/core/error/ShouldContainAnyOf_create_Test.java
++++ b/src/test/java/org/assertj/core/error/ShouldContainAnyOf_create_Test.java
+@@ -37,7 +37,7 @@ class ShouldContainAnyOf_create_Test {
+                                    "  [\"Yoda\", \"Han\", \"Han\"]%n" +
+                                    "to contain at least one of the following elements:%n" +
+                                    "  [\"Vador\", \"Leia\"]%n" +
+-                                   "but none were found "));
++                                   "but none were found"));
+   }
+ 
+   @Test
+diff --git a/src/test/java/org/assertj/core/internal/Arrays_containsAnyOf_Test.java b/src/test/java/org/assertj/core/internal/Arrays_containsAnyOf_Test.java
+index 5b1e117e3..f6ea0a623 100644
+--- a/src/test/java/org/assertj/core/internal/Arrays_containsAnyOf_Test.java
++++ b/src/test/java/org/assertj/core/internal/Arrays_containsAnyOf_Test.java
+@@ -91,7 +91,7 @@ class Arrays_containsAnyOf_Test extends BaseArraysTest {
+     Throwable error = catchThrowable(() -> arrays.assertContainsAnyOf(info, failures, actual, expected));
+ 
+     assertThat(error).isInstanceOf(AssertionError.class);
+-    verify(failures).failure(info, shouldContainAnyOf(actual, expected));
++    verify(failures).failure(info, shouldContainAnyOf(actual, expected, StandardComparisonStrategy.instance()));
+   }
+ 
+   // ------------------------------------------------------------------------------------------------------------------
+diff --git a/src/test/java/org/assertj/core/internal/iterables/Iterables_assertContainsAnyOf_Test.java b/src/test/java/org/assertj/core/internal/iterables/Iterables_assertContainsAnyOf_Test.java
+index 9c66930f1..363683605 100644
+--- a/src/test/java/org/assertj/core/internal/iterables/Iterables_assertContainsAnyOf_Test.java
++++ b/src/test/java/org/assertj/core/internal/iterables/Iterables_assertContainsAnyOf_Test.java
+@@ -30,6 +30,7 @@ import static org.mockito.Mockito.verify;
+ import org.assertj.core.api.AssertionInfo;
+ import org.assertj.core.internal.Iterables;
+ import org.assertj.core.internal.IterablesBaseTest;
++import org.assertj.core.internal.StandardComparisonStrategy;
+ import org.assertj.core.test.Name;
+ import org.junit.jupiter.api.Test;
+ 
+@@ -110,7 +111,7 @@ class Iterables_assertContainsAnyOf_Test extends IterablesBaseTest {
+     Throwable error = catchThrowable(() -> iterables.assertContainsAnyOf(info, actual, expected));
+ 
+     assertThat(error).isInstanceOf(AssertionError.class);
+-    verify(failures).failure(info, shouldContainAnyOf(actual, expected));
++    verify(failures).failure(info, shouldContainAnyOf(actual, expected, StandardComparisonStrategy.instance()));
+   }
+ 
+   // ------------------------------------------------------------------------------------------------------------------
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsAnyOf_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsAnyOf_Test.java
+new file mode 100644
+index 000000000..64cc9eab7
+--- /dev/null
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsAnyOf_Test.java
+@@ -0,0 +1,105 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2021 the original author or authors.
++ */
++package org.assertj.core.internal.strings;
++
++import static org.assertj.core.api.Assertions.catchThrowable;
++import static org.assertj.core.api.BDDAssertions.then;
++import static org.assertj.core.error.ShouldContainAnyOf.shouldContainAnyOf;
++import static org.assertj.core.error.ShouldNotBeNull.shouldNotBeNull;
++import static org.assertj.core.test.TestData.someInfo;
++import static org.assertj.core.util.Arrays.array;
++import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
++
++import org.assertj.core.internal.StandardComparisonStrategy;
++import org.assertj.core.internal.StringsBaseTest;
++import org.junit.jupiter.api.Test;
++
++class Strings_assertContainsAnyOf_Test extends StringsBaseTest {
++
++  @Test
++  void should_fail_if_actual_is_null() {
++    // GIVEN
++    CharSequence actual = null;
++    CharSequence[] values = array("Yoda", "Luke");
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertContainsAnyOf(someInfo(), actual, values));
++    // THEN
++    then(assertionError).hasMessage(shouldNotBeNull().create());
++  }
++
++  @Test
++  void should_fail_if_values_is_null() {
++    // GIVEN
++    CharSequence actual = "Master Yoda";
++    CharSequence[] values = null;
++    // WHEN
++    Throwable thrown = catchThrowable(() -> strings.assertContainsAnyOf(someInfo(), actual, values));
++    // THEN
++    then(thrown).isInstanceOf(NullPointerException.class)
++                .hasMessage("The array of values to look for should not be null");
++  }
++
++  @Test
++  void should_fail_if_values_is_empty() {
++    // GIVEN
++    CharSequence actual = "Master Yoda";
++    CharSequence[] values = array();
++    // WHEN
++    Throwable thrown = catchThrowable(() -> strings.assertContainsAnyOf(someInfo(), actual, values));
++    // THEN
++    then(thrown).isInstanceOf(IllegalArgumentException.class)
++                .hasMessage("The array of values to look for should not be empty");
++  }
++
++  @Test
++  void should_fail_if_values_contains_null() {
++    // GIVEN
++    CharSequence actual = "Master Yoda";
++    CharSequence[] values = array("Yoda", "Luke", null);
++    // WHEN
++    Throwable thrown = catchThrowable(() -> strings.assertContainsAnyOf(someInfo(), actual, values));
++    // THEN
++    then(thrown).isInstanceOf(NullPointerException.class)
++                .hasMessage("Expecting CharSequence elements not to be null but found one at index 2");
++  }
++
++  @Test
++  void should_fail_if_actual_does_not_contain_any_value() {
++    // GIVEN
++    CharSequence actual = "Leia";
++    CharSequence[] values = array("Yoda", "Luke");
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertContainsAnyOf(someInfo(), actual, values));
++    // THEN
++    then(assertionError).hasMessage(shouldContainAnyOf(actual, values, StandardComparisonStrategy.instance()).create());
++  }
++
++  @Test
++  void should_pass_if_actual_contains_any_value() {
++    // GIVEN
++    CharSequence actual = "Master Yoda";
++    CharSequence[] values = array("Yoda", "Luke");
++    // WHEN/THEN
++    strings.assertContainsAnyOf(someInfo(), actual, values);
++  }
++
++  @Test
++  void should_pass_if_actual_contains_any_value_according_to_custom_comparison_strategy() {
++    // GIVEN
++    CharSequence actual = "Master Yoda";
++    CharSequence[] values = array("YODA", "LUKE");
++    // WHEN/THEN
++    stringsWithCaseInsensitiveComparisonStrategy.assertContainsAnyOf(someInfo(), actual, values);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertContains_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertContains_Test.java
+index be683488b..214f2e163 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertContains_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertContains_Test.java
+@@ -21,14 +21,10 @@ import static org.assertj.core.util.Arrays.array;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+ import static org.assertj.core.util.Sets.newLinkedHashSet;
+ 
+-import org.assertj.core.api.AssertionInfo;
+-import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.junit.jupiter.api.Test;
+ 
+ /**
+- * Tests for <code>{@link Strings#assertContains(AssertionInfo, CharSequence, CharSequence)}</code>.
+- * 
+  * @author Alex Ruiz
+  * @author Joel Costigliola
+  */

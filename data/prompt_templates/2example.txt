@@ -1,0 +1,56 @@
+# NumberUtils does not handle Long Hex numbers
+## Description
+NumberUtils.createLong() does not handle hex numbers, but createInteger() handles hex and octal.
+This seems odd.
+
+NumberUtils.createNumber() assumes that hex numbers can only be Integer.
+Again, why not handle bigger Hex numbers?
+==
+It is trivial to fix createLong() - just use Long.decode() instead of valueOf().
+It's not clear why this was not done originally - the decode() method was added to both Integer and Long in Java 1.2.
+Fixing createNumber() is also fairly easy - if the hex string has more than 8 digits, use Long.
+Should we allow for leading zeros in an Integer?
+
+If not, the length check is trivial.
+## Reproduction
+>Provide a self-contained example that reproduces this issue.
+```
+public void testNumberUtils () {
+    assertEquals(Long.valueOf(0x80000000L),    NumberUtils.createNumber("0x80000000"));
+}
+```
+
+# #107 Incorrect date parsed when week and month used together
+## Description
+I have following code snippet :
+
+```
+    DateTimeFormatter dtf = DateTimeFormat.forPattern("xxxxMM'w'ww");
+DateTime dt = dtf.parseDateTime("201101w01");
+System.out.println(dt);
+```
+
+It should print 2011-01-03 but it is printing 2010-01-04.
+
+Please let me know if I am doing something wrong here
+
+## Reproduction
+>Provide a self-contained example that reproduces this issue.
+```
+public void testIssue107() {
+    DateTimeFormatter dtf = DateTimeFormat.forPattern("xxxxMM'w'ww");
+    DateTime dt = dtf.parseDateTime("201101w01");
+    assertEquals(2011, dt.getYear());
+    assertEquals(1, dt.getMonthOfYear());
+    assertEquals(3, dt.getDayOfMonth());
+}
+```
+
+# {{title}}
+## Description
+{{content}}
+## Reproduction
+>Provide a self-contained example that reproduces this issue.
+```
+public void test
+{{endon}}:```

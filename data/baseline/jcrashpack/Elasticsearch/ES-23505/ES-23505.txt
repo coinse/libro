@@ -1,0 +1,13 @@
+Error building toString out of XContent: com.fasterxml.jackson.core.JsonGenerationException: Can not start an object, expecting field name (context: Object)
+at com.fasterxml.jackson.core.JsonGenerator._reportError(JsonGenerator.java:1897)
+at com.fasterxml.jackson.core.json.JsonGeneratorImpl._reportCantWriteValueExpectName(JsonGeneratorImpl.java:244)
+at com.fasterxml.jackson.core.json.UTF8JsonGenerator._verifyValueWrite(UTF8JsonGenerator.java:1027)
+at com.fasterxml.jackson.core.json.UTF8JsonGenerator.writeStartObject(UTF8JsonGenerator.java:313)
+at org.elasticsearch.common.xcontent.json.JsonXContentGenerator.writeStartObject(JsonXContentGenerator.java:161)
+at org.elasticsearch.common.xcontent.XContentBuilder.startObject(XContentBuilder.java:217)
+at org.elasticsearch.index.get.GetResult.toXContent(GetResult.java:251)
+at org.elasticsearch.action.get.GetResponse.toXContent(GetResponse.java:158)
+at org.elasticsearch.common.Strings.toString(Strings.java:901)
+at org.elasticsearch.action.get.GetResponse.toString(GetResponse.java:197)
+at gr.unipi.elastic.App.main(App.java:48)
+

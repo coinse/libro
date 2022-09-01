@@ -1,0 +1,16 @@
+Exception in thread "main" java.nio.file.FileAlreadyExistsException: /usr/share/elasticsearch/bin/x-pack
+    at sun.nio.fs.UnixException.translateToIOException(UnixException.java:88)
+    at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+    at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+    at sun.nio.fs.UnixFileSystemProvider.createDirectory(UnixFileSystemProvider.java:384)
+    at java.nio.file.Files.createDirectory(Files.java:674)
+    at org.elasticsearch.plugins.InstallPluginCommand.installBin(InstallPluginCommand.java:456)
+    at org.elasticsearch.plugins.InstallPluginCommand.install(InstallPluginCommand.java:419)
+    at org.elasticsearch.plugins.InstallPluginCommand.execute(InstallPluginCommand.java:202)
+    at org.elasticsearch.plugins.InstallPluginCommand.execute(InstallPluginCommand.java:188)
+    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:91)
+    at org.elasticsearch.cli.MultiCommand.execute(MultiCommand.java:69)
+    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:91)
+    at org.elasticsearch.cli.Command.main(Command.java:53)
+    at org.elasticsearch.plugins.PluginCli.main(PluginCli.java:57)
+

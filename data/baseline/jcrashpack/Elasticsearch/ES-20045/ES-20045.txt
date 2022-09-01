@@ -1,0 +1,20 @@
+[2016-08-18 13:55:11,399][INFO ][node                     ] [Phineas T. Horton] version[5.0.0-alpha4], pid[82298], build[3f5b994/2016-06-27T16:23:46.861Z], OS[Mac OS X/10.11.6/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_60/25.60-b23]
+[2016-08-18 13:55:11,400][INFO ][node                     ] [Phineas T. Horton] initializing ...
+[2016-08-18 13:55:12,213][INFO ][plugins                  ] [Phineas T. Horton] modules [percolator, lang-mustache, lang-painless, reindex, aggs-matrix-stats, lang-expression, ingest-common, lang-groovy], plugins [analysis-kuromoji, x-pack]
+Exception in thread "main" java.lang.IllegalArgumentException: unknown setting [cluster.routing.allocation.same_shard.host] did you mean any of [cluster.routing.allocation.balance.shard, cluster.routing.allocation.balance.threshold, cluster.routing.allocation.disk.watermark.high, cluster.routing.allocation.disk.watermark.low, cluster.routing.allocation.total_shards_per_node]?
+    at org.elasticsearch.common.settings.AbstractScopedSettings.validate(AbstractScopedSettings.java:270)
+    at org.elasticsearch.common.settings.AbstractScopedSettings.validate(AbstractScopedSettings.java:238)
+    at org.elasticsearch.common.settings.SettingsModule.<init>(SettingsModule.java:138)
+    at org.elasticsearch.node.Node.<init>(Node.java:236)
+    at org.elasticsearch.node.Node.<init>(Node.java:173)
+    at org.elasticsearch.bootstrap.Bootstrap$5.<init>(Bootstrap.java:175)
+    at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:175)
+    at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:250)
+    at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:96)
+    at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:91)
+    at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54)
+    at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:91)
+    at org.elasticsearch.cli.Command.main(Command.java:53)
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:70)
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:63)
+

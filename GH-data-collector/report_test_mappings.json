@@ -1,0 +1,1539 @@
+{
+  "FasterXML_jackson-core": {
+    "FasterXML_jackson-core-729": {
+      "bug_id": "FasterXML_jackson-core-729",
+      "PR_number": 729,
+      "PR_createdAt": "2021-12-16T14:54:26Z",
+      "merge_commit": "8bed4d83620424264f3339d5d9c808f7279d97a5",
+      "buggy_commits": [
+        {
+          "oid": "e302dd8afbf2cdc61d8c9d8db17ff70fd9922f82",
+          "message": "Merge branch '2.13' into 2.14"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/FasterXML/jackson-core/issues/715",
+        "createdAt": "2021-09-10T21:22:50Z",
+        "content": "bug_report_all/FasterXML_jackson-core-729.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/fasterxml/jackson/core/BaseTest.java",
+        "src/test/java/com/fasterxml/jackson/core/filter/BasicGeneratorFilteringTest.java",
+        "src/test/java/com/fasterxml/jackson/core/filter/BasicParserFilteringTest.java"
+      ],
+      "PR_url": "https://github.com/FasterXML/jackson-core/pull/729",
+      "merge_commit_url": "https://github.com/FasterXML/jackson-core/commit/8bed4d83620424264f3339d5d9c808f7279d97a5",
+      "buggy_commit": "e302dd8afbf2cdc61d8c9d8db17ff70fd9922f82"
+    },
+    "FasterXML_jackson-core-722": {
+      "bug_id": "FasterXML_jackson-core-722",
+      "PR_number": 722,
+      "PR_createdAt": "2021-10-17T17:10:49Z",
+      "merge_commit": "f45d03502f4252378f33a388445f7307c3ddf539",
+      "buggy_commits": [
+        {
+          "oid": "f9f568a7d845a0fa6b32f0c2c60d70bbe3e2b650",
+          "message": "Merge branch '2.13' into 2.14"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/FasterXML/jackson-core/issues/684",
+        "createdAt": "2021-03-10T17:58:04Z",
+        "content": "bug_report_all/FasterXML_jackson-core-722.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/fasterxml/jackson/core/TestJsonPointer.java"
+      ],
+      "PR_url": "https://github.com/FasterXML/jackson-core/pull/722",
+      "merge_commit_url": "https://github.com/FasterXML/jackson-core/commit/f45d03502f4252378f33a388445f7307c3ddf539",
+      "buggy_commit": "f9f568a7d845a0fa6b32f0c2c60d70bbe3e2b650"
+    }
+  },
+  "google_gson": {
+    "google_gson-2004": {
+      "bug_id": "google_gson-2004",
+      "PR_number": 2004,
+      "PR_createdAt": "2021-10-29T15:49:11Z",
+      "merge_commit": "b3188c113205bb41a980b09917b7f6b242cd32fc",
+      "buggy_commits": [
+        {
+          "oid": "466ca729167662b72beb0b952a7819b71547eaec",
+          "message": "Update version number in UserGuide.md and proto/pom.xml."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1965",
+        "createdAt": "2021-09-16T23:32:00Z",
+        "content": "bug_report_all/google_gson-2004.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/FieldNamingPolicyTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2004",
+      "merge_commit_url": "https://github.com/google/gson/commit/b3188c113205bb41a980b09917b7f6b242cd32fc",
+      "buggy_commit": "466ca729167662b72beb0b952a7819b71547eaec"
+    },
+    "google_gson-2024": {
+      "bug_id": "google_gson-2024",
+      "PR_number": 2024,
+      "PR_createdAt": "2021-11-22T03:35:03Z",
+      "merge_commit": "eaf9a0342d69b4cbbfb3644ce42e196453ce164a",
+      "buggy_commits": [
+        {
+          "oid": "16b42ff5805074126c2e5484450c182773e408a2",
+          "message": "Update Caliper dependency; disable automatic result upload (#2019)"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1886",
+        "createdAt": "2021-05-03T11:48:50Z",
+        "content": "bug_report_all/google_gson-2024.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/FieldNamingPolicyTest.java",
+        "gson/src/test/java/com/google/gson/functional/FieldNamingTest.java",
+        "gson/src/test/java/com/google/gson/functional/NamingPolicyTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2024",
+      "merge_commit_url": "https://github.com/google/gson/commit/eaf9a0342d69b4cbbfb3644ce42e196453ce164a",
+      "buggy_commit": "16b42ff5805074126c2e5484450c182773e408a2"
+    },
+    "google_gson-2043": {
+      "bug_id": "google_gson-2043",
+      "PR_number": 2043,
+      "PR_createdAt": "2021-12-30T23:00:26Z",
+      "merge_commit": "dc28951fa7e7112f0e229e0a4665ad27a1891d79",
+      "buggy_commits": [
+        {
+          "oid": "bc8858a3d9a79a7d091474b436767b73e8338ac1",
+          "message": "Bump maven-deploy-plugin from 3.0.0-M1 to 3.0.0-M2 (#2044)\n\nBumps [maven-deploy-plugin](https://github.com/apache/maven-deploy-plugin) from 3.0.0-M1 to 3.0.0-M2.\r\n- [Release notes](https://github.com/apache/maven-deploy-plugin/releases)\r\n- [Commits](https://github.com/apache/maven-deploy-plugin/compare/maven-deploy-plugin-3.0.0-M1...maven-deploy-plugin-3.0.0-M2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.apache.maven.plugins:maven-deploy-plugin\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/2018",
+        "createdAt": "2021-11-09T21:51:33Z",
+        "content": "bug_report_all/google_gson-2043.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/internal/LinkedTreeMapTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2043",
+      "merge_commit_url": "https://github.com/google/gson/commit/dc28951fa7e7112f0e229e0a4665ad27a1891d79",
+      "buggy_commit": "bc8858a3d9a79a7d091474b436767b73e8338ac1"
+    },
+    "google_gson-2060": {
+      "bug_id": "google_gson-2060",
+      "PR_number": 2060,
+      "PR_createdAt": "2022-01-23T00:40:11Z",
+      "merge_commit": "e2e851c9bc692cec68ba7b0cbb002f82b4a229e4",
+      "buggy_commits": [
+        {
+          "oid": "710a76c8b8835e36935c62024001ba6b91ceee01",
+          "message": "Fix JsonReader.hasNext() returning true at end of document (#2061)"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/847",
+        "createdAt": "2016-05-06T13:47:41Z",
+        "content": "bug_report_all/google_gson-2060.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/functional/PrimitiveTest.java",
+        "gson/src/test/java/com/google/gson/stream/JsonReaderTest.java",
+        "gson/src/test/java/com/google/gson/stream/JsonWriterTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2060",
+      "merge_commit_url": "https://github.com/google/gson/commit/e2e851c9bc692cec68ba7b0cbb002f82b4a229e4",
+      "buggy_commit": "710a76c8b8835e36935c62024001ba6b91ceee01"
+    },
+    "google_gson-1986": {
+      "bug_id": "google_gson-1986",
+      "PR_number": 1986,
+      "PR_createdAt": "2021-10-11T02:08:25Z",
+      "merge_commit": "c54caf308c3f7d4a6088cf3085c2caa9617e0458",
+      "buggy_commits": [
+        {
+          "oid": "e6fae590cf2a758c47cd5a17f9bf3780ce62c986",
+          "message": "Prevent Java deserialization of internal classes (#1991)\n\nAdversaries might be able to forge data which can be abused for DoS attacks.\r\nThese classes are already writing a replacement JDK object during serialization\r\nfor a long time, so this change should not cause any issues."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1903",
+        "createdAt": "2021-06-04T14:33:40Z",
+        "content": "bug_report_all/google_gson-1986.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/GsonTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/1986",
+      "merge_commit_url": "https://github.com/google/gson/commit/c54caf308c3f7d4a6088cf3085c2caa9617e0458",
+      "buggy_commit": "e6fae590cf2a758c47cd5a17f9bf3780ce62c986"
+    },
+    "google_gson-2061": {
+      "bug_id": "google_gson-2061",
+      "PR_number": 2061,
+      "PR_createdAt": "2022-01-23T01:03:06Z",
+      "merge_commit": "710a76c8b8835e36935c62024001ba6b91ceee01",
+      "buggy_commits": [
+        {
+          "oid": "be0a1f4ff74bcd01580887cc9f3ec592d773f24c",
+          "message": "Remove Gradle build support (#2063)\n\nBuild script was outdated and not actively maintained anymore."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1049",
+        "createdAt": "2017-03-23T12:51:30Z",
+        "content": "bug_report_all/google_gson-2061.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/internal/bind/JsonTreeReaderTest.java",
+        "gson/src/test/java/com/google/gson/stream/JsonReaderTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2061",
+      "merge_commit_url": "https://github.com/google/gson/commit/710a76c8b8835e36935c62024001ba6b91ceee01",
+      "buggy_commit": "be0a1f4ff74bcd01580887cc9f3ec592d773f24c"
+    },
+    "google_gson-1989": {
+      "bug_id": "google_gson-1989",
+      "PR_number": 1989,
+      "PR_createdAt": "2021-10-11T13:33:25Z",
+      "merge_commit": "deaa3a6cd9f4676e0c826eadadd2f3d6dc857096",
+      "buggy_commits": [
+        {
+          "oid": "e0de45ff69ba3daacc3b7623cc74fc69a4eaf6d0",
+          "message": "Delete unused LinkedHashTreeMap (#1992)\n\nClass seems to be unused since commit f29d5bc37b52c4b8d2ad15a10bb0c7f684c1d45d.\r\nGson currently only uses LinkedTreeMap."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1452",
+        "createdAt": "2019-01-08T01:58:58Z",
+        "content": "bug_report_all/google_gson-1989.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/GsonTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/1989",
+      "merge_commit_url": "https://github.com/google/gson/commit/deaa3a6cd9f4676e0c826eadadd2f3d6dc857096",
+      "buggy_commit": "e0de45ff69ba3daacc3b7623cc74fc69a4eaf6d0"
+    },
+    "google_gson-2153": {
+      "bug_id": "google_gson-2153",
+      "PR_number": 2153,
+      "PR_createdAt": "2022-07-25T19:12:13Z",
+      "merge_commit": "4552db2630b6d506ac7e212b337f818169f3c03b",
+      "buggy_commits": [
+        {
+          "oid": "a45c55739f4e5eb25e9b67a8b7e2bfad25851fb6",
+          "message": "Improve ArrayTypeAdapter for Object[] (#1716)\n\n* Improve ArrayTypeAdapter for Object[]\r\n\r\n* Fix typo in test method names"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1831",
+        "createdAt": "2020-12-01T23:27:26Z",
+        "content": "bug_report_all/google_gson-2153.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/GsonTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2153",
+      "merge_commit_url": "https://github.com/google/gson/commit/4552db2630b6d506ac7e212b337f818169f3c03b",
+      "buggy_commit": "a45c55739f4e5eb25e9b67a8b7e2bfad25851fb6"
+    },
+    "google_gson-2071": {
+      "bug_id": "google_gson-2071",
+      "PR_number": 2071,
+      "PR_createdAt": "2022-02-03T23:01:50Z",
+      "merge_commit": "565b7a198e026596c3fd18304f86537ae20f9a3f",
+      "buggy_commits": [
+        {
+          "oid": "e2e851c9bc692cec68ba7b0cbb002f82b4a229e4",
+          "message": "Add LazilyParsedNumber default adapter (#2060)\n\n* Add LazilyParsedNumber default adapter\r\n\r\n* Validate JsonWriter.value(Number) argument\r\n\r\n* Fix incorrect JSON number pattern, extend tests"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/2067",
+        "createdAt": "2022-01-29T19:10:34Z",
+        "content": "bug_report_all/google_gson-2071.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/functional/EnumTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2071",
+      "merge_commit_url": "https://github.com/google/gson/commit/565b7a198e026596c3fd18304f86537ae20f9a3f",
+      "buggy_commit": "e2e851c9bc692cec68ba7b0cbb002f82b4a229e4"
+    },
+    "google_gson-2158": {
+      "bug_id": "google_gson-2158",
+      "PR_number": 2158,
+      "PR_createdAt": "2022-07-26T15:20:13Z",
+      "merge_commit": "77e5c51fb01a68b4eab128dd4e5fea8b1f7451bf",
+      "buggy_commits": [
+        {
+          "oid": "a1d2ebc8b51a3a0df8b15c98f47d5ac95cf7f7b0",
+          "message": "Fix #1702: Gson.toJson creates CharSequence which does not implement toString (#1703)\n\n* Gson.toJson creates CharSequence which does not implement toString\r\n\r\n* Improve Streams.AppendableWriter.CurrentWrite test\r\n\r\n* Make setChars package-private"
+        },
+        {
+          "oid": "0b6937f6963774b7a86195948e9542698171b9bb",
+          "message": "Perform numeric conversion for primitive numeric type adapters\n\nThis should probably not be visible to the user unless they use the\nnon-typesafe `Gson.toJson(Object, Type)` where unrelated number types can\nbe used, or when malformed generic containers are used. For example a\n`List<Byte>` containing a Float.\n\nThis change also has the advantage of avoiding `JsonWriter.value(Number)`\nfor primitive type adapters. That method has some overhead because it needs\nto make sure that the value is a valid JSON number. However, for primitive\nnumbers this check is redundant."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/2156",
+        "createdAt": "2022-07-25T21:34:00Z",
+        "content": "bug_report_all/google_gson-2158.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/functional/PrimitiveTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2158",
+      "merge_commit_url": "https://github.com/google/gson/commit/77e5c51fb01a68b4eab128dd4e5fea8b1f7451bf",
+      "buggy_commit": "a1d2ebc8b51a3a0df8b15c98f47d5ac95cf7f7b0"
+    },
+    "google_gson-2130": {
+      "bug_id": "google_gson-2130",
+      "PR_number": 2130,
+      "PR_createdAt": "2022-06-08T21:40:03Z",
+      "merge_commit": "96ab171eb48dcea94fd9b8f425f65c531e6c3aad",
+      "buggy_commits": [
+        {
+          "oid": "15b9fa9c31d4137ad6d46f746524a5aa43eefd28",
+          "message": "Bump maven-surefire-plugin from 3.0.0-M6 to 3.0.0-M7 (#2128)\n\nBumps [maven-surefire-plugin](https://github.com/apache/maven-surefire) from 3.0.0-M6 to 3.0.0-M7.\r\n- [Release notes](https://github.com/apache/maven-surefire/releases)\r\n- [Commits](https://github.com/apache/maven-surefire/compare/surefire-3.0.0-M6...surefire-3.0.0-M7)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.apache.maven.plugins:maven-surefire-plugin\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1127",
+        "createdAt": "2017-07-29T05:33:46Z",
+        "content": "bug_report_all/google_gson-2130.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/stream/JsonWriterTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2130",
+      "merge_commit_url": "https://github.com/google/gson/commit/96ab171eb48dcea94fd9b8f425f65c531e6c3aad",
+      "buggy_commit": "15b9fa9c31d4137ad6d46f746524a5aa43eefd28"
+    },
+    "google_gson-2134": {
+      "bug_id": "google_gson-2134",
+      "PR_number": 2134,
+      "PR_createdAt": "2022-06-12T20:12:27Z",
+      "merge_commit": "57225c6741ff14db049ebe793ff3d423f2950ac7",
+      "buggy_commits": [
+        {
+          "oid": "96ab171eb48dcea94fd9b8f425f65c531e6c3aad",
+          "message": "Add explicit support for floats in JsonWriter. (#2130)\n\nThis avoids floats being treated as doubles and having an unwarranted level of precision.\r\n\r\nFixes #1127."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/2133",
+        "createdAt": "2022-06-12T00:36:10Z",
+        "content": "bug_report_all/google_gson-2134.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/internal/bind/util/ISO8601UtilsTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2134",
+      "merge_commit_url": "https://github.com/google/gson/commit/57225c6741ff14db049ebe793ff3d423f2950ac7",
+      "buggy_commit": "96ab171eb48dcea94fd9b8f425f65c531e6c3aad"
+    },
+    "google_gson-2152": {
+      "bug_id": "google_gson-2152",
+      "PR_number": 2152,
+      "PR_createdAt": "2022-07-25T00:28:24Z",
+      "merge_commit": "d502bab996f7136bb7cf7e402ba95f6906a64ae1",
+      "buggy_commits": [
+        {
+          "oid": "a1d2ebc8b51a3a0df8b15c98f47d5ac95cf7f7b0",
+          "message": "Fix #1702: Gson.toJson creates CharSequence which does not implement toString (#1703)\n\n* Gson.toJson creates CharSequence which does not implement toString\r\n\r\n* Improve Streams.AppendableWriter.CurrentWrite test\r\n\r\n* Make setChars package-private"
+        },
+        {
+          "oid": "3a308a941edc194ae4cd4db33bcc93a220b33525",
+          "message": "Use LinkedHashMap(Map) constructor"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1247",
+        "createdAt": "2018-02-03T16:23:57Z",
+        "content": "bug_report_all/google_gson-2152.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/functional/MapTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2152",
+      "merge_commit_url": "https://github.com/google/gson/commit/d502bab996f7136bb7cf7e402ba95f6906a64ae1",
+      "buggy_commit": "a1d2ebc8b51a3a0df8b15c98f47d5ac95cf7f7b0"
+    },
+    "google_gson-2167": {
+      "bug_id": "google_gson-2167",
+      "PR_number": 2167,
+      "PR_createdAt": "2022-08-03T23:01:35Z",
+      "merge_commit": "c65d0b6bab47b8fe811af05fa9e0bf2770e5e79b",
+      "buggy_commits": [
+        {
+          "oid": "a1d2ebc8b51a3a0df8b15c98f47d5ac95cf7f7b0",
+          "message": "Fix #1702: Gson.toJson creates CharSequence which does not implement toString (#1703)\n\n* Gson.toJson creates CharSequence which does not implement toString\r\n\r\n* Improve Streams.AppendableWriter.CurrentWrite test\r\n\r\n* Make setChars package-private"
+        },
+        {
+          "oid": "3df6bc7b571f5048bc3eba6bb9491d8363ff819d",
+          "message": "Disallow JsonObject Entry.setValue(null)"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/google/gson/issues/1771",
+        "createdAt": "2020-08-29T02:23:32Z",
+        "content": "bug_report_all/google_gson-2167.json"
+      },
+      "changed_tests": [
+        "gson/src/test/java/com/google/gson/JsonObjectTest.java",
+        "gson/src/test/java/com/google/gson/internal/LinkedTreeMapTest.java"
+      ],
+      "PR_url": "https://github.com/google/gson/pull/2167",
+      "merge_commit_url": "https://github.com/google/gson/commit/c65d0b6bab47b8fe811af05fa9e0bf2770e5e79b",
+      "buggy_commit": "a1d2ebc8b51a3a0df8b15c98f47d5ac95cf7f7b0"
+    }
+  },
+  "Hakky54_sslcontext-kickstart": {
+    "Hakky54_sslcontext-kickstart-131": {
+      "bug_id": "Hakky54_sslcontext-kickstart-131",
+      "PR_number": 131,
+      "PR_createdAt": "2021-11-30T13:18:00Z",
+      "merge_commit": "7e5a0ee3a366426b990f50fdc5558c6ea100b5c2",
+      "buggy_commits": [
+        {
+          "oid": "2d54930d83a37739d3908a7d986a79982e4170a0",
+          "message": "Bump version.junit from 5.8.1 to 5.8.2 (#133)\n\nBumps `version.junit` from 5.8.1 to 5.8.2.\r\n\r\nUpdates `junit-jupiter-api` from 5.8.1 to 5.8.2\r\n- [Release notes](https://github.com/junit-team/junit5/releases)\r\n- [Commits](https://github.com/junit-team/junit5/compare/r5.8.1...r5.8.2)\r\n\r\nUpdates `junit-jupiter-engine` from 5.8.1 to 5.8.2\r\n- [Release notes](https://github.com/junit-team/junit5/releases)\r\n- [Commits](https://github.com/junit-team/junit5/compare/r5.8.1...r5.8.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.junit.jupiter:junit-jupiter-api\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: org.junit.jupiter:junit-jupiter-engine\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/Hakky54/sslcontext-kickstart/issues/130",
+        "createdAt": "2021-11-30T03:42:01Z",
+        "content": "bug_report_all/Hakky54_sslcontext-kickstart-131.json"
+      },
+      "changed_tests": [
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryShould.java",
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/keymanager/CompositeX509ExtendedKeyManagerShould.java",
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/KeyManagerUtilsShould.java"
+      ],
+      "PR_url": "https://github.com/Hakky54/sslcontext-kickstart/pull/131",
+      "merge_commit_url": "https://github.com/Hakky54/sslcontext-kickstart/commit/7e5a0ee3a366426b990f50fdc5558c6ea100b5c2",
+      "buggy_commit": "2d54930d83a37739d3908a7d986a79982e4170a0"
+    },
+    "Hakky54_sslcontext-kickstart-114": {
+      "bug_id": "Hakky54_sslcontext-kickstart-114",
+      "PR_number": 114,
+      "PR_createdAt": "2021-08-29T04:35:36Z",
+      "merge_commit": "f81b3d6b3e34b4b6ffb639dd39ad4ee14bbf1b8a",
+      "buggy_commits": [
+        {
+          "oid": "20839a3cec0fd770e4b10ccaad83cf16722ebe6a",
+          "message": "Added separated hostname verifiers"
+        },
+        {
+          "oid": "7030129e60ce2d3ba6faa5a1e7f37c17a6d8d715",
+          "message": "fixup! ISSUE-113 Misleading NullPointerException when reading an encrypted PEM key and none supplied"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/Hakky54/sslcontext-kickstart/issues/113",
+        "createdAt": "2021-08-28T12:58:24Z",
+        "content": "bug_report_all/Hakky54_sslcontext-kickstart-114.json"
+      },
+      "changed_tests": [
+        "sslcontext-kickstart-for-pem/src/test/java/nl/altindag/ssl/util/PemUtilsShould.java",
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/ValidationUtilsShould.java"
+      ],
+      "PR_url": "https://github.com/Hakky54/sslcontext-kickstart/pull/114",
+      "merge_commit_url": "https://github.com/Hakky54/sslcontext-kickstart/commit/f81b3d6b3e34b4b6ffb639dd39ad4ee14bbf1b8a",
+      "buggy_commit": "20839a3cec0fd770e4b10ccaad83cf16722ebe6a"
+    },
+    "Hakky54_sslcontext-kickstart-167": {
+      "bug_id": "Hakky54_sslcontext-kickstart-167",
+      "PR_number": 167,
+      "PR_createdAt": "2022-04-09T15:12:09Z",
+      "merge_commit": "cf1bb50f8e2e3e9b605b1b61fc7ddd45d83c7f2c",
+      "buggy_commits": [
+        {
+          "oid": "5f31caee58ff401d45a185aed741256b6b6adc17",
+          "message": "Improved extracting server certificates"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/Hakky54/sslcontext-kickstart/issues/166",
+        "createdAt": "2022-04-09T14:35:40Z",
+        "content": "bug_report_all/Hakky54_sslcontext-kickstart-167.json"
+      },
+      "changed_tests": [
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/CertificateUtilsShould.java"
+      ],
+      "PR_url": "https://github.com/Hakky54/sslcontext-kickstart/pull/167",
+      "merge_commit_url": "https://github.com/Hakky54/sslcontext-kickstart/commit/cf1bb50f8e2e3e9b605b1b61fc7ddd45d83c7f2c",
+      "buggy_commit": "5f31caee58ff401d45a185aed741256b6b6adc17"
+    },
+    "Hakky54_sslcontext-kickstart-182": {
+      "bug_id": "Hakky54_sslcontext-kickstart-182",
+      "PR_number": 182,
+      "PR_createdAt": "2022-05-10T22:44:36Z",
+      "merge_commit": "603fa41584c602a29039a3f6021173ccf62dd979",
+      "buggy_commits": [
+        {
+          "oid": "99dbe00fcff5f0fd73458eede9aed1f63ec5622c",
+          "message": "Bump version.netty-handler from 4.1.76.Final to 4.1.77.Final (#180)\n\nBumps `version.netty-handler` from 4.1.76.Final to 4.1.77.Final.\r\n\r\nUpdates `netty-handler` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-resolver-dns` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-transport-native-epoll` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-codec-http2` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-transport-native-unix-common` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-resolver-dns-native-macos` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-buffer` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-codec` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-common` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\nUpdates `netty-transport` from 4.1.76.Final to 4.1.77.Final\r\n- [Release notes](https://github.com/netty/netty/releases)\r\n- [Commits](https://github.com/netty/netty/compare/netty-4.1.76.Final...netty-4.1.77.Final)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: io.netty:netty-handler\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-resolver-dns\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-transport-native-epoll\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-codec-http2\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-transport-native-unix-common\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-resolver-dns-native-macos\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-buffer\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-codec\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-common\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n- dependency-name: io.netty:netty-transport\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/Hakky54/sslcontext-kickstart/issues/181",
+        "createdAt": "2022-05-10T15:15:56Z",
+        "content": "bug_report_all/Hakky54_sslcontext-kickstart-182.json"
+      },
+      "changed_tests": [
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryIT.java",
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/TrustManagerUtilsShould.java"
+      ],
+      "PR_url": "https://github.com/Hakky54/sslcontext-kickstart/pull/182",
+      "merge_commit_url": "https://github.com/Hakky54/sslcontext-kickstart/commit/603fa41584c602a29039a3f6021173ccf62dd979",
+      "buggy_commit": "99dbe00fcff5f0fd73458eede9aed1f63ec5622c"
+    },
+    "Hakky54_sslcontext-kickstart-197": {
+      "bug_id": "Hakky54_sslcontext-kickstart-197",
+      "PR_number": 197,
+      "PR_createdAt": "2022-07-07T05:46:05Z",
+      "merge_commit": "5effabcf4399cb187cfbdc56ec15072b5e345222",
+      "buggy_commits": [
+        {
+          "oid": "4c152e9339eb8c48fd24062e1215a5c22a0949a0",
+          "message": "Bump jetty-reactive-httpclient from 1.1.11 to 1.1.12 (#195)\n\nBumps [jetty-reactive-httpclient](https://github.com/jetty-project/jetty-reactive-httpclient) from 1.1.11 to 1.1.12.\r\n- [Release notes](https://github.com/jetty-project/jetty-reactive-httpclient/releases)\r\n- [Commits](https://github.com/jetty-project/jetty-reactive-httpclient/compare/1.1.11...1.1.12)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.eclipse.jetty:jetty-reactive-httpclient\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/Hakky54/sslcontext-kickstart/issues/196",
+        "createdAt": "2022-07-04T14:51:36Z",
+        "content": "bug_report_all/Hakky54_sslcontext-kickstart-197.json"
+      },
+      "changed_tests": [
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/TrustManagerUtilsShould.java"
+      ],
+      "PR_url": "https://github.com/Hakky54/sslcontext-kickstart/pull/197",
+      "merge_commit_url": "https://github.com/Hakky54/sslcontext-kickstart/commit/5effabcf4399cb187cfbdc56ec15072b5e345222",
+      "buggy_commit": "4c152e9339eb8c48fd24062e1215a5c22a0949a0"
+    },
+    "Hakky54_sslcontext-kickstart-165": {
+      "bug_id": "Hakky54_sslcontext-kickstart-165",
+      "PR_number": 165,
+      "PR_createdAt": "2022-04-06T17:39:19Z",
+      "merge_commit": "3fc5b0c7d7ccd9a5cca6fc0e195e40bb4dee266e",
+      "buggy_commits": [
+        {
+          "oid": "9459c928aa3dde89f3adc2ab5fabed93639b4d55",
+          "message": "Improved test coverage"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/Hakky54/sslcontext-kickstart/issues/161",
+        "createdAt": "2022-04-02T10:45:16Z",
+        "content": "bug_report_all/Hakky54_sslcontext-kickstart-165.json"
+      },
+      "changed_tests": [
+        "sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryShould.java"
+      ],
+      "PR_url": "https://github.com/Hakky54/sslcontext-kickstart/pull/165",
+      "merge_commit_url": "https://github.com/Hakky54/sslcontext-kickstart/commit/3fc5b0c7d7ccd9a5cca6fc0e195e40bb4dee266e",
+      "buggy_commit": "9459c928aa3dde89f3adc2ab5fabed93639b4d55"
+    }
+  },
+  "assertj_assertj-core": {
+    "assertj_assertj-core-2309": {
+      "bug_id": "assertj_assertj-core-2309",
+      "PR_number": 2309,
+      "PR_createdAt": "2021-08-13T10:41:58Z",
+      "merge_commit": "cf63f1d8cf511dc76cd5a80fa06837265b74872e",
+      "buggy_commits": [
+        {
+          "oid": "5fc69d002aac2a97dbfedfdd6085638ff1fca3f5",
+          "message": "Add `isMixedCase` to `CharSequence` assertions (#2246)\n\nCo-authored-by: Stefano Cordio <stefano.cordio@gmail.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2303",
+        "createdAt": "2021-08-05T07:21:43Z",
+        "content": "bug_report_all/assertj_assertj-core-2309.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/charsequence/CharSequenceAssert_containsAnyOf_Test.java",
+        "src/test/java/org/assertj/core/error/ShouldContainAnyOf_create_Test.java",
+        "src/test/java/org/assertj/core/internal/Arrays_containsAnyOf_Test.java",
+        "src/test/java/org/assertj/core/internal/iterables/Iterables_assertContainsAnyOf_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertContainsAnyOf_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertContains_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2309",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/cf63f1d8cf511dc76cd5a80fa06837265b74872e",
+      "buggy_commit": "5fc69d002aac2a97dbfedfdd6085638ff1fca3f5"
+    },
+    "assertj_assertj-core-2324": {
+      "bug_id": "assertj_assertj-core-2324",
+      "PR_number": 2324,
+      "PR_createdAt": "2021-08-23T20:36:25Z",
+      "merge_commit": "391b688863002fe50bdf9f7f70e542096fb0ece1",
+      "buggy_commits": [
+        {
+          "oid": "71b9e77976dd089340fd0d996e99cb12dd55a79e",
+          "message": "Use setup-java cache support"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2319",
+        "createdAt": "2021-08-20T17:29:57Z",
+        "content": "bug_report_all/assertj_assertj-core-2324.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/internal/classes/Classes_assertHasMethods_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2324",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/391b688863002fe50bdf9f7f70e542096fb0ece1",
+      "buggy_commit": "71b9e77976dd089340fd0d996e99cb12dd55a79e"
+    },
+    "assertj_assertj-core-2297": {
+      "bug_id": "assertj_assertj-core-2297",
+      "PR_number": 2297,
+      "PR_createdAt": "2021-07-26T10:30:08Z",
+      "merge_commit": "480a4a43e6b87597aa20f4845b8bedc3729f0b60",
+      "buggy_commits": [
+        {
+          "oid": "fe1c4630da8a38e378a6baa703191d9860e3df2d",
+          "message": "Bump byte-buddy.version from 1.11.8 to 1.11.9 (#2299)\n\nBumps `byte-buddy.version` from 1.11.8 to 1.11.9.\n\nUpdates `byte-buddy` from 1.11.8 to 1.11.9\n- [Release notes](https://github.com/raphw/byte-buddy/releases)\n- [Changelog](https://github.com/raphw/byte-buddy/blob/master/release-notes.md)\n- [Commits](https://github.com/raphw/byte-buddy/compare/byte-buddy-1.11.8...byte-buddy-1.11.9)\n\nUpdates `byte-buddy-agent` from 1.11.8 to 1.11.9\n- [Release notes](https://github.com/raphw/byte-buddy/releases)\n- [Changelog](https://github.com/raphw/byte-buddy/blob/master/release-notes.md)\n- [Commits](https://github.com/raphw/byte-buddy/compare/byte-buddy-1.11.8...byte-buddy-1.11.9)\n\n---\nupdated-dependencies:\n- dependency-name: net.bytebuddy:byte-buddy\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n- dependency-name: net.bytebuddy:byte-buddy-agent\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/731",
+        "createdAt": "2016-08-05T14:37:01Z",
+        "content": "bug_report_all/assertj_assertj-core-2297.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/ThrowingConsumer_accept_Test.java",
+        "src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_Consumer_Test.java",
+        "src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_ThrowingConsumer_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2297",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/480a4a43e6b87597aa20f4845b8bedc3729f0b60",
+      "buggy_commit": "fe1c4630da8a38e378a6baa703191d9860e3df2d"
+    },
+    "assertj_assertj-core-2311": {
+      "bug_id": "assertj_assertj-core-2311",
+      "PR_number": 2311,
+      "PR_createdAt": "2021-08-14T02:11:35Z",
+      "merge_commit": "f88123340fad5acb9a150819c2add5e4157048a3",
+      "buggy_commits": [
+        {
+          "oid": "62539afb2337c696a16e3b47a7748ac25132e44e",
+          "message": "Bump equalsverifier from 3.7 to 3.7.1 (#2310)\n\nBumps [equalsverifier](https://github.com/jqno/equalsverifier) from 3.7 to 3.7.1.\n- [Release notes](https://github.com/jqno/equalsverifier/releases)\n- [Changelog](https://github.com/jqno/equalsverifier/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/jqno/equalsverifier/compare/equalsverifier-3.7...equalsverifier-3.7.1)\n\n---\nupdated-dependencies:\n- dependency-name: nl.jqno.equalsverifier:equalsverifier\n  dependency-type: direct:development\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2242",
+        "createdAt": "2021-06-03T08:18:33Z",
+        "content": "bug_report_all/assertj_assertj-core-2311.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoCause_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasNoSuppressedExceptions_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseExactlyInstanceOf_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseInstanceOf_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCauseMessage_with_String_format_syntax_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasRootCause_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasStackTraceContaining_with_String_format_syntax_Test.java",
+        "src/test/java/org/assertj/core/api/throwable/ThrowableAssert_hasSuppressedException_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2311",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/f88123340fad5acb9a150819c2add5e4157048a3",
+      "buggy_commit": "62539afb2337c696a16e3b47a7748ac25132e44e"
+    },
+    "assertj_assertj-core-2364": {
+      "bug_id": "assertj_assertj-core-2364",
+      "PR_number": 2364,
+      "PR_createdAt": "2021-10-09T21:35:09Z",
+      "merge_commit": "7d78fa8f9f72f4f3b252c21bce9b03d77426a8b6",
+      "buggy_commits": [
+        {
+          "oid": "c91eb66ab36c2d733b1c5ec3bcbb5c8b1410278a",
+          "message": "Bump japicmp-maven-plugin from 0.15.3 to 0.15.4 (#2362)\n\nBumps [japicmp-maven-plugin](https://github.com/siom79/japicmp) from 0.15.3 to 0.15.4.\n- [Release notes](https://github.com/siom79/japicmp/releases)\n- [Changelog](https://github.com/siom79/japicmp/blob/master/release.py)\n- [Commits](https://github.com/siom79/japicmp/compare/japicmp-base-0.15.3...japicmp-base-0.15.4)\n\n---\nupdated-dependencies:\n- dependency-name: com.github.siom79.japicmp:japicmp-maven-plugin\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2363",
+        "createdAt": "2021-10-08T18:18:16Z",
+        "content": "bug_report_all/assertj_assertj-core-2364.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/object/ObjectAssert_extracting_with_String_Test.java",
+        "src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test.java",
+        "src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Optional_input_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2364",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/7d78fa8f9f72f4f3b252c21bce9b03d77426a8b6",
+      "buggy_commit": "c91eb66ab36c2d733b1c5ec3bcbb5c8b1410278a"
+    },
+    "assertj_assertj-core-2410": {
+      "bug_id": "assertj_assertj-core-2410",
+      "PR_number": 2410,
+      "PR_createdAt": "2021-11-14T09:30:05Z",
+      "merge_commit": "6cd581150bcf2a2527378578d6c548f2071489b9",
+      "buggy_commits": [
+        {
+          "oid": "367d1104a80c8b562db90e0105c796dd5e48ac84",
+          "message": "Javadoc typo"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2397",
+        "createdAt": "2021-11-08T16:27:49Z",
+        "content": "bug_report_all/assertj_assertj-core-2410.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/Assertions_catchReflectiveOperationException_Test.java",
+        "src/test/java/org/assertj/core/api/Assertions_catchRuntimeException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchIOException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchIllegalArgumentException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchIllegalStateException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchIndexOutOfBoundsException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchNullPointerException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchReflectiveOperationException_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_catchRuntimeException_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2410",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/6cd581150bcf2a2527378578d6c548f2071489b9",
+      "buggy_commit": "367d1104a80c8b562db90e0105c796dd5e48ac84"
+    },
+    "assertj_assertj-core-2445": {
+      "bug_id": "assertj_assertj-core-2445",
+      "PR_number": 2445,
+      "PR_createdAt": "2021-12-19T11:24:00Z",
+      "merge_commit": "ce1113f1c4f3f2d7698c3db189884ce1f8a6bab4",
+      "buggy_commits": [
+        {
+          "oid": "2839906331e8a81566d977d75ccf9dd3d19ed19e",
+          "message": "Treat class cast exception as comparison failure\nFix #2434"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2444",
+        "createdAt": "2021-12-18T18:46:29Z",
+        "content": "bug_report_all/assertj_assertj-core-2445.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/presentation/StandardRepresentation_toStringOf_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2445",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/ce1113f1c4f3f2d7698c3db189884ce1f8a6bab4",
+      "buggy_commit": "2839906331e8a81566d977d75ccf9dd3d19ed19e"
+    },
+    "assertj_assertj-core-2510": {
+      "bug_id": "assertj_assertj-core-2510",
+      "PR_number": 2510,
+      "PR_createdAt": "2022-03-02T16:44:53Z",
+      "merge_commit": "f115e9d3cb12fcebe8e2b340898252caca9d7eec",
+      "buggy_commits": [
+        {
+          "oid": "519313869f848e6755f4d071c77b6a414d1d25fb",
+          "message": "Increase AbstractIntegerAssert test coverage to 100% (#2515)\n\n* Increase IntegerAssert test coverage to 100%\r\n\r\n* Update documentation and author on IntegerAssert tests"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2081",
+        "createdAt": "2020-12-18T05:06:57Z",
+        "content": "bug_report_all/assertj_assertj-core-2510.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/matcher/MatcherAssert_matches_Test.java",
+        "src/test/java/org/assertj/core/error/MatcherShouldMatch_create_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2510",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/f115e9d3cb12fcebe8e2b340898252caca9d7eec",
+      "buggy_commit": "519313869f848e6755f4d071c77b6a414d1d25fb"
+    },
+    "assertj_assertj-core-2461": {
+      "bug_id": "assertj_assertj-core-2461",
+      "PR_number": 2461,
+      "PR_createdAt": "2022-01-09T13:00:52Z",
+      "merge_commit": "9ba08a2130540af2ab5601e5a83c96373a8fd6c8",
+      "buggy_commits": [
+        {
+          "oid": "f115e9d3cb12fcebe8e2b340898252caca9d7eec",
+          "message": "implement matches() in #2081 (#2510)\n\n* migrate\r\n\r\n* fix\r\n\r\n* license info and other minor fix"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2296",
+        "createdAt": "2021-07-23T09:05:30Z",
+        "content": "bug_report_all/assertj_assertj-core-2461.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/internal/arrays2d/Arrays2D_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/boolean2darrays/Boolean2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/byte2darrays/Byte2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/char2darrays/Char2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/double2darrays/Double2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/float2darrays/Float2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/int2darrays/Int2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/long2darrays/Long2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/object2darrays/Object2DArrays_assertNumberOfRows_Test.java",
+        "src/test/java/org/assertj/core/internal/short2darrays/Short2DArrays_assertNumberOfRows_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2461",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/9ba08a2130540af2ab5601e5a83c96373a8fd6c8",
+      "buggy_commit": "f115e9d3cb12fcebe8e2b340898252caca9d7eec"
+    },
+    "assertj_assertj-core-2532": {
+      "bug_id": "assertj_assertj-core-2532",
+      "PR_number": 2532,
+      "PR_createdAt": "2022-03-20T09:41:09Z",
+      "merge_commit": "705f34b209b37cafdca272d84b40f028dc417c10",
+      "buggy_commits": [
+        {
+          "oid": "dfb3a6165c396780332fb8c13399bbdb9525111f",
+          "message": "Bump jackson-databind from 2.13.2.2 to 2.13.3 (#2614)\n\nBumps [jackson-databind](https://github.com/FasterXML/jackson) from 2.13.2.2 to 2.13.3.\n- [Release notes](https://github.com/FasterXML/jackson/releases)\n- [Commits](https://github.com/FasterXML/jackson/commits)\n\n---\nupdated-dependencies:\n- dependency-name: com.fasterxml.jackson.core:jackson-databind\n  dependency-type: direct:development\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\n\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2557",
+        "createdAt": "2022-04-03T13:24:30Z",
+        "content": "bug_report_all/assertj_assertj-core-2532.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThanOrEqualTo_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThan_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThanOrEqualTo_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThan_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isNotEqualByComparingTo_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isStrictlyBetween_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingComparator_Test.java",
+        "src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingDefaultComparator_Test.java",
+        "src/test/java/org/assertj/core/error/ShouldBeLessOrEqual_create_Test.java",
+        "src/test/java/org/assertj/core/test/Name.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2532",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/705f34b209b37cafdca272d84b40f028dc417c10",
+      "buggy_commit": "dfb3a6165c396780332fb8c13399bbdb9525111f"
+    },
+    "assertj_assertj-core-2549": {
+      "bug_id": "assertj_assertj-core-2549",
+      "PR_number": 2549,
+      "PR_createdAt": "2022-03-30T20:25:27Z",
+      "merge_commit": "aa3fbf8cf56afcb11ebd9e60c4208ec0249bc81e",
+      "buggy_commits": [
+        {
+          "oid": "92548d8916425787c8a60e6dea638b285825ca12",
+          "message": "Bump jackson-databind from 2.13.2.1 to 2.13.2.2 (#2546)\n\nBumps [jackson-databind](https://github.com/FasterXML/jackson) from 2.13.2.1 to 2.13.2.2.\r\n- [Release notes](https://github.com/FasterXML/jackson/releases)\r\n- [Commits](https://github.com/FasterXML/jackson/commits)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: com.fasterxml.jackson.core:jackson-databind\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2547",
+        "createdAt": "2022-03-30T14:05:07Z",
+        "content": "bug_report_all/assertj_assertj-core-2549.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/internal/maps/Maps_assertContainsOnlyKeys_Test.java",
+        "src/test/java/org/assertj/core/internal/maps/Maps_assertContainsOnly_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2549",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/aa3fbf8cf56afcb11ebd9e60c4208ec0249bc81e",
+      "buggy_commit": "92548d8916425787c8a60e6dea638b285825ca12"
+    },
+    "assertj_assertj-core-2611": {
+      "bug_id": "assertj_assertj-core-2611",
+      "PR_number": 2611,
+      "PR_createdAt": "2022-05-12T23:01:55Z",
+      "merge_commit": "4307d3579bd588cd404f0d3d9b212f0b52ba995a",
+      "buggy_commits": [
+        {
+          "oid": "6c60672dc04f1fec00a84f16a254b6efa96727a9",
+          "message": "Bump pitest-maven from 1.9.1 to 1.9.2 (#2703)\n\nBumps [pitest-maven](https://github.com/hcoles/pitest) from 1.9.1 to 1.9.2.\r\n- [Release notes](https://github.com/hcoles/pitest/releases)\r\n- [Commits](https://github.com/hcoles/pitest/compare/1.9.1...1.9.2)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.pitest:pitest-maven\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2570",
+        "createdAt": "2022-04-15T04:34:15Z",
+        "content": "bug_report_all/assertj_assertj-core-2611.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/classes/ClassAssert_isAssignableTo_Test.java",
+        "src/test/java/org/assertj/core/error/ShouldBeAssignableTo_create_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2611",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/4307d3579bd588cd404f0d3d9b212f0b52ba995a",
+      "buggy_commit": "6c60672dc04f1fec00a84f16a254b6efa96727a9"
+    },
+    "assertj_assertj-core-2618": {
+      "bug_id": "assertj_assertj-core-2618",
+      "PR_number": 2618,
+      "PR_createdAt": "2022-05-20T06:24:27Z",
+      "merge_commit": "59e27a0aa603705032c9ef2e764113991a79d10b",
+      "buggy_commits": [
+        {
+          "oid": "24c4fcb4f1d67dd5b51e085951f5702f87e12170",
+          "message": "Add binary compatibility result to job summary"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2617",
+        "createdAt": "2022-05-19T15:56:11Z",
+        "content": "bug_report_all/assertj_assertj-core-2618.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/api/Assertions_linesOf_Test.java",
+        "src/test/java/org/assertj/core/api/EntryPointAssertions_linesOf_Test.java",
+        "src/test/java/org/assertj/core/util/Paths_linesOf_Test.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2618",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/59e27a0aa603705032c9ef2e764113991a79d10b",
+      "buggy_commit": "24c4fcb4f1d67dd5b51e085951f5702f87e12170"
+    },
+    "assertj_assertj-core-2685": {
+      "bug_id": "assertj_assertj-core-2685",
+      "PR_number": 2685,
+      "PR_createdAt": "2022-06-25T14:10:08Z",
+      "merge_commit": "befef07f172031847cbdd7a7e0622d52a64a9033",
+      "buggy_commits": [
+        {
+          "oid": "d5180a6d7c1af6ac7272268ee87dad54ae01ee7c",
+          "message": "Fix incomplete test for given(Duration) in BDDAssumptionsTest (#2686)\n\nFIxed a test that was not asserting anything on the result."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/assertj/assertj/issues/2666",
+        "createdAt": "2022-06-17T21:38:03Z",
+        "content": "bug_report_all/assertj_assertj-core-2685.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertContainsIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotContainIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotEndWithIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotStartWithIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertEndsWithIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertEqualsIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertNotEqualsIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/internal/strings/Strings_assertStartsWithIgnoringCase_Test.java",
+        "src/test/java/org/assertj/core/test/CaseInsensitiveStringComparatorTest.java"
+      ],
+      "PR_url": "https://github.com/assertj/assertj/pull/2685",
+      "merge_commit_url": "https://github.com/assertj/assertj/commit/befef07f172031847cbdd7a7e0622d52a64a9033",
+      "buggy_commit": "d5180a6d7c1af6ac7272268ee87dad54ae01ee7c"
+    }
+  },
+  "FasterXML_jackson-databind": {
+    "FasterXML_jackson-databind-3195": {
+      "bug_id": "FasterXML_jackson-databind-3195",
+      "PR_number": 3195,
+      "PR_createdAt": "2021-07-01T09:57:38Z",
+      "merge_commit": "2b5a31996d9ca2170cbd61b465332863b0f291d7",
+      "buggy_commits": [
+        {
+          "oid": "2c221ad9015cd82fc36b91b55904acb07546408f",
+          "message": "backport FUNDING link"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/FasterXML/jackson-databind/issues/3187",
+        "createdAt": "2021-06-25T12:45:16Z",
+        "content": "bug_report_all/FasterXML_jackson-databind-3195.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/fasterxml/jackson/databind/introspect/AnnotatedMemberEqualityTest.java"
+      ],
+      "PR_url": "https://github.com/FasterXML/jackson-databind/pull/3195",
+      "merge_commit_url": "https://github.com/FasterXML/jackson-databind/commit/2b5a31996d9ca2170cbd61b465332863b0f291d7",
+      "buggy_commit": "2c221ad9015cd82fc36b91b55904acb07546408f"
+    },
+    "FasterXML_jackson-databind-3418": {
+      "bug_id": "FasterXML_jackson-databind-3418",
+      "PR_number": 3418,
+      "PR_createdAt": "2022-03-17T14:28:57Z",
+      "merge_commit": "9f68b5101542c186c61debb7222646c29d6b3c04",
+      "buggy_commits": [
+        {
+          "oid": "851172ceb14a4c3843df0dabde8a404de4e4a67a",
+          "message": "Improve matching of failing tests to be more permissive"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/FasterXML/jackson-dataformat-xml/issues/513",
+        "createdAt": "2022-03-09T10:44:49Z",
+        "content": "bug_report_all/FasterXML_jackson-databind-3418.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/fasterxml/jackson/databind/deser/std/EmptyStringAsSingleValueTest.java"
+      ],
+      "PR_url": "https://github.com/FasterXML/jackson-databind/pull/3418",
+      "merge_commit_url": "https://github.com/FasterXML/jackson-databind/commit/9f68b5101542c186c61debb7222646c29d6b3c04",
+      "buggy_commit": "851172ceb14a4c3843df0dabde8a404de4e4a67a"
+    },
+    "FasterXML_jackson-databind-3490": {
+      "bug_id": "FasterXML_jackson-databind-3490",
+      "PR_number": 3490,
+      "PR_createdAt": "2022-05-18T15:50:09Z",
+      "merge_commit": "d96f44a76372924adb8a8115725abd7e88508e9a",
+      "buggy_commits": [
+        {
+          "oid": "6e6da8603f84c0af090f09d1c54337a78ac4521a",
+          "message": "Remove debug statement from test (accidentally left); add a comment"
+        },
+        {
+          "oid": "d6d421cb36e9130c5fe683b2b4672cd468bb6557",
+          "message": "fix #3489\n\nI've added the empty value to the Object deserializer in maps as `new Object();`."
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/FasterXML/jackson-databind/issues/3489",
+        "createdAt": "2022-05-18T14:28:38Z",
+        "content": "bug_report_all/FasterXML_jackson-databind-3490.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/fasterxml/jackson/databind/deser/filter/NullConversionsForContentTest.java"
+      ],
+      "PR_url": "https://github.com/FasterXML/jackson-databind/pull/3490",
+      "merge_commit_url": "https://github.com/FasterXML/jackson-databind/commit/d96f44a76372924adb8a8115725abd7e88508e9a",
+      "buggy_commit": "6e6da8603f84c0af090f09d1c54337a78ac4521a"
+    }
+  },
+  "checkstyle_checkstyle": {
+    "checkstyle_checkstyle-10762": {
+      "bug_id": "checkstyle_checkstyle-10762",
+      "PR_number": 10762,
+      "PR_createdAt": "2021-08-30T12:59:54Z",
+      "merge_commit": "6c1d316603de5ec66f81f0974ab1731377b02014",
+      "buggy_commits": [
+        {
+          "oid": "c7ab4222990de0f3035fa2eb1954fbddc7e4cbaf",
+          "message": "Issue #10760: add modernizer maven plugin and fix violations"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10760",
+        "createdAt": "2021-08-30T12:14:05Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10762.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTaskTest.java",
+        "src/test/java/com/puppycrawl/tools/checkstyle/internal/XdocsPagesTest.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10762",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/6c1d316603de5ec66f81f0974ab1731377b02014",
+      "buggy_commit": "c7ab4222990de0f3035fa2eb1954fbddc7e4cbaf"
+    },
+    "checkstyle_checkstyle-10839": {
+      "bug_id": "checkstyle_checkstyle-10839",
+      "PR_number": 10839,
+      "PR_createdAt": "2021-10-02T09:26:56Z",
+      "merge_commit": "e2c6e148a92e01b3c6037b33440ee7006f742793",
+      "buggy_commits": [
+        {
+          "oid": "eeee48f2a6d9884304e871e682d24c309e488731",
+          "message": "Issue #10778: activate no-error hibernate"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10144",
+        "createdAt": "2021-06-21T12:23:57Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10839.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheckTest.java",
+        "src/test/java/com/puppycrawl/tools/checkstyle/utils/CheckUtilTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityImplementsAndNestedCount.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityMultiCatchBitwiseOr.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10839",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/e2c6e148a92e01b3c6037b33440ee7006f742793",
+      "buggy_commit": "eeee48f2a6d9884304e871e682d24c309e488731"
+    },
+    "checkstyle_checkstyle-10825": {
+      "bug_id": "checkstyle_checkstyle-10825",
+      "PR_number": 10825,
+      "PR_createdAt": "2021-09-26T07:20:19Z",
+      "merge_commit": "79cea7464f36e004310d58aeb9e2610bd26c8a88",
+      "buggy_commits": [
+        {
+          "oid": "171f5d1ce51dfbae5715319b58fdbb11cf0de3e8",
+          "message": "Issue #9462: updated example of AST for TokenTypes.LITERAL_ASSERT"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10810",
+        "createdAt": "2021-09-21T21:04:56Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10825.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/InputIndentationLineBreakVariableDeclaration.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/InputIndentationLongConcatenatedString.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10825",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/79cea7464f36e004310d58aeb9e2610bd26c8a88",
+      "buggy_commit": "171f5d1ce51dfbae5715319b58fdbb11cf0de3e8"
+    },
+    "checkstyle_checkstyle-10840": {
+      "bug_id": "checkstyle_checkstyle-10840",
+      "PR_number": 10840,
+      "PR_createdAt": "2021-10-02T11:47:14Z",
+      "merge_commit": "d1419f300cdb2e671b894ca16fdba5790a8e2d1e",
+      "buggy_commits": [
+        {
+          "oid": "2a6a18a31978aa468db669b564929efd00c321c4",
+          "message": "dependency: bump pitest-maven from 1.7.2 to 1.7.3\n\nBumps [pitest-maven](https://github.com/hcoles/pitest) from 1.7.2 to 1.7.3.\n- [Release notes](https://github.com/hcoles/pitest/releases)\n- [Commits](https://github.com/hcoles/pitest/compare/1.7.2...1.7.3)\n\n---\nupdated-dependencies:\n- dependency-name: org.pitest:pitest-maven\n  dependency-type: direct:production\n  update-type: version-update:semver-patch\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10835",
+        "createdAt": "2021-09-29T10:37:02Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10840.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodDefaultAccessModifier.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/InputJavadocMethodEnum.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10840",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/d1419f300cdb2e671b894ca16fdba5790a8e2d1e",
+      "buggy_commit": "2a6a18a31978aa468db669b564929efd00c321c4"
+    },
+    "checkstyle_checkstyle-10857": {
+      "bug_id": "checkstyle_checkstyle-10857",
+      "PR_number": 10857,
+      "PR_createdAt": "2021-10-11T18:05:43Z",
+      "merge_commit": "073289a4ad02d468bf814b689e7ec1b04cc669ef",
+      "buggy_commits": [
+        {
+          "oid": "825af33e45611897b464af0718633ab803514514",
+          "message": "Issue #10872: Make violations diff readable"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10855",
+        "createdAt": "2021-10-11T13:20:37Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10857.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/imports/unusedimports/InputUnusedImportsArrayRef.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10857",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/073289a4ad02d468bf814b689e7ec1b04cc669ef",
+      "buggy_commit": "825af33e45611897b464af0718633ab803514514"
+    },
+    "checkstyle_checkstyle-10963": {
+      "bug_id": "checkstyle_checkstyle-10963",
+      "PR_number": 10963,
+      "PR_createdAt": "2021-11-19T15:34:25Z",
+      "merge_commit": "e2e3a1d492db0c1addb4ef4d4724b7c0e2d897df",
+      "buggy_commits": [
+        {
+          "oid": "f37c34ba5bde9e876d89bb15e3bf340c17f73470",
+          "message": "minor: refactor few if statements to simplify them"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10962",
+        "createdAt": "2021-11-19T15:07:04Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10963.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull/InputEqualsAvoidNullSuperClass.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10963",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/e2e3a1d492db0c1addb4ef4d4724b7c0e2d897df",
+      "buggy_commit": "f37c34ba5bde9e876d89bb15e3bf340c17f73470"
+    },
+    "checkstyle_checkstyle-10967": {
+      "bug_id": "checkstyle_checkstyle-10967",
+      "PR_number": 10967,
+      "PR_createdAt": "2021-11-20T14:36:47Z",
+      "merge_commit": "c323c17910cd43a1c6309c90b4269738da10247b",
+      "buggy_commits": [
+        {
+          "oid": "988cbe38621df6cf079c975fc9ca87b45a3c4af9",
+          "message": "Issue #9372: Added example of AST for TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10945",
+        "createdAt": "2021-11-13T17:34:25Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10967.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap/InputOperatorWrapArrayAssign.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10967",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/c323c17910cd43a1c6309c90b4269738da10247b",
+      "buggy_commit": "988cbe38621df6cf079c975fc9ca87b45a3c4af9"
+    },
+    "checkstyle_checkstyle-10958": {
+      "bug_id": "checkstyle_checkstyle-10958",
+      "PR_number": 10958,
+      "PR_createdAt": "2021-11-17T16:25:27Z",
+      "merge_commit": "e4297c298f4fd7c8cac43009f17127763aa375c8",
+      "buggy_commits": [
+        {
+          "oid": "7a9913aa64f911e41eae958b757e73a5d2f93205",
+          "message": "Issue #11001: False positive for Whitespace Before Paren After String with Emojis"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/10817",
+        "createdAt": "2021-09-23T13:24:52Z",
+        "content": "bug_report_all/checkstyle_checkstyle-10958.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheckTest.java",
+        "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersDefault.java",
+        "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersFinal.java",
+        "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java",
+        "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/10958",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/e4297c298f4fd7c8cac43009f17127763aa375c8",
+      "buggy_commit": "7a9913aa64f911e41eae958b757e73a5d2f93205"
+    },
+    "checkstyle_checkstyle-11020": {
+      "bug_id": "checkstyle_checkstyle-11020",
+      "PR_number": 11020,
+      "PR_createdAt": "2021-12-10T06:29:12Z",
+      "merge_commit": "c1b172b417210a94b4b767f7f5aef1cff5f009a9",
+      "buggy_commits": [
+        {
+          "oid": "216d45526c00eaa478b415d59064894a1e1efdae",
+          "message": "minor: Vertically alligned comments for ease of reading"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/11015",
+        "createdAt": "2021-12-08T07:36:01Z",
+        "content": "bug_report_all/checkstyle_checkstyle-11020.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/coding/SimplifyBooleanExpressionCheckTest.java",
+        "src/test/java/com/puppycrawl/tools/checkstyle/utils/TokenUtilTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/simplifybooleanexpression/InputSimplifyBooleanExpression.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/11020",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/c1b172b417210a94b4b767f7f5aef1cff5f009a9",
+      "buggy_commit": "216d45526c00eaa478b415d59064894a1e1efdae"
+    },
+    "checkstyle_checkstyle-11085": {
+      "bug_id": "checkstyle_checkstyle-11085",
+      "PR_number": 11085,
+      "PR_createdAt": "2021-12-21T17:06:30Z",
+      "merge_commit": "9bddea673ca6d082b8f91d47d94e7528bceba205",
+      "buggy_commits": [
+        {
+          "oid": "34cd8fa5972319051cab258e7eb9055cb5c3377e",
+          "message": "infra: extend wercker no response timeout"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/11031",
+        "createdAt": "2021-12-12T06:56:42Z",
+        "content": "bug_report_all/checkstyle_checkstyle-11085.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/coding/StringLiteralEqualityCheckTest.java",
+        "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/stringliteralequality/InputStringLiteralEqualityConcatenatedTextBlocks.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/stringliteralequality/InputStringLiteralEqualityConcatenatedString.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/11085",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/9bddea673ca6d082b8f91d47d94e7528bceba205",
+      "buggy_commit": "34cd8fa5972319051cab258e7eb9055cb5c3377e"
+    },
+    "checkstyle_checkstyle-11270": {
+      "bug_id": "checkstyle_checkstyle-11270",
+      "PR_number": 11270,
+      "PR_createdAt": "2022-02-01T19:33:46Z",
+      "merge_commit": "466a1668f4b132a2f9029b1a035c6de304779e6b",
+      "buggy_commits": [
+        {
+          "oid": "f2381d045c5f4ff4b8ef1ec3bba8ada6332dfb30",
+          "message": "Issue #6207: Add Xpath Regression Test for RedundantImport"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/11268",
+        "createdAt": "2022-02-01T17:09:33Z",
+        "content": "bug_report_all/checkstyle_checkstyle-11270.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/InputRedundantModifierNestedDef.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/11270",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/466a1668f4b132a2f9029b1a035c6de304779e6b",
+      "buggy_commit": "f2381d045c5f4ff4b8ef1ec3bba8ada6332dfb30"
+    },
+    "checkstyle_checkstyle-11383": {
+      "bug_id": "checkstyle_checkstyle-11383",
+      "PR_number": 11383,
+      "PR_createdAt": "2022-03-09T18:42:49Z",
+      "merge_commit": "0f3620329667200f70bf7d38de2523802eada195",
+      "buggy_commits": [
+        {
+          "oid": "9c6881011d156f5bf03b15561243656095acee82",
+          "message": "minor: Renamed field PERIOD to prevent any misunderstanding/clash with the field period"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/11213",
+        "createdAt": "2022-01-17T16:18:29Z",
+        "content": "bug_report_all/checkstyle_checkstyle-11383.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheckTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/InputSummaryJavadocIncorrect.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/InputSummaryJavadocIncorrect3.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/InputSummaryJavadocInlineCorrect.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/InputSummaryJavadocInlineForbidden.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/11383",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/0f3620329667200f70bf7d38de2523802eada195",
+      "buggy_commit": "9c6881011d156f5bf03b15561243656095acee82"
+    },
+    "checkstyle_checkstyle-11468": {
+      "bug_id": "checkstyle_checkstyle-11468",
+      "PR_number": 11468,
+      "PR_createdAt": "2022-03-26T08:08:48Z",
+      "merge_commit": "cd28d8c7ebbe51464d96c05db33e7a1f1b3ad86a",
+      "buggy_commits": [
+        {
+          "oid": "cffefba904f8d47f7bf9a9d9b053f5d33ea2afff",
+          "message": "minor: add comment with explanation of manual setting of JAVA_HOME in travis"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/11365",
+        "createdAt": "2022-03-06T09:58:23Z",
+        "content": "bug_report_all/checkstyle_checkstyle-11468.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheckTest.java",
+        "src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/design/finalclass/InputFinalClassNestedInRecord.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/InputFinalClassAnonymousInnerClass.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/InputFinalClassInnerAndNestedClass.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/InputFinalClassNestedInEnumWithAnonInnerClass.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/design/finalclass/InputFinalClassNestedInInterfaceWithAnonInnerClass.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/11468",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/cd28d8c7ebbe51464d96c05db33e7a1f1b3ad86a",
+      "buggy_commit": "cffefba904f8d47f7bf9a9d9b053f5d33ea2afff"
+    },
+    "checkstyle_checkstyle-11926": {
+      "bug_id": "checkstyle_checkstyle-11926",
+      "PR_number": 11926,
+      "PR_createdAt": "2022-07-20T07:50:19Z",
+      "merge_commit": "2937a249221d873a8250bad2f4a597db1540b1ee",
+      "buggy_commits": [
+        {
+          "oid": "39686271628948d1cc0f7c894af1766e05b66a4a",
+          "message": "Issue #11758: Adding CheckForVariable function to util.sh"
+        },
+        {
+          "oid": "098417fa9f9587e48ec5ebc35dfb13de4f1e0eaa",
+          "message": "Issue #11605: Fix false positive for generic constructor without access modifier in InvalidJavadocPosition"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/checkstyle/checkstyle/issues/11605",
+        "createdAt": "2022-05-04T14:39:46Z",
+        "content": "bug_report_all/checkstyle_checkstyle-11926.json"
+      },
+      "changed_tests": [
+        "src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheckTest.java",
+        "src/test/java/com/puppycrawl/tools/checkstyle/utils/BlockCommentPositionTest.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/invalidjavadocposition/InputInvalidJavadocPosition.java",
+        "src/test/resources/com/puppycrawl/tools/checkstyle/utils/blockcommentposition/InputBlockCommentPositionOnConstructor.java"
+      ],
+      "PR_url": "https://github.com/checkstyle/checkstyle/pull/11926",
+      "merge_commit_url": "https://github.com/checkstyle/checkstyle/commit/2937a249221d873a8250bad2f4a597db1540b1ee",
+      "buggy_commit": "39686271628948d1cc0f7c894af1766e05b66a4a"
+    }
+  },
+  "jhy_jsoup": {
+    "jhy_jsoup-1629": {
+      "bug_id": "jhy_jsoup-1629",
+      "PR_number": 1629,
+      "PR_createdAt": "2021-09-08T12:30:09Z",
+      "merge_commit": "c283a8dd0c5f0f5e726fccaef329ee217e98b1b2",
+      "buggy_commits": [
+        {
+          "oid": "f7ef7c3dc986e420891b5d0d58feba27019c5974",
+          "message": "Added Nullable annotations for equals()\n\nFixed #1628"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/653",
+        "createdAt": "2015-11-10T17:29:47Z",
+        "content": "bug_report_all/jhy_jsoup-1629.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/TextUtil.java",
+        "src/test/java/org/jsoup/helper/W3CDomTest.java",
+        "src/test/java/org/jsoup/select/XpathTest.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1629",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/c283a8dd0c5f0f5e726fccaef329ee217e98b1b2",
+      "buggy_commit": "f7ef7c3dc986e420891b5d0d58feba27019c5974"
+    },
+    "jhy_jsoup-1648": {
+      "bug_id": "jhy_jsoup-1648",
+      "PR_number": 1648,
+      "PR_createdAt": "2021-09-29T12:27:14Z",
+      "merge_commit": "6b1fbb51b501de87049b250fecc9a5076a186f6d",
+      "buggy_commits": [
+        {
+          "oid": "9ce6ae1ae21fb49afcc0700084fc4366490bc421",
+          "message": "Bump jetty-server from 9.4.43.v20210629 to 9.4.44.v20210927 (#1649)\n\nBumps [jetty-server](https://github.com/eclipse/jetty.project) from 9.4.43.v20210629 to 9.4.44.v20210927.\r\n- [Release notes](https://github.com/eclipse/jetty.project/releases)\r\n- [Commits](https://github.com/eclipse/jetty.project/compare/jetty-9.4.43.v20210629...jetty-9.4.44.v20210927)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.eclipse.jetty:jetty-server\r\n  dependency-type: direct:development\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/1647",
+        "createdAt": "2021-09-29T11:29:14Z",
+        "content": "bug_report_all/jhy_jsoup-1648.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/helper/W3CDomTest.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1648",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/6b1fbb51b501de87049b250fecc9a5076a186f6d",
+      "buggy_commit": "9ce6ae1ae21fb49afcc0700084fc4366490bc421"
+    },
+    "jhy_jsoup-1655": {
+      "bug_id": "jhy_jsoup-1655",
+      "PR_number": 1655,
+      "PR_createdAt": "2021-10-17T01:27:56Z",
+      "merge_commit": "3bd4d793ad7af94b3596fdf35be86758ff94696b",
+      "buggy_commits": [
+        {
+          "oid": "7eb5a745bd44b26777d99e429bd5036597aa6273",
+          "message": "Normalize attribute names when testing if a boolean attribute\n\nFixes #1656"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/1653",
+        "createdAt": "2021-10-15T05:02:18Z",
+        "content": "bug_report_all/jhy_jsoup-1655.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/internal/StringUtilTest.java",
+        "src/test/java/org/jsoup/nodes/ElementTest.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1655",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/3bd4d793ad7af94b3596fdf35be86758ff94696b",
+      "buggy_commit": "7eb5a745bd44b26777d99e429bd5036597aa6273"
+    },
+    "jhy_jsoup-1682": {
+      "bug_id": "jhy_jsoup-1682",
+      "PR_number": 1682,
+      "PR_createdAt": "2021-12-07T12:17:31Z",
+      "merge_commit": "7e37712cadb9fbe7b68ffbbcf9eed1f2b0c6f20d",
+      "buggy_commits": [
+        {
+          "oid": "12175ab43e639289c387d4af4a3741a477416f45",
+          "message": "Track source position from original to cleaned elements."
+        },
+        {
+          "oid": "239897f29724860f714f84d9888dfcb355eda311",
+          "message": "Update Tag.java"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/1341",
+        "createdAt": "2020-03-17T11:58:23Z",
+        "content": "bug_report_all/jhy_jsoup-1682.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/parser/AttributeParseTest.java",
+        "src/test/java/org/jsoup/parser/TagTest.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1682",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/7e37712cadb9fbe7b68ffbbcf9eed1f2b0c6f20d",
+      "buggy_commit": "12175ab43e639289c387d4af4a3741a477416f45"
+    },
+    "jhy_jsoup-1698": {
+      "bug_id": "jhy_jsoup-1698",
+      "PR_number": 1698,
+      "PR_createdAt": "2021-12-23T12:05:40Z",
+      "merge_commit": "a768ed5934bf62ef40a867b47b1effd37a62759b",
+      "buggy_commits": [
+        {
+          "oid": "12175ab43e639289c387d4af4a3741a477416f45",
+          "message": "Track source position from original to cleaned elements."
+        },
+        {
+          "oid": "c4e0ec87c9055f2fe21eac37ded69d1fee63e946",
+          "message": "Add url fragment field to `Document` class\n\nFixes #1686"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/1686",
+        "createdAt": "2021-12-19T19:19:39Z",
+        "content": "bug_report_all/jhy_jsoup-1698.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/helper/DataUtilTest.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1698",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/a768ed5934bf62ef40a867b47b1effd37a62759b",
+      "buggy_commit": "12175ab43e639289c387d4af4a3741a477416f45"
+    },
+    "jhy_jsoup-1763": {
+      "bug_id": "jhy_jsoup-1763",
+      "PR_number": 1763,
+      "PR_createdAt": "2022-05-05T16:44:56Z",
+      "merge_commit": "eaf5028718840d71c9a7f94f538b65b135012702",
+      "buggy_commits": [
+        {
+          "oid": "72612480cfc5a8b3c6ca31097cfd908121a638da",
+          "message": "Bump maven-bundle-plugin from 5.1.5 to 5.1.6 (#1768)\n\nBumps maven-bundle-plugin from 5.1.5 to 5.1.6.\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: org.apache.felix:maven-bundle-plugin\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/1764",
+        "createdAt": "2022-05-05T16:55:56Z",
+        "content": "bug_report_all/jhy_jsoup-1763.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/safety/SafelistTest.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1763",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/eaf5028718840d71c9a7f94f538b65b135012702",
+      "buggy_commit": "72612480cfc5a8b3c6ca31097cfd908121a638da"
+    },
+    "jhy_jsoup-1800": {
+      "bug_id": "jhy_jsoup-1800",
+      "PR_number": 1800,
+      "PR_createdAt": "2022-07-01T02:28:47Z",
+      "merge_commit": "d1e6f392f943d2e42644c1760b49ff505b28a90d",
+      "buggy_commits": [
+        {
+          "oid": "12175ab43e639289c387d4af4a3741a477416f45",
+          "message": "Track source position from original to cleaned elements."
+        },
+        {
+          "oid": "d09a1069790832e53171bb7d1c8a18f8ddcbfeab",
+          "message": "ISSUE-1773 Tokeniser: recycle string builders too"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/jhy/jsoup/issues/1773",
+        "createdAt": "2022-05-16T08:39:55Z",
+        "content": "bug_report_all/jhy_jsoup-1800.json"
+      },
+      "changed_tests": [
+        "src/test/java/org/jsoup/benchmarks/JMHBenchmark.java"
+      ],
+      "PR_url": "https://github.com/jhy/jsoup/pull/1800",
+      "merge_commit_url": "https://github.com/jhy/jsoup/commit/d1e6f392f943d2e42644c1760b49ff505b28a90d",
+      "buggy_commit": "12175ab43e639289c387d4af4a3741a477416f45"
+    }
+  }
+}

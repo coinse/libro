@@ -1,0 +1,26 @@
+java.lang.IllegalStateException: Unable to access 'path.scripts' (/etc/elasticsearch/scripts)
+        at org.elasticsearch.bootstrap.Security.addPath(Security.java:450) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Security.addFilePermissions(Security.java:282) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Security.createPermissions(Security.java:246) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Security.configure(Security.java:119) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:228) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:342) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:132) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:123) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:70) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:134) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.cli.Command.main(Command.java:90) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:91) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:84) [elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+Caused by: java.nio.file.AccessDeniedException: /etc/elasticsearch/scripts
+        at sun.nio.fs.UnixException.translateToIOException(UnixException.java:84) ~[?:1.8.0_151]
+        at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102) ~[?:1.8.0_151]
+        at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107) ~[?:1.8.0_151]
+        at sun.nio.fs.UnixFileSystemProvider.createDirectory(UnixFileSystemProvider.java:384) ~[?:1.8.0_151]
+        at java.nio.file.Files.createDirectory(Files.java:674) ~[?:1.8.0_151]
+        at java.nio.file.Files.createAndCheckIsDirectory(Files.java:781) ~[?:1.8.0_151]
+        at java.nio.file.Files.createDirectories(Files.java:767) ~[?:1.8.0_151]
+        at org.elasticsearch.bootstrap.Security.ensureDirectoryExists(Security.java:492) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Security.addPath(Security.java:448) ~[elasticsearch-5.6.6-SNAPSHOT.jar:5.6.6-SNAPSHOT]
+        ... 12 more
+        

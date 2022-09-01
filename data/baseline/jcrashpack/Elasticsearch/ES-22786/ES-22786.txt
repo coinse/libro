@@ -1,0 +1,33 @@
+[2017-01-25 14:45:39,923][DEBUG][action.index             ] [Squirrel Girl] failed to execute [index {[wofs_big][wof][baras], source[{"wof_placetype": "locality", "wof_parent_id": 85688411, "wof_hierarchy": [], "wof_name": "Borås", "wof_belongsto": [102191581, 85633789, 85688411], "iso_country": "SE", "shape": {"type": "Polygon", "coordinates": [[[12.963473575017, 57.7585129628043], [13.031739, 57.742897], [12.9871550000001, 57.7005880000002], [12.9028672807968, 57.7139576091713], [12.8090686339677, 57.6934760408931], [12.963473575017, 57.7585129628043]], [[12.964461350251, 57.7290883376522], [12.966587, 57.7275275000002], [12.9690665000001, 57.7280350000001], [12.9689436965079, 57.7295970703855], [12.964461350251, 57.7290883376522]], [[12.8774193910486, 57.711810646514], [12.8775431599072, 57.7118079756228], [12.8775484087353, 57.7118751937708], [12.8774193910486, 57.711810646514]], [[12.9235696760266, 57.7000907618065], [12.925358, 57.696953], [12.9384103968474, 57.69698174145], [12.933235, 57.7034185000003], [12.9235696760266, 57.7000907618065]], [[12.9201909999998, 57.6986315], [12.9201067946445, 57.6987030511618], [12.9200025559888, 57.6973868455737], [12.9202904162546, 57.6973805287324], [12.9201909999998, 57.6986315]]]}}]}] on [[wofs_big][3]]
+MapperParsingException[failed to parse [shape]]; nested: ArrayIndexOutOfBoundsException[-1];
+	at org.elasticsearch.index.mapper.geo.GeoShapeFieldMapper.parse(GeoShapeFieldMapper.java:463)
+	at org.elasticsearch.index.mapper.DocumentParser.parseObjectOrField(DocumentParser.java:311)
+	at org.elasticsearch.index.mapper.DocumentParser.parseObject(DocumentParser.java:328)
+	at org.elasticsearch.index.mapper.DocumentParser.parseObject(DocumentParser.java:254)
+	at org.elasticsearch.index.mapper.DocumentParser.parseDocument(DocumentParser.java:124)
+	at org.elasticsearch.index.mapper.DocumentMapper.parse(DocumentMapper.java:309)
+	at org.elasticsearch.index.shard.IndexShard.prepareIndex(IndexShard.java:584)
+	at org.elasticsearch.index.shard.IndexShard.prepareIndexOnPrimary(IndexShard.java:563)
+	at org.elasticsearch.action.index.TransportIndexAction.prepareIndexOperationOnPrimary(TransportIndexAction.java:211)
+	at org.elasticsearch.action.index.TransportIndexAction.executeIndexRequestOnPrimary(TransportIndexAction.java:223)
+	at org.elasticsearch.action.index.TransportIndexAction.shardOperationOnPrimary(TransportIndexAction.java:157)
+	at org.elasticsearch.action.index.TransportIndexAction.shardOperationOnPrimary(TransportIndexAction.java:66)
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryPhase.doRun(TransportReplicationAction.java:657)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryOperationTransportHandler.messageReceived(TransportReplicationAction.java:287)
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryOperationTransportHandler.messageReceived(TransportReplicationAction.java:279)
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:77)
+	at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:378)
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: -1
+	at org.elasticsearch.common.geo.builders.BasePolygonBuilder.assign(BasePolygonBuilder.java:423)
+	at org.elasticsearch.common.geo.builders.BasePolygonBuilder.compose(BasePolygonBuilder.java:395)
+	at org.elasticsearch.common.geo.builders.BasePolygonBuilder.coordinates(BasePolygonBuilder.java:160)
+	at org.elasticsearch.common.geo.builders.BasePolygonBuilder.buildGeometry(BasePolygonBuilder.java:189)
+	at org.elasticsearch.common.geo.builders.BasePolygonBuilder.build(BasePolygonBuilder.java:165)
+	at org.elasticsearch.index.mapper.geo.GeoShapeFieldMapper.parse(GeoShapeFieldMapper.java:446)
+	... 21 more
+

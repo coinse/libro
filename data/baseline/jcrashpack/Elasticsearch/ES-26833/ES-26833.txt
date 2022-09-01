@@ -1,0 +1,12 @@
+Caused by: java.lang.IndexOutOfBoundsException: readerIndex(45) + length(1) exceeds writerIndex(45): UnpooledDuplicatedByteBuf(ridx: 45, widx: 45, cap: 65536, unwrapped: PooledHeapByteBuf(ridx: 6, widx: 45, cap: 65536))
+	at io.netty.buffer.AbstractByteBuf.checkReadableBytes0(AbstractByteBuf.java:1396) ~[?:?]
+	at io.netty.buffer.AbstractByteBuf.readByte(AbstractByteBuf.java:687) ~[?:?]
+	at org.elasticsearch.transport.netty4.ByteBufStreamInput.readByte(ByteBufStreamInput.java:135) ~[?:?]
+	at org.elasticsearch.common.io.stream.FilterStreamInput.readByte(FilterStreamInput.java:40) ~[elasticsearch-5.6.2.jar:5.6.2]
+	at org.elasticsearch.common.io.stream.StreamInput.readInt(StreamInput.java:173) ~[elasticsearch-5.6.2.jar:5.6.2]
+	at org.elasticsearch.common.io.stream.StreamInput.readLong(StreamInput.java:215) ~[elasticsearch-5.6.2.jar:5.6.2]
+	at org.elasticsearch.search.fetch.FetchSearchResult.readFrom(FetchSearchResult.java:90) ~[elasticsearch-5.6.2.jar:5.6.2]
+	at org.elasticsearch.search.fetch.FetchSearchResult.readFetchSearchResult(FetchSearchResult.java:83) ~[elasticsearch-5.6.2.jar:5.6.2]
+	at org.elasticsearch.search.fetch.QueryFetchSearchResult.readFrom(QueryFetchSearchResult.java:90) ~[elasticsearch-5.6.2.jar:5.6.2]
+	at org.elasticsearch.transport.TcpTransport.handleResponse(TcpTransport.java:1417) ~[elasticsearch-5.6.2.jar:5.6.2]
+

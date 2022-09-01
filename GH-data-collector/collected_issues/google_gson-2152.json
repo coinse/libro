@@ -1,0 +1,7 @@
+{
+  "issue_id": 1247,
+  "issue_url": "https://github.com/google/gson/issues/1247",
+  "title": "Confusing Exceptions",
+  "description": "<p dir=\"auto\">When trying to deserialize the values <code class=\"notranslate\">[[{},null],false,false]</code> and <code class=\"notranslate\">[[null,false],null,true]</code> with the code <code class=\"notranslate\">(new Gson()).fromJson(x, Map.class);</code> two confusing exceptions are thrown:<br>\n<code class=\"notranslate\">java.lang.ClassCastException: com.google.gson.internal.LinkedTreeMap is not Comparable</code> and<br>\n<code class=\"notranslate\">java.lang.NullPointerException: key == null</code>, respectively.</p>\n<p dir=\"auto\">Such exceptions should not be thrown to the user. Instead, one would expect these cases to be reported with an <code class=\"notranslate\">IllegalArgumentException</code>.</p>",
+  "description_text": "When trying to deserialize the values [[{},null],false,false] and [[null,false],null,true] with the code (new Gson()).fromJson(x, Map.class); two confusing exceptions are thrown:\njava.lang.ClassCastException: com.google.gson.internal.LinkedTreeMap is not Comparable and\njava.lang.NullPointerException: key == null, respectively.\nSuch exceptions should not be thrown to the user. Instead, one would expect these cases to be reported with an IllegalArgumentException."
+}

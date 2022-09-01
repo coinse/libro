@@ -1,0 +1,7 @@
+{
+  "issue_id": 2626,
+  "issue_url": "https://github.com/mockito/mockito/issues/2626",
+  "title": "Introduce option to disable inline-mock-maker for a specific instance",
+  "description": "<p dir=\"auto\">In order to ease the migration to the inline mock maker in big projects, it would nice if the mock make can be changed for individual mocks. This would allow projects to change the default mock maker to <code class=\"notranslate\">inline-mock-maker</code> without immediately fixing all edge cases where the new mock maker doesn't work.</p>\n<p dir=\"auto\">Such option could be provided over a new method on the <code class=\"notranslate\">MockSettings</code> class.</p>",
+  "description_text": "In order to ease the migration to the inline mock maker in big projects, it would nice if the mock make can be changed for individual mocks. This would allow projects to change the default mock maker to inline-mock-maker without immediately fixing all edge cases where the new mock maker doesn't work.\nSuch option could be provided over a new method on the MockSettings class."
+}

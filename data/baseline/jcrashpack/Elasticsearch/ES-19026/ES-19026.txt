@@ -1,0 +1,29 @@
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: [2016-06-22 12:49:01,953][INFO ][node                     ] [Hank McCoy] version[5.0.0-alpha4], pid[31996], build[b0da471/2016-06-22T12:33:48.164Z], OS[Linux/3.10.0-327.18.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_91/25.91-b14]
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: [2016-06-22 12:49:01,954][INFO ][node                     ] [Hank McCoy] initializing ...
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: Exception in thread "main" java.lang.IllegalStateException: Unable to initialize modules
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: Likely root cause: java.nio.file.NoSuchFileException: /usr/share/elasticsearch/modules/ingest-grok/plugin-descriptor.properties
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:214)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at java.nio.file.Files.newByteChannel(Files.java:361)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at java.nio.file.Files.newByteChannel(Files.java:407)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:384)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at java.nio.file.Files.newInputStream(Files.java:152)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.plugins.PluginInfo.readFromProperties(PluginInfo.java:74)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.plugins.PluginsService.getModuleBundles(PluginsService.java:327)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.plugins.PluginsService.<init>(PluginsService.java:131)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.node.Node.<init>(Node.java:211)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.node.Node.<init>(Node.java:172)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Bootstrap$5.<init>(Bootstrap.java:175)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:175)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:250)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:96)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:91)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:91)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.cli.Command.main(Command.java:53)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:70)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:63)
+Jun 22 12:49:01 localhost.localdomain elasticsearch[31996]: Refer to the log for complete error details.
+

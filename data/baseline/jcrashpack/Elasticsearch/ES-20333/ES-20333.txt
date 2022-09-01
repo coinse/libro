@@ -1,0 +1,32 @@
+RemoteTransportException[[Erik Killmonger][127.0.0.1:9300][indices:data/read/search[phase/query]]]; nested: QueryPhaseExecutionException[Query Failed [Failed to execute main query]]; nested: IllegalArgumentException[Illegal shift value, must be 32..63; got shift=0];
+Caused by: QueryPhaseExecutionException[Query Failed [Failed to execute main query]]; nested: IllegalArgumentException[Illegal shift value, must be 32..63; got shift=0];
+at org.elasticsearch.search.query.QueryPhase.execute(QueryPhase.java:409)
+at org.elasticsearch.search.query.QueryPhase.execute(QueryPhase.java:113)
+at org.elasticsearch.search.SearchService.loadOrExecuteQueryPhase(SearchService.java:366)
+at org.elasticsearch.search.SearchService.executeQueryPhase(SearchService.java:378)
+at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:368)
+at org.elasticsearch.search.action.SearchServiceTransportAction$SearchQueryTransportHandler.messageReceived(SearchServiceTransportAction.java:365)
+at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33)
+at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:75)
+at org.elasticsearch.transport.TransportService$4.doRun(TransportService.java:376)
+at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: Illegal shift value, must be 32..63; got shift=0
+at org.apache.lucene.spatial.util.GeoEncodingUtils.geoCodedToPrefixCodedBytes(GeoEncodingUtils.java:114)
+at org.apache.lucene.spatial.util.GeoEncodingUtils.geoCodedToPrefixCoded(GeoEncodingUtils.java:92)
+at org.apache.lucene.spatial.geopoint.search.GeoPointPrefixTermsEnum$Range.fillBytesRef(GeoPointPrefixTermsEnum.java:234)
+at org.apache.lucene.spatial.geopoint.search.GeoPointTermsEnum.nextRange(GeoPointTermsEnum.java:71)
+at org.apache.lucene.spatial.geopoint.search.GeoPointPrefixTermsEnum.nextRange(GeoPointPrefixTermsEnum.java:169)
+at org.apache.lucene.spatial.geopoint.search.GeoPointPrefixTermsEnum.nextSeekTerm(GeoPointPrefixTermsEnum.java:188)
+at org.apache.lucene.index.FilteredTermsEnum.next(FilteredTermsEnum.java:212)
+at org.apache.lucene.spatial.geopoint.search.GeoPointTermQueryConstantScoreWrapper$1.scorer(GeoPointTermQueryConstantScoreWrapper.java:103)
+at org.apache.lucene.search.BooleanWeight.scorer(BooleanWeight.java:389)
+at org.apache.lucene.search.Weight.bulkScorer(Weight.java:135)
+at org.apache.lucene.search.BooleanWeight.bulkScorer(BooleanWeight.java:370)
+at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:818)
+at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:535)
+at org.elasticsearch.search.query.QueryPhase.execute(QueryPhase.java:384)
+... 12 more
+

@@ -1,0 +1,973 @@
+diff --git a/src/test/java/org/assertj/core/api/AbstractUniversalComparableAssertBaseTest.java b/src/test/java/org/assertj/core/api/AbstractUniversalComparableAssertBaseTest.java
+new file mode 100644
+index 000000000..7c0095705
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/AbstractUniversalComparableAssertBaseTest.java
+@@ -0,0 +1,109 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api;
++
++import static org.assertj.core.api.Assertions.assertThat;
++import static org.assertj.core.api.Assertions.setRemoveAssertJRelatedElementsFromStackTrace;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.spy;
++
++import org.assertj.core.api.abstract_.AbstractAssert_isNull_Test;
++import org.assertj.core.error.AssertionErrorCreator;
++import org.assertj.core.internal.Comparables;
++import org.assertj.core.internal.Conditions;
++import org.assertj.core.internal.Objects;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++
++public abstract class AbstractUniversalComparableAssertBaseTest {
++
++  protected UniversalComparableAssert<String> assertions;
++  protected Objects objects;
++  protected Conditions conditions;
++  protected AssertionErrorCreator assertionErrorCreator;
++
++  @BeforeEach
++  public final void setUp() {
++    assertions = create_assertions();
++    inject_internal_objects();
++    setRemoveAssertJRelatedElementsFromStackTrace(false);
++  }
++
++  protected Comparables comparables;
++
++  protected void inject_internal_objects() {
++    objects = mock(Objects.class);
++    assertions.objects = objects;
++    conditions = mock(Conditions.class);
++    assertions.conditions = conditions;
++    assertionErrorCreator = spy(assertions.assertionErrorCreator);
++    assertions.assertionErrorCreator = assertionErrorCreator;
++    comparables = mock(Comparables.class);
++    assertions.comparables = comparables;
++  }
++
++  protected UniversalComparableAssert<String> create_assertions() {
++    return new UniversalComparableAssert<>("abc");
++  }
++
++  protected Comparables getComparables(UniversalComparableAssert<String> someAssertions) {
++    return someAssertions.comparables;
++  }
++
++  @Test
++  public void should_have_internal_effects() {
++    invoke_api_method();
++    verify_internal_effects();
++  }
++
++  /**
++   * For the few API methods that don't return {@code this}, override this method to do nothing (see
++   * {@link AbstractAssert_isNull_Test#should_return_this()} for an example).
++   */
++  @Test
++  public void should_return_this() {
++    UniversalComparableAssert<String> returned = invoke_api_method();
++    assertThat(returned).isSameAs(assertions);
++  }
++
++  protected AssertionInfo getInfo(UniversalComparableAssert<String> someAssertions) {
++    return someAssertions.info;
++  }
++
++  protected AssertionInfo info() {
++    return getInfo(assertions);
++  }
++
++  protected Comparable<String> getActual(UniversalComparableAssert<String> someAssertions) {
++    return someAssertions.actual;
++  }
++
++  protected Objects getObjects(UniversalComparableAssert<String> someAssertions) {
++    return someAssertions.objects;
++  }
++
++  /**
++   * Invokes the API method under test.
++   *
++   * @return the assertion object that is returned by the method. If the method is {@code void}, return {@code null} and override
++   *         {@link #should_return_this()}.
++   */
++  protected abstract UniversalComparableAssert<String> invoke_api_method();
++
++  /**
++   * Verifies that invoking the API method had the expected effects (usually, setting some internal state or invoking an internal
++   * object).
++   */
++  protected abstract void verify_internal_effects();
++
++}
+diff --git a/src/test/java/org/assertj/core/api/Assertions_assertThatComparable_Test.java b/src/test/java/org/assertj/core/api/Assertions_assertThatComparable_Test.java
+index 5a2581a7b..13971144b 100644
+--- a/src/test/java/org/assertj/core/api/Assertions_assertThatComparable_Test.java
++++ b/src/test/java/org/assertj/core/api/Assertions_assertThatComparable_Test.java
+@@ -15,6 +15,7 @@ package org.assertj.core.api;
+ import static org.assertj.core.api.Assertions.assertThatComparable;
+ import static org.assertj.core.api.BDDAssertions.then;
+ 
++import org.assertj.core.test.Name;
+ import org.junit.jupiter.api.Test;
+ 
+ class Assertions_assertThatComparable_Test {
+@@ -22,9 +23,9 @@ class Assertions_assertThatComparable_Test {
+   @Test
+   void should_create_Assert() {
+     // GIVEN
+-    SomeComparable comparable = new SomeComparable();
++    Name comparable = new Name("abc");
+     // WHEN
+-    AbstractComparableAssert<?, SomeComparable> assertions = assertThatComparable(comparable);
++    AbstractUniversalComparableAssert<?, Name> assertions = assertThatComparable(comparable);
+     // THEN
+     then(assertions).isNotNull();
+   }
+@@ -32,17 +33,119 @@ class Assertions_assertThatComparable_Test {
+   @Test
+   void should_pass_actual() {
+     // GIVEN
+-    SomeComparable comparable = new SomeComparable();
++    Name comparable = new Name("abc");
+     // WHEN
+-    AbstractComparableAssert<?, SomeComparable> assertions = assertThatComparable(comparable);
++    AbstractUniversalComparableAssert<?, Name> assertions = assertThatComparable(comparable);
+     // THEN
+     then(assertions.actual).isSameAs(comparable);
+   }
+ 
+-  private static class SomeComparable implements Comparable<SomeComparable> {
++  @Test
++  void all_comparable_assertions_should_work_with_strongly_typed_comparable() {
++    // GIVEN
++    Name name1 = new Name("abc");
++    Name name2 = new Name("abc");
++    Name name3 = new Name("bcd");
++    Name name4 = new Name("cde");
++    // WHEN/THEN
++    assertThatComparable(name1).isEqualByComparingTo(name2);
++    assertThatComparable(name1).isNotEqualByComparingTo(name3);
++    assertThatComparable(name1).isLessThan(name3);
++    assertThatComparable(name1).isLessThanOrEqualTo(name3);
++    assertThatComparable(name3).isGreaterThan(name1);
++    assertThatComparable(name3).isGreaterThanOrEqualTo(name1);
++    assertThatComparable(name3).isBetween(name1, name4);
++    assertThatComparable(name3).isStrictlyBetween(name1, name4);
++  }
++
++  @Test
++  void all_comparable_assertions_should_work_with_generic_comparable() {
++    // GIVEN
++    Comparable<Name> name1 = new Name("abc");
++    Comparable<Name> name2 = new Name("abc");
++    Comparable<Name> name3 = new Name("bcd");
++    Comparable<Name> name4 = new Name("cde");
++    // WHEN/THEN
++    assertThatComparable(name1).isEqualByComparingTo(new Name("abc"));
++    assertThatComparable(name1).isNotEqualByComparingTo(new Name("bcd"));
++    assertThatComparable(name1).isLessThan(new Name("bcd"));
++    assertThatComparable(name1).isLessThanOrEqualTo(new Name("bcd"));
++    assertThatComparable(name3).isGreaterThan(new Name("abc"));
++    assertThatComparable(name3).isGreaterThanOrEqualTo(new Name("abc"));
++    assertThatComparable(name3).isBetween(new Name("abc"), new Name("cde"));
++    assertThatComparable(name3).isStrictlyBetween(new Name("abc"), new Name("cde"));
++  }
++
++  @Test
++  void all_comparable_assertions_should_work_with_generic_jdk_comparable() {
++    // GIVEN
++    Comparable<String> name1 = "abc";
++    Comparable<String> name2 = "abc";
++    Comparable<String> name3 = "bcd";
++    Comparable<String> name4 = "cde";
++    // WHEN/THEN
++    assertThatComparable(name1).isEqualByComparingTo("abc");
++    assertThatComparable(name1).isNotEqualByComparingTo("bcd");
++    assertThatComparable(name1).isLessThan("bcd");
++    assertThatComparable(name1).isLessThanOrEqualTo("bcd");
++    assertThatComparable(name3).isGreaterThan("abc");
++    assertThatComparable(name3).isGreaterThanOrEqualTo("abc");
++    assertThatComparable(name3).isBetween("abc", "cde");
++    assertThatComparable(name3).isStrictlyBetween("abc", "cde");
++  }
++
++  @Test
++  void all_comparable_assertions_should_work_with_non_generic_comparable_subclass() {
++    // GIVEN
++    CoolName name1 = new CoolName("abc");
++    CoolName name2 = new CoolName("abc");
++    CoolName name3 = new CoolName("bcd");
++    CoolName name4 = new CoolName("cde");
++    // WHEN/THEN
++    assertThatComparable(name1).isEqualByComparingTo(name2);
++    assertThatComparable(name1).isNotEqualByComparingTo(name3);
++    assertThatComparable(name1).isLessThan(name3);
++    assertThatComparable(name1).isLessThanOrEqualTo(name3);
++    assertThatComparable(name3).isGreaterThan(name1);
++    assertThatComparable(name3).isGreaterThanOrEqualTo(name1);
++    assertThatComparable(name3).isBetween(name1, name4);
++    assertThatComparable(name3).isStrictlyBetween(name1, name4);
++  }
++
++  static class CoolName extends Name {
++    String nickName;
++
++    public CoolName(String first) {
++      super(first);
++    }
++
++  }
++
++  @Test
++  void comparable_assertions_should_work_with_object_comparable() {
++    // GIVEN
++    Comparable<Object> name1 = new ComparingWithObject();
++    Comparable<Object> name3 = new ComparingWithObject();
++    Comparable<Object> name4 = new ComparingWithObject();
++    // WHEN/THEN
++    assertThatComparable(name3).isBetween(name1, name4);
++  }
++
++  @Test
++  void comparable_assertions_should_work_with_object_comparable_subclass() {
++    // GIVEN
++    ComparingWithObject o1 = new ComparingWithObject();
++    ComparingWithObject o2 = new ComparingWithObject();
++    ComparingWithObject o3 = new ComparingWithObject();
++    // WHEN/THEN
++    assertThatComparable(o1).isBetween(o2, o3);
++  }
++
++  static class ComparingWithObject implements Comparable<Object> {
+     @Override
+-    public int compareTo(SomeComparable o) {
++    public int compareTo(Object other) {
+       return 0;
+     }
+   }
++
+ }
+diff --git a/src/test/java/org/assertj/core/api/Assertions_assertThat_with_Comparable_Test.java b/src/test/java/org/assertj/core/api/Assertions_assertThat_with_Comparable_Test.java
+index 2f2ff7fa9..c3bb1d5f6 100644
+--- a/src/test/java/org/assertj/core/api/Assertions_assertThat_with_Comparable_Test.java
++++ b/src/test/java/org/assertj/core/api/Assertions_assertThat_with_Comparable_Test.java
+@@ -13,32 +13,98 @@
+ package org.assertj.core.api;
+ 
+ import static org.assertj.core.api.Assertions.assertThat;
++import static org.assertj.core.api.BDDAssertions.then;
+ 
++import org.assertj.core.test.Name;
+ import org.junit.jupiter.api.Test;
+ 
+-/**
+- * Tests for <code>{@link Assertions#assertThat(Comparable)}</code>.
+- */
+ class Assertions_assertThat_with_Comparable_Test {
+ 
+   @Test
+   void should_create_Assert() {
+-    SomeComparable comparable = new SomeComparable();
+-    AbstractComparableAssert<?, SomeComparable> assertions = Assertions.assertThat(comparable);
+-    assertThat(assertions).isNotNull();
++    // GIVEN
++    Name comparable = new Name();
++    // WHEN
++    AbstractComparableAssert<?, Name> assertions = Assertions.assertThat(comparable);
++    // THEN
++    then(assertions).isNotNull();
+   }
+ 
+   @Test
+   void should_pass_actual() {
+-    SomeComparable comparable = new SomeComparable();
+-    AbstractComparableAssert<?, SomeComparable> assertions = Assertions.assertThat(comparable);
+-    assertThat(assertions.actual).isSameAs(comparable);
++    // GIVEN
++    Name comparable = new Name();
++    // WHEN
++    AbstractComparableAssert<?, Name> assertions = Assertions.assertThat(comparable);
++    // THEN
++    then(assertions.actual).isSameAs(comparable);
++  }
++
++  @Test
++  void all_comparable_assertions_should_work_with_non_generic_comparable() {
++    // GIVEN
++    Name name1 = new Name("abc");
++    Name name2 = new Name("abc");
++    Name name3 = new Name("bcd");
++    Name name4 = new Name("cde");
++    // WHEN/THEN
++    assertThat(name3).isBetween(name1, name4);
++    assertThat(name3).isStrictlyBetween(name1, name4);
++    assertThat(name1).isEqualByComparingTo(name2);
++    assertThat(name1).isNotEqualByComparingTo(name3);
++    assertThat(name1).isEqualByComparingTo(name2);
++    assertThat(name1).isLessThan(name3);
++    assertThat(name1).isLessThanOrEqualTo(name3);
++    assertThat(name3).isGreaterThan(name1);
++    assertThat(name3).isGreaterThanOrEqualTo(name1);
++    // does not compile but assertThat(name).isGreaterThanOrEqualTo(name); does
++    // Comparable<Name> name = new Name("abc");
++    // assertThat(name).isGreaterThanOrEqualTo(name);
++  }
++
++
++  @Test
++  void all_comparable_assertions_should_work_with_object_comparable() {
++    // GIVEN
++    Comparable<Object> name1 = new ComparingWithObject();
++    Comparable<Object> name2 = new ComparingWithObject();
++    Comparable<Object> name3 = new ComparingWithObject();
++    Comparable<Object> name4 = new ComparingWithObject();
++    // WHEN/THEN
++    assertThat(name3).isBetween(name1, name4);
++    // assertThat(name3).isStrictlyBetween(name1, name4);
++    assertThat(name1).isEqualByComparingTo(name2);
++    // assertThat(name1).isNotEqualByComparingTo(name3);
++    assertThat(name1).isEqualByComparingTo(name2);
++    // assertThat(name1).isLessThan(name3);
++    assertThat(name1).isLessThanOrEqualTo(name3);
++    // assertThat(name3).isGreaterThan(name1);
++    assertThat(name3).isGreaterThanOrEqualTo(name1);
++  }
++
++  @Test
++  void all_comparable_assertions_should_work_with_object_comparable_subclass() {
++    // GIVEN
++    ComparingWithObject name1 = new ComparingWithObject();
++    ComparingWithObject name2 = new ComparingWithObject();
++    ComparingWithObject name3 = new ComparingWithObject();
++    ComparingWithObject name4 = new ComparingWithObject();
++    // WHEN/THEN
++    assertThat(name3).isBetween(name1, name4);
++    // assertThat(name3).isStrictlyBetween(name1, name4);
++    assertThat(name1).isEqualByComparingTo(name2);
++    // assertThat(name1).isNotEqualByComparingTo(name3);
++    assertThat(name1).isEqualByComparingTo(name2);
++    // assertThat(name1).isLessThan(name3);
++    assertThat(name1).isLessThanOrEqualTo(name3);
++    // assertThat(name3).isGreaterThan(name1);
++    assertThat(name3).isGreaterThanOrEqualTo(name1);
+   }
+ 
+-  private static class SomeComparable implements Comparable<SomeComparable> {
+-      @Override
+-      public int compareTo(SomeComparable o) {
+-          return 0;
+-      }
++  class ComparingWithObject implements Comparable<Object> {
++    @Override
++    public int compareTo(Object other) {
++      return 0;
++    }
+   }
+ }
+diff --git a/src/test/java/org/assertj/core/api/BDDSoftAssertionsTest.java b/src/test/java/org/assertj/core/api/BDDSoftAssertionsTest.java
+index 3a1a15567..5e8d1b227 100644
+--- a/src/test/java/org/assertj/core/api/BDDSoftAssertionsTest.java
++++ b/src/test/java/org/assertj/core/api/BDDSoftAssertionsTest.java
+@@ -1965,4 +1965,22 @@ class BDDSoftAssertionsTest extends BaseAssertionsTest {
+                                         .containsExactly("isGreaterThan", "isLessThan");
+   }
+ 
++  @Test
++  void soft_assertions_should_work_with_comparable() {
++    // GIVEN
++    Comparable<Name> name1 = new Name("abc");
++    Comparable<Name> name2 = new Name("abc");
++    Name name3 = new Name("bcd");
++    Name name4 = new Name("cde");
++    // WHEN/THEN
++    softly.thenComparable(name1).isEqualByComparingTo(new Name("abc"));
++    softly.thenComparable(name1).isNotEqualByComparingTo(name3);
++    softly.thenComparable(name1).isLessThan(name3);
++    softly.thenComparable(name1).isLessThanOrEqualTo(name3);
++    softly.thenComparable(name3).isBetween(new Name("abc"), name4);
++    softly.thenComparable(name3).isGreaterThan(new Name("abc"));
++    softly.thenComparable(name3).isGreaterThanOrEqualTo(new Name("abc"));
++    softly.thenComparable(name3).isStrictlyBetween(new Name("abc"), name4);
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/api/SoftAssertionsTest.java b/src/test/java/org/assertj/core/api/SoftAssertionsTest.java
+index d383739db..cc985c56f 100644
+--- a/src/test/java/org/assertj/core/api/SoftAssertionsTest.java
++++ b/src/test/java/org/assertj/core/api/SoftAssertionsTest.java
+@@ -2669,4 +2669,22 @@ class SoftAssertionsTest extends BaseAssertionsTest {
+                                         .containsExactly("isGreaterThan", "isLessThan");
+   }
+ 
++  @Test
++  void soft_assertions_should_work_with_comparable() {
++    // GIVEN
++    Comparable<Name> name1 = new Name("abc");
++    Comparable<Name> name2 = new Name("abc");
++    Name name3 = new Name("bcd");
++    Name name4 = new Name("cde");
++    // WHEN/THEN
++    softly.assertThatComparable(name1).isEqualByComparingTo(new Name("abc"));
++    softly.assertThatComparable(name1).isNotEqualByComparingTo(name3);
++    softly.assertThatComparable(name1).isLessThan(name3);
++    softly.assertThatComparable(name1).isLessThanOrEqualTo(name3);
++    softly.assertThatComparable(name3).isGreaterThan(new Name("abc"));
++    softly.assertThatComparable(name3).isGreaterThanOrEqualTo(new Name("abc"));
++    softly.assertThatComparable(name3).isBetween(new Name("abc"), name4);
++    softly.assertThatComparable(name3).isStrictlyBetween(new Name("abc"), name4);
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/api/assumptions/Assumptions_assumeThat_with_various_types_Test.java b/src/test/java/org/assertj/core/api/assumptions/Assumptions_assumeThat_with_various_types_Test.java
+index 695775dc3..adcf5c520 100644
+--- a/src/test/java/org/assertj/core/api/assumptions/Assumptions_assumeThat_with_various_types_Test.java
++++ b/src/test/java/org/assertj/core/api/assumptions/Assumptions_assumeThat_with_various_types_Test.java
+@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
+ import static org.assertj.core.api.Assertions.assertThatCode;
+ import static org.assertj.core.api.Assertions.assertThatObject;
+ import static org.assertj.core.api.Assumptions.assumeThat;
++import static org.assertj.core.api.Assumptions.assumeThatComparable;
+ import static org.assertj.core.api.Assumptions.assumeThatObject;
+ import static org.assertj.core.api.Assumptions.assumeThatThrownBy;
+ import static org.assertj.core.util.Arrays.array;
+@@ -333,6 +334,28 @@ class Assumptions_assumeThat_with_various_types_Test {
+             assumeThat(actual).isGreaterThan(new ComparableExample(2));
+           }
+         },
++        new AssumptionRunner<Comparable<ComparableExample>>(new ComparableExample(4)) {
++          @Override
++          public void runFailingAssumption() {
++            assumeThatComparable(actual).isLessThan(new ComparableExample(2));
++          }
++          
++          @Override
++          public void runPassingAssumption() {
++            assumeThatComparable(actual).isGreaterThan(new ComparableExample(2));
++          }
++        },
++        new AssumptionRunner<ComparableExample>(new ComparableExample(4)) {
++          @Override
++          public void runFailingAssumption() {
++            assumeThatComparable(actual).isLessThan(new ComparableExample(2));
++          }
++          
++          @Override
++          public void runPassingAssumption() {
++            assumeThatComparable(actual).isGreaterThan(new ComparableExample(2));
++          }
++        },
+         new AssumptionRunner<List<String>>(asList("a", "b", "c")) {
+           @Override
+           public void runFailingAssumption() {
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractGenericComparableAssert_isBetween_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractGenericComparableAssert_isBetween_Test.java
+new file mode 100644
+index 000000000..3cadfaf0e
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractGenericComparableAssert_isBetween_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractComparableAssertBaseTest;
++import org.assertj.core.api.ConcreteComparableAssert;
++
++class AbstractGenericComparableAssert_isBetween_Test extends AbstractComparableAssertBaseTest {
++
++  @Override
++  protected ConcreteComparableAssert invoke_api_method() {
++    return assertions.isBetween(6, 9);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertIsBetween(getInfo(assertions), getActual(assertions), 6, 9, true, true);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractGenericComparableAssert_isEqualByComparingTo_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractGenericComparableAssert_isEqualByComparingTo_Test.java
+new file mode 100644
+index 000000000..bfccede88
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractGenericComparableAssert_isEqualByComparingTo_Test.java
+@@ -0,0 +1,35 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractComparableAssert;
++import org.assertj.core.api.AbstractComparableAssertBaseTest;
++import org.assertj.core.api.ConcreteComparableAssert;
++
++/**
++ * Tests for <code>{@link AbstractComparableAssert#isEqualByComparingTo(Comparable)}</code>.
++ */
++class AbstractGenericComparableAssert_isEqualByComparingTo_Test extends AbstractComparableAssertBaseTest {
++
++  @Override
++  protected ConcreteComparableAssert invoke_api_method() {
++    return assertions.isEqualByComparingTo(0);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertEqualByComparison(getInfo(assertions), getActual(assertions), 0);
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_canCallObjectAssertMethod_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_canCallObjectAssertMethod_Test.java
+new file mode 100644
+index 000000000..144367174
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_canCallObjectAssertMethod_Test.java
+@@ -0,0 +1,35 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractComparableAssert;
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.ObjectAssert;
++import org.assertj.core.api.UniversalComparableAssert;
++
++/**
++ * Test that {@link ObjectAssert} methods are available from {@link AbstractComparableAssert}
++ */
++class AbstractUniversalComparableAssert_canCallObjectAssertMethod_Test extends AbstractUniversalComparableAssertBaseTest {
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.hasNoNullFieldsOrProperties();
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(objects).assertHasNoNullFieldsOrPropertiesExcept(getInfo(assertions), getActual(assertions));
++  }
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThanOrEqualTo_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThanOrEqualTo_Test.java
+new file mode 100644
+index 000000000..e1098935a
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThanOrEqualTo_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_isGreaterThanOrEqualTo_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.isGreaterThanOrEqualTo("foo");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertGreaterThanOrEqualTo(getInfo(assertions), getActual(assertions), "foo");
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThan_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThan_Test.java
+new file mode 100644
+index 000000000..60e727f37
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isGreaterThan_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_isGreaterThan_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.isGreaterThan("bcd");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertGreaterThan(getInfo(assertions), getActual(assertions), "bcd");
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThanOrEqualTo_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThanOrEqualTo_Test.java
+new file mode 100644
+index 000000000..55e143e4d
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThanOrEqualTo_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_isLessThanOrEqualTo_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.isLessThanOrEqualTo("foo");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertLessThanOrEqualTo(getInfo(assertions), getActual(assertions), "foo");
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThan_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThan_Test.java
+new file mode 100644
+index 000000000..f1f432dcb
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isLessThan_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_isLessThan_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.isLessThan("foo");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertLessThan(getInfo(assertions), getActual(assertions), "foo");
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isNotEqualByComparingTo_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isNotEqualByComparingTo_Test.java
+new file mode 100644
+index 000000000..a6550da58
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isNotEqualByComparingTo_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_isNotEqualByComparingTo_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.isNotEqualByComparingTo("foo");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertNotEqualByComparison(getInfo(assertions), getActual(assertions), "foo");
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isStrictlyBetween_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isStrictlyBetween_Test.java
+new file mode 100644
+index 000000000..93175fd96
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_isStrictlyBetween_Test.java
+@@ -0,0 +1,32 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.mockito.Mockito.verify;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_isStrictlyBetween_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.isStrictlyBetween("foo", "bar");
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    verify(comparables).assertIsBetween(getInfo(assertions), getActual(assertions), "foo", "bar", false, false);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingComparator_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingComparator_Test.java
+new file mode 100644
+index 000000000..80cefa2a8
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingComparator_Test.java
+@@ -0,0 +1,39 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.assertj.core.api.BDDAssertions.then;
++import static org.assertj.core.test.AlwaysEqualComparator.alwaysEqual;
++
++import java.util.Comparator;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++
++class AbstractUniversalComparableAssert_usingComparator_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  private final Comparator<Comparable<String>> comparator = alwaysEqual();
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    // in that, we don't care of the comparator, the point to check is that we switch correctly of comparator
++    return assertions.usingComparator(comparator);
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    then(getObjects(assertions).getComparator()).isSameAs(comparator);
++    then(getComparables(assertions).getComparator()).isSameAs(comparator);
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingDefaultComparator_Test.java b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingDefaultComparator_Test.java
+new file mode 100644
+index 000000000..edf4b1ad1
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/comparable/AbstractUniversalComparableAssert_usingDefaultComparator_Test.java
+@@ -0,0 +1,38 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2022 the original author or authors.
++ */
++package org.assertj.core.api.comparable;
++
++import static org.assertj.core.api.BDDAssertions.then;
++import static org.assertj.core.test.AlwaysEqualComparator.alwaysEqual;
++
++import org.assertj.core.api.AbstractUniversalComparableAssertBaseTest;
++import org.assertj.core.api.UniversalComparableAssert;
++import org.assertj.core.internal.Comparables;
++import org.assertj.core.internal.Objects;
++
++class AbstractUniversalComparableAssert_usingDefaultComparator_Test extends AbstractUniversalComparableAssertBaseTest {
++
++  @Override
++  protected UniversalComparableAssert<String> invoke_api_method() {
++    return assertions.usingComparator(alwaysEqual())
++                     .usingDefaultComparator();
++  }
++
++  @Override
++  protected void verify_internal_effects() {
++    then(getComparables(assertions)).isEqualTo(new Comparables());
++    then(getComparables(assertions).getComparator()).isNull();
++    then(getObjects(assertions)).isSameAs(Objects.instance());
++  }
++
++}
+diff --git a/src/test/java/org/assertj/core/error/ShouldBeLessOrEqual_create_Test.java b/src/test/java/org/assertj/core/error/ShouldBeLessOrEqual_create_Test.java
+index dcc7c85ad..0ca51884d 100644
+--- a/src/test/java/org/assertj/core/error/ShouldBeLessOrEqual_create_Test.java
++++ b/src/test/java/org/assertj/core/error/ShouldBeLessOrEqual_create_Test.java
+@@ -32,23 +32,24 @@ class ShouldBeLessOrEqual_create_Test {
+     String message = factory.create(new TextDescription("Test"), new StandardRepresentation());
+     // THEN
+     then(message).isEqualTo(format("[Test] %n" +
+-      "Expecting actual:%n" +
+-      "  8%n" +
+-      "to be less than or equal to:%n" +
+-      "  6 "));
++                                   "Expecting actual:%n" +
++                                   "  8%n" +
++                                   "to be less than or equal to:%n" +
++                                   "  6 "));
+   }
+ 
+   @Test
+   void should_create_error_message_with_custom_comparison_strategy() {
+     // GIVEN
+-    ErrorMessageFactory factory = shouldBeLessOrEqual(8, 6, new ComparatorBasedComparisonStrategy(new AbsValueComparator<Integer>()));
++    ErrorMessageFactory factory = shouldBeLessOrEqual(8, 6,
++                                                      new ComparatorBasedComparisonStrategy(new AbsValueComparator<Integer>()));
+     // WHEN
+     String message = factory.create(new TextDescription("Test"), new StandardRepresentation());
+     // THEN
+     then(message).isEqualTo(format("[Test] %n" +
+-      "Expecting actual:%n" +
+-      "  8%n" +
+-      "to be less than or equal to:%n" +
+-      "  6 when comparing values using AbsValueComparator"));
++                                   "Expecting actual:%n" +
++                                   "  8%n" +
++                                   "to be less than or equal to:%n" +
++                                   "  6 when comparing values using AbsValueComparator"));
+   }
+ }
+diff --git a/src/test/java/org/assertj/core/test/Name.java b/src/test/java/org/assertj/core/test/Name.java
+index e2fd6bd3c..86103a72a 100644
+--- a/src/test/java/org/assertj/core/test/Name.java
++++ b/src/test/java/org/assertj/core/test/Name.java
+@@ -21,7 +21,7 @@ import java.util.Objects;
+  * @author Yvonne Wang
+  * @author Joel Costigliola
+  */
+-public class Name {
++public class Name implements Comparable<Name> {
+ 
+   public static final Comparator<Name> lastNameComparator = comparing(Name::getLast);
+ 
+@@ -86,4 +86,9 @@ public class Name {
+     return Objects.equals(first, other.first) && Objects.equals(last, other.last);
+   }
+ 
++  @Override
++  public int compareTo(Name other) {
++    return this.getName().compareToIgnoreCase(other.getName());
++  }
++
+ }

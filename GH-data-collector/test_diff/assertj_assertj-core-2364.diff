@@ -1,0 +1,182 @@
+diff --git a/src/test/java/org/assertj/core/api/object/ObjectAssert_extracting_with_String_Test.java b/src/test/java/org/assertj/core/api/object/ObjectAssert_extracting_with_String_Test.java
+index 71cab1a60..73eb9a5fb 100644
+--- a/src/test/java/org/assertj/core/api/object/ObjectAssert_extracting_with_String_Test.java
++++ b/src/test/java/org/assertj/core/api/object/ObjectAssert_extracting_with_String_Test.java
+@@ -20,19 +20,14 @@ import static org.assertj.core.util.BigDecimalComparator.BIG_DECIMAL_COMPARATOR;
+ 
+ import java.math.BigDecimal;
+ import java.util.Comparator;
++import java.util.Optional;
+ 
+-import org.assertj.core.api.ObjectAssert;
+ import org.assertj.core.test.Employee;
+ import org.assertj.core.test.Name;
+ import org.assertj.core.util.introspection.IntrospectionError;
+ import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.api.Test;
+ 
+-/**
+- * Tests for <code>{@link ObjectAssert#extracting(String)}</code>.
+- */
+-@DisplayName("ObjectAssert extracting(String)")
+ class ObjectAssert_extracting_with_String_Test {
+ 
+   private Employee luke;
+@@ -62,6 +57,16 @@ class ObjectAssert_extracting_with_String_Test {
+                     .isEqualTo("Luke");
+   }
+ 
++  @Test
++  void should_allow_assertions_on_nested_optional_value() {
++    // GIVEN
++    Person chewbacca = new Person("Chewbacca");
++    chewbacca.setNickname(Optional.of("Chewie"));
++    // WHEN/THEN
++    assertThat(chewbacca).extracting("nickname.value")
++                         .isEqualTo("Chewie");
++  }
++
+   @Test
+   void should_use_property_field_name_as_description_when_extracting_single_property() {
+     // WHEN
+@@ -108,12 +113,17 @@ class ObjectAssert_extracting_with_String_Test {
+   private static class Person {
+ 
+     private final String name;
++    private Optional<String> nickname = Optional.empty();
+     private BigDecimal height;
+ 
+     public Person(String name) {
+       this.name = name;
+     }
+ 
++    public void setNickname(Optional<String> nickname) {
++      this.nickname = nickname;
++    }
++
+     public void setHeight(BigDecimal height) {
+       this.height = height;
+     }
+diff --git a/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test.java b/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test.java
+index 69f6987c1..06fa5230a 100644
+--- a/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test.java
++++ b/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test.java
+@@ -19,28 +19,21 @@ import java.util.AbstractMap;
+ import java.util.Collection;
+ import java.util.HashMap;
+ 
+-import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.params.ParameterizedTest;
+ import org.junit.jupiter.params.provider.CsvSource;
+ 
+-/**
+- * Tests for <code>{@link PropertyOrFieldSupport#getSimpleValue(String, Object)}</code> with {@code Map} input.
+- *
+- * @author Stefano Cordio
+- */
+-@DisplayName("PropertyOrFieldSupport getSimpleValue(String, Map)")
+ class PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test {
+ 
+   private final PropertyOrFieldSupport underTest = PropertyOrFieldSupport.EXTRACTION;
+-  private final AbstractMap<String, String> map = new HashMap<>();
++  private final AbstractMap<String, String> input = new HashMap<>();
+ 
+   @Test
+   void should_extract_property_value_even_if_map_key_matches_given_name() {
+     // GIVEN
+-    map.put("empty", "value"); // key clashes with AbstractMap#isEmpty()
++    input.put("empty", "value"); // key clashes with AbstractMap#isEmpty()
+     // WHEN
+-    Object value = underTest.getSimpleValue("empty", map);
++    Object value = underTest.getSimpleValue("empty", input);
+     // THEN
+     then(value).isInstanceOf(Boolean.class);
+   }
+@@ -48,9 +41,9 @@ class PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test {
+   @Test
+   void should_extract_field_value_even_if_map_key_matches_given_name() {
+     // GIVEN
+-    map.put("keySet", "value"); // key clashes with AbstractMap#keySet
++    input.put("keySet", "value"); // key clashes with AbstractMap#keySet
+     // WHEN
+-    Object value = underTest.getSimpleValue("keySet", map);
++    Object value = underTest.getSimpleValue("keySet", input);
+     // THEN
+     then(value).isInstanceOf(Collection.class);
+   }
+@@ -62,9 +55,9 @@ class PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test {
+   })
+   void should_extract_map_value_when_no_property_or_field_matches_given_name(String key, String expected) {
+     // GIVEN
+-    map.put(key, expected);
++    input.put(key, expected);
+     // WHEN
+-    Object value = underTest.getSimpleValue(key, map);
++    Object value = underTest.getSimpleValue(key, input);
+     // THEN
+     then(value).isEqualTo(expected);
+   }
+@@ -72,7 +65,7 @@ class PropertyOrFieldSupport_getSimpleValue_with_Map_input_Test {
+   @Test
+   void should_fail_when_given_name_is_not_found() {
+     // WHEN
+-    Throwable thrown = catchThrowable(() -> underTest.getSimpleValue("unknown", map));
++    Throwable thrown = catchThrowable(() -> underTest.getSimpleValue("unknown", input));
+     // THEN
+     then(thrown).isInstanceOf(IntrospectionError.class);
+   }
+diff --git a/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Optional_input_Test.java b/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Optional_input_Test.java
+new file mode 100644
+index 000000000..f717449e8
+--- /dev/null
++++ b/src/test/java/org/assertj/core/util/introspection/PropertyOrFieldSupport_getSimpleValue_with_Optional_input_Test.java
+@@ -0,0 +1,47 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2021 the original author or authors.
++ */
++package org.assertj.core.util.introspection;
++
++import static org.assertj.core.api.Assertions.catchThrowable;
++import static org.assertj.core.api.BDDAssertions.then;
++
++import java.util.NoSuchElementException;
++import java.util.Optional;
++
++import org.junit.jupiter.api.Test;
++
++class PropertyOrFieldSupport_getSimpleValue_with_Optional_input_Test {
++
++  private final PropertyOrFieldSupport underTest = PropertyOrFieldSupport.EXTRACTION;
++
++  @Test
++  void should_return_optional_value_if_optional_is_not_empty() {
++    // GIVEN
++    Optional<?> input = Optional.of("string");
++    // WHEN
++    Object value = underTest.getSimpleValue("value", input);
++    // THEN
++    then(value).isEqualTo("string");
++  }
++
++  @Test
++  void should_fail_if_optional_is_empty() {
++    // GIVEN
++    Optional<?> input = Optional.empty();
++    // WHEN
++    Throwable thrown = catchThrowable(() -> underTest.getSimpleValue("value", input));
++    // THEN
++    then(thrown).isInstanceOf(NoSuchElementException.class);
++  }
++
++}

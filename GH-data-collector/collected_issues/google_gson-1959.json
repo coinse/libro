@@ -1,0 +1,7 @@
+{
+  "issue_id": 1931,
+  "issue_url": "https://github.com/google/gson/issues/1931",
+  "title": "RuntimeTypeAdapterFactory depends on internal API (JPMS, Java 9+)",
+  "description": "<p dir=\"auto\">The RuntimeTypeAdapterFactory code example (<a href=\"https://github.com/google/gson/blob/master/extras/src/main/java/com/google/gson/typeadapters/RuntimeTypeAdapterFactory.java\">https://github.com/google/gson/blob/master/extras/src/main/java/com/google/gson/typeadapters/RuntimeTypeAdapterFactory.java</a>) depends on the internal API class <code class=\"notranslate\">com.google.gson.internal.Streams</code>, which is not exported when depending on gson in a JPMS project using module path.</p>\n<p dir=\"auto\">Unless there's some easy fix available, currently one has to make a copy of Streams, LazilyParsedNumber, and TypeAdapters classes from the internal packages in order to use this provided class.</p>",
+  "description_text": "The RuntimeTypeAdapterFactory code example (https://github.com/google/gson/blob/master/extras/src/main/java/com/google/gson/typeadapters/RuntimeTypeAdapterFactory.java) depends on the internal API class com.google.gson.internal.Streams, which is not exported when depending on gson in a JPMS project using module path.\nUnless there's some easy fix available, currently one has to make a copy of Streams, LazilyParsedNumber, and TypeAdapters classes from the internal packages in order to use this provided class."
+}

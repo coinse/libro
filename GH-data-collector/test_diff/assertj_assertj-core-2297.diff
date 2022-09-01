@@ -1,0 +1,226 @@
+diff --git a/src/test/java/org/assertj/core/api/ThrowingConsumer_accept_Test.java b/src/test/java/org/assertj/core/api/ThrowingConsumer_accept_Test.java
+new file mode 100644
+index 000000000..e205907c7
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/ThrowingConsumer_accept_Test.java
+@@ -0,0 +1,53 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2021 the original author or authors.
++ */
++package org.assertj.core.api;
++
++import static org.assertj.core.api.Assertions.catchThrowable;
++import static org.assertj.core.api.BDDAssertions.then;
++
++import java.io.IOException;
++
++import org.junit.jupiter.api.Test;
++
++class ThrowingConsumer_accept_Test {
++
++  @Test
++  void should_rethrow_checked_exception_as_runtime_exception() {
++    // GIVEN
++    IOException ioException = new IOException("boom!");
++    ThrowingConsumer<?> throwingConsumer = throwingConsumer(ioException);
++    // WHEN
++    Throwable throwable = catchThrowable(() -> throwingConsumer.accept(null));
++    // THEN
++    then(throwable).isExactlyInstanceOf(RuntimeException.class)
++                   .hasCause(ioException);
++  }
++
++  @Test
++  void should_rethrow_runtime_exception_as_is() {
++    // GIVEN
++    RuntimeException runtimeException = new RuntimeException("boom!");
++    ThrowingConsumer<?> throwingConsumer = throwingConsumer(runtimeException);
++    // WHEN
++    Throwable throwable = catchThrowable(() -> throwingConsumer.accept(null));
++    // THEN
++    then(throwable).isSameAs(runtimeException);
++  }
++
++  private static ThrowingConsumer<?> throwingConsumer(Throwable throwable) {
++    return value -> {
++      throw throwable;
++    };
++  }
++  
++}
+diff --git a/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_Consumer_Test.java b/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_Consumer_Test.java
+index c151f8616..58111e96a 100644
+--- a/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_Consumer_Test.java
++++ b/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_Consumer_Test.java
+@@ -27,13 +27,11 @@ import org.junit.jupiter.api.Test;
+ class AbstractAssert_satisfies_with_Consumer_Test {
+ 
+   private Jedi yoda;
+-  private Jedi luke;
+   private Consumer<Jedi> jediRequirements;
+ 
+   @BeforeEach
+   void setup() {
+     yoda = new Jedi("Yoda", "Green");
+-    luke = new Jedi("Luke Skywalker", "Green");
+     jediRequirements = jedi -> {
+       assertThat(jedi.lightSaberColor).as("check light saber").isEqualTo("Green");
+       assertThat(jedi.getName()).as("check name").doesNotContain("Dark");
+@@ -42,13 +40,15 @@ class AbstractAssert_satisfies_with_Consumer_Test {
+ 
+   @Test
+   void should_satisfy_single_requirement() {
+-    assertThat(yoda).satisfies(jedi -> assertThat(jedi.lightSaberColor).isEqualTo("Green"));
++    // GIVEN
++    Consumer<Jedi> jediRequirement = jedi -> assertThat(jedi.lightSaberColor).isEqualTo("Green");
++    // WHEN/THEN
++    then(yoda).satisfies(jediRequirement);
+   }
+ 
+   @Test
+   void should_satisfy_multiple_requirements() {
+     assertThat(yoda).satisfies(jediRequirements);
+-    assertThat(luke).satisfies(jediRequirements);
+   }
+ 
+   @Test
+@@ -63,7 +63,9 @@ class AbstractAssert_satisfies_with_Consumer_Test {
+ 
+   @Test
+   void should_fail_if_consumer_is_null() {
++    // GIVEN
+     Consumer<Jedi> nullRequirements = null;
++    // WHEN/THEN
+     assertThatNullPointerException().isThrownBy(() -> assertThat(yoda).satisfies(nullRequirements))
+                                     .withMessage("The Consumer<T> expressing the assertions requirements must not be null");
+   }
+diff --git a/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_ThrowingConsumer_Test.java b/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_ThrowingConsumer_Test.java
+new file mode 100644
+index 000000000..69920f32b
+--- /dev/null
++++ b/src/test/java/org/assertj/core/api/abstract_/AbstractAssert_satisfies_with_ThrowingConsumer_Test.java
+@@ -0,0 +1,115 @@
++/*
++ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
++ * the License. You may obtain a copy of the License at
++ *
++ * http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
++ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
++ * specific language governing permissions and limitations under the License.
++ *
++ * Copyright 2012-2021 the original author or authors.
++ */
++package org.assertj.core.api.abstract_;
++
++import static java.nio.file.Files.isReadable;
++import static java.nio.file.Files.readAllLines;
++import static org.assertj.core.api.Assertions.assertThat;
++import static org.assertj.core.api.Assertions.catchThrowable;
++import static org.assertj.core.api.BDDAssertions.then;
++import static org.assertj.core.api.BDDAssertions.thenNullPointerException;
++import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
++
++import java.nio.file.Path;
++import java.nio.file.Paths;
++
++import org.assertj.core.api.ThrowingConsumer;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++
++class AbstractAssert_satisfies_with_ThrowingConsumer_Test {
++
++  private ThrowingConsumer<Path> isEOF;
++
++  @BeforeEach
++  void setup() {
++    isEOF = path -> {
++      assertThat(isReadable(path)).isTrue();
++      // this would not compile if isEOF was declared as Consumer<Path> since it can throw an IOException
++      assertThat(readAllLines(path)).isEmpty();
++    };
++  }
++
++  @Test
++  void should_satisfy_single_requirement() {
++    // GIVEN
++    Path emptyFile = Paths.get("src/test/resources/empty.txt");
++    ThrowingConsumer<Path> isEmpty = path -> assertThat(readAllLines(path)).isEmpty();
++    // WHEN/THEN
++    then(emptyFile).satisfies(isEmpty);
++  }
++
++  @Test
++  void should_satisfy_multiple_requirements() {
++    // GIVEN
++    Path emptyFile = Paths.get("src/test/resources/empty.txt");
++    // WHEN/THEN
++    then(emptyFile).satisfies(isEOF);
++  }
++
++  @Test
++  void should_fail_according_to_requirements() {
++    // GIVEN
++    Path asciiFile = Paths.get("src/test/resources/ascii.txt");
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> assertThat(asciiFile).satisfies(isEOF));
++    // THEN
++    then(assertionError).hasMessageContaining("Expecting empty but was: [\"abc\"]");
++  }
++
++  @Test
++  void should_rethrow_throwables_as_runtime_exceptions() {
++    // GIVEN
++    Throwable exception = new Throwable("boom!");
++    // WHEN
++    Throwable throwable = catchThrowable(() -> assertThat("foo").satisfies(throwingConsumer(exception)));
++    // THEN
++    then(throwable).isInstanceOf(RuntimeException.class)
++                   .hasCauseReference(exception);
++  }
++
++  @Test
++  void should_propagate_RuntimeException_as_is() {
++    // GIVEN
++    RuntimeException runtimeException = new RuntimeException("boom!");
++    // WHEN
++    Throwable throwable = catchThrowable(() -> assertThat("foo").satisfies(throwingConsumer(runtimeException)));
++    // THEN
++    then(throwable).isSameAs(runtimeException);
++  }
++
++  @Test
++  void should_propagate_AssertionError_as_is() {
++    // GIVEN
++    AssertionError assertionError = new AssertionError("boom!");
++    // WHEN
++    Throwable throwable = catchThrowable(() -> assertThat("foo").satisfies(throwingConsumer(assertionError)));
++    // THEN
++    then(throwable).isSameAs(assertionError);
++  }
++  
++  @Test
++  void should_fail_if_throwing_consumer_is_null() {
++    // GIVEN
++    ThrowingConsumer<String> nullRequirements = null;
++    // WHEN/THEN
++    thenNullPointerException().isThrownBy(() -> assertThat("foo").satisfies(nullRequirements))
++                              .withMessage("The Consumer<T> expressing the assertions requirements must not be null");
++  }
++
++  private static ThrowingConsumer<String> throwingConsumer(Throwable throwable) {
++    return value -> {
++      throw throwable;
++    };
++  }
++}

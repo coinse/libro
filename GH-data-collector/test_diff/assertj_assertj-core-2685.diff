@@ -1,0 +1,552 @@
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsIgnoringCase_Test.java
+index 74124201e..eeb0716f1 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertContainsIgnoringCase_Test.java
+@@ -12,22 +12,19 @@
+  */
+ package org.assertj.core.internal.strings;
+ 
+-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+-import static org.assertj.core.api.Assertions.assertThatNullPointerException;
++import static org.assertj.core.api.Assertions.catchNullPointerException;
++import static org.assertj.core.api.BDDAssertions.then;
+ import static org.assertj.core.error.ShouldContainCharSequence.shouldContainIgnoringCase;
+ import static org.assertj.core.internal.ErrorMessages.charSequenceToLookForIsNull;
+ import static org.assertj.core.test.TestData.someInfo;
++import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+ 
+-import org.assertj.core.api.AssertionInfo;
+-import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.junit.jupiter.api.Test;
+-
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+ /**
+- * Tests for <code>{@link Strings#assertContainsIgnoringCase(AssertionInfo, CharSequence, CharSequence)}</code>.
+- * 
+  * @author Alex Ruiz
+  * @author Joel Costigliola
+  */
+@@ -35,59 +32,88 @@ class Strings_assertContainsIgnoringCase_Test extends StringsBaseTest {
+ 
+   @Test
+   void should_fail_if_actual_does_not_contain_sequence() {
+-    assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> strings.assertContainsIgnoringCase(someInfo(), "Yoda", "Luke"))
+-                                                   .withMessage(shouldContainIgnoringCase("Yoda", "Luke").create());
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertContainsIgnoringCase(someInfo(), "Yoda", "Luke"));
++    // THEN
++    then(assertionError).hasMessage(shouldContainIgnoringCase("Yoda", "Luke").create());
+   }
+ 
+   @Test
+   void should_throw_error_if_sequence_is_null() {
+-    assertThatNullPointerException().isThrownBy(() -> strings.assertContainsIgnoringCase(someInfo(), "Yoda", null))
+-                                    .withMessage(charSequenceToLookForIsNull());
++    // WHEN
++    NullPointerException exception = catchNullPointerException(() -> strings.assertContainsIgnoringCase(someInfo(), "Yoda",
++                                                                                                        null));
++    // THEN
++    then(exception).hasMessage(charSequenceToLookForIsNull());
+   }
+ 
+   @Test
+   void should_fail_if_actual_is_null() {
+-    assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> strings.assertContainsIgnoringCase(someInfo(), null, "Yoda"))
+-                                                   .withMessage(actualIsNull());
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertContainsIgnoringCase(someInfo(), null, "Yoda"));
++    // THEN
++    then(assertionError).hasMessage(actualIsNull());
+   }
+ 
+   @Test
+   void should_pass_if_actual_contains_sequence() {
++    // WHEN/THEN
+     strings.assertContainsIgnoringCase(someInfo(), "Yoda", "Yo");
+   }
+ 
+   @Test
+   void should_pass_if_actual_contains_sequence_in_different_case() {
++    // WHEN/THEN
+     strings.assertContainsIgnoringCase(someInfo(), "Yoda", "yo");
+   }
+ 
+   @Test
+   void should_fail_if_actual_does_not_contain_sequence_whatever_custom_comparison_strategy_is() {
+-    assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(), "Yoda", "Luke"))
+-                                                   .withMessage(shouldContainIgnoringCase("Yoda", "Luke").create());
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(),
++                                                                                                                                       "Yoda",
++                                                                                                                                       "Luke"));
++    // THEN
++    then(assertionError).hasMessage(shouldContainIgnoringCase("Yoda", "Luke").create());
+   }
+ 
+   @Test
+   void should_throw_error_if_sequence_is_null_whatever_custom_comparison_strategy_is() {
+-    assertThatNullPointerException().isThrownBy(() -> stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(),
+-                                                                                                                              "Yoda",
+-                                                                                                                              null))
+-                                    .withMessage(charSequenceToLookForIsNull());
++    // WHEN
++    NullPointerException exception = catchNullPointerException(() -> stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(),
++                                                                                                                                             "Yoda",
++                                                                                                                                             null));
++    // THEN
++    then(exception).hasMessage(charSequenceToLookForIsNull());
+   }
+ 
+   @Test
+   void should_fail_if_actual_is_null_whatever_custom_comparison_strategy_is() {
+-    assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(), null, "Yoda"))
+-                                                   .withMessage(actualIsNull());
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(),
++                                                                                                                                       null,
++                                                                                                                                       "Yoda"));
++    // THEN
++    then(assertionError).hasMessage(actualIsNull());
+   }
+ 
+   @Test
+   void should_pass_if_actual_contains_sequence_whatever_custom_comparison_strategy_is() {
++    // WHEN/THEN
+     stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(), "Yoda", "Yo");
+   }
+ 
+   @Test
+   void should_pass_if_actual_contains_sequence_in_different_case_whatever_custom_comparison_strategy_is() {
++    // WHEN/THEN
+     stringsWithCaseInsensitiveComparisonStrategy.assertContainsIgnoringCase(someInfo(), "Yoda", "yo");
+   }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_pass_with_Turkish_default_locale() {
++    // WHEN/THEN
++    strings.assertContainsIgnoringCase(someInfo(), "Leia", "IA");
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotContainIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotContainIgnoringCase_Test.java
+index 37793f0c6..f1361ca2f 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotContainIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotContainIgnoringCase_Test.java
+@@ -12,39 +12,37 @@
+  */
+ package org.assertj.core.internal.strings;
+ 
+-import static org.assertj.core.api.Assertions.catchThrowable;
++import static org.assertj.core.api.Assertions.catchNullPointerException;
+ import static org.assertj.core.api.BDDAssertions.then;
+ import static org.assertj.core.api.BDDAssertions.thenIllegalArgumentException;
+ import static org.assertj.core.error.ShouldNotContainCharSequence.shouldNotContainIgnoringCase;
+ import static org.assertj.core.internal.ErrorMessages.arrayOfValuesToLookForIsEmpty;
+ import static org.assertj.core.internal.ErrorMessages.valuesToLookForIsNull;
+ import static org.assertj.core.test.TestData.someInfo;
++import static org.assertj.core.util.Arrays.array;
+ import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+-import static org.mockito.internal.util.collections.Sets.newSet;
++import static org.assertj.core.util.Sets.set;
+ 
+-import org.assertj.core.api.AssertionInfo;
+-import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+-import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.api.Test;
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+ /**
+- * Tests for <code>{@link Strings#assertDoesNotContainIgnoringCase(AssertionInfo, CharSequence, CharSequence...)}</code>.
+- *
+  * @author Brummolix
+  */
+-@DisplayName("Strings assertDoesNotContainIgnoringCase")
+ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+ 
+   @Test
+   void should_pass_if_actual_does_not_contain_value_ignoring_case() {
+-    assertDoesNotContainIgnoringCase("Yoda", "no");
++    // WHEN/THEN
++    strings.assertDoesNotContainIgnoringCase(someInfo(), "Yoda", "no");
+   }
+ 
+   @Test
+   void should_pass_if_actual_does_not_contain_values_ignoring_case() {
+-    assertDoesNotContainIgnoringCase("Yoda", "no", "also no");
++    // WHEN/THEN
++    strings.assertDoesNotContainIgnoringCase(someInfo(), "Yoda", "no", "also no");
+   }
+ 
+   @Test
+@@ -52,7 +50,8 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     String actual = "Yoda";
+     // WHEN
+-    AssertionError assertionError = expectAssertionError(() -> assertDoesNotContainIgnoringCase(actual, "od"));
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), actual,
++                                                                                                        "od"));
+     // THEN
+     then(assertionError).hasMessage(shouldNotContainIgnoringCase(actual, "od").create());
+   }
+@@ -62,7 +61,8 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     String actual = "Yoda";
+     // WHEN
+-    AssertionError assertionError = expectAssertionError(() -> assertDoesNotContainIgnoringCase(actual, "OD"));
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), actual,
++                                                                                                        "OD"));
+     // THEN
+     then(assertionError).hasMessage(shouldNotContainIgnoringCase(actual, "OD").create());
+   }
+@@ -72,10 +72,10 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     String actual = "Yoda";
+     // WHEN
+-    AssertionError assertionError = expectAssertionError(() -> assertDoesNotContainIgnoringCase(actual, "od", "Yo", "Luke"));
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), actual, "od",
++                                                                                                        "Yo", "Luke"));
+     // THEN
+-    String message = shouldNotContainIgnoringCase(actual, new CharSequence[] { "od", "Yo", "Luke" }, newSet("od", "Yo")).create();
+-    then(assertionError).hasMessage(message);
++    then(assertionError).hasMessage(shouldNotContainIgnoringCase(actual, array("od", "Yo", "Luke"), set("od", "Yo")).create());
+   }
+ 
+   @Test
+@@ -83,10 +83,10 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     String actual = "Yoda";
+     // WHEN
+-    AssertionError assertionError = expectAssertionError(() -> assertDoesNotContainIgnoringCase(actual, "OD", "yo", "Luke"));
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), actual, "OD",
++                                                                                                        "yo", "Luke"));
+     // THEN
+-    String message = shouldNotContainIgnoringCase(actual, new CharSequence[] { "OD", "yo", "Luke" }, newSet("OD", "yo")).create();
+-    then(assertionError).hasMessage(message);
++    then(assertionError).hasMessage(shouldNotContainIgnoringCase(actual, array("OD", "yo", "Luke"), set("OD", "yo")).create());
+   }
+ 
+   @Test
+@@ -94,10 +94,10 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     CharSequence[] values = null;
+     // WHEN
+-    Throwable npe = catchThrowable(() -> assertDoesNotContainIgnoringCase("Yoda", values));
++    NullPointerException exception = catchNullPointerException(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), "Yoda",
++                                                                                                              values));
+     // THEN
+-    then(npe).isInstanceOf(NullPointerException.class)
+-             .hasMessage(valuesToLookForIsNull());
++    then(exception).hasMessage(valuesToLookForIsNull());
+   }
+ 
+   @Test
+@@ -105,14 +105,15 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     String actual = null;
+     // WHEN
+-    AssertionError assertionError = expectAssertionError(() -> assertDoesNotContainIgnoringCase(actual, "Yoda"));
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), actual,
++                                                                                                        "Yoda"));
+     // THEN
+     then(assertionError).hasMessage(actualIsNull());
+   }
+ 
+   @Test
+   void should_throw_error_if_values_are_empty() {
+-    thenIllegalArgumentException().isThrownBy(() -> assertDoesNotContainIgnoringCase("Yoda"))
++    thenIllegalArgumentException().isThrownBy(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), "Yoda"))
+                                   .withMessage(arrayOfValuesToLookForIsEmpty());
+   }
+ 
+@@ -121,13 +122,19 @@ class Strings_assertDoesNotContainIgnoringCase_Test extends StringsBaseTest {
+     // GIVEN
+     CharSequence[] values = new CharSequence[] { "1", null };
+     // WHEN
+-    Throwable npe = catchThrowable(() -> assertDoesNotContainIgnoringCase("Yoda", values));
++    NullPointerException exception = catchNullPointerException(() -> strings.assertDoesNotContainIgnoringCase(someInfo(), "Yoda",
++                                                                                                              values));
+     // THEN
+-    then(npe).isInstanceOf(NullPointerException.class)
+-             .hasMessage("Expecting CharSequence elements not to be null but found one at index 1");
++    then(exception).hasMessage("Expecting CharSequence elements not to be null but found one at index 1");
+   }
+ 
+-  private void assertDoesNotContainIgnoringCase(CharSequence actual, CharSequence... values) {
+-    strings.assertDoesNotContainIgnoringCase(someInfo(), actual, values);
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_fail_with_Turkish_default_locale() {
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotContainIgnoringCase(INFO, "Leia", "EI"));
++    // THEN
++    then(assertionError).hasMessage(shouldNotContainIgnoringCase("Leia", "EI").create());
+   }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotEndWithIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotEndWithIgnoringCase_Test.java
+index 6c5961e7d..216742b7a 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotEndWithIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotEndWithIgnoringCase_Test.java
+@@ -18,7 +18,6 @@ import static org.assertj.core.error.ShouldNotEndWithIgnoringCase.shouldNotEndWi
+ import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+ 
+-import org.assertj.core.api.AssertionInfo;
+ import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
+ import org.assertj.core.internal.ComparisonStrategy;
+ import org.assertj.core.internal.StandardComparisonStrategy;
+@@ -26,11 +25,9 @@ import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.assertj.core.util.StringHashCodeTestComparator;
+ import org.junit.jupiter.api.Test;
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+-/**
+- * Tests for <code>{@link Strings#assertDoesNotEndWithIgnoringCase(AssertionInfo, CharSequence, CharSequence)}</code>.
+- */
+-class Strings_assertDoesNotEndWithIgnoringCaseIgnoringCase_Test extends StringsBaseTest {
++class Strings_assertDoesNotEndWithIgnoringCase_Test extends StringsBaseTest {
+ 
+   @Test
+   void should_pass_if_actual_does_not_end_with_suffix() {
+@@ -78,4 +75,14 @@ class Strings_assertDoesNotEndWithIgnoringCaseIgnoringCase_Test extends StringsB
+     // THEN
+     then(assertionError).hasMessage(shouldNotEndWithIgnoringCase("Yoda", "A", hashCodeComparisonStrategy).create());
+   }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_fail_with_Turkish_default_locale() {
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotEndWithIgnoringCase(INFO, "Leia", "IA"));
++    // THEN
++    then(assertionError).hasMessage(shouldNotEndWithIgnoringCase("Leia", "IA", StandardComparisonStrategy.instance()).create());
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotStartWithIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotStartWithIgnoringCase_Test.java
+index 70d6ac2b7..a18bc90bd 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotStartWithIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertDoesNotStartWithIgnoringCase_Test.java
+@@ -18,7 +18,6 @@ import static org.assertj.core.error.ShouldNotStartWithIgnoringCase.shouldNotSta
+ import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+ 
+-import org.assertj.core.api.AssertionInfo;
+ import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
+ import org.assertj.core.internal.ComparisonStrategy;
+ import org.assertj.core.internal.StandardComparisonStrategy;
+@@ -26,10 +25,8 @@ import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.assertj.core.util.StringHashCodeTestComparator;
+ import org.junit.jupiter.api.Test;
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+-/**
+- * Tests for <code>{@link Strings#assertDoesNotStartWithIgnoringCase(AssertionInfo, CharSequence, CharSequence)}</code>.
+- */
+ class Strings_assertDoesNotStartWithIgnoringCase_Test extends StringsBaseTest {
+ 
+   @Test
+@@ -42,7 +39,7 @@ class Strings_assertDoesNotStartWithIgnoringCase_Test extends StringsBaseTest {
+   void should_fail_if_actual_starts_with_prefix() {
+     // WHEN
+     AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotStartWithIgnoringCase(INFO, "Yoda", "yo"));
+-    //THEN
++    // THEN
+     then(assertionError).hasMessage(shouldNotStartWithIgnoringCase("Yoda", "yo", StandardComparisonStrategy.instance()).create());
+   }
+ 
+@@ -76,6 +73,17 @@ class Strings_assertDoesNotStartWithIgnoringCase_Test extends StringsBaseTest {
+     // WHEN
+     AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotStartWithIgnoringCase(INFO, "Yoda", "yODA"));
+     // THEN
+-    then(assertionError).hasMessageContainingAll(shouldNotStartWithIgnoringCase("Yoda", "yODA", hashCodeComparisonStrategy).create());
++    then(assertionError).hasMessageContainingAll(shouldNotStartWithIgnoringCase("Yoda", "yODA",
++                                                                                hashCodeComparisonStrategy).create());
++  }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_fail_with_Turkish_default_locale() {
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertDoesNotStartWithIgnoringCase(INFO, "Leia", "LEI"));
++    // THEN
++    then(assertionError).hasMessage(shouldNotStartWithIgnoringCase("Leia", "LEI", StandardComparisonStrategy.instance()).create());
+   }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertEndsWithIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertEndsWithIgnoringCase_Test.java
+index 169cb990b..58a1b920d 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertEndsWithIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertEndsWithIgnoringCase_Test.java
+@@ -15,10 +15,10 @@ package org.assertj.core.internal.strings;
+ import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+ import static org.assertj.core.api.BDDAssertions.then;
+ import static org.assertj.core.error.ShouldEndWithIgnoringCase.shouldEndWithIgnoringCase;
++import static org.assertj.core.test.TestData.someInfo;
+ import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+ 
+-import org.assertj.core.api.AssertionInfo;
+ import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
+ import org.assertj.core.internal.ComparisonStrategy;
+ import org.assertj.core.internal.StandardComparisonStrategy;
+@@ -26,10 +26,8 @@ import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.assertj.core.util.StringHashCodeTestComparator;
+ import org.junit.jupiter.api.Test;
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+-/**
+- * Tests for <code>{@link Strings#assertEndsWithIgnoringCase(AssertionInfo, CharSequence, CharSequence)}</code>.
+- */
+ class Strings_assertEndsWithIgnoringCase_Test extends StringsBaseTest {
+ 
+   @Test
+@@ -84,4 +82,12 @@ class Strings_assertEndsWithIgnoringCase_Test extends StringsBaseTest {
+     // THEN
+     then(assertionError).hasMessage(shouldEndWithIgnoringCase("Yoda", "Luke", hashCodeComparisonStrategy).create());
+   }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_pass_with_Turkish_default_locale() {
++    // WHEN/THEN
++    strings.assertEndsWithIgnoringCase(someInfo(), "Leia", "IA");
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertEqualsIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertEqualsIgnoringCase_Test.java
+index dd5def5e9..80f87dc5e 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertEqualsIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertEqualsIgnoringCase_Test.java
+@@ -17,15 +17,11 @@ import static org.assertj.core.error.ShouldBeEqualIgnoringCase.shouldBeEqual;
+ import static org.assertj.core.test.CharArrays.arrayOf;
+ import static org.assertj.core.test.TestData.someInfo;
+ 
+-import org.assertj.core.api.AssertionInfo;
+-import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.junit.jupiter.api.Test;
+-
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+ /**
+- * Tests for <code>{@link Strings#assertEqualsIgnoringCase(AssertionInfo, CharSequence, CharSequence)}</code>.
+- * 
+  * @author Alex Ruiz
+  * @author Joel Costigliola
+  */
+@@ -103,4 +99,12 @@ class Strings_assertEqualsIgnoringCase_Test extends StringsBaseTest {
+   void should_pass_if_both_Strings_are_equal_ignoring_case_whatever_custom_comparison_strategy_is() {
+     stringsWithCaseInsensitiveComparisonStrategy.assertEqualsIgnoringCase(someInfo(), "Yoda", "YODA");
+   }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_pass_with_Turkish_default_locale() {
++    // WHEN/THEN
++    strings.assertEqualsIgnoringCase(someInfo(), "Leia", "LEIA");
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertNotEqualsIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertNotEqualsIgnoringCase_Test.java
+index 8aa6ff735..4cc65be84 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertNotEqualsIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertNotEqualsIgnoringCase_Test.java
+@@ -15,20 +15,19 @@ package org.assertj.core.internal.strings;
+ import static org.assertj.core.api.Assertions.assertThat;
+ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+ import static org.assertj.core.api.Assertions.catchThrowable;
++import static org.assertj.core.api.BDDAssertions.then;
+ import static org.assertj.core.error.ShouldNotBeEqualIgnoringCase.shouldNotBeEqualIgnoringCase;
+ import static org.assertj.core.test.CharArrays.arrayOf;
+ import static org.assertj.core.test.TestData.someInfo;
++import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.mockito.Mockito.verify;
+ 
+ import org.assertj.core.api.AssertionInfo;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.junit.jupiter.api.Test;
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+ /**
+- * Tests for
+- * <code>{@link org.assertj.core.internal.Strings#assertNotEqualsIgnoringCase(org.assertj.core.api.AssertionInfo, CharSequence, CharSequence)}</code>
+- * .
+- *
+  * @author Alexander Bischof
+  */
+ class Strings_assertNotEqualsIgnoringCase_Test extends StringsBaseTest {
+@@ -127,4 +126,14 @@ class Strings_assertNotEqualsIgnoringCase_Test extends StringsBaseTest {
+     assertThat(error).isInstanceOf(AssertionError.class);
+     verifyFailureThrownWhenStringsAreNotEqual(info, "Yoda", "YODA");
+   }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_fail_with_Turkish_default_locale() {
++    // WHEN
++    AssertionError assertionError = expectAssertionError(() -> strings.assertNotEqualsIgnoringCase(INFO, "Leia", "LEIA"));
++    // THEN
++    then(assertionError).hasMessage(shouldNotBeEqualIgnoringCase("Leia", "LEIA").create());
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/internal/strings/Strings_assertStartsWithIgnoringCase_Test.java b/src/test/java/org/assertj/core/internal/strings/Strings_assertStartsWithIgnoringCase_Test.java
+index cbe1fd2fa..25e4b4d96 100644
+--- a/src/test/java/org/assertj/core/internal/strings/Strings_assertStartsWithIgnoringCase_Test.java
++++ b/src/test/java/org/assertj/core/internal/strings/Strings_assertStartsWithIgnoringCase_Test.java
+@@ -18,7 +18,6 @@ import static org.assertj.core.error.ShouldStartWithIgnoringCase.shouldStartWith
+ import static org.assertj.core.util.AssertionsUtil.expectAssertionError;
+ import static org.assertj.core.util.FailureMessages.actualIsNull;
+ 
+-import org.assertj.core.api.AssertionInfo;
+ import org.assertj.core.internal.ComparatorBasedComparisonStrategy;
+ import org.assertj.core.internal.ComparisonStrategy;
+ import org.assertj.core.internal.StandardComparisonStrategy;
+@@ -26,10 +25,8 @@ import org.assertj.core.internal.Strings;
+ import org.assertj.core.internal.StringsBaseTest;
+ import org.assertj.core.util.StringHashCodeTestComparator;
+ import org.junit.jupiter.api.Test;
++import org.junitpioneer.jupiter.DefaultLocale;
+ 
+-/**
+- * Tests for <code>{@link Strings#assertStartsWithIgnoringCase(AssertionInfo, CharSequence, CharSequence)}</code>.
+- */
+ class Strings_assertStartsWithIgnoringCase_Test extends StringsBaseTest {
+ 
+   @Test
+@@ -82,4 +79,12 @@ class Strings_assertStartsWithIgnoringCase_Test extends StringsBaseTest {
+     // THEN
+     then(assertionError).hasMessage(shouldStartWithIgnoringCase("Yoda", "Luke", hashCodeComparisonStrategy).create());
+   }
++
++  @Test
++  @DefaultLocale("tr-TR")
++  void should_pass_with_Turkish_default_locale() {
++    // WHEN/THEN
++    strings.assertStartsWithIgnoringCase(INFO, "Leia", "LEI");
++  }
++
+ }
+diff --git a/src/test/java/org/assertj/core/test/CaseInsensitiveStringComparatorTest.java b/src/test/java/org/assertj/core/test/CaseInsensitiveStringComparatorTest.java
+index dec73d2e8..155a4439f 100644
+--- a/src/test/java/org/assertj/core/test/CaseInsensitiveStringComparatorTest.java
++++ b/src/test/java/org/assertj/core/test/CaseInsensitiveStringComparatorTest.java
+@@ -23,7 +23,7 @@ class CaseInsensitiveStringComparatorTest {
+ 
+   @Test
+   @DefaultLocale("tr-TR")
+-  void should_work_with_turkish_locale() {
++  void should_work_with_Turkish_default_locale() {
+     // WHEN
+     int result = underTest.compare("i", "I");
+     // THEN

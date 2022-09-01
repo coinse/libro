@@ -1,0 +1,16 @@
+[2016-12-01T11:59:13,208][WARN ][r.suppressed             ] path: /tv_bug/doc/_termvectors, params: {pretty=true, preference=_shards:1, index=tv_bug, type=doc}
+org.elasticsearch.transport.RemoteTransportException: [C-N1Zbn][127.0.0.1:9300][indices:data/read/tv[s]]
+Caused by: java.lang.NullPointerException
+        at org.elasticsearch.action.termvectors.TransportTermVectorsAction.shardOperation(TransportTermVectorsAction.java:79) ~[elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.action.termvectors.TransportTermVectorsAction.shardOperation(TransportTermVectorsAction.java:42) ~[elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.action.support.single.shard.TransportSingleShardAction$ShardTransportHandler.messageReceived(TransportSingleShardAction.java:293) ~[elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.action.support.single.shard.TransportSingleShardAction$ShardTransportHandler.messageReceived(TransportSingleShardAction.java:286) ~[elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.transport.TransportRequestHandler.messageReceived(TransportRequestHandler.java:33) ~[elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:69) ~[elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.transport.TransportService$6.doRun(TransportService.java:548) [elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:520) [elasticsearch-5.0.1.jar:5.0.1]
+        at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37) [elasticsearch-5.0.1.jar:5.0.1]
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_92]
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_92]
+        at java.lang.Thread.run(Thread.java:745) [?:1.8.0_92]
+

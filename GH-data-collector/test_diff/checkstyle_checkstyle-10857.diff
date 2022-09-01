@@ -1,0 +1,20 @@
+diff --git a/src/test/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheckTest.java b/src/test/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheckTest.java
+index d90096a30..852e109f8 100644
+--- a/src/test/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheckTest.java
++++ b/src/test/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheckTest.java
+@@ -145,6 +145,15 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
+                 getNonCompilablePath("InputUnusedImportsAnnotations.java"), expected);
+     }
+ 
++    @Test
++    public void testArrayRef() throws Exception {
++        final String[] expected = {
++            "13:8: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
++        };
++        verifyWithInlineConfigParser(
++                getPath("InputUnusedImportsArrayRef.java"), expected);
++    }
++
+     @Test
+     public void testBug() throws Exception {
+         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

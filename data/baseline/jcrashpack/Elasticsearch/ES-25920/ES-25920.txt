@@ -1,0 +1,12 @@
+Caused by: java.lang.NullPointerException
+        at org.apache.lucene.queryparser.classic.ExistsFieldQueryExtension.query(ExistsFieldQueryExtension.java:40) ~[elasticsearch-5.5.1.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.MapperQueryParser.getFieldQuery(MapperQueryParser.java:150) ~[elasticsearch-5.5.1.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.QueryParserBase.handleBareTokenQuery(QueryParserBase.java:851) ~[lucene-queryparser-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.QueryParser.Term(QueryParser.java:469) ~[lucene-queryparser-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.QueryParser.Clause(QueryParser.java:355) ~[lucene-queryparser-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.QueryParser.Query(QueryParser.java:244) ~[lucene-queryparser-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.QueryParser.TopLevelQuery(QueryParser.java:215) ~[lucene-queryparser-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.QueryParserBase.parse(QueryParserBase.java:111) ~[lucene-queryparser-6.6.0.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.apache.lucene.queryparser.classic.MapperQueryParser.parse(MapperQueryParser.java:824) ~[elasticsearch-5.5.1.jar:6.6.0 5c7a7b65d2aa7ce5ec96458315c661a18b320241 - ishan - 2017-05-30 07:30:08]
+        at org.elasticsearch.index.query.QueryStringQueryBuilder.doToQuery(QueryStringQueryBuilder.java:1036) ~[elasticsearch-5.5.1.jar:5.5.1]
+

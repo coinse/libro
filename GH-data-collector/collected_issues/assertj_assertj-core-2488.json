@@ -1,0 +1,7 @@
+{
+  "issue_id": 2487,
+  "issue_url": "https://github.com/assertj/assertj/issues/2487",
+  "title": "Provide `Comparable` assertions for `URI`",
+  "description": "<h4 dir=\"auto\">Summary</h4>\n<p dir=\"auto\"><code class=\"notranslate\">java.net.URI</code> is a <code class=\"notranslate\">Comparable</code>, so <code class=\"notranslate\">AbstractUriAssert</code> should extend <code class=\"notranslate\">AbstractComparableAssert</code>.</p>\n<p dir=\"auto\">I assume this to be a minor, non-breaking change. I'd do a PR, but the overhead seems to be too big in my eyes.</p>\n<p dir=\"auto\">Note: <code class=\"notranslate\">java.net.URL</code> is <em>not</em> comparable.</p>",
+  "description_text": "Summary\njava.net.URI is a Comparable, so AbstractUriAssert should extend AbstractComparableAssert.\nI assume this to be a minor, non-breaking change. I'd do a PR, but the overhead seems to be too big in my eyes.\nNote: java.net.URL is not comparable."
+}

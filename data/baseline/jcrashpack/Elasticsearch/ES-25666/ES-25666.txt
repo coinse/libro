@@ -1,0 +1,32 @@
+java.lang.RuntimeException: java.nio.file.NoSuchFileException: /data/5.6-elastic-20170711/config-node1/ingest-geoip
+        at org.elasticsearch.ingest.geoip.IngestGeoIpPlugin.getProcessors(IngestGeoIpPlugin.java:74) ~[?:?]
+        at org.elasticsearch.ingest.IngestService.<init>(IngestService.java:58) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.node.Node.<init>(Node.java:354) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.node.Node.<init>(Node.java:245) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Bootstrap$5.<init>(Bootstrap.java:232) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:232) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:341) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:123) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:114) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:67) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.cli.Command.main(Command.java:88) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:91) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:84) [elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+Caused by: java.nio.file.NoSuchFileException: /data/5.6-elastic-20170711/config-node1/ingest-geoip
+        at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86) ~[?:?]
+        at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102) ~[?:?]
+        at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107) ~[?:?]
+        at sun.nio.fs.UnixFileSystemProvider.newDirectoryStream(UnixFileSystemProvider.java:427) ~[?:?]
+        at java.nio.file.Files.newDirectoryStream(Files.java:457) ~[?:1.8.0_131]
+        at java.nio.file.Files.list(Files.java:3451) ~[?:1.8.0_131]
+        at org.elasticsearch.ingest.geoip.IngestGeoIpPlugin.loadDatabaseReaders(IngestGeoIpPlugin.java:85) ~[?:?]
+        at org.elasticsearch.ingest.geoip.IngestGeoIpPlugin.getProcessors(IngestGeoIpPlugin.java:72) ~[?:?]
+        ... 13 more
+[2017-07-12T10:29:01,897][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [node1] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: java.nio.file.NoSuchFileException: /data/5.6-elastic-20170711/config-node1/ingest-geoip
+        at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:127) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:114) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.cli.EnvironmentAwareCommand.execute(EnvironmentAwareCommand.java:67) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]
+        at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) ~[elasticsearch-5.6.0-SNAPSHOT.jar:5.6.0-SNAPSHOT]```
+

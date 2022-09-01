@@ -1,0 +1,27 @@
+[2016-12-29T16:14:00,908][WARN ][o.e.c.a.s.ShardStateAction] [K-E6Kbx] [doc_shrinked_index][0] received shard failed for shard id [[doc_shrinked_index][0]], allocation id [wbxqZDZSRZ6YCYq2iCIfEQ], primary term [0], message [failed recovery], failure [RecoveryFailedException[[doc_shrinked_index][0]: Recovery failed from null into {K-E6Kbx}{K-E6Kbx4TryyqoNBVUZF-w}{C3ZFU6q-QxK01plsEjaRyQ}{127.0.0.1}{127.0.0.1:9300}{box_type=medium}]; nested: MapperParsingException[Mapping definition for [@version] has unsupported parameters:  [fielddata : false]]; ]
+org.elasticsearch.indices.recovery.RecoveryFailedException: [doc_shrinked_index][0]: Recovery failed from null into {K-E6Kbx}{K-E6Kbx4TryyqoNBVUZF-w}{C3ZFU6q-QxK01plsEjaRyQ}{127.0.0.1}{127.0.0.1:9300}{box_type=medium}
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$4(IndexShard.java:1536) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard$$Lambda$1653/403275356.run(Unknown Source) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:444) [elasticsearch-5.0.0.jar:5.0.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_45]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_45]
+Caused by: org.elasticsearch.index.mapper.MapperParsingException: Mapping definition for [@version] has unsupported parameters:  [fielddata : false]
+	at org.elasticsearch.index.mapper.DocumentMapperParser.checkNoRemainingFields(DocumentMapperParser.java:146) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentMapperParser.checkNoRemainingFields(DocumentMapperParser.java:141) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.ObjectMapper$TypeParser.parseProperties(ObjectMapper.java:289) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.ObjectMapper$TypeParser.parseObjectOrDocumentTypeProperties(ObjectMapper.java:203) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.RootObjectMapper$TypeParser.parse(RootObjectMapper.java:102) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentMapperParser.parse(DocumentMapperParser.java:110) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentMapperParser.parse(DocumentMapperParser.java:91) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.MapperService.parse(MapperService.java:508) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.cluster.metadata.MetaDataMappingService$PutMappingExecutor.applyRequest(MetaDataMappingService.java:276) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.cluster.metadata.MetaDataMappingService$PutMappingExecutor.execute(MetaDataMappingService.java:241) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.cluster.service.ClusterService.runTasksForExecutor(ClusterService.java:555) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.cluster.service.ClusterService$UpdateTask.run(ClusterService.java:894) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:444) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.runAndClean(PrioritizedEsThreadPoolExecutor.java:237) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.run(PrioritizedEsThreadPoolExecutor.java:200) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 3 more
+[2016-12-29T16:14:00,911][INFO ][o.e.c.r.a.AllocationService] [K-E6Kbx] Cluster health status changed from [YELLOW] to [RED] (reason: [shards failed [[doc_shrinked_index][0]] ...]).
+

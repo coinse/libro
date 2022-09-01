@@ -1,0 +1,16 @@
+[2017-07-18 14:33:48,542][WARN ][rest.suppressed ] path: /some_crazy_schema_v4/_search, params: {pretty=, size=0, index=some_crazy_schema_v4}
+Failed to execute phase [fetch], [reduce]
+at org.elasticsearch.action.search.SearchQueryThenFetchAsyncAction$2.onFailure(SearchQueryThenFetchAsyncAction.java:146)
+at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:39)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassCastException
+[2017-07-18 14:38:25,821][DEBUG][action.search ] [In-Betweener] failed to reduce search
+Failed to execute phase [fetch], [reduce]
+at org.elasticsearch.action.search.SearchQueryThenFetchAsyncAction$2.onFailure(SearchQueryThenFetchAsyncAction.java:146)
+at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:39)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassCastException

@@ -1,0 +1,7 @@
+{
+  "issue_id": 1127,
+  "issue_url": "https://github.com/google/gson/issues/1127",
+  "title": "JsonWriter don't work correctly with float",
+  "description": "<p dir=\"auto\">float x = 3.723379;<br>\nJsonWriter writer = ...<br>\nwriter.value(x); //is will call value(double value), so it will wrong<br>\nresult is 3.723378896713257</p>\n<p dir=\"auto\">Please add new function for float.<br>\nThank you.</p>",
+  "description_text": "float x = 3.723379;\nJsonWriter writer = ...\nwriter.value(x); //is will call value(double value), so it will wrong\nresult is 3.723378896713257\nPlease add new function for float.\nThank you."
+}

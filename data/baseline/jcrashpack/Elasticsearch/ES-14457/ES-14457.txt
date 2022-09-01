@@ -1,0 +1,23 @@
+Exception in thread "main" java.lang.IllegalArgumentException: Failed to resolve address for [127.0.0.1[9300-9400]]
+Likely root cause: java.net.UnknownHostException: 127.0.0.1[9300-9400]: nodename nor servname provided, or not known
+    at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+    at java.net.InetAddress$1.lookupAllHostAddr(InetAddress.java:901)
+    at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1293)
+    at java.net.InetAddress.getAllByName0(InetAddress.java:1246)
+    at java.net.InetAddress.getAllByName(InetAddress.java:1162)
+    at java.net.InetAddress.getAllByName(InetAddress.java:1098)
+    at org.elasticsearch.transport.netty.NettyTransport.parse(NettyTransport.java:668)
+    at org.elasticsearch.transport.netty.NettyTransport.addressesFromString(NettyTransport.java:620)
+    at org.elasticsearch.transport.TransportService.addressesFromString(TransportService.java:398)
+    at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing.<init>(UnicastZenPing.java:141)
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+    at <<<guice>>>
+    at org.elasticsearch.node.Node.<init>(Node.java:198)
+    at org.elasticsearch.node.NodeBuilder.build(NodeBuilder.java:145)
+    at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:170)
+    at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:270)
+    at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:35)
+

@@ -1,0 +1,7 @@
+{
+  "issue_id": 2617,
+  "issue_url": "https://github.com/assertj/assertj/issues/2617",
+  "title": "`linesOf` variants for `Path` content",
+  "description": "<p dir=\"auto\"><code class=\"notranslate\">Path</code> related variants of <a href=\"https://www.javadoc.io/doc/org.assertj/assertj-core/latest/org/assertj/core/api/Assertions.html#linesOf(java.io.File)\" rel=\"nofollow\"><code class=\"notranslate\">linesOf</code></a> are currently not available.</p>",
+  "description_text": "Path related variants of linesOf are currently not available."
+}

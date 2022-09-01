@@ -1,0 +1,34 @@
+diff --git a/gson/src/test/java/com/google/gson/internal/bind/JsonTreeReaderTest.java b/gson/src/test/java/com/google/gson/internal/bind/JsonTreeReaderTest.java
+index f6a5bf33..1166381b 100644
+--- a/gson/src/test/java/com/google/gson/internal/bind/JsonTreeReaderTest.java
++++ b/gson/src/test/java/com/google/gson/internal/bind/JsonTreeReaderTest.java
+@@ -47,4 +47,11 @@ public class JsonTreeReaderTest extends TestCase {
+     in.skipValue();
+     assertEquals(JsonToken.END_DOCUMENT, in.peek());
+   }
++
++  public void testHasNext_endOfDocument() throws IOException {
++    JsonTreeReader reader = new JsonTreeReader(new JsonObject());
++    reader.beginObject();
++    reader.endObject();
++    assertFalse(reader.hasNext());
++  }
+ }
+diff --git a/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java b/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
+index 65cbd075..07e77aa8 100644
+--- a/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
++++ b/gson/src/test/java/com/google/gson/stream/JsonReaderTest.java
+@@ -72,6 +72,13 @@ public final class JsonReaderTest extends TestCase {
+     assertEquals(JsonToken.END_DOCUMENT, reader.peek());
+   }
+ 
++  public void testHasNextEndOfDocument() throws IOException {
++    JsonReader reader = new JsonReader(reader("{}"));
++    reader.beginObject();
++    reader.endObject();
++    assertFalse(reader.hasNext());
++  }
++
+   public void testSkipArray() throws IOException {
+     JsonReader reader = new JsonReader(reader(
+         "{\"a\": [\"one\", \"two\", \"three\"], \"b\": 123}"));

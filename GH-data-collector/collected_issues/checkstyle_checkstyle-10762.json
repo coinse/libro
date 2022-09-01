@@ -1,0 +1,7 @@
+{
+  "issue_id": 10760,
+  "issue_url": "https://github.com/checkstyle/checkstyle/issues/10760",
+  "title": "Add maven modernizer plugin",
+  "description": "<p dir=\"auto\">Plugin link <a href=\"https://github.com/gaul/modernizer-maven-plugin\">https://github.com/gaul/modernizer-maven-plugin</a></p>\n<p dir=\"auto\">It may be useful, especially for migration to java 11.<br>\nCons - some checks can be duplicated by other tools.</p>\n<p dir=\"auto\">I have added plugin, exclusions (test inputs) and fixed 2 violations here - <a class=\"commit-link\" data-hovercard-type=\"commit\" data-hovercard-url=\"https://github.com/strkkk/checkstyle/commit/e3a3a041dc2547c035fe77151edcecb0bbfd5df5/hovercard\" href=\"https://github.com/strkkk/checkstyle/commit/e3a3a041dc2547c035fe77151edcecb0bbfd5df5\">strkkk@<tt>e3a3a04</tt></a></p>\n<p dir=\"auto\">Do we need this in checkstyle code?</p>",
+  "description_text": "Plugin link https://github.com/gaul/modernizer-maven-plugin\nIt may be useful, especially for migration to java 11.\nCons - some checks can be duplicated by other tools.\nI have added plugin, exclusions (test inputs) and fixed 2 violations here - strkkk@e3a3a04\nDo we need this in checkstyle code?"
+}

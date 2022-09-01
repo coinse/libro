@@ -1,0 +1,84 @@
+java.io.IOException: Unable to parse response body for Response{requestLine=GET /time-series/_search?typed_keys=true&ignore_unavailable=false&expand_wildcards=open&allow_no_indices=true&search_type=query_then_fetch&batched_reduce_size=512 HTTP/1.1, host=http://rd-es-01:9200, response=HTTP/1.1 200 OK}
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:462)
+	at org.elasticsearch.client.RestHighLevelClient.performRequestAndParseEntity(RestHighLevelClient.java:429)
+	at org.elasticsearch.client.RestHighLevelClient.search(RestHighLevelClient.java:368)
+	at com.ze.zemart.elasticsearchclient.HighLevelClientScripts.main(HighLevelClientScripts.java:36)
+Caused by: ParsingException[[innerHitParser] failed to parse field [fields]]; nested: ParsingException[Failed to parse object: unexpected token [VALUE_NULL] found];
+	at org.elasticsearch.common.xcontent.ObjectParser.parseValue(ObjectParser.java:316)
+	at org.elasticsearch.common.xcontent.ObjectParser.parseSub(ObjectParser.java:325)
+	at org.elasticsearch.common.xcontent.ObjectParser.parse(ObjectParser.java:169)
+	at org.elasticsearch.common.xcontent.ObjectParser.apply(ObjectParser.java:183)
+	at org.elasticsearch.search.SearchHit.fromXContent(SearchHit.java:500)
+	at org.elasticsearch.search.SearchHits.fromXContent(SearchHits.java:150)
+	at org.elasticsearch.action.search.SearchResponse.fromXContent(SearchResponse.java:281)
+	at org.elasticsearch.client.RestHighLevelClient.parseEntity(RestHighLevelClient.java:573)
+	at org.elasticsearch.client.RestHighLevelClient.lambda$performRequestAndParseEntity$2(RestHighLevelClient.java:429)
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:460)
+	... 3 more
+Caused by: ParsingException[Failed to parse object: unexpected token [VALUE_NULL] found]
+	at org.elasticsearch.common.xcontent.XContentParserUtils.throwUnknownToken(XContentParserUtils.java:67)
+	at org.elasticsearch.common.xcontent.XContentParserUtils.parseStoredFieldsValue(XContentParserUtils.java:108)
+	at org.elasticsearch.common.document.DocumentField.fromXContent(DocumentField.java:142)
+	at org.elasticsearch.search.SearchHit.parseFields(SearchHit.java:610)
+	at org.elasticsearch.search.SearchHit.lambda$declareInnerHitsParseFields$13(SearchHit.java:522)
+	at org.elasticsearch.common.xcontent.AbstractObjectParser.lambda$declareObject$1(AbstractObjectParser.java:148)
+	at org.elasticsearch.common.xcontent.ObjectParser.lambda$declareField$1(ObjectParser.java:214)
+	at org.elasticsearch.common.xcontent.ObjectParser.parseValue(ObjectParser.java:314)
+	... 12 more
+Script 'new HashMap()' caused an exception
+java.io.IOException: Unable to parse response body for Response{requestLine=GET /time-series/_search?typed_keys=true&ignore_unavailable=false&expand_wildcards=open&allow_no_indices=true&search_type=query_then_fetch&batched_reduce_size=512 HTTP/1.1, host=http://rd-es-01:9200, response=HTTP/1.1 200 OK}
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:462)
+	at org.elasticsearch.client.RestHighLevelClient.performRequestAndParseEntity(RestHighLevelClient.java:429)
+	at org.elasticsearch.client.RestHighLevelClient.search(RestHighLevelClient.java:368)
+	at com.ze.zemart.elasticsearchclient.HighLevelClientScripts.main(HighLevelClientScripts.java:36)
+Caused by: ParsingException[[innerHitParser] failed to parse field [fields]]; nested: ParsingException[Failed to parse object: unexpected token [START_OBJECT] found];
+	at org.elasticsearch.common.xcontent.ObjectParser.parseValue(ObjectParser.java:316)
+	at org.elasticsearch.common.xcontent.ObjectParser.parseSub(ObjectParser.java:325)
+	at org.elasticsearch.common.xcontent.ObjectParser.parse(ObjectParser.java:169)
+	at org.elasticsearch.common.xcontent.ObjectParser.apply(ObjectParser.java:183)
+	at org.elasticsearch.search.SearchHit.fromXContent(SearchHit.java:500)
+	at org.elasticsearch.search.SearchHits.fromXContent(SearchHits.java:150)
+	at org.elasticsearch.action.search.SearchResponse.fromXContent(SearchResponse.java:281)
+	at org.elasticsearch.client.RestHighLevelClient.parseEntity(RestHighLevelClient.java:573)
+	at org.elasticsearch.client.RestHighLevelClient.lambda$performRequestAndParseEntity$2(RestHighLevelClient.java:429)
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:460)
+	... 3 more
+Caused by: ParsingException[Failed to parse object: unexpected token [START_OBJECT] found]
+	at org.elasticsearch.common.xcontent.XContentParserUtils.throwUnknownToken(XContentParserUtils.java:67)
+	at org.elasticsearch.common.xcontent.XContentParserUtils.parseStoredFieldsValue(XContentParserUtils.java:108)
+	at org.elasticsearch.common.document.DocumentField.fromXContent(DocumentField.java:142)
+	at org.elasticsearch.search.SearchHit.parseFields(SearchHit.java:610)
+	at org.elasticsearch.search.SearchHit.lambda$declareInnerHitsParseFields$13(SearchHit.java:522)
+	at org.elasticsearch.common.xcontent.AbstractObjectParser.lambda$declareObject$1(AbstractObjectParser.java:148)
+	at org.elasticsearch.common.xcontent.ObjectParser.lambda$declareField$1(ObjectParser.java:214)
+	at org.elasticsearch.common.xcontent.ObjectParser.parseValue(ObjectParser.java:314)
+	... 12 more
+Script 'new String[]{}' caused an exception
+java.io.IOException: Unable to parse response body for Response{requestLine=GET /time-series/_search?typed_keys=true&ignore_unavailable=false&expand_wildcards=open&allow_no_indices=true&search_type=query_then_fetch&batched_reduce_size=512 HTTP/1.1, host=http://rd-es-01:9200, response=HTTP/1.1 200 OK}
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:462)
+	at org.elasticsearch.client.RestHighLevelClient.performRequestAndParseEntity(RestHighLevelClient.java:429)
+	at org.elasticsearch.client.RestHighLevelClient.search(RestHighLevelClient.java:368)
+	at com.ze.zemart.elasticsearchclient.HighLevelClientScripts.main(HighLevelClientScripts.java:36)
+Caused by: ParsingException[[innerHitParser] failed to parse field [fields]]; nested: ParsingException[Failed to parse object: unexpected token [START_ARRAY] found];
+	at org.elasticsearch.common.xcontent.ObjectParser.parseValue(ObjectParser.java:316)
+	at org.elasticsearch.common.xcontent.ObjectParser.parseSub(ObjectParser.java:325)
+	at org.elasticsearch.common.xcontent.ObjectParser.parse(ObjectParser.java:169)
+	at org.elasticsearch.common.xcontent.ObjectParser.apply(ObjectParser.java:183)
+	at org.elasticsearch.search.SearchHit.fromXContent(SearchHit.java:500)
+	at org.elasticsearch.search.SearchHits.fromXContent(SearchHits.java:150)
+	at org.elasticsearch.action.search.SearchResponse.fromXContent(SearchResponse.java:281)
+	at org.elasticsearch.client.RestHighLevelClient.parseEntity(RestHighLevelClient.java:573)
+	at org.elasticsearch.client.RestHighLevelClient.lambda$performRequestAndParseEntity$2(RestHighLevelClient.java:429)
+	at org.elasticsearch.client.RestHighLevelClient.performRequest(RestHighLevelClient.java:460)
+	... 3 more
+Caused by: ParsingException[Failed to parse object: unexpected token [START_ARRAY] found]
+	at org.elasticsearch.common.xcontent.XContentParserUtils.throwUnknownToken(XContentParserUtils.java:67)
+	at org.elasticsearch.common.xcontent.XContentParserUtils.parseStoredFieldsValue(XContentParserUtils.java:108)
+	at org.elasticsearch.common.document.DocumentField.fromXContent(DocumentField.java:142)
+	at org.elasticsearch.search.SearchHit.parseFields(SearchHit.java:610)
+	at org.elasticsearch.search.SearchHit.lambda$declareInnerHitsParseFields$13(SearchHit.java:522)
+	at org.elasticsearch.common.xcontent.AbstractObjectParser.lambda$declareObject$1(AbstractObjectParser.java:148)
+	at org.elasticsearch.common.xcontent.ObjectParser.lambda$declareField$1(ObjectParser.java:214)
+	at org.elasticsearch.common.xcontent.ObjectParser.parseValue(ObjectParser.java:314)
+	... 12 more
+	

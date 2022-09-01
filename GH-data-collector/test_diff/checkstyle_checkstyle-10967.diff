@@ -1,0 +1,22 @@
+diff --git a/src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheckTest.java b/src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheckTest.java
+index 4bd7e17f8..408a54df4 100644
+--- a/src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheckTest.java
++++ b/src/test/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheckTest.java
+@@ -128,6 +128,17 @@ public class OperatorWrapCheckTest
+                 getPath("InputOperatorWrapNl.java"), expected);
+     }
+ 
++    @Test
++    public void testArraysAssign() throws Exception {
++        final String[] expected = {
++            "18:22: " + getCheckMessage(MSG_LINE_NEW, "="),
++            "36:28: " + getCheckMessage(MSG_LINE_NEW, "="),
++        };
++
++        verifyWithInlineConfigParser(
++                getPath("InputOperatorWrapArrayAssign.java"), expected);
++    }
++
+     @Test
+     public void testInvalidOption() throws Exception {
+ 

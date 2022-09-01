@@ -1,0 +1,20 @@
+{
+  "name": "issue-collector",
+  "version": "1.0.0",
+  "description": "GitHub Issue Collector Module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "greenmon",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-fetch": "^0.7.0",
+    "chalk": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^14.6.0",
+    "random": "^2.1.1"
+  },
+  "devDependencies": {}
+}

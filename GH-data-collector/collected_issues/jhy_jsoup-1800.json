@@ -1,0 +1,7 @@
+{
+  "issue_id": 1773,
+  "issue_url": "https://github.com/jhy/jsoup/issues/1773",
+  "title": "CharacterReader always allocate a 32 KB buffer that can even exceed document size",
+  "description": "<p dir=\"auto\">This might be overkill and we might be able to decrease the size of this buffer for small strings to be parsed.</p>\n<p dir=\"auto\">This should thus reduce memory allocation.</p>\n<p dir=\"auto\">Here is a small async profiler memory flame graph showing this:</p>\n<p dir=\"auto\"><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://user-images.githubusercontent.com/6928740/168553253-ec6faee4-f4fd-4608-8480-6e2e60219581.png\"><img src=\"https://user-images.githubusercontent.com/6928740/168553253-ec6faee4-f4fd-4608-8480-6e2e60219581.png\" alt=\"Screenshot from 2022-05-16 15-36-50\" style=\"max-width: 100%;\"></a></p>",
+  "description_text": "This might be overkill and we might be able to decrease the size of this buffer for small strings to be parsed.\nThis should thus reduce memory allocation.\nHere is a small async profiler memory flame graph showing this:\n"
+}

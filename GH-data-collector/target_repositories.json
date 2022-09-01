@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Hangar",
+    "owner": "HangarMC"
+  },
+  {
+    "name": "spring-boot",
+    "owner": "spring-projects"
+  },
+  {
+    "name": "jackson-core",
+    "owner": "FasterXML"
+  },
+  {
+    "name": "guava",
+    "owner": "google"
+  },
+  {
+    "name": "scribejava",
+    "owner": "scribejava"
+  },
+  {
+    "name": "closure-compiler",
+    "owner": "google"
+  },
+  {
+    "name": "gson",
+    "owner": "google"
+  },
+  {
+    "name": "cactoos",
+    "owner": "yegor256"
+  },
+  {
+    "name": "sslcontext-kickstart",
+    "owner": "Hakky54"
+  },
+  {
+    "name": "jjwt",
+    "owner": "jwtk"
+  },
+  {
+    "name": "joda-time",
+    "owner": "JodaOrg"
+  },
+  {
+    "name": "assertj",
+    "owner": "assertj"
+  },
+  {
+    "name": "jackson-databind",
+    "owner": "FasterXML"
+  },
+  {
+    "name": "mockito",
+    "owner": "mockito"
+  },
+  {
+    "name": "jackson-dataformat-xml",
+    "owner": "FasterXML"
+  },
+  {
+    "name": "checkstyle",
+    "owner": "checkstyle"
+  },
+  {
+    "name": "jsoup",
+    "owner": "jhy"
+  }
+]

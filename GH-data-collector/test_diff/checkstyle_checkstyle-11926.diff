@@ -1,0 +1,30 @@
+diff --git a/src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheckTest.java b/src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheckTest.java
+index bf26bafa5..14eb4dd76 100644
+--- a/src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheckTest.java
++++ b/src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheckTest.java
+@@ -84,7 +84,11 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
+             "63:9: " + getCheckMessage(MSG_KEY),
+             "64:9: " + getCheckMessage(MSG_KEY),
+             "65:9: " + getCheckMessage(MSG_KEY),
+-            "68:1: " + getCheckMessage(MSG_KEY),
++            "73:6: " + getCheckMessage(MSG_KEY),
++            "76:24: " + getCheckMessage(MSG_KEY),
++            "79:43: " + getCheckMessage(MSG_KEY),
++            "82:69: " + getCheckMessage(MSG_KEY),
++            "94:1: " + getCheckMessage(MSG_KEY),
+         };
+         verifyWithInlineConfigParser(
+                 getPath("InputInvalidJavadocPosition.java"), expected);
+diff --git a/src/test/java/com/puppycrawl/tools/checkstyle/utils/BlockCommentPositionTest.java b/src/test/java/com/puppycrawl/tools/checkstyle/utils/BlockCommentPositionTest.java
+index 011806e42..ce5243a70 100644
+--- a/src/test/java/com/puppycrawl/tools/checkstyle/utils/BlockCommentPositionTest.java
++++ b/src/test/java/com/puppycrawl/tools/checkstyle/utils/BlockCommentPositionTest.java
+@@ -55,7 +55,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
+                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnEnum.java",
+                         BlockCommentPosition::isOnEnum, 3),
+                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnConstructor.java",
+-                        BlockCommentPosition::isOnConstructor, 3),
++                        BlockCommentPosition::isOnConstructor, 5),
+                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnInterface.java",
+                         BlockCommentPosition::isOnInterface, 3),
+                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnAnnotation.java",

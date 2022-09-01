@@ -1,0 +1,2626 @@
+[
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Fix JwtBuilder javadoc - resolves #386",
+                "url": "https://github.com/jwtk/jjwt/pull/390",
+                "resourcePath": "/jwtk/jjwt/pull/390",
+                "createdAt": "2018-08-16T07:45:56Z",
+                "number": 390,
+                "mergeCommit": {
+                    "oid": "1969ca307a723fc1e3d561950f173bf1c7daa63f",
+                    "message": "Merge pull request #390 from wengertj/386-fix-jwtbuilder-javadoc\n\nFix JwtBuilder javadoc - resolves #386",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/1969ca307a723fc1e3d561950f173bf1c7daa63f",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "77f1a69c728dc62ff38742c9f03db6dd0813ee21",
+                                "message": "Addressed issue where org.json.JSONString and org.json.JSONWriter are not available on Android.  Resolves #388."
+                            },
+                            {
+                                "oid": "0fd3622703f251886042853ec35e43aeea6a0159",
+                                "message": "Fix JwtBuilder javadoc - resolves #386"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtBuilder.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MjA4NzcyMDc3OjBmZDM2MjI3MDNmMjUxODg2MDQyODUzZWMzNWU0M2FlZWE2YTAxNTk=",
+                                "url": "https://github.com/jwtk/jjwt/pull/390/commits/0fd3622703f251886042853ec35e43aeea6a0159"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 386,
+                                "url": "https://github.com/jwtk/jjwt/issues/386",
+                                "title": "Typos/incorrect examples in JwtBuilder JavaDoc",
+                                "bodyHTML": "<p dir=\"auto\">This is nothing critical - I think i just stumbled across two minor issues in the <code class=\"notranslate\">JwtBuilder</code> JavaDoc:</p>\n<p dir=\"auto\"><a href=\"https://github.com/jwtk/jjwt/blob/master/api/src/main/java/io/jsonwebtoken/JwtBuilder.java#L191\">1 - setAudience(String aud)</a></p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"// ...\nString jwt = Jwts.builder().setAudience(&quot;You&quot;).compact();\n// Is:\nClaims claims = Jwts.claims().setSubject(&quot;You&quot;);\n// Should be:\nClaims claims = Jwts.claims().setAudience(&quot;You&quot;);\n// ...\"><pre><span class=\"pl-c\">// ...</span>\n<span class=\"pl-smi\">String</span> <span class=\"pl-s1\">jwt</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">builder</span>().<span class=\"pl-en\">setAudience</span>(<span class=\"pl-s\">\"You\"</span>).<span class=\"pl-en\">compact</span>();\n<span class=\"pl-c\">// Is:</span>\n<span class=\"pl-smi\">Claims</span> <span class=\"pl-s1\">claims</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">claims</span>().<span class=\"pl-en\">setSubject</span>(<span class=\"pl-s\">\"You\"</span>);\n<span class=\"pl-c\">// Should be:</span>\n<span class=\"pl-smi\">Claims</span> <span class=\"pl-s1\">claims</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">claims</span>().<span class=\"pl-en\">setAudience</span>(<span class=\"pl-s\">\"You\"</span>);\n<span class=\"pl-c\">// ...</span></pre></div>\n<p dir=\"auto\"><a href=\"https://github.com/jwtk/jjwt/blob/master/api/src/main/java/io/jsonwebtoken/JwtBuilder.java#L304\">2 - setId(String jti)</a></p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"// ...\nString jwt = Jwts.builder().setId(UUID.randomUUID().toString()).compact();\n// Is:\nClaims claims = Jwts.claims().setIssuedAt(UUID.randomUUID().toString());\n// Should be:\nClaims claims = Jwts.claims().setId(UUID.randomUUID().toString());\"><pre><span class=\"pl-c\">// ...</span>\n<span class=\"pl-smi\">String</span> <span class=\"pl-s1\">jwt</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">builder</span>().<span class=\"pl-en\">setId</span>(<span class=\"pl-c1\">UUID</span>.<span class=\"pl-en\">randomUUID</span>().<span class=\"pl-en\">toString</span>()).<span class=\"pl-en\">compact</span>();\n<span class=\"pl-c\">// Is:</span>\n<span class=\"pl-smi\">Claims</span> <span class=\"pl-s1\">claims</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">claims</span>().<span class=\"pl-en\">setIssuedAt</span>(<span class=\"pl-c1\">UUID</span>.<span class=\"pl-en\">randomUUID</span>().<span class=\"pl-en\">toString</span>());\n<span class=\"pl-c\">// Should be:</span>\n<span class=\"pl-smi\">Claims</span> <span class=\"pl-s1\">claims</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">claims</span>().<span class=\"pl-en\">setId</span>(<span class=\"pl-c1\">UUID</span>.<span class=\"pl-en\">randomUUID</span>().<span class=\"pl-en\">toString</span>());</pre></div>\n<p dir=\"auto\">I'd be happy to open a PR if you guys are too busy.<br>\nThanks and keep up the great work with this library <g-emoji class=\"g-emoji\" alias=\"+1\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png\">👍</g-emoji></p>",
+                                "resourcePath": "/jwtk/jjwt/issues/386",
+                                "createdAt": "2018-08-14T07:43:40Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "#84 JwtBuilder.setClaims() now accepts `Map<String, ?> claims`",
+                "url": "https://github.com/jwtk/jjwt/pull/472",
+                "resourcePath": "/jwtk/jjwt/pull/472",
+                "createdAt": "2019-07-15T07:46:52Z",
+                "number": 472,
+                "mergeCommit": {
+                    "oid": "ec3298af18efe1f06ea97166134a64f7f4640d01",
+                    "message": "Merge pull request #472 from longtimeago/84\n\n#84 JwtBuilder.setClaims() now accepts `Map<String, ?> claims`",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/ec3298af18efe1f06ea97166134a64f7f4640d01",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "17c3dcefd0b297ae387c45d1c99a820b5c714bd3",
+                                "message": "Merge pull request #471 from jwtk/470-travis-cleanup\n\nUpdate .travis.yml"
+                            },
+                            {
+                                "oid": "dd638c2b3a792f91d2bbab071d3fb141b34f1b70",
+                                "message": "JwtBuilder.setClaims() now accepts `Map<String, ?> claims`\n\nThis would allow to pass `Map<String,String>`"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultClaims.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/JwtMap.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mjk3NTAzOTA1OmRkNjM4YzJiM2E3OTJmOTFkMmJiYWIwNzFkM2ZiMTQxYjM0ZjFiNzA=",
+                                "url": "https://github.com/jwtk/jjwt/pull/472/commits/dd638c2b3a792f91d2bbab071d3fb141b34f1b70"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 84,
+                                "url": "https://github.com/jwtk/jjwt/issues/84",
+                                "title": "API signature enhancement for JwtBuilder.setClaims",
+                                "bodyHTML": "<p dir=\"auto\">Currently:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"JwtBuilder setClaims(Map&lt;String, Object&gt; claims);\n\"><pre class=\"notranslate\"><code>JwtBuilder setClaims(Map&lt;String, Object&gt; claims);\n\n</code></pre></div>\n<p dir=\"auto\">Would be nice if this looked like:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"JwtBuilder setClaims(Map&lt;String, ? extends Object&gt; claims);\n\"><pre class=\"notranslate\"><code>JwtBuilder setClaims(Map&lt;String, ? extends Object&gt; claims);\n\n</code></pre></div>\n<p dir=\"auto\">This would allow one to pass a Maps of type <code class=\"notranslate\">Map&lt;String,String&gt;</code>, etc into this method without needing to cast.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/84",
+                                "createdAt": "2016-01-20T20:30:44Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Issue 449: updated docs to better clarify help and contributing.",
+                "url": "https://github.com/jwtk/jjwt/pull/466",
+                "resourcePath": "/jwtk/jjwt/pull/466",
+                "createdAt": "2019-07-11T23:19:53Z",
+                "number": 466,
+                "mergeCommit": {
+                    "oid": "81dd6c5238bf40f1a92412177c4cf0be6f8d9ad0",
+                    "message": "Merge pull request #466 from jwtk/449-doc-help\n\nIssue 449: updated docs to better clarify help and contributing.",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/81dd6c5238bf40f1a92412177c4cf0be6f8d9ad0",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "41f81570e940dbf5b4f7ad95823c1b167e8a474d",
+                                "message": "Merge pull request #463 from jwtk/461-jackson-upgrade\n\nIssue 461: upgraded Jackson version to 2.9.9.1. Fixes #461."
+                            },
+                            {
+                                "oid": "4c5d009ee41e20abb709ddb7ab57c9920a15fc71",
+                                "message": "Issue 449: updated docs to better clarify help and contributing. Fixes #449."
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "README.md"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mjk2ODYwNjQyOjRjNWQwMDllZTQxZTIwYWJiNzA5ZGRiN2FiNTdjOTkyMGExNWZjNzE=",
+                                "url": "https://github.com/jwtk/jjwt/pull/466/commits/4c5d009ee41e20abb709ddb7ab57c9920a15fc71"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 449,
+                                "url": "https://github.com/jwtk/jjwt/issues/449",
+                                "title": "Update readme for instructions on how to ask for help",
+                                "bodyHTML": "<p dir=\"auto\">Per <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"431675927\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/448\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/448/hovercard\" href=\"https://github.com/jwtk/jjwt/issues/448\">#448</a>, we should update the readme to indicate how to use StackOverflow (using the <code class=\"notranslate\">jjwt</code> tag) and/or the Slack channel.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/449",
+                                "createdAt": "2019-04-10T23:38:53Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Add support for custom type deserialization with Jackson",
+                "url": "https://github.com/jwtk/jjwt/pull/495",
+                "resourcePath": "/jwtk/jjwt/pull/495",
+                "createdAt": "2019-09-19T21:29:34Z",
+                "number": 495,
+                "mergeCommit": {
+                    "oid": "7090bf39c3e457f274967af50105a880a42af26b",
+                    "message": "Add support for custom type deserialization with Jackson (#495)\n\n- Adds new constructor JacksonDeserializer(Map<String, Class> claimTypeMap), which will enable later calls Claims.get(\"key\", CustomType.class) to work as expectd\r\n - Adds new Maps utility class to make map creation fluent\r\n\r\nFixes: #369",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/7090bf39c3e457f274967af50105a880a42af26b",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "a0060d60f9f8f8d1e23a85b919cc9cd786fca268",
+                                "message": "Fix duplicate japicmp plugin definition in root pom (#504)\n\nMerge japicmp plugin definitions - caused by a merge"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/Claims.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "api/src/main/java/io/jsonwebtoken/lang/Maps.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "api/src/test/groovy/io/jsonwebtoken/lang/MapsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/main/java/io/jsonwebtoken/jackson/io/JacksonDeserializer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/test/groovy/io/jsonwebtoken/jackson/io/JacksonDeserializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/test/groovy/io/jsonwebtoken/jackson/io/JacksonSerializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jackson/src/test/groovy/io/jsonwebtoken/jackson/io/stubs/CustomBean.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultClaims.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/CustomObjectDeserializationTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultClaimsTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzE5NDcwMjE2OjIwYWUwNzViMzcwNWNhZGE0NzY1ODQ5ZTQ0MmFlNWQ0NmU0ODhhYmU=",
+                                "url": "https://github.com/jwtk/jjwt/pull/495/commits/20ae075b3705cada4765849e442ae5d46e488abe"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 369,
+                                "url": "https://github.com/jwtk/jjwt/issues/369",
+                                "title": "JSON POJO unmarshalling",
+                                "bodyHTML": "<p dir=\"auto\">Per the discussion in <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"214085686\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/214\" data-hovercard-type=\"pull_request\" data-hovercard-url=\"/jwtk/jjwt/pull/214/hovercard\" href=\"https://github.com/jwtk/jjwt/pull/214\">#214</a>:</p>\n<p dir=\"auto\">Improve the exception message:</p>\n<p dir=\"auto\">String msg = \"Cannot convert existing claim value of type \" + value.getClass() + \" to desired type \" + requiredType + \". JJWT only converts simple Date, Long, Integer, Short and Byte types automatically. Anything more complex is expected to be already converted to your desired type by the JSON Deserializer implementation. You may specify a custom Deserializer for a JwtParser with the desired conversion configuration via the JwtParser#deserializeJsonWith method. See <a href=\"https://github.com/jwtk/jjwt/README.md#whatever\">https://github.com/jwtk/jjwt/README.md#whatever</a> for more information.\";</p>\n<p dir=\"auto\">Plus:</p>\n<ul dir=\"auto\">\n<li>JavaDoc for the <code class=\"notranslate\">Claims#get</code> method (dunno why it is missing)</li>\n<li>supporting <code class=\"notranslate\">new JacksonDeserializer(Maps.of(\"user\", User.class))</code></li>\n<li>public documentation on marshaling/unmarshaling and how to do it w/ JJWT (which is the <code class=\"notranslate\">https://github.com/jwtk/jjwt/README.md#whatever</code> link in the above exception message).</li>\n</ul>\n<p dir=\"auto\">cc <a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/cbudtz/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/cbudtz\">@cbudtz</a></p>",
+                                "resourcePath": "/jwtk/jjwt/issues/369",
+                                "createdAt": "2018-07-30T16:03:47Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Upgrade Jackson Databind 2.9.9.3",
+                "url": "https://github.com/jwtk/jjwt/pull/485",
+                "resourcePath": "/jwtk/jjwt/pull/485",
+                "createdAt": "2019-09-12T19:59:29Z",
+                "number": 485,
+                "mergeCommit": {
+                    "oid": "40d77324a4e3a04385272a867f175fa19a274519",
+                    "message": "Merge pull request #485 from jwtk/jackson-2993\n\nUpgrade Jackson Databind 2.9.9.3",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/40d77324a4e3a04385272a867f175fa19a274519",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "ff8a6bfe585bcb3daa272255de9a0eed0f8e269a",
+                                "message": "Merge pull request #414 from patton73/master\n\nAdded Gson serialization/deserialization Extension"
+                            },
+                            {
+                                "oid": "cf9196d575154e4733016c3c9829a51fa7a16106",
+                                "message": "Setting travis-ci dist to trusty in order to install older java versions"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": ".travis.yml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzE3MDY1MzE5OmNmOTE5NmQ1NzUxNTRlNDczMzAxNmMzYzk4MjlhNTFmYTdhMTYxMDY=",
+                                "url": "https://github.com/jwtk/jjwt/pull/485/commits/cf9196d575154e4733016c3c9829a51fa7a16106"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 484,
+                                "url": "https://github.com/jwtk/jjwt/issues/484",
+                                "title": "Upgrade Jackson to latest stable release",
+                                "bodyHTML": "",
+                                "resourcePath": "/jwtk/jjwt/issues/484",
+                                "createdAt": "2019-09-12T19:27:17Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "enhancement" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Add JwtParserBuilder as the preferred way to create a JwtParser instance",
+                "url": "https://github.com/jwtk/jjwt/pull/486",
+                "resourcePath": "/jwtk/jjwt/pull/486",
+                "createdAt": "2019-09-16T23:03:22Z",
+                "number": 486,
+                "mergeCommit": {
+                    "oid": "94d151129da79f1a237fe27415b8eafb791c68f8",
+                    "message": "Add JwtParserBuilder as the preferred way to create a JwtParser instance (#486)\n\n- Added new JwtParserBuilder\r\n- Copied mutator methods from JwtParser into new JwtParserBuilder\r\n- Marked said methods as deprecated in JwtParser\r\n- Copied JwtParserTest and JwtsTest to Deprecated*, as to retain coverage on methods that will be removed in 1.0\r\n- Added ImmutableJwtParser\r\n  This is a stop gap until 1.0, all of the mutable methods will now throw a IllegalStateException.\r\n  NOTE: this only comes into place when using the new Jwts.parserBuilder(), Jwts.parser() is unchanged.\r\n\r\nFixes: #473",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/94d151129da79f1a237fe27415b8eafb791c68f8",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "a236656c007fa24f17f3466416562065b08975dd",
+                                "message": "Fix minor Javadoc error in JacksonDeserializer (#505)\n\nmissing `#` in @link tag"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/DeprecatedJwtParserTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/DeprecatedJwtsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/JwtParserTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/JwtsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/RsaSigningKeyResolverAdapterTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultJwsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultJwtBuilderTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultJwtParserBuilderTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultJwtTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/ImmutableJwtParserTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzE4MDk2Mzg3OjQ5OWY3MTVlOGMwYmZlMWI5NmFhZDY3MmY4MmI2MTUwNmU4YmUxMWY=",
+                                "url": "https://github.com/jwtk/jjwt/pull/486/commits/499f715e8c0bfe1b96aad672f82b61506e8be11f"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 473,
+                                "url": "https://github.com/jwtk/jjwt/issues/473",
+                                "title": "Introduce JwtParserBuilder and migrate JwtParser.* mutator methods",
+                                "bodyHTML": "<p dir=\"auto\">Currently JwtParser has mutator/configuration methods that modify the parser state (<code class=\"notranslate\">require</code>* methods, setClock, signingKeyResolver, compressionCodecResolver, etc).</p>\n<p dir=\"auto\">All of these methods should be in a <code class=\"notranslate\">JwtParserBuilder</code> interface that has a <code class=\"notranslate\">build()</code> method that returns a <code class=\"notranslate\">JwtParser</code> instance.</p>\n<p dir=\"auto\">This can be introduced before 1.0 and a <code class=\"notranslate\">Jwts.parserBuilder()</code> method introduced and that should be documented as the primary/preferred mechanism moving forward.  <code class=\"notranslate\">Jwts.parser()</code> and all existing mutators in the <code class=\"notranslate\">JwtParser</code> interface should be deprecated prior to 1.0 and then removed entirely for the 1.0 release.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/473",
+                                "createdAt": "2019-07-15T17:06:08Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "enhancement" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Updated documentation and changelog to reflect the new Gson extension",
+                "url": "https://github.com/jwtk/jjwt/pull/476",
+                "resourcePath": "/jwtk/jjwt/pull/476",
+                "createdAt": "2019-07-18T23:19:16Z",
+                "number": 476,
+                "mergeCommit": {
+                    "oid": "b40e5de3d8a73df2e4a7919fb5bc59ca583278ad",
+                    "message": "Updated documentation and changelog to reflect the new Gson extension. Fixes #410. (#476)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/b40e5de3d8a73df2e4a7919fb5bc59ca583278ad",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "637495e4c2cf1b8379a02221be2abafc109cd2ad",
+                                "message": "- Update README to use `parserBuilder()` instead of `parser()` (#499)\n- Docs: Adds section to README covering custom object parsing (#500)\n- Docs: Add note about JwtParserBuilder creating an immutable JwtParser (#508)\nDoc: #486\nFixes: #494\nDoc: #495\nFixes: #171"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "README.md"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mjk5MTI3NzE0OjA4MzRkYmNiODc5ODRlNWY0OTZlMjcwZGEwZjQzNjE2MjhkMjllMzU=",
+                                "url": "https://github.com/jwtk/jjwt/pull/476/commits/0834dbcb87984e5f496e270da0f4361628d29e35"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 410,
+                                "url": "https://github.com/jwtk/jjwt/issues/410",
+                                "title": "org.google.com gson extension",
+                                "bodyHTML": "<p dir=\"auto\">Is there also an implementation that relies on gson library. I mean Google com.google.gson library?<br>\nThanks.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/410",
+                                "createdAt": "2018-11-09T10:26:42Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Fix split package issue in extensions/jackson and extensions/orgjson",
+                "url": "https://github.com/jwtk/jjwt/pull/488",
+                "resourcePath": "/jwtk/jjwt/pull/488",
+                "createdAt": "2019-09-17T20:51:34Z",
+                "number": 488,
+                "mergeCommit": {
+                    "oid": "6e74be0b8d0f12c6204258fb2b038b2c0ce20d98",
+                    "message": "Fix split package issue in extensions/jackson and extensions/orgjson (#488)\n\n* Fix split package issue in extensions/jackson and extensions/orgjson\r\n\r\nThis moves the implementation specific classes:\r\n- `io.jsonwebtoken.io.Jackson*` to `io.jsonwebtoken.jackson.io.Jackson*`\r\n- `io.jsonwebtoken.io.OrgJson*` to `io.jsonwebtoken.orgjson.io.OrgJson*`\r\n\r\n* Add Backwards Compatibility Warning to CHANGELOG\r\n* Add `jjwt-jackson:deprecated` and `jjwt-orgjson:deprecated` modules to retain backward-compatible versions of the Jackson and OrgJson Serializers (this is built with the shade plugin and binary compatibility validated with japicmp)\r\n\r\nFixes: #399",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/6e74be0b8d0f12c6204258fb2b038b2c0ce20d98",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "b5958202c0687a467f2851319a7f2213128eae45",
+                                "message": "Reenable using the manifest from maven-bundle-plugin run (#503)\n\n* Reenable using the manifest from maven-bundle-plugin run\r\n\r\n* Also enable manifest changes again\r\n\r\n* Remove import tweaks. Add optional bnd.bnd config"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "extensions/orgjson/src/main/java/io/jsonwebtoken/orgjson/io/OrgJsonSerializer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "extensions/orgjson/src/test/groovy/io/jsonwebtoken/orgjson/io/AndroidOrgJsonSerializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "extensions/orgjson/src/test/groovy/io/jsonwebtoken/orgjson/io/OrgJsonDeserializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "extensions/orgjson/src/test/groovy/io/jsonwebtoken/orgjson/io/OrgJsonSerializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/io/RuntimeClasspathDeserializerLocator.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/io/RuntimeClasspathSerializerLocator.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/io/RuntimeClasspathDeserializerLocatorTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/io/RuntimeClasspathSerializerLocatorTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzE4NTIwNzcyOmM0ZDA2ZTU0NThlNjA2MTlmODEzODkzMTAwZGZkZmNhNTljMjJjMjQ=",
+                                "url": "https://github.com/jwtk/jjwt/pull/488/commits/c4d06e5458e60619f813893100dfdfca59c22c24"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 399,
+                                "url": "https://github.com/jwtk/jjwt/issues/399",
+                                "title": "JDK 10+ support",
+                                "bodyHTML": "<p dir=\"auto\">I'm using java 9 modules in my project and when I try to use it, I get this compilation error:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"&gt; Task :auth:compileJava FAILED\nerror: the unnamed module reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module reactor.core reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module spring.boot.starter reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module jjwt.jackson reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module com.fasterxml.jackson.databind reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module jjwt.impl reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\n...\"><pre class=\"notranslate\"><code>&gt; Task :auth:compileJava FAILED\nerror: the unnamed module reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module reactor.core reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module spring.boot.starter reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module jjwt.jackson reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module com.fasterxml.jackson.databind reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\nerror: module jjwt.impl reads package io.jsonwebtoken.io from both jjwt.api and jjwt.jackson\n...\n</code></pre></div>\n<p dir=\"auto\">My gradle file looks like this:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"implementation 'io.jsonwebtoken:jjwt-api:0.10.5'\nruntime 'io.jsonwebtoken:jjwt-impl:0.10.5','io.jsonwebtoken:jjwt-orgjson:0.10.5'\"><pre class=\"notranslate\"><code>implementation 'io.jsonwebtoken:jjwt-api:0.10.5'\nruntime 'io.jsonwebtoken:jjwt-impl:0.10.5','io.jsonwebtoken:jjwt-orgjson:0.10.5'\n</code></pre></div>\n<p dir=\"auto\">I couldn't make it work or find any workaround to this issue.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/399",
+                                "createdAt": "2018-09-26T16:20:13Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Reenable using the manifest from maven-bundle-plugin run",
+                "url": "https://github.com/jwtk/jjwt/pull/503",
+                "resourcePath": "/jwtk/jjwt/pull/503",
+                "createdAt": "2019-09-26T08:21:58Z",
+                "number": 503,
+                "mergeCommit": {
+                    "oid": "b5958202c0687a467f2851319a7f2213128eae45",
+                    "message": "Reenable using the manifest from maven-bundle-plugin run (#503)\n\n* Reenable using the manifest from maven-bundle-plugin run\r\n\r\n* Also enable manifest changes again\r\n\r\n* Remove import tweaks. Add optional bnd.bnd config",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/b5958202c0687a467f2851319a7f2213128eae45",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "c246385be1b4beca4a5cd1a2debc1f5aa5008848",
+                                "message": "Updating to jackson-databind 2.9.10 (#498)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzIxNTk2Mzc1OjI4OWE5YzAxY2NlNDZmMDkxM2QwYjUwMjAzNGE2MTdmODA5ZjE4ZjI=",
+                                "url": "https://github.com/jwtk/jjwt/pull/503/commits/289a9c01cce46f0913d0b502034a617f809f18f2"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 502,
+                                "url": "https://github.com/jwtk/jjwt/issues/502",
+                                "title": "The jars are not valid OSGi bundles anymore",
+                                "bodyHTML": "<p dir=\"auto\">Since this commit:<br>\n<a class=\"commit-link\" data-hovercard-type=\"commit\" data-hovercard-url=\"https://github.com/jwtk/jjwt/commit/439c027c2effcbc0e28d4507e8201071bd14f5d4/hovercard\" href=\"https://github.com/jwtk/jjwt/commit/439c027c2effcbc0e28d4507e8201071bd14f5d4\"><tt>439c027</tt></a></p>\n<p dir=\"auto\">The jars do not contain the OSGi metadata anymore. I can do a PR to add it back.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/502",
+                                "createdAt": "2019-09-25T14:31:23Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "relocated Services.java to impl module (along with tests).",
+                "url": "https://github.com/jwtk/jjwt/pull/529",
+                "resourcePath": "/jwtk/jjwt/pull/529",
+                "createdAt": "2019-10-27T15:16:11Z",
+                "number": 529,
+                "mergeCommit": {
+                    "oid": "dacdb2ce25d1161c03904a874da88107b0459766",
+                    "message": "relocated Service.java to impl module (along with tests). (#529)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/dacdb2ce25d1161c03904a874da88107b0459766",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "c21c30a025acf6be327d3f89e99b962c748cc05d",
+                                "message": "Merge pull request #496 from jwtk/service-loader\n\nReplace hardcoded class names and reflection with ServiceLoader\r\n\r\nFixes: #458"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/lang/LegacyServices.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/lang/Services.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/lang/UnavailableImplementationException.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/DeprecatedJwtsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/JwtsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/StubService.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultStubService.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/compression/DefaultCompressionCodecResolverTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/lang/ServicesTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/resources/META-INF/services/io.jsonwebtoken.StubService"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzMyODY0NjE0OjRmYmM1YmUxYTA4MTA0OTRkMTRmMWE4OTQ5YTgwZTgxNjk4MWFkNzQ=",
+                                "url": "https://github.com/jwtk/jjwt/pull/529/commits/4fbc5be1a0810494d14f1a8949a80e816981ad74"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 524,
+                                "url": "https://github.com/jwtk/jjwt/issues/524",
+                                "title": "Move Services class",
+                                "bodyHTML": "<p dir=\"auto\">from <code class=\"notranslate\">io.jsonwebtoken.lang.Services</code> to the <code class=\"notranslate\">impl</code> module in the package <code class=\"notranslate\">io.jsonwebtoken.impl.lang.Services</code>.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/524",
+                                "createdAt": "2019-10-24T22:46:29Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "README edits for 0.11.0",
+                "url": "https://github.com/jwtk/jjwt/pull/559",
+                "resourcePath": "/jwtk/jjwt/pull/559",
+                "createdAt": "2020-02-04T22:42:39Z",
+                "number": 559,
+                "mergeCommit": {
+                    "oid": "b4363e1572da2d0dd4b065eaec2a25412064ecee",
+                    "message": "- Update README to use `parserBuilder()` instead of `parser()` (#499) (#559)\n\n- Docs: Adds section to README covering custom object parsing (#500)\r\n- Docs: Add note about JwtParserBuilder creating an immutable JwtParser (#508)\r\nDoc: #486\r\nFixes: #494\r\nDoc: #495\r\nFixes: #171\r\n\r\nUpdated documentation and changelog to reflect the new Gson extension. Fixes #410. (#476)\r\n\r\nCo-authored-by: Brian Demers <brian.demers@gmail.com>",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/b4363e1572da2d0dd4b065eaec2a25412064ecee",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "1aa82257039884ea2c6f6a7219b443b9691190ee",
+                                "message": "Documented how to convert strings to SecretKey instances.  Resolves #517 (#561)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "README.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/Jwts.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzcxMDg3MjkxOmFjMjZlNTdhMTE3YjIwYWJlMDQ3MDlmMGRjY2VjODBkZWRiNTBjYzQ=",
+                                "url": "https://github.com/jwtk/jjwt/pull/559/commits/ac26e57a117b20abe04709f0dccec80dedb50cc4"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 171,
+                                "url": "https://github.com/jwtk/jjwt/issues/171",
+                                "title": "Document whether DefaultJwtParser is thread-safe and/or resuable",
+                                "bodyHTML": "<p dir=\"auto\">Looks like that's the intent; can you make a definitive statement?</p>\n<p dir=\"auto\">Thanks!</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/171",
+                                "createdAt": "2016-09-16T17:13:56Z",
+                                "labels": { "edges": [] }
+                            }
+                        },
+                        {
+                            "node": {
+                                "number": 494,
+                                "url": "https://github.com/jwtk/jjwt/issues/494",
+                                "title": "Change all documentation to reference Jwts.parserBuilder() + build instead of Jwts.parser()",
+                                "bodyHTML": "<p dir=\"auto\"><a class=\"user-mention notranslate\" data-hovercard-type=\"user\" data-hovercard-url=\"/users/bdemers/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/bdemers\">@bdemers</a> do you want to take a crack at this as a separate PR?  We can only merge it in immediately prior to cutting 0.11.0.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/494",
+                                "createdAt": "2019-09-18T20:15:03Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Ensured DeflateCompressionCodec could fallback to <= 0.10.6 implementation",
+                "url": "https://github.com/jwtk/jjwt/pull/557",
+                "resourcePath": "/jwtk/jjwt/pull/557",
+                "createdAt": "2020-02-04T19:20:52Z",
+                "number": 557,
+                "mergeCommit": {
+                    "oid": "c38f4af239f99968e3327dfb4a31ab2f5cedb78b",
+                    "message": "Ensured DeflateCompressionCodec could fallback to <= 0.10.6 implementation if encountering an IOException.  This allows compressed JWTs created before 0.10.7 to still work.  Fixes #536 (#556) (#557)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/c38f4af239f99968e3327dfb4a31ab2f5cedb78b",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "950e6fbcc748c55f7260686572b873650c4d7cbe",
+                                "message": "cherry-pick 4821395c06b0786e19b1a3153be65f39a2a524d9: Ensured SignatureAlgorithm `PS256`, `PS384`, and `PS512` worked properly on JDK 11 and later without requiring BouncyCastle. (#555)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/compression/DeflateCompressionCodec.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/compression/DeflateCompressionCodecTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzcxMDA3MzYyOjNkMTc0MGE3ODAwMzJhOWYzODkyOTcyNjI3NzAxNTIzMzE0NTEzZmI=",
+                                "url": "https://github.com/jwtk/jjwt/pull/557/commits/3d1740a780032a9f3892972627701523314513fb"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 536,
+                                "url": "https://github.com/jwtk/jjwt/issues/536",
+                                "title": "Token created/compressed with 0.10.6 can't be parsed with 0.10.7",
+                                "bodyHTML": "<p dir=\"auto\">Simple testcase:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"import java.time.LocalDate;\nimport java.time.ZoneOffset;\nimport java.util.Date;\n\nimport org.junit.jupiter.api.Assertions;\nimport org.junit.jupiter.api.Test;\n\nimport io.jsonwebtoken.CompressionCodecs;\nimport io.jsonwebtoken.Jwt;\nimport io.jsonwebtoken.Jwts;\n\npublic class JjwtDeflateCompatibilityTest {\n\n    @Test\n    public void testJjwt0_10_6() {\n\n        String jwt = Jwts.builder().setIssuer(&quot;me&quot;).setSubject(&quot;user&quot;)\n                .setIssuedAt(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay().toInstant(ZoneOffset.UTC)))\n                .setExpiration(Date.from(LocalDate.of(2100, 1, 1).atStartOfDay().toInstant(ZoneOffset.UTC)))\n                .compressWith(CompressionCodecs.DEFLATE).compact();\n\n        Jwt&lt;?, ?&gt; parsed = Jwts.parser().parse(jwt);\n\n        // Same token as above, but created with 0.10.6\n        String jwt0_10_6 = &quot;eyJhbGciOiJub25lIiwiemlwIjoiREVGIn0.eNqqVsosLlayUspNVdJRKi5NAjJLi1OLgJzMxBIlK0sTMzMLEwsDAx2l1IoCJSsTQwMjExOQQC0AAAD__w.&quot;;\n        Jwt&lt;?, ?&gt; parsed2 = Jwts.parser().parse(jwt0_10_6);\n\n        Assertions.assertEquals(parsed.toString(), parsed2.toString()); // fails currently\n    }\n}\"><pre class=\"notranslate\"><code>import java.time.LocalDate;\nimport java.time.ZoneOffset;\nimport java.util.Date;\n\nimport org.junit.jupiter.api.Assertions;\nimport org.junit.jupiter.api.Test;\n\nimport io.jsonwebtoken.CompressionCodecs;\nimport io.jsonwebtoken.Jwt;\nimport io.jsonwebtoken.Jwts;\n\npublic class JjwtDeflateCompatibilityTest {\n\n    @Test\n    public void testJjwt0_10_6() {\n\n        String jwt = Jwts.builder().setIssuer(\"me\").setSubject(\"user\")\n                .setIssuedAt(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay().toInstant(ZoneOffset.UTC)))\n                .setExpiration(Date.from(LocalDate.of(2100, 1, 1).atStartOfDay().toInstant(ZoneOffset.UTC)))\n                .compressWith(CompressionCodecs.DEFLATE).compact();\n\n        Jwt&lt;?, ?&gt; parsed = Jwts.parser().parse(jwt);\n\n        // Same token as above, but created with 0.10.6\n        String jwt0_10_6 = \"eyJhbGciOiJub25lIiwiemlwIjoiREVGIn0.eNqqVsosLlayUspNVdJRKi5NAjJLi1OLgJzMxBIlK0sTMzMLEwsDAx2l1IoCJSsTQwMjExOQQC0AAAD__w.\";\n        Jwt&lt;?, ?&gt; parsed2 = Jwts.parser().parse(jwt0_10_6);\n\n        Assertions.assertEquals(parsed.toString(), parsed2.toString()); // fails currently\n    }\n}\n</code></pre></div>\n<p dir=\"auto\">Fails currently with:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"io.jsonwebtoken.CompressionException: Unable to decompress bytes.\n\tat io.jsonwebtoken.impl.compression.AbstractCompressionCodec.decompress(AbstractCompressionCodec.java:114)\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:294)\n...\nCaused by: java.io.EOFException: Unexpected end of ZLIB input stream\n\tat java.util.zip.InflaterInputStream.fill(InflaterInputStream.java:240)\n\tat java.util.zip.InflaterInputStream.read(InflaterInputStream.java:158)\n\tat java.io.FilterInputStream.read(FilterInputStream.java:107)\n\tat io.jsonwebtoken.impl.compression.AbstractCompressionCodec.readAndClose(AbstractCompressionCodec.java:51)\n\tat io.jsonwebtoken.impl.compression.DeflateCompressionCodec.doDecompress(DeflateCompressionCodec.java:52)\n\tat io.jsonwebtoken.impl.compression.AbstractCompressionCodec.decompress(AbstractCompressionCodec.java:112)\n\t... 55 more\"><pre class=\"notranslate\"><code>io.jsonwebtoken.CompressionException: Unable to decompress bytes.\n\tat io.jsonwebtoken.impl.compression.AbstractCompressionCodec.decompress(AbstractCompressionCodec.java:114)\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:294)\n...\nCaused by: java.io.EOFException: Unexpected end of ZLIB input stream\n\tat java.util.zip.InflaterInputStream.fill(InflaterInputStream.java:240)\n\tat java.util.zip.InflaterInputStream.read(InflaterInputStream.java:158)\n\tat java.io.FilterInputStream.read(FilterInputStream.java:107)\n\tat io.jsonwebtoken.impl.compression.AbstractCompressionCodec.readAndClose(AbstractCompressionCodec.java:51)\n\tat io.jsonwebtoken.impl.compression.DeflateCompressionCodec.doDecompress(DeflateCompressionCodec.java:52)\n\tat io.jsonwebtoken.impl.compression.AbstractCompressionCodec.decompress(AbstractCompressionCodec.java:112)\n\t... 55 more\n</code></pre></div>",
+                                "resourcePath": "/jwtk/jjwt/issues/536",
+                                "createdAt": "2019-11-28T13:48:57Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "bug" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Documented why changing Base64 sometimes does not invalid signature checks.",
+                "url": "https://github.com/jwtk/jjwt/pull/560",
+                "resourcePath": "/jwtk/jjwt/pull/560",
+                "createdAt": "2020-02-05T01:55:05Z",
+                "number": 560,
+                "mergeCommit": {
+                    "oid": "5481248a71010e7e6b3b2e48ed1710f397c29bdd",
+                    "message": "Documented why changing Base64 sometimes does not invalid signature checks.  Resolves #518 (#560)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/5481248a71010e7e6b3b2e48ed1710f397c29bdd",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "c38f4af239f99968e3327dfb4a31ab2f5cedb78b",
+                                "message": "Ensured DeflateCompressionCodec could fallback to <= 0.10.6 implementation if encountering an IOException.  This allows compressed JWTs created before 0.10.7 to still work.  Fixes #536 (#556) (#557)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "README.md"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzcxMTQ1ODQxOmFiNjY5Y2IxZDRkNzBjOTQ3NWM4MjUxZmU0YjJjNGQ4OTdiYzIwOWM=",
+                                "url": "https://github.com/jwtk/jjwt/pull/560/commits/ab669cb1d4d70c9475c8251fe4b2c4d897bc209c"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 518,
+                                "url": "https://github.com/jwtk/jjwt/issues/518",
+                                "title": "Document why changing some characters in a Base64-encoded string does not invalidate signatures",
+                                "bodyHTML": "<p dir=\"auto\">Add a section to the Readme why this doesn't invalidate signature calculation and is not a flaw in the library.  See <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"210431197\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/211\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/211/hovercard\" href=\"https://github.com/jwtk/jjwt/issues/211\">#211</a> <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"265326218\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/269\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/269/hovercard\" href=\"https://github.com/jwtk/jjwt/issues/269\">#269</a> <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"324383694\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/324\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/324/hovercard\" href=\"https://github.com/jwtk/jjwt/issues/324\">#324</a> and others.</p>\n<p dir=\"auto\">Also:</p>\n<p dir=\"auto\"><a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"509981994\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/520\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/520/hovercard?comment_id=544633353&amp;comment_type=issue_comment\" href=\"https://github.com/jwtk/jjwt/issues/520#issuecomment-544633353\">#520 (comment)</a></p>\n<p dir=\"auto\"><a href=\"https://stackoverflow.com/questions/29941270/why-do-base64-decode-produce-same-byte-array-for-different-strings\" rel=\"nofollow\">https://stackoverflow.com/questions/29941270/why-do-base64-decode-produce-same-byte-array-for-different-strings</a></p>\n<p dir=\"auto\"><a href=\"https://stackoverflow.com/questions/33663113/multiple-strings-base64-decoded-to-same-byte-array?noredirect=1&amp;lq=1\" rel=\"nofollow\">https://stackoverflow.com/questions/33663113/multiple-strings-base64-decoded-to-same-byte-array?noredirect=1&amp;lq=1</a></p>",
+                                "resourcePath": "/jwtk/jjwt/issues/518",
+                                "createdAt": "2019-10-14T16:56:03Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "enhancement" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Services now checks the contextClassLoader, Services.class.classLoader, and the system classloader",
+                "url": "https://github.com/jwtk/jjwt/pull/574",
+                "resourcePath": "/jwtk/jjwt/pull/574",
+                "createdAt": "2020-03-11T18:49:57Z",
+                "number": 574,
+                "mergeCommit": {
+                    "oid": "9e65ab7be0677ed2371da96996408d2f20da18e7",
+                    "message": "Services now checks the contextClassLoader, Services.class.classLoader, and the system classloader\n\nFixes: #568",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/9e65ab7be0677ed2371da96996408d2f20da18e7",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "111633fa8894a68046ade733e05a815536e94bb2",
+                                "message": "Gson Serializer/Deserializer are now correctly registered service when found on the classpath\n\nAdded test to other serializer implementations as well\n\nFixes: #563"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/lang/Classes.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/lang/Services.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/lang/ServicesTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mzg2ODYyMzU4OmUzOWQ1MjRlZTcyZmIyMWUwZmRjOWZiMTM1ZDUyZDcwYTlkYjhlMTc=",
+                                "url": "https://github.com/jwtk/jjwt/pull/574/commits/e39d524ee72fb21e0fdc9fb135d52d70a9db8e17"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 568,
+                                "url": "https://github.com/jwtk/jjwt/issues/568",
+                                "title": "ServiceLocator can't find an implementation in common-pool workers",
+                                "bodyHTML": "<p dir=\"auto\">Hi, I've noticed that we can't read/create a token in a worker from <code class=\"notranslate\">ForkJoinPool.commonPool()</code> in Spring's uber-jar application because ServiceLocator can't find an implementation for that (looks like there is a problem with context class loader related to the thread).</p>\n<p dir=\"auto\">Example (it will throw <code class=\"notranslate\">UnavailableImplementationException</code> for <code class=\"notranslate\">Serializer.class</code>):</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"ForkJoinPool.commonPool()\n        .execute(() -&gt; Jwts.builder()\n                .setClaims(Map.of(Claims.SUBJECT, &quot;subject&quot;))\n                .compact());\"><pre class=\"notranslate\"><code>ForkJoinPool.commonPool()\n        .execute(() -&gt; Jwts.builder()\n                .setClaims(Map.of(Claims.SUBJECT, \"subject\"))\n                .compact());\n</code></pre></div>\n<p dir=\"auto\">Currently, I have a workaround to that by providing my own serializer (like this <a href=\"https://github.com/jwtk/jjwt#jackson-json-processor\">https://github.com/jwtk/jjwt#jackson-json-processor</a>).</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/568",
+                                "createdAt": "2020-03-03T21:11:58Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Allow JacksonDeserializer to work with Java 9+ Map.of",
+                "url": "https://github.com/jwtk/jjwt/pull/566",
+                "resourcePath": "/jwtk/jjwt/pull/566",
+                "createdAt": "2020-02-24T18:43:38Z",
+                "number": 566,
+                "mergeCommit": {
+                    "oid": "e115085b14fbcaeca8445b545c8ee948d28a9cad",
+                    "message": "Allow JacksonDeserializer to work with Java 9+ Map.of\n\nand other maps that do NOT allow null keys",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/e115085b14fbcaeca8445b545c8ee948d28a9cad",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "09637f1e660010822dc9e40264f1412b94010f06",
+                                "message": "Fixing version references for the 0.11.0 release."
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/main/java/io/jsonwebtoken/jackson/io/JacksonDeserializer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/test/groovy/io/jsonwebtoken/jackson/io/JacksonDeserializerTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mzc5MTUxMTAwOjYyYTlmY2M4ZWY3NzlmNmUwOWIzNTg2YmM1ZWE5NDI0OWI4NWE1Mjk=",
+                                "url": "https://github.com/jwtk/jjwt/pull/566/commits/62a9fcc8ef779f6e09b3586bc5ea94249b85a529"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 564,
+                                "url": "https://github.com/jwtk/jjwt/issues/564",
+                                "title": "JacksonDeserializer with claimTypeMap throws NullPointerException while parsing",
+                                "bodyHTML": "<p dir=\"auto\">I have a problem with parsing my JWS Token with jjwt. The following code snippet</p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"JacksonDeserializer&lt;Map&lt;String, ?&gt;&gt; deserializer = new JacksonDeserializer&lt;&gt;(Map.of(&quot;user&quot;, JwtUser.class));\nJwtParser parser = Jwts.parserBuilder()\n        .setSigningKey(key)\n        .deserializeJsonWith(deserializer)\n        .build();\nJws&lt;Claims&gt; jws = parser.parseClaimsJws(token);\"><pre><span class=\"pl-smi\">JacksonDeserializer</span>&lt;<span class=\"pl-smi\">Map</span>&lt;<span class=\"pl-smi\">String</span>, ?&gt;&gt; <span class=\"pl-s1\">deserializer</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">JacksonDeserializer</span>&lt;&gt;(<span class=\"pl-s1\">Map</span>.<span class=\"pl-en\">of</span>(<span class=\"pl-s\">\"user\"</span>, <span class=\"pl-smi\">JwtUser</span>.<span class=\"pl-s1\">class</span>));\n<span class=\"pl-smi\">JwtParser</span> <span class=\"pl-s1\">parser</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">parserBuilder</span>()\n        .<span class=\"pl-en\">setSigningKey</span>(<span class=\"pl-s1\">key</span>)\n        .<span class=\"pl-en\">deserializeJsonWith</span>(<span class=\"pl-s1\">deserializer</span>)\n        .<span class=\"pl-en\">build</span>();\n<span class=\"pl-smi\">Jws</span>&lt;<span class=\"pl-smi\">Claims</span>&gt; <span class=\"pl-s1\">jws</span> = <span class=\"pl-s1\">parser</span>.<span class=\"pl-en\">parseClaimsJws</span>(<span class=\"pl-s1\">token</span>);</pre></div>\n<p dir=\"auto\">throws the following NullPointerException.</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"java.lang.NullPointerException: null\n\tat java.base/java.util.ImmutableCollections$Map1.containsKey(ImmutableCollections.java:742) ~[na:na]\n\tat java.base/java.util.Collections$UnmodifiableMap.containsKey(Collections.java:1450) ~[na:na]\n\tat io.jsonwebtoken.jackson.io.JacksonDeserializer$MappedTypeDeserializer.deserialize(JacksonDeserializer.java:123) ~[jjwt-jackson-0.11.0.jar:0.11.0]\n\tat com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4202) ~[jackson-databind-2.10.2.jar:2.10.2]\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3266) ~[jackson-databind-2.10.2.jar:2.10.2]\n\tat io.jsonwebtoken.jackson.io.JacksonDeserializer.readValue(JacksonDeserializer.java:104) ~[jjwt-jackson-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.jackson.io.JacksonDeserializer.deserialize(JacksonDeserializer.java:96) ~[jjwt-jackson-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.readValue(DefaultJwtParser.java:613) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:308) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:541) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:601) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173) ~[jjwt-impl-0.11.0.jar:0.11.0]\"><pre lang=\"Stacktrace\" class=\"notranslate\"><code>java.lang.NullPointerException: null\n\tat java.base/java.util.ImmutableCollections$Map1.containsKey(ImmutableCollections.java:742) ~[na:na]\n\tat java.base/java.util.Collections$UnmodifiableMap.containsKey(Collections.java:1450) ~[na:na]\n\tat io.jsonwebtoken.jackson.io.JacksonDeserializer$MappedTypeDeserializer.deserialize(JacksonDeserializer.java:123) ~[jjwt-jackson-0.11.0.jar:0.11.0]\n\tat com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4202) ~[jackson-databind-2.10.2.jar:2.10.2]\n\tat com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3266) ~[jackson-databind-2.10.2.jar:2.10.2]\n\tat io.jsonwebtoken.jackson.io.JacksonDeserializer.readValue(JacksonDeserializer.java:104) ~[jjwt-jackson-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.jackson.io.JacksonDeserializer.deserialize(JacksonDeserializer.java:96) ~[jjwt-jackson-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.readValue(DefaultJwtParser.java:613) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:308) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:541) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:601) ~[jjwt-impl-0.11.0.jar:0.11.0]\n\tat io.jsonwebtoken.impl.ImmutableJwtParser.parseClaimsJws(ImmutableJwtParser.java:173) ~[jjwt-impl-0.11.0.jar:0.11.0]\n</code></pre></div>\n<p dir=\"auto\">I debugged it and saw, that the NPE happened while parsing the header of the Token which is looking like this:</p>\n<div class=\"highlight highlight-source-json notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"{&quot;alg&quot;:&quot;HS256&quot;}\"><pre>{<span class=\"pl-ent\">\"alg\"</span>:<span class=\"pl-s\"><span class=\"pl-pds\">\"</span>HS256<span class=\"pl-pds\">\"</span></span>}</pre></div>\n<p dir=\"auto\">The NPE happens, because the <code class=\"notranslate\">parser.currentName()</code> in <code class=\"notranslate\">JacksonDeserializer::deserialize(JsonParser parser, DeserializationContext context)</code> is <code class=\"notranslate\">null</code> and therefore it can't look it up in the claimTypeMap. The currentName is null because it parses the root element and doesn't have a current name.</p>\n<p dir=\"auto\">Parsing my Object by querying the map values and parsing it works, but is very ugly. I would rather use the above mentioned method.</p>\n<div class=\"highlight highlight-source-java notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"JacksonDeserializer&lt;Map&lt;String, ?&gt;&gt; deserializer = new JacksonDeserializer&lt;&gt;();\nJwtParser parser = Jwts.parserBuilder()\n        .setSigningKey(key)\n        .deserializeJsonWith(deserializer)\n        .build();\nJws&lt;Claims&gt; jws = parser.parseClaimsJws(token);\nClaims claims = jws.getBody();\nMap&lt;String, Object&gt; user = (Map&lt;String, Object&gt;) claims.get(&quot;user&quot;);\nJwtUser jwtUser = new JwtUser();\njwtUser.setPersonId((Long) user.get(&quot;personId&quot;));\njwtUser.setUsername((String) user.get(&quot;username&quot;));\njwtUser.setAuthorities((Collection&lt;String&gt;) user.get(&quot;authorities&quot;));\nreturn jwtUser;\"><pre><span class=\"pl-smi\">JacksonDeserializer</span>&lt;<span class=\"pl-smi\">Map</span>&lt;<span class=\"pl-smi\">String</span>, ?&gt;&gt; <span class=\"pl-s1\">deserializer</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">JacksonDeserializer</span>&lt;&gt;();\n<span class=\"pl-smi\">JwtParser</span> <span class=\"pl-s1\">parser</span> = <span class=\"pl-s1\">Jwts</span>.<span class=\"pl-en\">parserBuilder</span>()\n        .<span class=\"pl-en\">setSigningKey</span>(<span class=\"pl-s1\">key</span>)\n        .<span class=\"pl-en\">deserializeJsonWith</span>(<span class=\"pl-s1\">deserializer</span>)\n        .<span class=\"pl-en\">build</span>();\n<span class=\"pl-smi\">Jws</span>&lt;<span class=\"pl-smi\">Claims</span>&gt; <span class=\"pl-s1\">jws</span> = <span class=\"pl-s1\">parser</span>.<span class=\"pl-en\">parseClaimsJws</span>(<span class=\"pl-s1\">token</span>);\n<span class=\"pl-smi\">Claims</span> <span class=\"pl-s1\">claims</span> = <span class=\"pl-s1\">jws</span>.<span class=\"pl-en\">getBody</span>();\n<span class=\"pl-smi\">Map</span>&lt;<span class=\"pl-smi\">String</span>, <span class=\"pl-smi\">Object</span>&gt; <span class=\"pl-s1\">user</span> = (<span class=\"pl-smi\">Map</span>&lt;<span class=\"pl-smi\">String</span>, <span class=\"pl-smi\">Object</span>&gt;) <span class=\"pl-s1\">claims</span>.<span class=\"pl-en\">get</span>(<span class=\"pl-s\">\"user\"</span>);\n<span class=\"pl-smi\">JwtUser</span> <span class=\"pl-s1\">jwtUser</span> = <span class=\"pl-k\">new</span> <span class=\"pl-smi\">JwtUser</span>();\n<span class=\"pl-s1\">jwtUser</span>.<span class=\"pl-en\">setPersonId</span>((<span class=\"pl-smi\">Long</span>) <span class=\"pl-s1\">user</span>.<span class=\"pl-en\">get</span>(<span class=\"pl-s\">\"personId\"</span>));\n<span class=\"pl-s1\">jwtUser</span>.<span class=\"pl-en\">setUsername</span>((<span class=\"pl-smi\">String</span>) <span class=\"pl-s1\">user</span>.<span class=\"pl-en\">get</span>(<span class=\"pl-s\">\"username\"</span>));\n<span class=\"pl-s1\">jwtUser</span>.<span class=\"pl-en\">setAuthorities</span>((<span class=\"pl-smi\">Collection</span>&lt;<span class=\"pl-smi\">String</span>&gt;) <span class=\"pl-s1\">user</span>.<span class=\"pl-en\">get</span>(<span class=\"pl-s\">\"authorities\"</span>));\n<span class=\"pl-k\">return</span> <span class=\"pl-s1\">jwtUser</span>;</pre></div>\n<p dir=\"auto\">Maybe it suffices to check whether the parser.currentName() is null and don't look it up if it is.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/564",
+                                "createdAt": "2020-02-22T19:51:10Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "bug" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Documented how to convert strings to SecretKey instances.",
+                "url": "https://github.com/jwtk/jjwt/pull/561",
+                "resourcePath": "/jwtk/jjwt/pull/561",
+                "createdAt": "2020-02-05T03:33:34Z",
+                "number": 561,
+                "mergeCommit": {
+                    "oid": "1aa82257039884ea2c6f6a7219b443b9691190ee",
+                    "message": "Documented how to convert strings to SecretKey instances.  Resolves #517 (#561)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/1aa82257039884ea2c6f6a7219b443b9691190ee",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "5481248a71010e7e6b3b2e48ed1710f397c29bdd",
+                                "message": "Documented why changing Base64 sometimes does not invalid signature checks.  Resolves #518 (#560)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "README.md"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzcxMTY2Mzc5OjkyN2QwZGM2ZWJmM2JiZmI3Y2Q2ODY4MWM1YTM0Y2UxYWUwZGQ5ZGE=",
+                                "url": "https://github.com/jwtk/jjwt/pull/561/commits/927d0dc6ebf3bbfb7cd68681c5a34ce1ae0dd9da"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 517,
+                                "url": "https://github.com/jwtk/jjwt/issues/517",
+                                "title": "Document working with secret key strings",
+                                "bodyHTML": "<p dir=\"auto\">I have a string secret:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"String secret = &quot;EqjWQ7MYqS4VkF2vZLNOOH9r4XVa3XrIsibni4cJ6eEsAphTKHvnMoRmZdfC0PLD&quot;;\"><pre class=\"notranslate\"><code>String secret = \"EqjWQ7MYqS4VkF2vZLNOOH9r4XVa3XrIsibni4cJ6eEsAphTKHvnMoRmZdfC0PLD\";\n</code></pre></div>\n<p dir=\"auto\">I am signing like this, but you have deprecated:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"Jwts.builder().signWith(SignatureAlgorithm.HS256, secret)\"><pre class=\"notranslate\"><code>Jwts.builder().signWith(SignatureAlgorithm.HS256, secret)\n</code></pre></div>\n<p dir=\"auto\">So I assume there must be an equivalent, but this here gives me a different token:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes());\nJwts.builder().signWith(key, SignatureAlgorithm.HS256)\"><pre class=\"notranslate\"><code>SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes());\nJwts.builder().signWith(key, SignatureAlgorithm.HS256)\n</code></pre></div>\n<p dir=\"auto\">Would you please document how the key must be created to maintain compatibility.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/517",
+                                "createdAt": "2019-10-13T13:49:26Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "enhancement" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Minor JavaDoc fix",
+                "url": "https://github.com/jwtk/jjwt/pull/575",
+                "resourcePath": "/jwtk/jjwt/pull/575",
+                "createdAt": "2020-03-12T19:48:51Z",
+                "number": 575,
+                "mergeCommit": {
+                    "oid": "6565bdc0197217e400c05dfa6168b15f59a06458",
+                    "message": "Minor JavaDoc fix and changelog updates. Fixes #535 (#575)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/6565bdc0197217e400c05dfa6168b15f59a06458",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "9e65ab7be0677ed2371da96996408d2f20da18e7",
+                                "message": "Services now checks the contextClassLoader, Services.class.classLoader, and the system classloader\n\nFixes: #568"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/Claims.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mzg3NDQwMTU3OjIxMzM3ZGEyYTBlZGMyZWNiM2VmNjJmN2MyYzZjNDBlNjYyMTM0MmU=",
+                                "url": "https://github.com/jwtk/jjwt/pull/575/commits/21337da2a0edc2ecb3ef62f7c2c6c40e6621342e"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 535,
+                                "url": "https://github.com/jwtk/jjwt/issues/535",
+                                "title": "Claims - Date getIssuedAt() - wrong @return documentation",
+                                "bodyHTML": "<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"/**\n * Returns the JWT &lt;a href=&quot;https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.6&quot;&gt;\n * &lt;code&gt;iat&lt;/code&gt;&lt;/a&gt; (issued at) timestamp or {@code null} if not present.\n *\n * &lt;p&gt;If present, this value is the timestamp when the JWT was created.&lt;/p&gt;\n *\n * @return the JWT {@code nbf} value or {@code null} if not present.\n */\nDate getIssuedAt();\"><pre class=\"notranslate\"><code>/**\n * Returns the JWT &lt;a href=\"https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1.6\"&gt;\n * &lt;code&gt;iat&lt;/code&gt;&lt;/a&gt; (issued at) timestamp or {@code null} if not present.\n *\n * &lt;p&gt;If present, this value is the timestamp when the JWT was created.&lt;/p&gt;\n *\n * @return the JWT {@code nbf} value or {@code null} if not present.\n */\nDate getIssuedAt();\n</code></pre></div>\n<hr>\n<p dir=\"auto\">referencing {<a class=\"user-mention notranslate\" data-hovercard-type=\"organization\" data-hovercard-url=\"/orgs/code/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/code\">@code</a> nbf} but should be {<a class=\"user-mention notranslate\" data-hovercard-type=\"organization\" data-hovercard-url=\"/orgs/code/hovercard\" data-octo-click=\"hovercard-link-click\" data-octo-dimensions=\"link_type:self\" href=\"https://github.com/code\">@code</a> iat}</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/535",
+                                "createdAt": "2019-11-27T14:15:34Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "documentation" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Gson Serializer/Deserializer are now correctly registered service when found on the classpath",
+                "url": "https://github.com/jwtk/jjwt/pull/565",
+                "resourcePath": "/jwtk/jjwt/pull/565",
+                "createdAt": "2020-02-24T17:40:16Z",
+                "number": 565,
+                "mergeCommit": {
+                    "oid": "111633fa8894a68046ade733e05a815536e94bb2",
+                    "message": "Gson Serializer/Deserializer are now correctly registered service when found on the classpath\n\nAdded test to other serializer implementations as well\n\nFixes: #563",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/111633fa8894a68046ade733e05a815536e94bb2",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "0fd59efc93a2e974ad8af62c1fcde8a40885eac9",
+                                "message": "Bump jackson-databind from 2.9.10.1 to 2.9.10.3\n\nBumps [jackson-databind](https://github.com/FasterXML/jackson) from 2.9.10.1 to 2.9.10.3.\n- [Release notes](https://github.com/FasterXML/jackson/releases)\n- [Commits](https://github.com/FasterXML/jackson/commits)\n\nSigned-off-by: dependabot[bot] <support@github.com>"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "extensions/gson/src/main/resources/META-INF/services/io.jsonwebtoken.io.Deserializer"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "RENAMED",
+                                "path": "extensions/gson/src/main/resources/META-INF/services/io.jsonwebtoken.io.Serializer"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/gson/src/test/groovy/io/jsonwebtoken/gson/io/GsonDeserializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/gson/src/test/groovy/io/jsonwebtoken/gson/io/GsonSerializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/test/groovy/io/jsonwebtoken/jackson/io/JacksonDeserializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/src/test/groovy/io/jsonwebtoken/jackson/io/JacksonSerializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/orgjson/src/test/groovy/io/jsonwebtoken/orgjson/io/OrgJsonDeserializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/orgjson/src/test/groovy/io/jsonwebtoken/orgjson/io/OrgJsonSerializerTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mzc5MTE4MjgxOjZlZjljOThhYjIwYzE4ODE1M2FiN2FkOGFmMzIyNjM3MWM0ZmZlOTg=",
+                                "url": "https://github.com/jwtk/jjwt/pull/565/commits/6ef9c98ab20c188153ab7ad8af3226371c4ffe98"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 563,
+                                "url": "https://github.com/jwtk/jjwt/issues/563",
+                                "title": "jar jjwt-gson implementation does not contain ServiceLoader definitions",
+                                "bodyHTML": "<p dir=\"auto\">The published jar in maven Central for version 0.11.0 does not contain META-INF/services package.<br>\nSo the service loader does not finde the implementation.<br>\nShould be fixed and released again.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/563",
+                                "createdAt": "2020-02-18T10:32:28Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "bug" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Attach implementation bundles as fragments to the API bundle to make …",
+                "url": "https://github.com/jwtk/jjwt/pull/580",
+                "resourcePath": "/jwtk/jjwt/pull/580",
+                "createdAt": "2020-03-19T12:33:36Z",
+                "number": 580,
+                "mergeCommit": {
+                    "oid": "403e1895e352bb599c5c18bd4d0c0ed5a74d3200",
+                    "message": "Attach implementation bundles as fragments to the API bundle to make them visible to the API bundle. This fixes jwtk#578 (jwtk#578) (#580)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/403e1895e352bb599c5c18bd4d0c0ed5a74d3200",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "972591f87f7c8cc0e062c7d7e96d539e8f3ad0fd",
+                                "message": "Bump jackson-databind from 2.9.10.3 to 2.9.10.4 (#587)\n\nBumps [jackson-databind](https://github.com/FasterXML/jackson) from 2.9.10.3 to 2.9.10.4.\r\n- [Release notes](https://github.com/FasterXML/jackson/releases)\r\n- [Commits](https://github.com/FasterXML/jackson/commits)\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/gson/bnd.bnd"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jackson/bnd.bnd"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/orgjson/bnd.bnd"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "impl/bnd.bnd"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzkwOTc3MDE2OjI5YjE0OGY1NDkxMzY4N2NmMmY2OGQ0MWNjODM0ZTMyMGE2ZTJlZDk=",
+                                "url": "https://github.com/jwtk/jjwt/pull/580/commits/29b148f54913687cf2f68d41cc834e320a6e2ed9"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 578,
+                                "url": "https://github.com/jwtk/jjwt/issues/578",
+                                "title": "Unable to find implementation classes in OSGi",
+                                "bodyHTML": "<p dir=\"auto\">At least since the removal of the service loader for loading implementations, the library does not work in OSGi anymore. The reason is that the api bundle does not have access to classes from the impl bundle as class loading across bundles only works if those classes are exported (and imported).<br>\nI'm not sure how to solve this; clearly it would be wrong to export implementation classes and import them in the api.<br>\nCreating a single bundle with api and impl would work, with the expense of creating another artifact.</p>\n<p dir=\"auto\">This is the exception I get with latest 0.11.1 :</p>\n<p dir=\"auto\">io.jsonwebtoken.lang.UnknownClassException: Unable to load class named [io.jsonwebtoken.impl.DefaultJwtBuilder] from the thread context, current, or system/application ClassLoaders.  All heuristics have been exhausted.  Class could not be found.  Have you remembered to include the jjwt-impl.jar in your runtime classpath?<br>\nat io.jsonwebtoken.lang.Classes.forName(Classes.java:92)<br>\nat io.jsonwebtoken.lang.Classes.newInstance(Classes.java:136)<br>\nat io.jsonwebtoken.Jwts.builder(Jwts.java:141)<br>\nat de.osoco.cziegeler.test.jjwt.Test.start(Test.java:12)</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/578",
+                                "createdAt": "2020-03-18T14:34:55Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "stale" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Documented jackson upgrade in changelog",
+                "url": "https://github.com/jwtk/jjwt/pull/576",
+                "resourcePath": "/jwtk/jjwt/pull/576",
+                "createdAt": "2020-03-12T20:33:17Z",
+                "number": 576,
+                "mergeCommit": {
+                    "oid": "2349d4dce3441b1bc013f2c4a1a8276c251673d5",
+                    "message": "Upgraded Jackson dependency to 2.9.10.3.  Resolves #567. (#576)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/2349d4dce3441b1bc013f2c4a1a8276c251673d5",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "6565bdc0197217e400c05dfa6168b15f59a06458",
+                                "message": "Minor JavaDoc fix and changelog updates. Fixes #535 (#575)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0Mzg3NDU5NDYyOjdkNTZmM2Q2MDYxMDliZjljNWFkMDRkZDdlNDU4MzkzMTNiZWE2ODY=",
+                                "url": "https://github.com/jwtk/jjwt/pull/576/commits/7d56f3d606109bf9c5ad04dd7e45839313bea686"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 567,
+                                "url": "https://github.com/jwtk/jjwt/issues/567",
+                                "title": "Upgrade jackson-databind to 2.9.10.3",
+                                "bodyHTML": "<p dir=\"auto\"><code class=\"notranslate\">jjwt-jackson</code> depends on <code class=\"notranslate\">jackson-databind</code> 2.9.10.1 as seen in the <a href=\"https://github.com/jwtk/jjwt/blob/e115085b14fbcaeca8445b545c8ee948d28a9cad/pom.xml#L100\">pom</a>.</p>\n<p dir=\"auto\">Running</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\" mvn org.owasp:dependency-check-maven:5.3.0:check\"><pre class=\"notranslate\"><code> mvn org.owasp:dependency-check-maven:5.3.0:check\n</code></pre></div>\n<p dir=\"auto\">results in</p>\n<blockquote>\n<p dir=\"auto\">jackson-databind-2.9.10.1.jar<br>\npkg:maven/com.fasterxml.jackson.core/jackson-databind@2.9.10.1,<br>\ncpe:2.3:a :fasterxml:jackson:2.9.10.1:<em>:</em>:<em>:</em>:<em>:</em>:<em>,<br>\ncpe:2.3:a :fasterxml:jackson-databind:2.9.10.1:</em>:<em>:</em>:<em>:</em>:<em>:</em>) :<br>\nCVE-2019-20330,<br>\nCVE-2020-8840</p>\n</blockquote>\n<p dir=\"auto\">Links to the NVD entries:</p>\n<ul dir=\"auto\">\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2019-20330\" rel=\"nofollow\">https://nvd.nist.gov/vuln/detail/CVE-2019-20330</a></li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2020-8840\" rel=\"nofollow\">https://nvd.nist.gov/vuln/detail/CVE-2020-8840</a></li>\n</ul>\n<p dir=\"auto\">Upgrading to at least 2.9.10.2 fixes it. The latest version is at this point in time 2.9.10.3 or 2.10.2</p>\n<div class=\"highlight highlight-text-xml notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"&lt;!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind --&gt;\n&lt;dependency&gt;\n    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;\n    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;\n    &lt;version&gt;2.9.10.3&lt;/version&gt;\n&lt;/dependency&gt;\"><pre><span class=\"pl-c\"><span class=\"pl-c\">&lt;!--</span> https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind <span class=\"pl-c\">--&gt;</span></span>\n&lt;<span class=\"pl-ent\">dependency</span>&gt;\n    &lt;<span class=\"pl-ent\">groupId</span>&gt;com.fasterxml.jackson.core&lt;/<span class=\"pl-ent\">groupId</span>&gt;\n    &lt;<span class=\"pl-ent\">artifactId</span>&gt;jackson-databind&lt;/<span class=\"pl-ent\">artifactId</span>&gt;\n    &lt;<span class=\"pl-ent\">version</span>&gt;2.9.10.3&lt;/<span class=\"pl-ent\">version</span>&gt;\n&lt;/<span class=\"pl-ent\">dependency</span>&gt;</pre></div>",
+                                "resourcePath": "/jwtk/jjwt/issues/567",
+                                "createdAt": "2020-02-26T21:40:26Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "dependencies" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Add parameterized return type to Maps.and()",
+                "url": "https://github.com/jwtk/jjwt/pull/597",
+                "resourcePath": "/jwtk/jjwt/pull/597",
+                "createdAt": "2020-06-03T18:23:05Z",
+                "number": 597,
+                "mergeCommit": {
+                    "oid": "43de9a34e341796c5023ba53624296a529b4d59d",
+                    "message": "Add parameterized return type to Maps.and() (#597)\n\nFixes: #591",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/43de9a34e341796c5023ba53624296a529b4d59d",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "6b02041be62cb50ad3fcea80e655f7f5fe46f6f8",
+                                "message": "Accept oid in assertValid (#589)\n\n* Add special handling for Hmac-Keys loaded from pkcs#12 keystores\r\n\r\n* Link to openjdk bug in javadoc\r\n\r\n* Switch to mocked key for OID algorithm name test, eliminate KeyStore Usage in Test.\r\n\r\n* Replace alternateNames oid field and remove from public api.\r\n\r\n* Rename oid to pkcs12Name, make sure it's non null."
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/lang/Maps.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0NDI3Mzc1NTY3OjJhZDY4MWFhNDliMTVjYzc2ZTgwMjIxY2E4OTViNjdhMTk1OTJlNGQ=",
+                                "url": "https://github.com/jwtk/jjwt/pull/597/commits/2ad681aa49b15cc76e80221ca895b67a19592e4d"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 591,
+                                "url": "https://github.com/jwtk/jjwt/issues/591",
+                                "title": "Maps.MapBuilder::and does not return parameterized MapBuilder",
+                                "bodyHTML": "<p dir=\"auto\"></p><div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/jwtk/jjwt/blob/7090bf39c3e457f274967af50105a880a42af26b/api/src/main/java/io/jsonwebtoken/lang/Maps.java#L66\">jjwt/api/src/main/java/io/jsonwebtoken/lang/Maps.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n         Line 66\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/jwtk/jjwt/commit/7090bf39c3e457f274967af50105a880a42af26b\">7090bf3</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L66\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"66\"></td>\n          <td id=\"LC66\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-smi\">MapBuilder</span> <span class=\"pl-en\">and</span>(<span class=\"pl-smi\">K</span> <span class=\"pl-s1\">key</span>, <span class=\"pl-smi\">V</span> <span class=\"pl-s1\">value</span>); </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n<p></p>\n<p dir=\"auto\">Using <code class=\"notranslate\">and</code> even once and the type parameters are erased and you have to put <code class=\"notranslate\">@SuppressWarnings(\"unchecked\")</code> on that line.</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"@SuppressWarnings(&quot;unchecked&quot;)\nMap&lt;String, String&gt; myMap = Maps\n    .&lt;String, String&gt;of(&quot;key1&quot;, &quot;value1&quot;)  // MapBuilder&lt;String, String&gt;\n    .and(&quot;key2&quot;, &quot;value2&quot;)                 // MapBuilder\n    .build();                              // Map\"><pre class=\"notranslate\"><code>@SuppressWarnings(\"unchecked\")\nMap&lt;String, String&gt; myMap = Maps\n    .&lt;String, String&gt;of(\"key1\", \"value1\")  // MapBuilder&lt;String, String&gt;\n    .and(\"key2\", \"value2\")                 // MapBuilder\n    .build();                              // Map\n</code></pre></div>",
+                                "resourcePath": "/jwtk/jjwt/issues/591",
+                                "createdAt": "2020-05-15T08:04:37Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "bug" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Bump jackson-databind from 2.9.10.1 to 2.9.10.3",
+                "url": "https://github.com/jwtk/jjwt/pull/569",
+                "resourcePath": "/jwtk/jjwt/pull/569",
+                "createdAt": "2020-03-04T22:14:12Z",
+                "number": 569,
+                "mergeCommit": {
+                    "oid": "0fd59efc93a2e974ad8af62c1fcde8a40885eac9",
+                    "message": "Bump jackson-databind from 2.9.10.1 to 2.9.10.3\n\nBumps [jackson-databind](https://github.com/FasterXML/jackson) from 2.9.10.1 to 2.9.10.3.\n- [Release notes](https://github.com/FasterXML/jackson/releases)\n- [Commits](https://github.com/FasterXML/jackson/commits)\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/0fd59efc93a2e974ad8af62c1fcde8a40885eac9",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "e115085b14fbcaeca8445b545c8ee948d28a9cad",
+                                "message": "Allow JacksonDeserializer to work with Java 9+ Map.of\n\nand other maps that do NOT allow null keys"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0MzgzOTI0NzY5OjAwMmNkOTA3MGI0MTg5MDg3MDY1OTNhOTg1N2UxMjAxNTUyZTcwODk=",
+                                "url": "https://github.com/jwtk/jjwt/pull/569/commits/002cd9070b418908706593a9857e1201552e7089"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 567,
+                                "url": "https://github.com/jwtk/jjwt/issues/567",
+                                "title": "Upgrade jackson-databind to 2.9.10.3",
+                                "bodyHTML": "<p dir=\"auto\"><code class=\"notranslate\">jjwt-jackson</code> depends on <code class=\"notranslate\">jackson-databind</code> 2.9.10.1 as seen in the <a href=\"https://github.com/jwtk/jjwt/blob/e115085b14fbcaeca8445b545c8ee948d28a9cad/pom.xml#L100\">pom</a>.</p>\n<p dir=\"auto\">Running</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\" mvn org.owasp:dependency-check-maven:5.3.0:check\"><pre class=\"notranslate\"><code> mvn org.owasp:dependency-check-maven:5.3.0:check\n</code></pre></div>\n<p dir=\"auto\">results in</p>\n<blockquote>\n<p dir=\"auto\">jackson-databind-2.9.10.1.jar<br>\npkg:maven/com.fasterxml.jackson.core/jackson-databind@2.9.10.1,<br>\ncpe:2.3:a :fasterxml:jackson:2.9.10.1:<em>:</em>:<em>:</em>:<em>:</em>:<em>,<br>\ncpe:2.3:a :fasterxml:jackson-databind:2.9.10.1:</em>:<em>:</em>:<em>:</em>:<em>:</em>) :<br>\nCVE-2019-20330,<br>\nCVE-2020-8840</p>\n</blockquote>\n<p dir=\"auto\">Links to the NVD entries:</p>\n<ul dir=\"auto\">\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2019-20330\" rel=\"nofollow\">https://nvd.nist.gov/vuln/detail/CVE-2019-20330</a></li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2020-8840\" rel=\"nofollow\">https://nvd.nist.gov/vuln/detail/CVE-2020-8840</a></li>\n</ul>\n<p dir=\"auto\">Upgrading to at least 2.9.10.2 fixes it. The latest version is at this point in time 2.9.10.3 or 2.10.2</p>\n<div class=\"highlight highlight-text-xml notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"&lt;!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind --&gt;\n&lt;dependency&gt;\n    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;\n    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;\n    &lt;version&gt;2.9.10.3&lt;/version&gt;\n&lt;/dependency&gt;\"><pre><span class=\"pl-c\"><span class=\"pl-c\">&lt;!--</span> https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind <span class=\"pl-c\">--&gt;</span></span>\n&lt;<span class=\"pl-ent\">dependency</span>&gt;\n    &lt;<span class=\"pl-ent\">groupId</span>&gt;com.fasterxml.jackson.core&lt;/<span class=\"pl-ent\">groupId</span>&gt;\n    &lt;<span class=\"pl-ent\">artifactId</span>&gt;jackson-databind&lt;/<span class=\"pl-ent\">artifactId</span>&gt;\n    &lt;<span class=\"pl-ent\">version</span>&gt;2.9.10.3&lt;/<span class=\"pl-ent\">version</span>&gt;\n&lt;/<span class=\"pl-ent\">dependency</span>&gt;</pre></div>",
+                                "resourcePath": "/jwtk/jjwt/issues/567",
+                                "createdAt": "2020-02-26T21:40:26Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "dependencies" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Argument validation for allowedClockSkewSeconds",
+                "url": "https://github.com/jwtk/jjwt/pull/601",
+                "resourcePath": "/jwtk/jjwt/pull/601",
+                "createdAt": "2020-06-11T17:29:52Z",
+                "number": 601,
+                "mergeCommit": {
+                    "oid": "72973f9b9ba72438d97834db2bd56e36d3c48592",
+                    "message": "Argument validation for allowedClockSkewSeconds (#601)\n\n* 583: ensured setting allowedClockSkewSeconds to be greater than (Long.MAX_VALUE / 1000) will throw an IllegalArgumentException.",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/72973f9b9ba72438d97834db2bd56e36d3c48592",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "2b00ed1819ef92da8a02dec9090404d624c8fbfc",
+                                "message": "Add DefaultJwtParser functionality to parse JWSs with empty body. (#540)\n\n* Add DefaultJwtParser functionality to parse JWSs with empty body.\r\n\r\n* Review Fix: Change allowEmptyBody(boolean) to requirePayload(boolean). Set payloadRequired true for each require*() method in JwtParser and JwtParserBuilder.\r\n\r\n* Add missing ImmutableJwtParserTest.\r\n\r\n* Review changes: Moving to solution without payload requirement flag.\r\n\r\n* Review changes: Allow empty Jwt payload\r\n\r\n* Remove unused imports\r\n\r\nCo-authored-by: Philipp Zormeier <philipp.zormeier@thoughtworks.com>"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtParser.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParserBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultJwtParserBuilderTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/DefaultJwtParserTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0NDMzMjM0MzA1Ojg5ZmY4NjRiMjMyZTA4NmZlMDFjZWVjYWM3NzNjYzU1ZWIxYmRjMTg=",
+                                "url": "https://github.com/jwtk/jjwt/pull/601/commits/89ff864b232e086fe01ceecac773cc55eb1bdc18"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 583,
+                                "url": "https://github.com/jwtk/jjwt/issues/583",
+                                "title": "Reject seconds values that would cause overflow",
+                                "bodyHTML": "<p dir=\"auto\">If seconds used with long max value, there will be an overflow because you put the value (long) multiplied by 1000 in another long...<br>\nin my case i got a negative value as result and the Math.max then return 0....</p>\n<p dir=\"auto\">as I was expecting to have the max ClockSkew, I got the Min....</p>\n<p dir=\"auto\"></p><div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/jwtk/jjwt/blob/dacdb2ce25d1161c03904a874da88107b0459766/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParserBuilder.java#L134\">jjwt/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParserBuilder.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n         Line 134\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/jwtk/jjwt/commit/dacdb2ce25d1161c03904a874da88107b0459766\">dacdb2c</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L134\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"134\"></td>\n          <td id=\"LC134\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-smi\">this</span>.<span class=\"pl-s1\">allowedClockSkewMillis</span> = <span class=\"pl-s1\">Math</span>.<span class=\"pl-en\">max</span>(<span class=\"pl-c1\">0</span>, <span class=\"pl-s1\">seconds</span> * <span class=\"pl-c1\">MILLISECONDS_PER_SECOND</span>); </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n<p></p>",
+                                "resourcePath": "/jwtk/jjwt/issues/583",
+                                "createdAt": "2020-03-26T16:11:11Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "enhancement" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Add the ES256K support",
+                "url": "https://github.com/jwtk/jjwt/pull/627",
+                "resourcePath": "/jwtk/jjwt/pull/627",
+                "createdAt": "2020-10-29T06:51:44Z",
+                "number": 627,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/security/Keys.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/test/groovy/io/jsonwebtoken/SignatureAlgorithmTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/crypto/DefaultSignatureValidatorFactory.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/crypto/DefaultSignerFactory.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/crypto/EllipticCurveProvider.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/DeprecatedJwtsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/JwtsTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/impl/crypto/EllipticCurveSignatureValidatorTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/security/KeysImplTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0NTEyMDYwMjQ4OjBkMTU0NDdkNDBlMGUzMzI5YzE5MTI3ZWRhMTVkNTg4YzkzNTQ2NWY=",
+                                "url": "https://github.com/jwtk/jjwt/pull/627/commits/0d15447d40e0e3329c19127eda15d588c935465f"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 626,
+                                "url": "https://github.com/jwtk/jjwt/issues/626",
+                                "title": "Support ES256K (secp256k1)",
+                                "bodyHTML": "<p dir=\"auto\">Hi all,</p>\n<p dir=\"auto\">I'm trying to use this library for my platform, but my platform has been using ES256K keys, not ES256.</p>\n<p dir=\"auto\">Do you have any plan to support ES256K? It seems there have been no discussions about ES256K in this repo.<br>\nIf you think it's reasonable, I can open a PR :)</p>\n<p dir=\"auto\">Please consider and let me know if I can do it.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/626",
+                                "createdAt": "2020-10-29T03:20:57Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Rename parsing methods with misleading names",
+                "url": "https://github.com/jwtk/jjwt/pull/658",
+                "resourcePath": "/jwtk/jjwt/pull/658",
+                "createdAt": "2021-04-11T23:01:48Z",
+                "number": 658,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "README.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/Claims.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtHandler.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtHandlerAdapter.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtParser.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/Jwts.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/ImmutableJwtParser.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "MDE3OlB1bGxSZXF1ZXN0Q29tbWl0NjEzMTY0ODcwOmFjZTQyNDU4NzJjODgyMzZmZGViY2QxNjE0ZjBhZDljNDk5NjhlMzY=",
+                                "url": "https://github.com/jwtk/jjwt/pull/658/commits/ace4245872c88236fdebcd1614f0ad9c49968e36"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 212,
+                                "url": "https://github.com/jwtk/jjwt/issues/212",
+                                "title": "Deprecate/remove the parse() method",
+                                "bodyHTML": "<p dir=\"auto\">Following the email thread <em>“jjwt signature validation bypass”</em> and a couple of issues here (<a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"191078546\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/193\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/193/hovercard\" href=\"https://github.com/jwtk/jjwt/issues/193\">#193</a>, <a class=\"issue-link js-issue-link\" data-error-text=\"Failed to load title\" data-id=\"131330659\" data-permission-text=\"Title is private\" data-url=\"https://github.com/jwtk/jjwt/issues/90\" data-hovercard-type=\"issue\" data-hovercard-url=\"/jwtk/jjwt/issues/90/hovercard\" href=\"https://github.com/jwtk/jjwt/issues/90\">#90</a>, plus several others related to <a href=\"https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/\" rel=\"nofollow\">the post in Auth0's blog</a>):</p>\n<p dir=\"auto\">At least some portion of JJWT users confuse the <code class=\"notranslate\">JwtParser#parse()</code> to be the main method for parsing <strong>signed</strong> JWT-s, while in fact it will also happily parse <strong>unsigned</strong> JWT-s (even if <code class=\"notranslate\">alg</code> header is set to something other than <code class=\"notranslate\">none</code>.)</p>\n<p dir=\"auto\"><br>\nAs a side note: I thought about proposing as a partial fix to make <code class=\"notranslate\">parse()</code> throw if <code class=\"notranslate\">alg</code> is not <code class=\"notranslate\">none</code> and signature part is missing, but then decided against that, because it potentially could create an illusion of safety (<em>“no signature → failure, I tested!”</em>), while for the real attacker it's only one additional step to update <code class=\"notranslate\">alg</code> header after stripping the signature.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/212",
+                                "createdAt": "2017-02-27T19:12:50Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "[#719] JSON-B extension.",
+                "url": "https://github.com/jwtk/jjwt/pull/720",
+                "resourcePath": "/jwtk/jjwt/pull/720",
+                "createdAt": "2022-04-15T19:37:37Z",
+                "number": 720,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/bnd.bnd"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/src/main/java/io/jsonwebtoken/jsonb/io/JsonbDeserializer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/src/main/java/io/jsonwebtoken/jsonb/io/JsonbSerializer.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/src/main/resources/META-INF/services/io.jsonwebtoken.io.Deserializer"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/src/main/resources/META-INF/services/io.jsonwebtoken.io.Serializer"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/src/test/groovy/io/jsonwebtoken/jsonb/io/JsonbDeserializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "extensions/jsonb/src/test/groovy/io/jsonwebtoken/jsonb/io/JsonbSerializerTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM42TcWx2gAoY2IxZjQyZTY3YTFlOTQ4NzQ1YjU2YmQyOGNhMTc2NTJmNmRiZWY4OA",
+                                "url": "https://github.com/jwtk/jjwt/pull/720/commits/cb1f42e67a1e948745b56bd28ca17652f6dbef88"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 719,
+                                "url": "https://github.com/jwtk/jjwt/issues/719",
+                                "title": "Add JSON-B extension",
+                                "bodyHTML": "<p dir=\"auto\"><strong>Is your feature request related to a problem? Please describe.</strong></p>\n<p dir=\"auto\">There are gson and jackson and org.json extensions.<br>\nLet’s add one for JSON-B, so there is no need to ship a specific library.<br>\nThis is useful for Java/Jakarta EE compatible servers where you do not know the implementation beforehand, but you won't need to ship one with your app either.</p>\n<p dir=\"auto\"><strong>Describe the solution you'd like</strong></p>\n<p dir=\"auto\">Similar to this one:<br>\n<a href=\"https://github.com/bmarwell/shiro-jwt-showcase/blob/3e4ec3691da3a0a7a653b4b915c3532c8fb742ed/finish/src/main/java/io/github/bmarwell/shiro/jwt/json/JsonbJwtDeserializer.java\">https://github.com/bmarwell/shiro-jwt-showcase/blob/3e4ec3691da3a0a7a653b4b915c3532c8fb742ed/finish/src/main/java/io/github/bmarwell/shiro/jwt/json/JsonbJwtDeserializer.java</a></p>\n<p dir=\"auto\">(yes, PR ahead!)</p>\n<p dir=\"auto\"><strong>Describe alternatives you've considered</strong></p>\n<ul dir=\"auto\">\n<li>Creating above class every single time for my apps</li>\n<li>Create a wrapper for Johnzon</li>\n</ul>\n<p dir=\"auto\"><strong>Additional context</strong></p>\n<ul dir=\"auto\">\n<li>Spec: <a href=\"https://github.com/eclipse-ee4j/jsonb-api\">https://github.com/eclipse-ee4j/jsonb-api</a></li>\n<li>Implementation for Johnzon: <a href=\"https://johnzon.apache.org/johnzon-jsonb/index.html\" rel=\"nofollow\">https://johnzon.apache.org/johnzon-jsonb/index.html</a></li>\n<li>Implementation Eclipse Yasson:  <a href=\"https://github.com/eclipse-ee4j/yasson\">https://github.com/eclipse-ee4j/yasson</a></li>\n</ul>",
+                                "resourcePath": "/jwtk/jjwt/issues/719",
+                                "createdAt": "2022-04-15T18:54:21Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "JWE - Explicitly check JCA alg name when looking up SignatureAlgorithms",
+                "url": "https://github.com/jwtk/jjwt/pull/712",
+                "resourcePath": "/jwtk/jjwt/pull/712",
+                "createdAt": "2022-03-15T22:14:27Z",
+                "number": 712,
+                "mergeCommit": null,
+                "potentialMergeCommit": {
+                    "oid": "af4345891db687e3978decdc4939a939295fd279",
+                    "message": "Merge c443be46b6e9eb2ed12e2f95d70d2ec2654c5119 into 3a0e464eeb46e2d7bda788a7afc8b9180257b2b0",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/af4345891db687e3978decdc4939a939295fd279",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "3a0e464eeb46e2d7bda788a7afc8b9180257b2b0",
+                                "message": "documentation cont'd"
+                            },
+                            {
+                                "oid": "c443be46b6e9eb2ed12e2f95d70d2ec2654c5119",
+                                "message": "Changes based on review feedback"
+                            }
+                        ]
+                    }
+                },
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/SignatureAlgorithmTest.groovy"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/test/groovy/io/jsonwebtoken/security/SignatureAlgorithmsTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM40fzCk2gAoYzQ0M2JlNDZiNmU5ZWIyZWQxMmUyZjk1ZDcwZDJlYzI2NTRjNTExOQ",
+                                "url": "https://github.com/jwtk/jjwt/pull/712/commits/c443be46b6e9eb2ed12e2f95d70d2ec2654c5119"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 113,
+                                "url": "https://github.com/jwtk/jjwt/issues/113",
+                                "title": "Initial JWE support",
+                                "bodyHTML": "<p dir=\"auto\">Shared key ( <code class=\"notranslate\">dir</code> ) encryption first, more complicated next.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/113",
+                                "createdAt": "2016-04-13T01:49:29Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "rfc-compliance" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "[#687] trim payload before try to parse it.",
+                "url": "https://github.com/jwtk/jjwt/pull/721",
+                "resourcePath": "/jwtk/jjwt/pull/721",
+                "createdAt": "2022-04-16T12:08:26Z",
+                "number": 721,
+                "mergeCommit": null,
+                "potentialMergeCommit": {
+                    "oid": "61615b40d6ea4d33ab6a28319698da1c4f7e8511",
+                    "message": "Merge f4f1f6284dfd48be20c0a5fa36f8f44c8168585e into a85815351806a35461d951d41fcc3c2ce14b7904",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/61615b40d6ea4d33ab6a28319698da1c4f7e8511",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "a85815351806a35461d951d41fcc3c2ce14b7904",
+                                "message": "Adds new convenience module using the old package name (#629)\n\n* Adds new connivence module, in place of the old io.jsonwebtoken:jjwt module\r\n\r\nSome folks are unaware of newer JJWT versions because they are still using the old io.jsonwebtoken:jjwt module. This makes automatic version updates tools \"just work\" for them\r\n\r\nNOTE: This new module is _basically_ an empty jar, that adds `jjwt-api` (compile scope), `jjwt-impl` (runtime scope), and `jjwt-jackson` (runtime scope) transitive dependencies.\r\n\r\n* Minor cleanup before changing `all` directory name\r\n\r\n* Renamed `all` to `tdjar` (transitive dependency jar)\r\n\r\nCo-authored-by: Les Hazlewood <121180+lhazlewood@users.noreply.github.com>"
+                            },
+                            {
+                                "oid": "f4f1f6284dfd48be20c0a5fa36f8f44c8168585e",
+                                "message": "[#687] Trim payload"
+                            }
+                        ]
+                    }
+                },
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM42ULVd2gAoZjRmMWY2Mjg0ZGZkNDhiZTIwYzBhNWZhMzZmOGY0NGM4MTY4NTg1ZQ",
+                                "url": "https://github.com/jwtk/jjwt/pull/721/commits/f4f1f6284dfd48be20c0a5fa36f8f44c8168585e"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 687,
+                                "url": "https://github.com/jwtk/jjwt/issues/687",
+                                "title": "JWT with JSON body seen as plaintext JWT",
+                                "bodyHTML": "<p dir=\"auto\">Hi,</p>\n<p dir=\"auto\">We are facing a this behavior when using the latest release of jjwt (<code class=\"notranslate\">0.9.1</code>):</p>\n<p dir=\"auto\">When parsing the claims of a token that has a JSON body using <code class=\"notranslate\">Jwts.parser().[...].parseClaimsJws(token)</code>, the token is seen as a plaintext JWT. Here is what the token contains:</p>\n<p dir=\"auto\">Header:</p>\n<div class=\"highlight highlight-source-json notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"{\n  &quot;alg&quot;: &quot;HS256&quot;,\n  &quot;typ&quot;: &quot;JWT&quot;\n}\"><pre>{\n  <span class=\"pl-ent\">\"alg\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>HS256<span class=\"pl-pds\">\"</span></span>,\n  <span class=\"pl-ent\">\"typ\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>JWT<span class=\"pl-pds\">\"</span></span>\n}</pre></div>\n<p dir=\"auto\">Payload</p>\n<div class=\"highlight highlight-source-json notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"{\n  &quot;iss&quot;: &quot;XXX&quot;,\n  &quot;scope&quot;: &quot;XXX&quot;,\n  &quot;onBehalfOf&quot;: &quot;&quot;,\n  &quot;aud&quot;: &quot; &quot;,\n  &quot;locale&quot;: &quot;&quot;,\n  &quot;iat&quot;: 1636109922773,\n  &quot;exp&quot;: 1636110522773,\n  &quot;jti&quot;: &quot;ID&quot;\n}\"><pre>{\n  <span class=\"pl-ent\">\"iss\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>XXX<span class=\"pl-pds\">\"</span></span>,\n  <span class=\"pl-ent\">\"scope\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>XXX<span class=\"pl-pds\">\"</span></span>,\n  <span class=\"pl-ent\">\"onBehalfOf\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span><span class=\"pl-pds\">\"</span></span>,\n  <span class=\"pl-ent\">\"aud\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span> <span class=\"pl-pds\">\"</span></span>,\n  <span class=\"pl-ent\">\"locale\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span><span class=\"pl-pds\">\"</span></span>,\n  <span class=\"pl-ent\">\"iat\"</span>: <span class=\"pl-c1\">1636109922773</span>,\n  <span class=\"pl-ent\">\"exp\"</span>: <span class=\"pl-c1\">1636110522773</span>,\n  <span class=\"pl-ent\">\"jti\"</span>: <span class=\"pl-s\"><span class=\"pl-pds\">\"</span>ID<span class=\"pl-pds\">\"</span></span>\n}</pre></div>\n<p dir=\"auto\">Apparently, the token payload contains an extra \\r\\n at the end, which makes it interpreted as a plaintext jwt, see this line: </p><div class=\"Box Box--condensed my-2\">\n  <div class=\"Box-header f6\">\n    <p class=\"mb-0 text-bold\">\n      <a href=\"https://github.com/jwtk/jjwt/blob/3e6c9e978ccb0eccf5ff83cfb04b052043839d4f/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java#L333\">jjwt/impl/src/main/java/io/jsonwebtoken/impl/DefaultJwtParser.java</a>\n    </p>\n    <p class=\"mb-0 color-fg-muted\">\n         Line 333\n      in\n      <a data-pjax=\"true\" class=\"commit-tease-sha\" href=\"/jwtk/jjwt/commit/3e6c9e978ccb0eccf5ff83cfb04b052043839d4f\">3e6c9e9</a>\n    </p>\n  </div>\n  <div itemprop=\"text\" class=\"Box-body p-0 blob-wrapper blob-wrapper-embedded data\">\n    <table class=\"highlight tab-size mb-0 js-file-line-container\" data-tab-size=\"8\" data-paste-markdown-skip=\"\">\n\n        <tbody><tr class=\"border-0\">\n          <td id=\"L333\" class=\"blob-num border-0 px-3 py-0 color-bg-default\" data-line-number=\"333\"></td>\n          <td id=\"LC333\" class=\"blob-code border-0 px-3 py-0 color-bg-default blob-code-inner js-file-line\"> <span class=\"pl-k\">if</span> (!<span class=\"pl-s1\">payload</span>.<span class=\"pl-en\">isEmpty</span>() &amp;&amp; <span class=\"pl-s1\">payload</span>.<span class=\"pl-en\">charAt</span>(<span class=\"pl-c1\">0</span>) == <span class=\"pl-s\">'{'</span> &amp;&amp; <span class=\"pl-s1\">payload</span>.<span class=\"pl-en\">charAt</span>(<span class=\"pl-s1\">payload</span>.<span class=\"pl-en\">length</span>() - <span class=\"pl-c1\">1</span>) == <span class=\"pl-s\">'}'</span>) { <span class=\"pl-c\">//likely to be json, parse it:</span> </td>\n        </tr>\n    </tbody></table>\n  </div>\n</div>\n<p></p>\n<p dir=\"auto\">Is it a normal behavior ? Should the JWT be seen as plaintext when it doesn't end exactly with } ?</p>\n<p dir=\"auto\">Thank you !</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/687",
+                                "createdAt": "2021-11-05T12:47:55Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "stale" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Missing JwtParserBuilder method deprecation annotation",
+                "url": "https://github.com/jwtk/jjwt/pull/731",
+                "resourcePath": "/jwtk/jjwt/pull/731",
+                "createdAt": "2022-04-26T22:13:50Z",
+                "number": 731,
+                "mergeCommit": {
+                    "oid": "a7c1d3c003f5dc2beb791f438df552115e4d2302",
+                    "message": "Resolves #617 (#731)",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/a7c1d3c003f5dc2beb791f438df552115e4d2302",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "f32b3506336a2ca36ab61a6aa0c4e5124dfb5188",
+                                "message": "3rd party version upgrades where feasible (#730)"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/JwtParserBuilder.java"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM421Phj2gAoNWI2ZWEzNTkzOTUwNDYxNDZhMTVhNGY1Mzc1ZjBlMzM0MTkxYjk0NQ",
+                                "url": "https://github.com/jwtk/jjwt/pull/731/commits/5b6ea359395046146a15a4f5375f0e334191b945"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 617,
+                                "url": "https://github.com/jwtk/jjwt/issues/617",
+                                "title": "Deprecate JwtParserBuilder#setSigningKey(String)",
+                                "bodyHTML": "<p dir=\"auto\">Hello. I noticed the code:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"   @Deprecated\n   JwtBuilder signWith(SignatureAlgorithm alg, String base64EncodedSecretKey) throws InvalidKeyException;\"><pre class=\"notranslate\"><code>   @Deprecated\n   JwtBuilder signWith(SignatureAlgorithm alg, String base64EncodedSecretKey) throws InvalidKeyException;\n</code></pre></div>\n<p dir=\"auto\">in the doc, this api will be removed in 1.0 realease, and recommend user to use<br>\n<code class=\"notranslate\">JwtBuilder signWith(Key key, SignatureAlgorithm alg) throws InvalidKeyException;</code> to replace the old api.</p>\n<p dir=\"auto\">so we need to buid the key as follow:<br>\n<code class=\"notranslate\">SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(base64EncodedSecretKey)); </code></p>\n<p dir=\"auto\">but the code <code class=\"notranslate\">JwtParserBuilder setSigningKey(String base64EncodedSecretKey);</code> doesn't deprecated. it will transfer string to base64 byte array by framework. if user use <code class=\"notranslate\">Keys.hmacShaKeyFor(byte[] bytes)</code>, but the byte[] not decoded by base64, the error will occur.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/617",
+                                "createdAt": "2020-08-14T08:32:56Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "[#519] Add moditect-generated module-info.java files and a simple IT.",
+                "url": "https://github.com/jwtk/jjwt/pull/722",
+                "resourcePath": "/jwtk/jjwt/pull/722",
+                "createdAt": "2022-04-20T09:36:04Z",
+                "number": 722,
+                "mergeCommit": null,
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/jackson/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "extensions/orgjson/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "impl/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "integration-tests/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "integration-tests/unsigned-jackson/pom.xml"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "integration-tests/unsigned-jackson/src/main/java/io/jsonwebtoken/it/unsigned/UnsignedJwtCreator.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "integration-tests/unsigned-jackson/src/main/java/module-info.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "integration-tests/unsigned-jackson/src/main/resources/META-INF/MANIFEST.MF"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "ADDED",
+                                "path": "integration-tests/unsigned-jackson/src/test/java/io/jsonwebtoken/it/unsigned/UnsignedJwtCreatorTest.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM42eoD-2gAoYTc2ODg5NzU4MDU0NDRmNTgzYTg1OTRhMzA5NDU5OThiMDg5MzI1NQ",
+                                "url": "https://github.com/jwtk/jjwt/pull/722/commits/a7688975805444f583a8594a30945998b0893255"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 519,
+                                "url": "https://github.com/jwtk/jjwt/issues/519",
+                                "title": "Enable JDK9+ module-info",
+                                "bodyHTML": "<p dir=\"auto\">I'm trying to use modules in a support library, but there seems to be no module-info for jjwt. I suggest following either Jackson's or SLF4J's approach.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/519",
+                                "createdAt": "2019-10-18T14:42:08Z",
+                                "labels": {
+                                    "edges": [
+                                        { "node": { "name": "enhancement" } }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Update Jackson Databind to 2.12.6.1",
+                "url": "https://github.com/jwtk/jjwt/pull/717",
+                "resourcePath": "/jwtk/jjwt/pull/717",
+                "createdAt": "2022-03-28T14:25:28Z",
+                "number": 717,
+                "mergeCommit": {
+                    "oid": "4b3e2c931514ee5cdc2d37aa6d8ce09ef57612ca",
+                    "message": "Update Jackson Databind to 2.12.6.1\n\nFixes: #716\nFixes: #614",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/4b3e2c931514ee5cdc2d37aa6d8ce09ef57612ca",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "20b04372d2a8c9b3550d34b9ff1c9b3ba203e8a1",
+                                "message": "fix: upgrade com.google.code.gson:gson from 2.8.8 to 2.8.9\n\nSnyk has created this PR to upgrade com.google.code.gson:gson from 2.8.8 to 2.8.9.\n\nSee this package in Maven Repository:\nhttps://mvnrepository.com/artifact/com.google.code.gson/gson/\n\nSee this project in Snyk:\nhttps://app.snyk.io/org/micah.silverman/project/cb87a9f4-731e-4a75-a25d-ca3272fdd00b?utm_source=github&utm_medium=referral&page=upgrade-pr"
+                            }
+                        ]
+                    }
+                },
+                "potentialMergeCommit": null,
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "CHANGELOG.md"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "pom.xml"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM41KQ4M2gAoMDYxZjAzYzdhYjExMWZlYjZmNDRiMjAzNmZjOWZjY2I1MjhjOTQ4MA",
+                                "url": "https://github.com/jwtk/jjwt/pull/717/commits/061f03c7ab111feb6f44b2036fc9fccb528c9480"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 614,
+                                "url": "https://github.com/jwtk/jjwt/issues/614",
+                                "title": "Android Project Throwing io.jsonwebtoken.lang.UnknownClassException",
+                                "bodyHTML": "<p dir=\"auto\">I've setup my project according to the directions. My <code class=\"notranslate\">build.gradle</code> is essentially the following:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"dependencies {\n    implementation fileTree(dir:'libs', include: ['*.jar'])\n    implementation &quot;org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61&quot;\n    implementation &quot;com.auth0.android:jwtdecode:1.4.0&quot;\n    implementation &quot;com.google.code.gson:gson:2.8.6&quot;\n\n    testImplementation 'junit:junit:4.13'\n    testImplementation &quot;io.mockk:mockk:1.10.0&quot;\n    api 'io.jsonwebtoken:jjwt-api:0.11.2'\n    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'\n    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.2') {\n        exclude group: 'org.json', module: 'json' //provided by Android natively\n    }\n\n}\"><pre class=\"notranslate\"><code>dependencies {\n    implementation fileTree(dir:'libs', include: ['*.jar'])\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61\"\n    implementation \"com.auth0.android:jwtdecode:1.4.0\"\n    implementation \"com.google.code.gson:gson:2.8.6\"\n\n    testImplementation 'junit:junit:4.13'\n    testImplementation \"io.mockk:mockk:1.10.0\"\n    api 'io.jsonwebtoken:jjwt-api:0.11.2'\n    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'\n    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.2') {\n        exclude group: 'org.json', module: 'json' //provided by Android natively\n    }\n\n}\n</code></pre></div>\n<p dir=\"auto\">I am only trying to use this library to generate a JWT in the proper format so that I can unit test my JWT parser. I've created an incredibly simple function to generate the JWT:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"    private fun createJwtToken(): String {\n        val key: Key = Keys.secretKeyFor(SignatureAlgorithm.HS256)\n        return Jwts.builder().setSubject(&quot;Joe&quot;).signWith(key).compact()\n}\"><pre class=\"notranslate\"><code>    private fun createJwtToken(): String {\n        val key: Key = Keys.secretKeyFor(SignatureAlgorithm.HS256)\n        return Jwts.builder().setSubject(\"Joe\").signWith(key).compact()\n}\n</code></pre></div>\n<p dir=\"auto\">However, I get the following crash the moment that I run my unit test:</p>\n<div class=\"snippet-clipboard-content notranslate position-relative overflow-auto\" data-snippet-clipboard-copy-content=\"java.lang.IllegalStateException: Unable to invoke class method io.jsonwebtoken.impl.crypto.MacProvider#generateKey.  Ensure the necessary implementation is in the runtime classpath.\n\n\tat io.jsonwebtoken.lang.Classes.invokeStatic(Classes.java:202)\n\tat io.jsonwebtoken.security.Keys.secretKeyFor(Keys.java:136)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)\n\tat org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)\n\tat org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:413)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:137)\n\tat com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)\n\tat com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)\n\tat com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)\n\tat com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)\nCaused by: io.jsonwebtoken.lang.UnknownClassException: Unable to load class named [io.jsonwebtoken.impl.crypto.MacProvider] from the thread context, current, or system/application ClassLoaders.  All heuristics have been exhausted.  Class could not be found.  Have you remembered to include the jjwt-impl.jar in your runtime classpath?\n\tat io.jsonwebtoken.lang.Classes.forName(Classes.java:92)\n\tat io.jsonwebtoken.lang.Classes.invokeStatic(Classes.java:195)\n\t... 29 more\"><pre class=\"notranslate\"><code>java.lang.IllegalStateException: Unable to invoke class method io.jsonwebtoken.impl.crypto.MacProvider#generateKey.  Ensure the necessary implementation is in the runtime classpath.\n\n\tat io.jsonwebtoken.lang.Classes.invokeStatic(Classes.java:202)\n\tat io.jsonwebtoken.security.Keys.secretKeyFor(Keys.java:136)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)\n\tat org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)\n\tat org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)\n\tat org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)\n\tat org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)\n\tat org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)\n\tat org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)\n\tat org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.junit.runners.ParentRunner.run(ParentRunner.java:413)\n\tat org.junit.runner.JUnitCore.run(JUnitCore.java:137)\n\tat com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)\n\tat com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)\n\tat com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)\n\tat com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)\nCaused by: io.jsonwebtoken.lang.UnknownClassException: Unable to load class named [io.jsonwebtoken.impl.crypto.MacProvider] from the thread context, current, or system/application ClassLoaders.  All heuristics have been exhausted.  Class could not be found.  Have you remembered to include the jjwt-impl.jar in your runtime classpath?\n\tat io.jsonwebtoken.lang.Classes.forName(Classes.java:92)\n\tat io.jsonwebtoken.lang.Classes.invokeStatic(Classes.java:195)\n\t... 29 more\n</code></pre></div>\n<p dir=\"auto\">Everywhere that I've looked regarding this issue, the solution seems to always be that I need to ensure I've setup my Gradle dependencies correctly. However, I feel that I've done that and I'm still running into issues. Please let me know if additional information is needed.</p>",
+                                "resourcePath": "/jwtk/jjwt/issues/614",
+                                "createdAt": "2020-08-03T23:25:28Z",
+                                "labels": { "edges": [] }
+                            }
+                        },
+                        {
+                            "node": {
+                                "number": 696,
+                                "url": "https://github.com/jwtk/jjwt/issues/696",
+                                "title": "Upgrade to the latest version of Jackson",
+                                "bodyHTML": "<p dir=\"auto\">A newer version is available:<br>\n<a href=\"https://search.maven.org/artifact/com.fasterxml.jackson.core/jackson-databind/2.13.0/bundle\" rel=\"nofollow\">https://search.maven.org/artifact/com.fasterxml.jackson.core/jackson-databind/2.13.0/bundle</a></p>",
+                                "resourcePath": "/jwtk/jjwt/issues/696",
+                                "createdAt": "2021-11-24T01:45:00Z",
+                                "labels": {
+                                    "edges": [{ "node": { "name": "stale" } }]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "repository": {
+            "pullRequest": {
+                "title": "Explicitly check JCA alg name when looking up SignatureAlgorithms",
+                "url": "https://github.com/jwtk/jjwt/pull/709",
+                "resourcePath": "/jwtk/jjwt/pull/709",
+                "createdAt": "2022-03-02T17:11:02Z",
+                "number": 709,
+                "mergeCommit": null,
+                "potentialMergeCommit": {
+                    "oid": "ede1c1648587f5c41e433dc247a9ae172e67cacf",
+                    "message": "Merge 42b324d1c358a4bdb8d5101d6496054d3e3596c0 into a85815351806a35461d951d41fcc3c2ce14b7904",
+                    "commitUrl": "https://github.com/jwtk/jjwt/commit/ede1c1648587f5c41e433dc247a9ae172e67cacf",
+                    "parents": {
+                        "nodes": [
+                            {
+                                "oid": "a85815351806a35461d951d41fcc3c2ce14b7904",
+                                "message": "Adds new convenience module using the old package name (#629)\n\n* Adds new connivence module, in place of the old io.jsonwebtoken:jjwt module\r\n\r\nSome folks are unaware of newer JJWT versions because they are still using the old io.jsonwebtoken:jjwt module. This makes automatic version updates tools \"just work\" for them\r\n\r\nNOTE: This new module is _basically_ an empty jar, that adds `jjwt-api` (compile scope), `jjwt-impl` (runtime scope), and `jjwt-jackson` (runtime scope) transitive dependencies.\r\n\r\n* Minor cleanup before changing `all` directory name\r\n\r\n* Renamed `all` to `tdjar` (transitive dependency jar)\r\n\r\nCo-authored-by: Les Hazlewood <121180+lhazlewood@users.noreply.github.com>"
+                            },
+                            {
+                                "oid": "42b324d1c358a4bdb8d5101d6496054d3e3596c0",
+                                "message": "Changes based on review feedback"
+                            }
+                        ]
+                    }
+                },
+                "files": {
+                    "edges": [
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/main/java/io/jsonwebtoken/SignatureAlgorithm.java"
+                            }
+                        },
+                        {
+                            "node": {
+                                "changeType": "MODIFIED",
+                                "path": "api/src/test/groovy/io/jsonwebtoken/SignatureAlgorithmTest.groovy"
+                            }
+                        }
+                    ]
+                },
+                "commits": {
+                    "edges": [
+                        {
+                            "node": {
+                                "id": "PURC_lADOAW3wZM4z190s2gAoNDJiMzI0ZDFjMzU4YTRiZGI4ZDUxMDFkNjQ5NjA1NGQzZTM1OTZjMA",
+                                "url": "https://github.com/jwtk/jjwt/pull/709/commits/42b324d1c358a4bdb8d5101d6496054d3e3596c0"
+                            }
+                        }
+                    ]
+                },
+                "closingIssuesReferences": {
+                    "edges": [
+                        {
+                            "node": {
+                                "number": 707,
+                                "url": "https://github.com/jwtk/jjwt/issues/707",
+                                "title": "SecretKeySpec: SignatureAlgorithm ignored -- check broken",
+                                "bodyHTML": "<p dir=\"auto\">jjwt 0.11.2</p>\n<ul dir=\"auto\">\n<li>create a token with a SecretKeySpec:<br>\n<code class=\"notranslate\">new SecretKeySpec(MyKeyString, SignatureAlgorithm.HS256.getJcaName())</code></li>\n<li>check created token and the SignatureAlgorithm is <code class=\"notranslate\">HS384</code> instead.</li>\n</ul>\n<p dir=\"auto\">If I look at <code class=\"notranslate\">io.jsonwebtoken.forSigningKey(Key key)</code> the <code class=\"notranslate\">SignatureAlgorithm</code> is <em>completely</em> ignored -- instead some length test decides what algorithm is to be used.<br>\nSo, inevitably, the check in the JWTParser fails with a baffling error!</p>\n<p dir=\"auto\">How is that even possible?</p>\n<ul dir=\"auto\">\n<li>why is an algorithm even required if it is not used?</li>\n<li>why is it not used?</li>\n<li>what's the idea in calculating an algorithm which by necessity will break the token check on the other end where the user will obviously expect the very same algorithm set when creating the token?</li>\n</ul>",
+                                "resourcePath": "/jwtk/jjwt/issues/707",
+                                "createdAt": "2022-03-01T08:44:35Z",
+                                "labels": { "edges": [] }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+]

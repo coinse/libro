@@ -1,0 +1,377 @@
+diff --git a/sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryShould.java b/sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryShould.java
+index b232083..8eb09d9 100644
+--- a/sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryShould.java
++++ b/sslcontext-kickstart/src/test/java/nl/altindag/ssl/SSLFactoryShould.java
+@@ -1277,7 +1277,8 @@ class SSLFactoryShould {
+     }
+ 
+     @Test
+-    void createMultipleRoutesForSingleClientIdentity() {
++    @Deprecated
++    void createMultipleRoutesForSingleClientIdentityToBeRemoved() {
+         SSLFactory sslFactory = SSLFactory.builder()
+                 .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
+                 .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
+@@ -1295,7 +1296,26 @@ class SSLFactoryShould {
+     }
+ 
+     @Test
+-    void createMultipleRoutesForSingleClientIdentityAndUpdateAfterCreation() {
++    void createMultipleRoutesForSingleClientIdentity() {
++        SSLFactory sslFactory = SSLFactory.builder()
++                .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
++                .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
++                .withIdentityRoute("some-client-alias", "https://localhost:8443", "https://localhost:8444")
++                .build();
++
++        assertThat(sslFactory.getKeyManager()).isPresent();
++        assertThat(KeyManagerUtils.getIdentityRoute(sslFactory.getKeyManager().get()))
++                .containsKey("some-client-alias")
++                .containsValue(Arrays.asList("https://localhost:8443", "https://localhost:8444"));
++
++        assertThat(((CompositeX509ExtendedKeyManager)sslFactory.getKeyManager().get()).getPreferredClientAliasToHosts())
++                .containsKey("some-client-alias")
++                .containsValue(Arrays.asList(URI.create("https://localhost:8443"), URI.create("https://localhost:8444")));
++    }
++
++    @Test
++    @Deprecated
++    void createMultipleRoutesForSingleClientIdentityAndUpdateAfterCreationToBeRemoved() {
+         SSLFactory sslFactory = SSLFactory.builder()
+                 .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
+                 .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
+@@ -1315,6 +1335,27 @@ class SSLFactoryShould {
+                 .containsValue(Arrays.asList("https://localhost:8443", "https://localhost:8444", "https://localhost:8445"));
+     }
+ 
++    @Test
++    void createMultipleRoutesForSingleClientIdentityAndUpdateAfterCreation() {
++        SSLFactory sslFactory = SSLFactory.builder()
++                .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
++                .withIdentityMaterial(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD)
++                .withIdentityRoute("some-client-alias", "https://localhost:8443", "https://localhost:8444")
++                .build();
++
++        assertThat(sslFactory.getKeyManager()).isPresent();
++        assertThat(KeyManagerUtils.getIdentityRoute(sslFactory.getKeyManager().get()))
++                .containsKey("some-client-alias")
++                .containsValue(Arrays.asList("https://localhost:8443", "https://localhost:8444"))
++                .doesNotContainValue(Collections.singletonList("https://localhost:8445"));
++
++        KeyManagerUtils.addIdentityRoute(sslFactory.getKeyManager().get(), "some-client-alias", "https://localhost:8445");
++
++        assertThat(KeyManagerUtils.getIdentityRoute(sslFactory.getKeyManager().get()))
++                .containsKey("some-client-alias")
++                .containsValue(Arrays.asList("https://localhost:8443", "https://localhost:8444", "https://localhost:8445"));
++    }
++
+     @Test
+     void createSSLFactoryWithSessionTimeout() {
+         SSLFactory sslFactory = SSLFactory.builder()
+@@ -1632,7 +1673,7 @@ class SSLFactoryShould {
+         SSLFactory.Builder sslFactoryBuilder = SSLFactory.builder();
+         assertThatThrownBy(() -> sslFactoryBuilder.withClientIdentityRoute(null, "https://localhost:8443"))
+                 .isInstanceOf(IllegalArgumentException.class)
+-                .hasMessage("clientAlias should be present");
++                .hasMessage("alias should be present");
+     }
+ 
+     @Test
+diff --git a/sslcontext-kickstart/src/test/java/nl/altindag/ssl/keymanager/CompositeX509ExtendedKeyManagerShould.java b/sslcontext-kickstart/src/test/java/nl/altindag/ssl/keymanager/CompositeX509ExtendedKeyManagerShould.java
+index e3b1702..fcdf8da 100644
+--- a/sslcontext-kickstart/src/test/java/nl/altindag/ssl/keymanager/CompositeX509ExtendedKeyManagerShould.java
++++ b/sslcontext-kickstart/src/test/java/nl/altindag/ssl/keymanager/CompositeX509ExtendedKeyManagerShould.java
+@@ -22,7 +22,10 @@ import org.junit.jupiter.api.Test;
+ import org.junit.jupiter.api.extension.ExtendWith;
+ import org.mockito.junit.jupiter.MockitoExtension;
+ 
++import javax.net.ssl.ExtendedSSLSession;
++import javax.net.ssl.SNIServerName;
+ import javax.net.ssl.SSLEngine;
++import javax.net.ssl.SSLSocket;
+ import javax.net.ssl.X509ExtendedKeyManager;
+ import java.net.InetSocketAddress;
+ import java.net.Socket;
+@@ -227,6 +230,35 @@ class CompositeX509ExtendedKeyManagerShould {
+         assertThat(alias).isEqualTo("dummy-client");
+     }
+ 
++    @Test
++    void chooseFirstServerAliasWithMatchingKeyTypeWithPreferredAlias() throws KeyStoreException {
++        KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
++        KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManagerOne = KeyManagerUtils.createKeyManager(identityOne, IDENTITY_PASSWORD);
++        X509ExtendedKeyManager keyManagerTwo = KeyManagerUtils.createKeyManager(identityTwo, IDENTITY_PASSWORD);
++
++        CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
++                Arrays.asList(keyManagerOne, keyManagerTwo), Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
++        );
++
++        SSLSocket socket = mock(SSLSocket.class);
++        ExtendedSSLSession sslSession = mock(ExtendedSSLSession.class);
++        when(socket.getHandshakeSession()).thenReturn(sslSession);
++
++        SNIServerName sniServerName = mock(SNIServerName.class);
++        when(sslSession.getRequestedServerNames()).thenReturn(Collections.singletonList(sniServerName));
++        when(sniServerName.getEncoded()).thenReturn("another-server".getBytes());
++
++        String alias = keyManager.chooseServerAlias("RSA", null, socket);
++
++        assertThat(keyManager).isNotNull();
++        assertThat(keyManager.size()).isEqualTo(2);
++        assertThat(identityOne.size()).isEqualTo(1);
++        assertThat(identityTwo.size()).isEqualTo(1);
++        assertThat(alias).isEqualTo("another-server");
++    }
++
+     @Test
+     void chooseFirstEngineServerAliasWithMatchingKeyType() throws KeyStoreException {
+         KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
+@@ -248,6 +280,35 @@ class CompositeX509ExtendedKeyManagerShould {
+         assertThat(alias).isEqualTo("dummy-client");
+     }
+ 
++    @Test
++    void chooseFirstEngineServerAliasWithMatchingKeyTypeWithPreferredAlias() throws KeyStoreException {
++        KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
++        KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManagerOne = KeyManagerUtils.createKeyManager(identityOne, IDENTITY_PASSWORD);
++        X509ExtendedKeyManager keyManagerTwo = KeyManagerUtils.createKeyManager(identityTwo, IDENTITY_PASSWORD);
++
++        CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
++                Arrays.asList(keyManagerOne, keyManagerTwo), Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
++        );
++
++        SSLEngine sslEngine = mock(SSLEngine.class);
++        ExtendedSSLSession sslSession = mock(ExtendedSSLSession.class);
++        when(sslEngine.getHandshakeSession()).thenReturn(sslSession);
++
++        SNIServerName sniServerName = mock(SNIServerName.class);
++        when(sslSession.getRequestedServerNames()).thenReturn(Collections.singletonList(sniServerName));
++        when(sniServerName.getEncoded()).thenReturn("another-server".getBytes());
++
++        String alias = keyManager.chooseEngineServerAlias("RSA", null, sslEngine);
++
++        assertThat(keyManager).isNotNull();
++        assertThat(keyManager.size()).isEqualTo(2);
++        assertThat(identityOne.size()).isEqualTo(1);
++        assertThat(identityTwo.size()).isEqualTo(1);
++        assertThat(alias).isEqualTo("another-server");
++    }
++
+     @Test
+     void chooseFirstServerAliasWithMatchingKeyTypeWithDifferentOrderOfInitializationOfTheKeyManager() throws KeyStoreException {
+         KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
+@@ -363,15 +424,15 @@ class CompositeX509ExtendedKeyManagerShould {
+ 
+         CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
+                 Arrays.asList(keyManagerOne, keyManagerTwo),
+-                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://localhost:8443/")))
++                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
+         );
+ 
+         Socket socket = mock(Socket.class);
+         InetSocketAddress socketAddress = mock(InetSocketAddress.class);
+ 
+         when(socket.getRemoteSocketAddress()).thenReturn(socketAddress);
+-        when(socketAddress.getPort()).thenReturn(8443);
+-        when(socketAddress.getHostName()).thenReturn("localhost");
++        when(socketAddress.getPort()).thenReturn(443);
++        when(socketAddress.getHostName()).thenReturn("another-server");
+ 
+         String alias = keyManager.chooseClientAlias(new String[]{"RSA"}, null, socket);
+ 
+@@ -392,7 +453,7 @@ class CompositeX509ExtendedKeyManagerShould {
+ 
+         CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
+                 Arrays.asList(keyManagerOne, keyManagerTwo),
+-                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://localhost:8443/")))
++                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
+         );
+ 
+         Socket socket = mock(Socket.class);
+@@ -408,6 +469,34 @@ class CompositeX509ExtendedKeyManagerShould {
+         assertThat(alias).isEqualTo("dummy-client");
+     }
+ 
++    @Test
++    void chooseFirstClientAliasWithMatchingKeyTypWhilePreferredAliasIsIgnoredBecausePortIsNotMatching() throws KeyStoreException {
++        KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
++        KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManagerOne = KeyManagerUtils.createKeyManager(identityOne, IDENTITY_PASSWORD);
++        X509ExtendedKeyManager keyManagerTwo = KeyManagerUtils.createKeyManager(identityTwo, IDENTITY_PASSWORD);
++
++        CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
++                Arrays.asList(keyManagerOne, keyManagerTwo),
++                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
++        );
++
++        Socket socket = mock(Socket.class);
++        InetSocketAddress socketAddress = mock(InetSocketAddress.class);
++        when(socket.getRemoteSocketAddress()).thenReturn(socketAddress);
++        when(socketAddress.getHostName()).thenReturn("another-server");
++        when(socketAddress.getPort()).thenReturn(1234);
++
++        String alias = keyManager.chooseClientAlias(new String[]{"RSA"}, null, socket);
++
++        assertThat(keyManager).isNotNull();
++        assertThat(keyManager.size()).isEqualTo(2);
++        assertThat(identityOne.size()).isEqualTo(1);
++        assertThat(identityTwo.size()).isEqualTo(1);
++        assertThat(alias).isEqualTo("dummy-client");
++    }
++
+     @Test
+     void chooseFirstClientAliasWithMatchingKeyTypeWhilePreferredAliasIsIgnoredBecauseSocketIsNull() throws KeyStoreException {
+         KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
+@@ -418,7 +507,7 @@ class CompositeX509ExtendedKeyManagerShould {
+ 
+         CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
+                 Arrays.asList(keyManagerOne, keyManagerTwo),
+-                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://localhost:8443/")))
++                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
+         );
+ 
+         String alias = keyManager.chooseClientAlias(new String[]{"RSA"}, null, null);
+@@ -461,12 +550,12 @@ class CompositeX509ExtendedKeyManagerShould {
+ 
+         CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
+                 Arrays.asList(keyManagerOne, keyManagerTwo),
+-                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://localhost:8443/")))
++                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
+         );
+ 
+         SSLEngine sslEngine = mock(SSLEngine.class);
+-        when(sslEngine.getPeerPort()).thenReturn(8443);
+-        when(sslEngine.getPeerHost()).thenReturn("localhost");
++        when(sslEngine.getPeerPort()).thenReturn(443);
++        when(sslEngine.getPeerHost()).thenReturn("another-server");
+ 
+         String alias = keyManager.chooseEngineClientAlias(new String[]{"RSA"}, null, sslEngine);
+ 
+@@ -487,7 +576,7 @@ class CompositeX509ExtendedKeyManagerShould {
+ 
+         CompositeX509ExtendedKeyManager keyManager = new CompositeX509ExtendedKeyManager(
+                 Arrays.asList(keyManagerOne, keyManagerTwo),
+-                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://localhost:8443/")))
++                Collections.singletonMap("another-server", Collections.singletonList(URI.create("https://another-server.com:443/")))
+         );
+ 
+         String alias = keyManager.chooseEngineClientAlias(new String[]{"RSA"}, null, null);
+diff --git a/sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/KeyManagerUtilsShould.java b/sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/KeyManagerUtilsShould.java
+index 109208f..98e752a 100644
+--- a/sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/KeyManagerUtilsShould.java
++++ b/sslcontext-kickstart/src/test/java/nl/altindag/ssl/util/KeyManagerUtilsShould.java
+@@ -27,6 +27,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
+ import javax.net.ssl.KeyManagerFactory;
+ import javax.net.ssl.X509ExtendedKeyManager;
+ import javax.net.ssl.X509KeyManager;
++import java.net.URI;
+ import java.security.KeyStore;
+ import java.security.KeyStoreException;
+ import java.security.Provider;
+@@ -274,7 +275,8 @@ class KeyManagerUtilsShould {
+     }
+ 
+     @Test
+-    void addMultipleClientIdentityRoutes() {
++    @Deprecated
++    void addMultipleClientIdentityRoutesToBeRemoved() {
+         KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
+         KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
+ 
+@@ -292,7 +294,27 @@ class KeyManagerUtilsShould {
+     }
+ 
+     @Test
+-    void overrideClientIdentityRoutes() {
++    @Deprecated
++    void addMultipleClientIdentityRoutes() {
++        KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
++        KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManagerOne = KeyManagerUtils.createKeyManager(identityOne, IDENTITY_PASSWORD);
++        X509ExtendedKeyManager keyManagerTwo = KeyManagerUtils.createKeyManager(identityTwo, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManager = KeyManagerUtils.combine(keyManagerOne, keyManagerTwo);
++        KeyManagerUtils.addIdentityRoute(keyManager, "client","https://localhost:8443/");
++        KeyManagerUtils.addIdentityRoute(keyManager, "client","https://localhost:8453/");
++        Map<String, List<String>> identityRoute = KeyManagerUtils.getClientIdentityRoute(keyManager);
++
++        assertThat(identityRoute)
++                .containsKey("client")
++                .containsValue(Arrays.asList("https://localhost:8443/", "https://localhost:8453/"));
++    }
++
++    @Test
++    @Deprecated
++    void overrideClientIdentityRoutesToBeRemoved() {
+         KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
+         KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
+ 
+@@ -316,6 +338,53 @@ class KeyManagerUtilsShould {
+                 .containsValue(Arrays.asList("https://localhost:9443/", "https://localhost:9453/"));
+     }
+ 
++    @Test
++    void overrideIdentityRoutes() {
++        KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
++        KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManagerOne = KeyManagerUtils.createKeyManager(identityOne, IDENTITY_PASSWORD);
++        X509ExtendedKeyManager keyManagerTwo = KeyManagerUtils.createKeyManager(identityTwo, IDENTITY_PASSWORD);
++
++        X509ExtendedKeyManager keyManager = KeyManagerUtils.combine(keyManagerOne, keyManagerTwo);
++        KeyManagerUtils.addIdentityRoute(keyManager, "client","https://localhost:8443/", "https://localhost:8453/");
++        Map<String, List<String>> identityRoute = KeyManagerUtils.getIdentityRoute(keyManager);
++
++        assertThat(identityRoute)
++                .containsKey("client")
++                .containsValue(Arrays.asList("https://localhost:8443/", "https://localhost:8453/"));
++
++        KeyManagerUtils.overrideIdentityRoute(keyManager, "client", "https://localhost:9443/", "https://localhost:9453/");
++        identityRoute = KeyManagerUtils.getIdentityRoute(keyManager);
++
++        assertThat(identityRoute)
++                .containsKey("client")
++                .doesNotContainValue(Arrays.asList("https://localhost:8443/", "https://localhost:8453/"))
++                .containsValue(Arrays.asList("https://localhost:9443/", "https://localhost:9453/"));
++    }
++
++    @Test
++    @Deprecated
++    void addClientIdentities() {
++        KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
++        KeyStore identityTwo = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_TWO_FILE_NAME, IDENTITY_PASSWORD);
++
++        Map<String, List<URI>> hostsToUris = new HashMap<>();
++        hostsToUris.put("client", Arrays.asList(URI.create("https://localhost:8443/"), URI.create("https://localhost:8453/")));
++
++        X509ExtendedKeyManager keyManager = KeyManagerUtils.keyManagerBuilder()
++                .withIdentity(identityOne, IDENTITY_PASSWORD, KeyManagerFactory.getDefaultAlgorithm())
++                .withIdentity(identityTwo, IDENTITY_PASSWORD, KeyManagerFactory.getDefaultAlgorithm())
++                .withClientAliasToHost(hostsToUris)
++                .build();
++
++        Map<String, List<String>> clientIdentityRoute = KeyManagerUtils.getClientIdentityRoute(keyManager);
++
++        assertThat(clientIdentityRoute)
++                .containsKey("client")
++                .containsValue(Arrays.asList("https://localhost:8443/", "https://localhost:8453/"));
++    }
++
+     @Test
+     void addClientIdentityRoutesWhenTryingToOverrideANonExistingRoute() {
+         KeyStore identityOne = KeyStoreUtils.loadKeyStore(KEYSTORE_LOCATION + IDENTITY_FILE_NAME, IDENTITY_PASSWORD);
+@@ -326,7 +395,7 @@ class KeyManagerUtilsShould {
+ 
+         X509ExtendedKeyManager keyManager = KeyManagerUtils.combine(keyManagerOne, keyManagerTwo);
+         KeyManagerUtils.overrideClientIdentityRoute(keyManager, "client","https://localhost:8443/", "https://localhost:8453/");
+-        Map<String, List<String>> clientIdentityRoute = KeyManagerUtils.getClientIdentityRoute(keyManager);
++        Map<String, List<String>> clientIdentityRoute = KeyManagerUtils.getIdentityRoute(keyManager);
+ 
+         assertThat(clientIdentityRoute)
+                 .containsKey("client")

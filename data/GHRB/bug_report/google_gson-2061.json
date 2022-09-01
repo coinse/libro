@@ -1,0 +1,7 @@
+{
+  "issue_id": 1049,
+  "issue_url": "https://github.com/google/gson/issues/1049",
+  "title": "JsonReader.hasNext() returns true at END_DOCUMENT",
+  "description": "<p dir=\"auto\">JsonReader.hasNext() will return true if we are at the end of the document<br>\n(reader.peek() == JsonToken.END_DOCUMENT)</p>",
+  "description_text": "JsonReader.hasNext() will return true if we are at the end of the document\n(reader.peek() == JsonToken.END_DOCUMENT)"
+}

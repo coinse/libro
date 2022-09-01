@@ -1,0 +1,68 @@
+query fetchPullRequest($name: String!, $owner: String!, $number: Int!) {
+    repository(name: $name, owner: $owner) {
+        pullRequest(number: $number) {
+            title
+            url
+            resourcePath
+            createdAt
+            number
+            mergeCommit {
+                oid
+                message
+                commitUrl
+                parents(first: 5) {
+                    nodes {
+                        oid
+                        message
+                    }
+                }
+            }
+            potentialMergeCommit {
+                oid
+                message
+                commitUrl
+                parents(first: 5) {
+                    nodes {
+                        oid
+                        message
+                    }
+                }
+            }
+            files(last: 10) {
+                edges {
+                    node {
+                        changeType
+                        path
+                    }
+                }
+            }
+            commits(last: 1) {
+                edges {
+                    node {
+                        id
+                        url
+                    }
+                }
+            }
+            closingIssuesReferences(first: 50) {
+                edges {
+                    node {
+                        number
+                        url
+                        title
+                        bodyHTML
+                        resourcePath
+                        createdAt
+                        labels(first: 5) {
+                            edges {
+                                node {
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

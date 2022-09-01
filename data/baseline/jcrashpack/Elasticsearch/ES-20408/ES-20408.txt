@@ -1,0 +1,6 @@
+RemoteTransportException[[es-1][][indices:data/read/search[phase/scan/scroll]]]; nested: NullPointerException;
+Caused by: java.lang.NullPointerException
+        at org.elasticsearch.search.fetch.source.FetchSourceSubPhase.hitExecute(FetchSourceSubPhase.java:79)
+        at org.elasticsearch.search.fetch.FetchPhase.execute(FetchPhase.java:188)
+        at org.elasticsearch.search.SearchService.executeScan(SearchService.java:342)
+

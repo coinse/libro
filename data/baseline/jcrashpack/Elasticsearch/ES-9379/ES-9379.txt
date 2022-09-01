@@ -1,0 +1,31 @@
+[2015-01-21 17:40:04,708][DEBUG][action.bulk              ] [nodeD2] [test-index][2] failed to execute bulk item (index) index {[test-index][test-type][1], source[{ "foo": "b\ar" }^M]}
+org.elasticsearch.index.mapper.MapperParsingException: failed to parse [foo]
+        at org.elasticsearch.index.mapper.core.AbstractFieldMapper.parse(AbstractFieldMapper.java:415)
+        at org.elasticsearch.index.mapper.object.ObjectMapper.serializeValue(ObjectMapper.java:707)
+        at org.elasticsearch.index.mapper.object.ObjectMapper.parse(ObjectMapper.java:500)
+        at org.elasticsearch.index.mapper.DocumentMapper.parse(DocumentMapper.java:541)
+        at org.elasticsearch.index.mapper.DocumentMapper.parse(DocumentMapper.java:490)
+        at org.elasticsearch.index.shard.service.InternalIndexShard.prepareIndex(InternalIndexShard.java:413)
+        at org.elasticsearch.action.bulk.TransportShardBulkAction.shardIndexOperation(TransportShardBulkAction.java:435)
+        at org.elasticsearch.action.bulk.TransportShardBulkAction.shardOperationOnPrimary(TransportShardBulkAction.java:150)
+        at org.elasticsearch.action.support.replication.TransportShardReplicationOperationAction$AsyncShardOperationAction.performOnPrimary(TransportShardReplicationOperationAction.java:511)
+        at org.elasticsearch.action.support.replication.TransportShardReplicationOperationAction$AsyncShardOperationAction$1.run(TransportShardReplicationOperationAction.java:419)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+        at java.lang.Thread.run(Thread.java:745)
+Caused by: org.elasticsearch.common.jackson.core.JsonParseException: Unrecognized character escape 'a' (code 97)
+ at [Source: [B@5bcacee; line: 1, column: 14]
+        at org.elasticsearch.common.jackson.core.JsonParser._constructError(JsonParser.java:1419)
+        at org.elasticsearch.common.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:508)
+        at org.elasticsearch.common.jackson.core.base.ParserMinimalBase._handleUnrecognizedCharacterEscape(ParserMinimalBase.java:485)
+        at org.elasticsearch.common.jackson.core.json.UTF8StreamJsonParser._decodeEscaped(UTF8StreamJsonParser.java:2924)
+        at org.elasticsearch.common.jackson.core.json.UTF8StreamJsonParser._finishString2(UTF8StreamJsonParser.java:2209)
+        at org.elasticsearch.common.jackson.core.json.UTF8StreamJsonParser._finishString(UTF8StreamJsonParser.java:2165)
+        at org.elasticsearch.common.jackson.core.json.UTF8StreamJsonParser.getText(UTF8StreamJsonParser.java:279)
+        at org.elasticsearch.common.xcontent.json.JsonXContentParser.text(JsonXContentParser.java:86)
+        at org.elasticsearch.common.xcontent.support.AbstractXContentParser.textOrNull(AbstractXContentParser.java:194)
+        at org.elasticsearch.index.mapper.core.StringFieldMapper.parseCreateFieldForString(StringFieldMapper.java:337)
+        at org.elasticsearch.index.mapper.core.StringFieldMapper.parseCreateField(StringFieldMapper.java:277)
+        at org.elasticsearch.index.mapper.core.AbstractFieldMapper.parse(AbstractFieldMapper.java:405)
+        ... 12 more
+

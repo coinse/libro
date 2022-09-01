@@ -1,0 +1,95 @@
+diff --git a/src/test/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheckTest.java b/src/test/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheckTest.java
+index 37ea8dfc4..241cf35c8 100644
+--- a/src/test/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheckTest.java
++++ b/src/test/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheckTest.java
+@@ -231,6 +231,15 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
+                 getPath("InputClassFanOutComplexityAnnotations.java"), expected);
+     }
+ 
++    @Test
++    public void testImplementsAndNestedCount() throws Exception {
++        final String[] expected = {
++            "26:1: " + getCheckMessage(MSG_KEY, 3, 0),
++        };
++        verifyWithInlineConfigParser(
++                getPath("InputClassFanOutComplexityImplementsAndNestedCount.java"), expected);
++    }
++
+     @Test
+     public void testClassFanOutComplexityRecords() throws Exception {
+         final String[] expected = {
+@@ -263,10 +272,13 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
+     }
+ 
+     @Test
+-    public void testClassFanOutComplexityRemoveMultiCatchBitwiseOr() throws Exception {
+-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
++    public void testClassFanOutComplexityMultiCatchBitwiseOr() throws Exception {
++        final String[] expected = {
++            "27:1: " + getCheckMessage(MSG_KEY, 5, 4),
++        };
++
+         verifyWithInlineConfigParser(
+-                getPath("InputClassFanOutComplexityRemoveMultiCatchBitwiseOr.java"), expected);
++                getPath("InputClassFanOutComplexityMultiCatchBitwiseOr.java"), expected);
+     }
+ 
+     /**
+diff --git a/src/test/java/com/puppycrawl/tools/checkstyle/utils/CheckUtilTest.java b/src/test/java/com/puppycrawl/tools/checkstyle/utils/CheckUtilTest.java
+index 4bb066674..a27dc220f 100644
+--- a/src/test/java/com/puppycrawl/tools/checkstyle/utils/CheckUtilTest.java
++++ b/src/test/java/com/puppycrawl/tools/checkstyle/utils/CheckUtilTest.java
+@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenI
+ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+ import static org.junit.jupiter.api.Assertions.assertEquals;
+ import static org.junit.jupiter.api.Assertions.assertFalse;
+-import static org.junit.jupiter.api.Assertions.assertNull;
+ import static org.junit.jupiter.api.Assertions.assertTrue;
+ import static org.junit.jupiter.api.Assertions.fail;
+ 
+@@ -40,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+ import com.puppycrawl.tools.checkstyle.JavaParser;
+ import com.puppycrawl.tools.checkstyle.api.DetailAST;
+-import com.puppycrawl.tools.checkstyle.api.FullIdent;
+ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+ 
+@@ -155,23 +153,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
+         }
+     }
+ 
+-    @Test
+-    public void testCreateFullType() throws Exception {
+-        final DetailAST typeNode = getNodeFromFile(TokenTypes.TYPE);
+-
+-        assertEquals("Map[13x12]", CheckUtil.createFullType(typeNode).toString(),
+-                "Invalid full type");
+-    }
+-
+-    @Test
+-    public void testCreateFullTypeOfArray() throws Exception {
+-        final DetailAST arrayTypeNode = getNodeFromFile(TokenTypes.VARIABLE_DEF)
+-                .getNextSibling().getFirstChild().getNextSibling();
+-
+-        assertEquals("int[][14x14]", CheckUtil.createFullType(arrayTypeNode).toString(),
+-                "Invalid full type");
+-    }
+-
+     @Test
+     public void testGetTypeParameterNames() throws Exception {
+         final DetailAST parameterizedClassNode = getNodeFromFile(TokenTypes.CLASS_DEF);
+@@ -399,13 +380,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
+         assertEquals(expected, actual, "Result is not expected");
+     }
+ 
+-    @Test
+-    public void testNullChild() {
+-        final DetailAstImpl root = new DetailAstImpl();
+-        final FullIdent ident = CheckUtil.createFullType(root);
+-        assertNull(ident.getDetailAst(), "'ident' should be null");
+-    }
+-
+     private DetailAST getNodeFromFile(int type) throws Exception {
+         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
+             JavaParser.Options.WITH_COMMENTS), type);

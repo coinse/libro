@@ -1,0 +1,13 @@
+org.elasticsearch.index.mapper.MapperParsingException: failed to parse [geometry]
+	at org.elasticsearch.index.mapper.GeoShapeFieldMapper.parse(GeoShapeFieldMapper.java:473) ~[elasticsearch-5.4.1.jar:5.4.1]
+	at org.elasticsearch.index.mapper.DocumentParser.parseObjectOrField(DocumentParser.java:450) ~[elasticsearch-5.4.1.jar:5.4.1]
+	at org.elasticsearch.index.mapper.DocumentParser.parseObject(DocumentParser.java:467) ~[elasticsearch-5.4.1.jar:5.4.1]
+[...]
+Caused by: java.lang.ArrayIndexOutOfBoundsException: -1
+	at org.elasticsearch.common.geo.builders.PolygonBuilder.assign(PolygonBuilder.java:483) ~[elasticsearch-5.4.1.jar:5.4.1]
+	at org.elasticsearch.common.geo.builders.PolygonBuilder.compose(PolygonBuilder.java:455) ~[elasticsearch-5.4.1.jar:5.4.1]
+	at org.elasticsearch.common.geo.builders.PolygonBuilder.coordinates(PolygonBuilder.java:221) ~[elasticsearch-5.4.1.jar:5.4.1]
+	at org.elasticsearch.common.geo.builders.MultiPolygonBuilder.build(MultiPolygonBuilder.java:129) ~[elasticsearch-5.4.1.jar:5.4.1]
+	at org.elasticsearch.index.mapper.GeoShapeFieldMapper.parse(GeoShapeFieldMapper.java:455) ~[elasticsearch-5.4.1.jar:5.4.1]
+	... 36 more
+
