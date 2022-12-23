@@ -1,5 +1,10 @@
-# Artifact for Large Language Models are Few-shot Testers: Exploring LLM-based General Bug Reproduction
+# LIBRO: LLM Induced Bug Reproduction
 
+
+This repository contains an artifact of a paper Large Language Models are Few-shot Testers: Exploring LLM-based General Bug Reproduction (to appear in ICSE 2023)
+
+![](./resource/overview.png)
+LIBRO accepts a bug report and an existing test suite as input, and produces a ranked list of bug-reproducing test candidates.
 
 ## To replicate results in paper
 * **Replicate_Motivation:** Replicates our results in Sec. 2
