@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd 'repos'
 orgdir=$(pwd)
 for bname in $(find . -mindepth 1 -maxdepth 1 -type d | sort -V); do

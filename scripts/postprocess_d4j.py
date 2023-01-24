@@ -1,9 +1,12 @@
 from os import path
 from common import *
 from config import llm_exp_config
+from collections import defaultdict
+from tqdm import tqdm
 
 import os
 import re
+import glob
 import subprocess as sp
 import argparse
 import d4j_util
@@ -160,7 +163,11 @@ def twover_run_experiment(proj, bug_id, example_tests, injection=True):
         git_reset(repo_path)
         git_clean(repo_path)
         example_test = enforce_static_assertions(example_test)
-        buggy_info = individual_run(proj, bug_id, example_test, injection)
+        try:
+            buggy_info = individual_run(proj, bug_id, example_test, injection)
+        except Exception as e:
+            buggy_info = f'[error] {repr(e)}'
+
         buggy_results.append(buggy_info)
     
     # Running experiment for fixed version
@@ -179,12 +186,20 @@ def twover_run_experiment(proj, bug_id, example_tests, injection=True):
         if injection:
             git_clean(repo_path)
         example_test = enforce_static_assertions(example_test)
-        fixed_info = individual_run(proj, bug_id, example_test, injection)
+        try:
+            fixed_info = individual_run(proj, bug_id, example_test, injection)
+        except Exception as e:
+            fixed_info = f'[error] {repr(e)}'
+
         fixed_results.append(fixed_info)
     
     # Matching results together
     final_results = []
     for buggy_info, fixed_info in zip(buggy_results, fixed_results):
+        if isinstance(buggy_info, str): # Test is syntactically incorrect (JavaSyntaxError)
+            final_results.append(buggy_info)
+            continue
+
         fails_in_buggy_version = any(map(lambda x: 'AutoGen' in x, buggy_info['failed_tests']))
         fails_in_fixed_version = any(map(lambda x: 'AutoGen' in x, fixed_info['failed_tests']))
 
@@ -197,18 +212,47 @@ def twover_run_experiment(proj, bug_id, example_tests, injection=True):
         })
     return final_results
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--project', default='Time')
     parser.add_argument('-b', '--bug_id', type=int, default=18)
     parser.add_argument('-n', '--test_no', type=int, default=0)
+    parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests/')
+    parser.add_argument('--all', action='store_true')
+    parser.add_argument('--exp_name', default='example2_n50_replicate')
     args = parser.parse_args()
 
-    GEN_TEST_DIR = llm_exp_config['gen_tests_dir']['d4j']
+    GEN_TEST_DIR = args.gen_test_dir
 
-    with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_n{args.test_no}.txt')) as f:
-        example_test = f.read()
+    if args.all:
+        bug2tests = defaultdict(list)
+        
+        for gen_test_file in glob.glob(os.path.join(GEN_TEST_DIR, '*.txt')):
+            bug_id = '_'.join(os.path.basename(gen_test_file).split('_')[:2])
+            bug2tests[bug_id].append(gen_test_file)
 
-    # example experiment execution
-    print(twover_run_experiment(args.project, args.bug_id, [example_test]))
+        exec_results = {}
+        for bug_key, tests in tqdm(bug2tests.items()):
+            project, bug_id = bug_key.split('_')
+            bug_id = int(bug_id)
+            res_for_bug = {}
+
+            example_tests = []
+            for test_file in tests:
+                with open(test_file) as f:
+                    example_tests.append(f.read())
+            results = twover_run_experiment(project, bug_id, example_tests)
+
+            for test_path, res in zip(tests, results):
+                res_for_bug[os.path.basename(test_path)] = res
+            exec_results[bug_key] = res_for_bug
+
+            with open(f'results/{args.exp_name}.json', 'w') as f:
+                json.dump(exec_results, f, indent=4)
+
+    else:
+        with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_n{args.test_no}.txt')) as f:
+            example_test = f.read()
+
+        # example experiment execution
+        print(twover_run_experiment(args.project, args.bug_id, [example_test]))

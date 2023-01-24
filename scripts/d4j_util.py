@@ -4,7 +4,7 @@ from shutil import which
 from datetime import datetime
 
 # make a soft link from where D4J projects are located to below location
-ROOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), './data/Defects4J/repos/')
+ROOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '/root/data/Defects4J/repos/')
 # defects4j home directory
 D4J_HOME = "/".join(which("defects4j").split("/")[:-3]) + "/"
 # random seed

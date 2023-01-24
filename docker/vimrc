@@ -1,0 +1,8 @@
+syntax on
+set nu
+set softtabstop=2 shiftwidth=2 expandtab
+set hlsearch
+
+highlight ExtraWhitespace ctermbg=132 guibg=#af5f87
+match ExtraWhitespace /\s\+$/
+autocmd BufWritePre * :%s/\s\+$//e

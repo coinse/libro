@@ -1,0 +1,10 @@
+public void testDefaultMethod() throws Exception {
+    assertThat(Impl.class).hasMethods("method");
+}
+
+static class Impl implements HasDefault {
+}
+
+interface HasDefault {
+    default void method() {}
+}
