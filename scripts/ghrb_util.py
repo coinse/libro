@@ -6,55 +6,51 @@ import shlex
 import enlighten
 
 
-def abspath(path):
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
-
-
 config = {
     'google_gson': {
-        'repo_path': abspath('./data/GHRB/repos/gson/gson/'),
+        'repo_path': '/root/data/GHRB/repos/gson/gson/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'google_gson',
         'project_id': 'gson'
     },
     'assertj_assertj-core': {
-        'repo_path': abspath('./data/GHRB/repos/assertj-core/'),
+        'repo_path': '/root/data/GHRB/repos/assertj-core/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'assertj_assertj-core',
         'project_id': 'assertj'
     },
     'FasterXML_jackson-core': {
-        'repo_path': abspath('./data/GHRB/repos/jackson-core/'),
+        'repo_path': '/root/data/GHRB/repos/jackson-core/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'FasterXML_jackson-core',
         'project_id': 'jackson.core'
     },
     'FasterXML_jackson-databind': {
-        'repo_path': abspath('./data/GHRB/repos/jackson-databind/'),
+        'repo_path': '/root/data/GHRB/repos/jackson-databind/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'FasterXML_jackson-databind',
         'project_id': 'jackson.databind'
     },
     'jhy_jsoup': {
-        'repo_path': abspath('./data/GHRB/repos/jsoup/'),
+        'repo_path': '/root/data/GHRB/repos/jsoup/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'jhy_jsoup',
         'project_id': 'jsoup'
     },
     'Hakky54_sslcontext-kickstart': {
-        'repo_path': abspath('./data/GHRB/repos/sslcontext-kickstart/sslcontext-kickstart/'),
+        'repo_path': '/root/data/GHRB/repos/sslcontext-kickstart/sslcontext-kickstart/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'Hakky54_sslcontext-kickstart',
         'project_id': 'altindag.ssl'
     },
     'checkstyle_checkstyle': {
-        'repo_path': abspath('./data/GHRB/repos/checkstyle/'),
+        'repo_path': '/root/data/GHRB/repos/checkstyle/',
         'src_dir': 'src/main/java/',
         'test_prefix': 'src/test/java/',
         'project_name': 'checkstyle_checkstyle',
@@ -96,6 +92,13 @@ properties_to_replace = {
         r'<jdk>\s*\[17\,\)\s*</jdk>': '<jdk>[17,)</jdk>'
     }
 }
+
+def split_project_bug_id(bug_key):
+    s = bug_key.split('_')
+    project = '_'.join(s[:-1])
+    bug_id = s[-1]
+
+    return project, bug_id
 
 
 def fix_build_env(repo_dir_path):

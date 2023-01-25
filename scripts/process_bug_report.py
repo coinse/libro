@@ -1,8 +1,8 @@
 import re
 import json
 
-REPORT_FEAT_PATH_D4J = './data/Defects4J/bug_report_features.json'
-REPORT_FEAT_PATH_GHRB = './data/GHRB/bug_report_features_ghrb.json'
+REPORT_FEAT_PATH_D4J = '../data/Defects4J/bug_report_features.json'
+REPORT_FEAT_PATH_GHRB = '../data/GHRB/bug_report_features_ghrb.json'
 
 def load_bug_report_features(dataset='d4j'):
     if dataset == 'd4j':

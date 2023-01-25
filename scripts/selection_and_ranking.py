@@ -12,11 +12,11 @@ from common import normalize_test, process_result, count_test_tokens
 from process_failure_output import *
 from process_bug_report import *
 
-RESULT_PATH = './results/example2_n50.json'
-GEN_TEST_PATH = './data/Defects4J/gen_tests/'
+RESULT_PATH = '../results/example2_n50.json'
+GEN_TEST_PATH = '../data/Defects4J/gen_tests/'
 
-RESULT_PATH_GHRB = './results/example2_n50_GHRB.json'
-GEN_TEST_PATH_GHRB = './data/GHRB/gen_tests/'
+RESULT_PATH_GHRB = '../results/example2_n50_GHRB.json'
+GEN_TEST_PATH_GHRB = '../data/GHRB/gen_tests/'
 
 BIG_NUMBER = 100000
 SELECTION_THRESHOLD = 1
@@ -324,6 +324,7 @@ def aggregate_results_from_random_baseline(rank_feature_df_selected, test_cluste
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dataset', default='Defects4J', help='Defects4J or GHRB')
+    parser.add_argument('-f', '--result_file', default=None, help='Path to the execution result file (e.g., `../results/example2_n50.json`)')
     parser.add_argument('--random', action='store_true', help='Produce random baseline results')
     args = parser.parse_args()
 
@@ -337,6 +338,10 @@ if __name__ == "__main__":
         dname = 'ghrb'
     else:
         raise Exception('Invalid dataset')
+
+    if args.result_file is not None:
+        print(f'Use the custom result file {args.result_file}...')
+        result_path = args.result_file
 
     result_dict = process_result(result_path, gen_test_path)
 
@@ -393,12 +398,12 @@ if __name__ == "__main__":
     # 5. collect rank features and apply intra+inter cluster ranking strategy
     rank_feature_df = collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, parsed_output)
 
-    with open(f'results/ranking_features_{dname}.csv', 'w') as f:
+    with open(f'../results/ranking_features_{dname}.csv', 'w') as f:
         rank_feature_df.to_csv(f, index=False)
 
     rank_df = rank_tests_using_clusters(rank_feature_df, test_clusters)
 
-    with open(f'results/ranking_{dname}.csv', 'w') as f:
+    with open(f'../results/ranking_{dname}.csv', 'w') as f:
         rank_df[['bug_id', 'first_success_rank', 'total_success_fibs', 'num_clusters']].to_csv(f, index=False)
 
     # result before selection
@@ -413,7 +418,7 @@ if __name__ == "__main__":
     rank_feature_df_selected = select_confident_bugs(rank_feature_df, threshold=SELECTION_THRESHOLD)
     rank_df_selected = rank_tests_using_clusters(rank_feature_df_selected, test_clusters)
 
-    with open(f'results/ranking_{dname}_selected_th{SELECTION_THRESHOLD}.csv', 'w') as f:
+    with open(f'../results/ranking_{dname}_selected_th{SELECTION_THRESHOLD}.csv', 'w') as f:
         rank_df_selected[['bug_id', 'first_success_rank', 'total_success_fibs', 'num_clusters']].to_csv(f, index=False)
 
     # result after selection
@@ -429,5 +434,5 @@ if __name__ == "__main__":
         # random baseline (metrics precomputed)
         random_baseline_result = aggregate_results_from_random_baseline(rank_feature_df_selected, test_clusters)
 
-        with open(f'./results/ranking_random_baseline_{dname}.json', 'w') as f:
+        with open(f'../results/ranking_random_baseline_{dname}.json', 'w') as f:
             json.dump(random_baseline_result, f, indent=2)

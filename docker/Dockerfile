@@ -16,6 +16,10 @@ ENV JAVA_VERSION_MAJOR=8 \
 
 RUN apt-get update && \ 
     apt-get upgrade -y && \
+    apt install openjdk-11-jdk -yq && \
+    apt install openjdk-17-jdk -yq 
+
+RUN apt-get update && \ 
     apt install openjdk-8-jdk -yq && \
     ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/default-jvm && \
     apt-get clean all

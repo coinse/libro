@@ -6,11 +6,6 @@ This repository contains a replicable artifact of a paper **Large Language Model
 ![](./resource/overview.png)
 LIBRO accepts a bug report and an existing test suite as input, and produces a ranked list of bug-reproducing test candidates.
 
-## Directory Structure
-```
-> TODO: directory tree structure + description for each script or subdirectory
-```
-
 ## Setting up LIBRO 
 * You need [Docker](https://docs.docker.com/get-docker/) to set up environment to run LIBRO. 
 
@@ -19,8 +14,17 @@ Edit `env.list` file with your OpenAI API secret key.
 ```
 OPENAI_API_KEY=<your_own_openai_api_key>
 ```
+### (Option 1: Recommended) Pull Docker image
+```bash 
+docker pull greenmon/libro-env
+```
 
-### Build Docker image and run container
+Run docker container and attach to it:
+```bash 
+sh run_docker_container.sh
+```
+
+### (Option 2) Build Docker image on your own
 Build docker image with Defects4J framework and proper Java/Python versions installed:
 ```bash 
 cd docker
@@ -34,14 +38,27 @@ sh run_docker_container.sh
 
 Inside the container:
 ```bash
+wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz -P /tmp # for running projects in GHRB benchmark
+tar -xzvf /tmp/apache-maven-3.8.6-bin.tar.gz -C /opt
+
+git config --global --add safe.directory '*'
+
 cd workspace
 pip install -r requirements.txt
 ```
 
-> JDK versions required from GHRB projects: `JDK 11` (for `google/gson`), `JDK 17` (for other projects), `Apache Maven 3.8.6`
-
+Additionally, you should set proper Java version according which benchmark you want to execute. For running Defects4J, be sure that you are using Java version 8: to switch between Java versions, use the command `update-alternatives --config java` inside the container:
+```
+  Selection    Path                                            Priority   Status
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-17-openjdk-amd64/bin/java      1711      auto mode
+  1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java      1111      manual mode
+  2            /usr/lib/jvm/java-17-openjdk-amd64/bin/java      1711      manual mode
+* 3            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1081      manual mode
+```
 
 ### Prepare Defects4J dataset and LLM-generated tests
+> To accomplish this step, JDK version should be set to 8
 1. Download LLM-generated tests for the versions ([link](https://figshare.com/s/aba0a7465f04ce45ba55))
     * `d4j-gen-tests.tar.gz`: generated tests by Codex used in our evaluation
 
@@ -70,8 +87,7 @@ bash tag_post_fix_compilable.sh
 3. Extract files (.txt) in `ghrb-gen-tests.tar.gz` to the path of `/root/data/GHRB/gen_tests` *(You can skip this step if you want to use your own query results)*
 
 ## Running LIBRO
-
-### Prompt LLM to generate test on you own
+### Prompt LLM to generate test on your own
 > This step is optional. You can skip this step if you just want to use our prepared query results. (recommended if you don't have Codex access)
 
 Use the script `llm_query.py` to prompt LLM to generate a reproducing test from a bug report. 
@@ -98,11 +114,15 @@ The command basically runs 0th generated test from Time-18 bug report and get ex
 ```
 
 #### GHRB
-
-> Set proper Java version: `JDK 11` for `google_gson` project, and `JDK 17` for other projects. Refer to the files `data/GHRB/set_env.sh` and `data/GHRB/set_env_gson.sh`.
+For GHRB benchmark, you should select appropriate Java version for each project.
+* `google_gson`: JDK 11 (`java-11-openjdk-amd64` installed in the container)
+* `assertj_assertj-core`, `FasterXML_jackson-core`, `FasterXML_jackson-databind`, `jhy_jsoup`, `Hakky54_sslcontext-kickstart`, `checkstyle_checkstyle`: JDK 17 (`java-17-openjdk-amd64`)
 
 Run `postprocess_ghrb.py` to postprocess the target LLM-generated test and get execution results in buggy and fixed versions.
 ```bash
+update-alternatives --config java # set Java version to 11 (17 for other GHRB projects)
+source /root/data/GHRB/set_env_gson.sh 
+# source /root/data/GHRB/set_env.sh (for other projects)
 python postprocess_ghrb.py -p google_gson -b 2134 -n 32 
 ```
 The command runs 32th generated test from the bug report associated with the google_gson PR #2134, and get execution results from both pre-merge and post-merge version of google_gson.
@@ -113,8 +133,7 @@ Execution results are similar form with those from Defects4J:
 ```
 
 
-### Reproduce full experiment data 
-
+### Collect full experiment data 
 #### Defects4J 
 ```bash
 python postprocess_d4j.py --all --exp_name example2_n50_replicate
@@ -122,14 +141,24 @@ python postprocess_d4j.py --all --exp_name example2_n50_replicate
 ```
 
 #### GHRB
+For GHRB benchmark, you always should set target project (with `-p`, or `--project` option) to run all contained bugs for the project *(Only project-wise execution is supported because of the version difference issue)*
 ```bash
-python postprocess_ghrb.py --all --exp_name example2_n50_ghrb_replicate
-# generates aggregated execution results as a file `results/example2_n50_ghrb_replicate.json`
+update-alternatives --config java # set Java version to 11 (17 for other GHRB projects)
+source /root/data/GHRB/set_env_gson.sh 
+# source /root/data/GHRB/set_env.sh (for other projects)
+python postprocess_ghrb.py -p google_gson --all --exp_name example2_n50_ghrb_replicate 
+# generates aggregated execution results as a file `results/example2_n50_ghrb_replicate_google_gson.json`
+```
+
+### Get selection and ranking results 
+```bash 
+python selection_and_ranking.py -d Defects4J -f ../results/example2_n50_replicate.json # from Defects4J execution results
 ```
 
 ## Replicating evaluation results in paper
-* **Replicate_Motivation:** Replicates our results in Sec. 2
-* **Replicate_RQ1:** Replicates Table 3, 4 used to answer RQ1.
-* **Replicate_RQ2:** Replicates Figure 2, 3, 4, and Table 6 used to answer RQ2.
-* **Replicate_RQ3:** Replicates Figure 5 used to answer RQ3.
+* You can replicate results in the paper using the Jupyter notebooks inside `notebooks` folder:
+    * **Replicate_Motivation:** Replicates our results in Sec. 2
+    * **Replicate_RQ1:** Replicates Table 3, 4 used to answer RQ1.
+    * **Replicate_RQ2:** Replicates Figure 2, 3, 4, and Table 6 used to answer RQ2.
+    * **Replicate_RQ3:** Replicates Figure 5 used to answer RQ3.
 

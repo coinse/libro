@@ -1,18 +1,22 @@
 from os import path
 from common import *
 from config import llm_exp_config
+from collections import defaultdict
+from tqdm import tqdm
 
 import os
+import re 
+import glob
 import shutil
 import glob
 import json
 
-from ghrb_util import config, license_sslcontext_kickstart, fix_build_env, pit
+from ghrb_util import config, license_sslcontext_kickstart, fix_build_env, pit, split_project_bug_id
 
 import subprocess as sp
 import argparse
 
-BUG_LIST_PATH = './data/GHRB/verified_bugs.json'
+BUG_LIST_PATH = '/root/data/GHRB/verified_bugs.json'
 
 def needed_imports_and_asserts(repo_path, src_dir, gen_test, project_id):
     if 'sslcontext-kickstart' in repo_path:
@@ -293,8 +297,12 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
         git_reset(repo_path)
         git_clean(repo_path)  # this should not delete class files
         example_test = enforce_static_assertions(example_test)
-        buggy_info = individual_run(
-            repo_path, src_dir, test_prefix, example_test, project_id, injection)
+        try:
+            buggy_info = individual_run(
+                repo_path, src_dir, test_prefix, example_test, project_id, injection)
+        except Exception as e:
+            buggy_info = f'[error] {repr(e)}'
+
         if buggy_info['autogen_failed']:
             fib_tests.append(example_test)
         buggy_results.append(buggy_info)
@@ -319,8 +327,11 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
         git_clean(repo_path)  
         overwrite_test_code(repo_path, buggy_commit)
         example_test = enforce_static_assertions(example_test)
-        fixed_info = individual_run(
+        try:
+            fixed_info = individual_run(
             repo_path, src_dir, test_prefix, example_test, project_id, injection)
+        except Exception as e:
+            fixed_info = f'[error] {repr(e)}'
 
         test_name, _ = fixed_info['testclass']
         index = example_tests.index(example_test)
@@ -350,6 +361,10 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
     final_results = []
     assert len(buggy_results) == len(fixed_results)
     for buggy_info, fixed_info in zip(buggy_results, fixed_results):
+        if isinstance(buggy_info, str): # Test is syntactically incorrect (JavaSyntaxError)
+            final_results.append(buggy_info)
+            continue
+
         if fixed_info is None:
             final_results.append({
                 'buggy': buggy_info,
@@ -381,26 +396,74 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--project', default='google_gson')
     parser.add_argument('-b', '--bug_id', default=2134)
     parser.add_argument('-n', '--test_no', type=int, default=32)
+    parser.add_argument('--gen_test_dir', default='/root/data/GHRB/gen_tests/')
+    parser.add_argument('--all', action='store_true')
+    parser.add_argument('--exp_name', default='example2_n50_ghrb_replicate')
     args = parser.parse_args()
 
     with open(BUG_LIST_PATH) as f:
         data = json.load(f)
 
-    GEN_TEST_DIR = llm_exp_config['gen_tests_dir']['ghrb']
+    GEN_TEST_DIR = args.gen_test_dir
 
-    with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_markdown_n{args.test_no}.txt')) as f:
-        example_test = f.read()
+    if args.all:
+        assert args.project is not None # target project should be set 
+        
+        bug2tests = defaultdict(list)
 
-    repo_path = config[args.project]['repo_path']
-    src_dir = config[args.project]['src_dir']
-    test_prefix = config[args.project]['test_prefix']
-    project_name = config[args.project]['project_name']
-    project_id = config[args.project]['project_id']
+        for gen_test_file in glob.glob(os.path.join(GEN_TEST_DIR, '*.txt')):
+            bug_key = '_'.join(os.path.basename(gen_test_file).split('_')[:-2])
+            project, bug_id = split_project_bug_id(bug_key)
+            if project != args.project:
+                continue
 
-    target_bug = data[f'{args.project}-{args.bug_id}']
-    bug_no = target_bug['PR_number']
-    buggy_commit = target_bug['buggy_commits'][0]['oid']
-    fixed_commit = target_bug['merge_commit']
+            bug2tests[bug_key].append(gen_test_file)
 
-    # example experiment execution
-    print(twover_run_experiment(repo_path, src_dir, test_prefix, [example_test], buggy_commit, fixed_commit, project_id))
+        exec_results = {}
+        for bug_key, tests in tqdm(bug2tests.items()):
+            project, bug_id = split_project_bug_id(bug_key)
+            bug_id = int(bug_id)
+            res_for_bug = {}
+
+            example_tests = []
+            for test_file in tests:
+                with open(test_file) as f:
+                    example_tests.append(f.read())
+
+            repo_path = config[project]['repo_path']
+            src_dir = config[project]['src_dir']
+            test_prefix = config[project]['test_prefix']
+            project_name = config[project]['project_name']
+            project_id = config[project]['project_id']
+
+            target_bug = data[f'{project}-{bug_id}']
+            bug_no = target_bug['PR_number']
+            buggy_commit = target_bug['buggy_commits'][0]['oid']
+            fixed_commit = target_bug['merge_commit']
+
+            results = twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_commit, fixed_commit, project_id)
+
+            for test_path, res in zip(tests, results):
+                res_for_bug[os.path.basename(test_path)] = res
+            exec_results[bug_key] = res_for_bug
+
+            with open(f'results/{args.exp_name}_{args.project}.json', 'w') as f:
+                json.dump(exec_results, f, indent=4)
+
+    else:
+        with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_markdown_n{args.test_no}.txt')) as f:
+            example_test = f.read()
+
+        repo_path = config[args.project]['repo_path']
+        src_dir = config[args.project]['src_dir']
+        test_prefix = config[args.project]['test_prefix']
+        project_name = config[args.project]['project_name']
+        project_id = config[args.project]['project_id']
+
+        target_bug = data[f'{args.project}-{args.bug_id}']
+        bug_no = target_bug['PR_number']
+        buggy_commit = target_bug['buggy_commits'][0]['oid']
+        fixed_commit = target_bug['merge_commit']
+
+        # example experiment execution
+        print(twover_run_experiment(repo_path, src_dir, test_prefix, [example_test], buggy_commit, fixed_commit, project_id))

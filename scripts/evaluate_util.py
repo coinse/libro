@@ -35,7 +35,7 @@ def evaluate_ranking(rank_df, Ns=[1,3,5]):
 
 def process_results_for_baseline(raw_result):
     rows = []
-    with open('../data/Defects4J/invalid_bug_reports.txt') as f:
+    with open('../../data/Defects4J/invalid_bug_reports.txt') as f:
         invalid_bugs = [bug.strip() for bug in f.readlines()]
 
     for bug_id, test_exec_results in raw_result.items():

@@ -414,7 +414,7 @@ def process_result(result_json_path, gen_test_path):
         result = json.load(f)
 
     
-    with open(os.path.join(os.path.dirname(__file__), './data/Defects4J/invalid_bug_reports.txt')) as f:
+    with open(os.path.join(os.path.dirname(__file__), '../data/Defects4J/invalid_bug_reports.txt')) as f:
         invalid_bugs = [e.strip().replace('-', '_') for e in f.readlines()]
 
     result_processed = defaultdict(dict)
