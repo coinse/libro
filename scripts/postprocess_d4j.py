@@ -247,7 +247,7 @@ if __name__ == '__main__':
                 res_for_bug[os.path.basename(test_path)] = res
             exec_results[bug_key] = res_for_bug
 
-            with open(f'results/{args.exp_name}.json', 'w') as f:
+            with open(f'/root/results/{args.exp_name}.json', 'w') as f:
                 json.dump(exec_results, f, indent=4)
 
     else:
