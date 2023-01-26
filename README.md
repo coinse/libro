@@ -37,15 +37,12 @@ cd workspace
 pip install -r requirements.txt
 ```
 
-Additionally, the proper Java version should be set according depending on the benchmark to evaluate on. For example, when running Defects4J, Java version 8 is required. To switch between Java versions, use the command `update-alternatives --config java` inside the container:
+Additionally, the proper Java version should be set according depending on the benchmark to evaluate on. For example, when running Defects4J,
+```bash
+update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java # JDK 8 for defects4j
 ```
-  Selection    Path                                            Priority   Status
-------------------------------------------------------------
-  0            /usr/lib/jvm/java-17-openjdk-amd64/bin/java      1711      auto mode
-  1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java      1111      manual mode
-  2            /usr/lib/jvm/java-17-openjdk-amd64/bin/java      1711      manual mode
-* 3            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1081      manual mode
-```
+Running the above command inside the container sets the java version to 8.
+
 
 ### Prepare Defects4J dataset and LLM-generated tests
 > To accomplish this step, JDK version should be set to 8
@@ -140,7 +137,8 @@ For the GHRB benchmark, select the appropriate Java version for each project.
 
 Run `postprocess_d4j.py` to postprocess the LLM-generated tests and get evaluation results. Below, we provide the instructions for reproducing the bug reported the Google `gson` project at pull request #2134.
 ```bash
-update-alternatives --config java # set Java version to 11 (17 for other GHRB projects)
+update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java 
+# update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java (for other projects requiring JDK 17+)
 source /root/data/GHRB/set_env_gson.sh # use /root/data/GHRB/set_env.sh for other projects
 python postprocess_ghrb.py -p google_gson -b 2134 -n 32 
 ```
@@ -163,7 +161,8 @@ python postprocess_d4j.py --all --exp_name example2_n50_replicate
 #### GHRB
 For GHRB benchmark, the target project must be set (with `-p`, or `--project` option) to run all bugs from the project *(Only project-wise execution is supported because of dependencies to different Java versions.)*
 ```bash
-update-alternatives --config java # set Java version to 11 (17 for other GHRB projects)
+update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java 
+# update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java (for other projects requiring JDK 17+)
 source /root/data/GHRB/set_env_gson.sh 
 # source /root/data/GHRB/set_env.sh (for other projects)
 python postprocess_ghrb.py -p google_gson --all --exp_name example2_n50_ghrb_replicate 
@@ -177,9 +176,8 @@ python selection_and_ranking.py -d Defects4J -f ../results/example2_n50_replicat
 ```
 
 ## Replicating evaluation results in paper
-* You can replicate results in the paper using the Jupyter notebooks inside `notebooks` folder:
+* You can replicate results in the paper using the Jupyter notebooks inside `notebooks` folder. These notebooks are made to be run on your host machine (not in the Docker container); before running them, install dependencies via the command `pip install -r notebooks/requirements.txt`:
     * **Replicate_Motivation:** Replicates our results in Sec. 2
     * **Replicate_RQ1:** Replicates Table 3, 4 used to answer RQ1.
     * **Replicate_RQ2:** Replicates Figure 2, 3, 4, and Table 6 used to answer RQ2.
     * **Replicate_RQ3:** Replicates Figure 5 used to answer RQ3.
-
