@@ -395,10 +395,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--project', default='google_gson')
     parser.add_argument('-b', '--bug_id', default=2134)
-    parser.add_argument('-n', '--test_no', type=int, default=32)
+    parser.add_argument('-n', '--test_no', type=int, default=None)
     parser.add_argument('--gen_test_dir', default='/root/data/GHRB/gen_tests/')
     parser.add_argument('--all', action='store_true')
-    parser.add_argument('--exp_name', default='example2_n50_ghrb_replicate')
+    parser.add_argument('--exp_name', default='example2_n50_ghrb')
     args = parser.parse_args()
 
     with open(BUG_LIST_PATH) as f:
@@ -449,6 +449,34 @@ if __name__ == '__main__':
 
             with open(f'results/{args.exp_name}_{args.project}.json', 'w') as f:
                 json.dump(exec_results, f, indent=4)
+
+    elif args.test_no is None:
+        test_files = glob.glob(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_*.txt'))
+        example_tests = []
+        res_for_bug = {}
+
+        for gen_test_file in test_files:
+            with open(gen_test_file) as f:
+                example_tests.append(f.read())
+
+        repo_path = config[args.project]['repo_path']
+        src_dir = config[args.project]['src_dir']
+        test_prefix = config[args.project]['test_prefix']
+        project_name = config[args.project]['project_name']
+        project_id = config[args.project]['project_id']
+
+        target_bug = data[f'{args.project}-{args.bug_id}']
+        bug_no = target_bug['PR_number']
+        buggy_commit = target_bug['buggy_commits'][0]['oid']
+        fixed_commit = target_bug['merge_commit']
+
+        results = twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_commit, fixed_commit, project_id)
+        
+        for test_path, res in zip(test_files, results):
+            res_for_bug[os.path.basename(test_path)] = res
+
+        with open(f'/root/results/{args.exp_name}_{args.project}_{args.bug_id}.json', 'w') as f:
+            json.dump(res_for_bug, f, indent=4)
 
     else:
         with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_markdown_n{args.test_no}.txt')) as f:

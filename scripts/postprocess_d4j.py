@@ -216,10 +216,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--project', default='Time')
     parser.add_argument('-b', '--bug_id', type=int, default=18)
-    parser.add_argument('-n', '--test_no', type=int, default=0)
+    parser.add_argument('-n', '--test_no', type=int, default=None)
     parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests/')
     parser.add_argument('--all', action='store_true')
-    parser.add_argument('--exp_name', default='example2_n50_replicate')
+    parser.add_argument('--exp_name', default='example2_n50')
     args = parser.parse_args()
 
     GEN_TEST_DIR = args.gen_test_dir
@@ -249,6 +249,23 @@ if __name__ == '__main__':
 
             with open(f'/root/results/{args.exp_name}.json', 'w') as f:
                 json.dump(exec_results, f, indent=4)
+
+    elif args.test_no is None:
+        test_files = glob.glob(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_*.txt'))
+        example_tests = []
+        res_for_bug = {}
+
+        for gen_test_file in test_files:
+            with open(gen_test_file) as f:
+                example_tests.append(f.read())
+
+        results = twover_run_experiment(args.project, args.bug_id, example_tests)
+        
+        for test_path, res in zip(test_files, results):
+            res_for_bug[os.path.basename(test_path)] = res
+
+        with open(f'/root/results/{args.exp_name}_{args.project}_{args.bug_id}.json', 'w') as f:
+            json.dump(res_for_bug, f, indent=4)
 
     else:
         with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_n{args.test_no}.txt')) as f:
