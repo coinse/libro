@@ -52,6 +52,12 @@ Additionally, the proper Java version should be set according depending on the b
 1. Download LLM-generated tests for the versions ([link](https://figshare.com/s/aba0a7465f04ce45ba55))
     * `d4j-gen-tests.tar.gz`: generated tests by Codex used in our evaluation
 
+Alternatively, within the Docker container, use the command
+```bash
+wget -O d4j-gen-tests.tar.gz https://figshare.com/ndownloader/files/37007956?private_link=aba0a7465f04ce45ba55
+```
+
+
 2. Extract LLM-generated test files in `d4j-gen-tests.tar.gz` to the path of `/root/data/Defects4J/gen_tests` *(This step may be skipped if the intent is to evaluate on different tests.)*
 
 3. Checkout Defects4J versions; for example,
@@ -74,9 +80,15 @@ bash tag_post_fix_compilable.sh
 ```
 
 ### Prepare GHRB dataset and LLM-generated tests
-1. Download all cloned target Java repositories and LLM-generated tests from this [link](https://figshare.com/s/de40ea0a3dea94560e84)
+1. Download all cloned target Java repositories and LLM-generated tests from this [link](https://figshare.com/s/de40ea0a3dea94560e84), which contains the following files:
     * `ghrb-repos.tar.gz`: project repositories used in evaluation
     * `ghrb-gen-tests.tar.gz`: generated tests by Codex used in evaluation
+
+Alternatively, within the Docker container, use the commands
+```bash
+wget -O ghrb-repos.tar.gz https://figshare.com/ndownloader/files/37005352?private_link=de40ea0a3dea94560e84
+wget -O ghrb-gen-tests.tar.gz https://figshare.com/ndownloader/files/37005343?private_link=de40ea0a3dea94560e84
+```
 
 2. Extract `ghrb-repos.tar.gz` and locate the contained repositories (e.g., `assertj-core`) to the directory `/root/data/GHRB/repos`.
     
