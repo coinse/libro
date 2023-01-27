@@ -8,11 +8,7 @@ This repository contains the replication package of **Large Language Models are 
 Simply put, LIBRO accepts a bug report and an existing test suite as input, and produces a ranked list of bug-reproducing test candidates.
 
 ## Setting up LIBRO 
-* [Docker](https://docs.docker.com/get-docker/) is required to set up the environment for LIBRO. 
-* To generate additional tests through Codex, set your OpenAI API key by edit `env.list` file with your OpenAI API secret key. (Can be skipped if you simply want to reproduce the results in the paper.)
-```
-OPENAI_API_KEY=<your_own_openai_api_key>
-```
+[Docker](https://docs.docker.com/get-docker/) is required to set up the environment for LIBRO. 
 
 ### Option 1: Pull Docker image
 ```bash 
@@ -112,6 +108,13 @@ For full replication of our results, one may [run LIBRO on all bugs](#collect-fu
 ### Prompt LLM to generate test
 > This step is optional, and provided for the ease of additional test generation via LLMs. Skip this step if the intent is to reproduce the results of the paper.
 
+For this step, an OpenAI API key is required. Set it using the following command.
+```bash
+export OPENAI_API_KEY=<your_openai_api_key>
+```
+
+Upon setting the API key, use the Python script `llm_query.py` to prompt LLM to generate a reproducing test from a bug report. 
+
 The Python script `llm_query.py` prompts LLM to generate a reproducing test from a bug report. 
 ```bash
 # For the Defects4J benchmark
@@ -160,11 +163,11 @@ Execution results are in a similar format as the Defects4J benchmark. For exampl
 [{'buggy': {'compile_error': false, 'runtime_error': false, 'failed_tests': ['com.google.gson.internal.bind.util.ISO8601UtilsTest.testIssue108AutoGen'],'autogen_failed': true,,'fib_error_msg': ['java.lang.AssertionError: Should\'ve thrown exception\n', '\tat org.junit.Assert.fail(Assert.java:89)\n','\tat com.google.gson.internal.bind.util.ISO8601UtilsTest.testIssue108AutoGen(ISO8601UtilsTest.java:100)\n'], 'exception_type': 'java.lang.AssertionError', 'value_matching': null, 'failure_message': 'java.lang.AssertionError: Should\'ve thrown exception'},[...]},'success': true}]
 ```
 
-Similar with the Defects4J one, you can collect all generated tests (n=50 in our provided data) and get an aggregated execution results by omitting `-n` option:
+As with Defects4J, all generated tests may be evaluated (n=50 in our provided data) and to get aggregated execution results by omitting the `-n` option:
 ```bash
 python postprocess_ghrb.py -p google_gson -b 2134
 ```
-which generates an output file with the path `results/example2_n50_ghrb_google_gson_2134.json`.
+which generates an output file at `results/example2_n50_ghrb_google_gson_2134.json`.
 
 
 ### Collect full experiment data
@@ -187,13 +190,13 @@ python postprocess_ghrb.py -p google_gson --all --exp_name example2_n50_ghrb_rep
 ```
 
 ### Get selection and ranking results
-With all execution results collected, the selection and ranking results may be obtained with the following command. You can either use our provided intermediate result data, or your own replicated results from above steps.
+With all execution results collected, the selection and ranking results may be obtained with the following commands. Either the provided intermediate result data or locally replicated results from above steps can be used for the following scripts.
 
 #### Getting the selection and ranking results from the execution results of Defects4J bugs
 ```bash 
-python selection_and_ranking.py -d Defects4J # use our provided intermediate result data
+python selection_and_ranking.py -d Defects4J # for generation results from the repository
 
-python selection_and_ranking.py -d Defects4J -f ../results/example2_n50_replicate.json # from your own replicated results
+python selection_and_ranking.py -d Defects4J -f ../results/example2_n50_replicate.json # for locally replicated results
 ```
 
 Three result files are generated through the command above:
@@ -203,9 +206,9 @@ Three result files are generated through the command above:
 
 #### Getting the selection and ranking results from the execution results of GHRB bugs
 ```bash 
-python selection_and_ranking.py -d GHRB # use our provided intermediate result data
+python selection_and_ranking.py -d GHRB # for generation results from the repository
 
-python selection_and_ranking.py -d GHRB -f ../results/example2_n50_ghrb_replicate.json # from your own replicated results
+python selection_and_ranking.py -d GHRB -f ../results/example2_n50_ghrb_replicate.json # for locally replicated results
 ```
 Similary, three result files are generated:
 * `results/ranking_ghrb.csv`
@@ -213,13 +216,13 @@ Similary, three result files are generated:
 * `results/ranking_features_ghrb.csv`
 
 ## Replicating evaluation results in paper
-* You can replicate results in the paper using the Jupyter notebooks inside `notebooks` folder on the repository root. These notebooks are made to be run on your host machine (not in the Docker container); before running them, install dependencies via the command `pip install -r notebooks/requirements.txt`:
+* The results in the paper can be replicated using the Jupyter notebooks inside `notebooks` folder in the repository root. These notebooks are intended to be run on the host machine (i.e., not in the Docker container). Before running the notebooks, install dependencies via the command `pip install -r notebooks/requirements.txt`:
     * **Replicate_Motivation:** Replicates our results in Sec. 2
     * **Replicate_RQ1:** Replicates Table 3, 4 used to answer RQ1.
     * **Replicate_RQ2:** Replicates Figure 2, 3, 4, and Table 6 used to answer RQ2.
     * **Replicate_RQ3:** Replicates Figure 5 used to answer RQ3.
 
-### Use your own replicated results
-*   If you want to run the provided notebooks with the evaluation result with your own replicated execution results, e.g., `results/example2_n50_replicate.json`, substitute the value of the variable `RESULT_PATH` to `../../results/<your_replication_result>.json` in the notebook that uses the execution results. 
+### Use separate generated tests
+*   If one wants to run the provided notebooks with the evaluation result with one's separate replicated execution results, e.g., `results/example2_n50_replicate.json`, substitute the value of the variable `RESULT_PATH` to `../../results/<your_replication_result>.json` in the notebook that uses the execution results. 
 
 Note that the [Get selection and ranking results](#get-selection-and-ranking-results) step with tje replicated execution results should be preceded to reproduce our selection and ranking results (in RQ2-3, RQ3).
