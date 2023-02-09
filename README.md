@@ -43,7 +43,7 @@ tar -xzvf /tmp/apache-maven-3.8.6-bin.tar.gz -C /opt
 
 git config --global --add safe.directory '*'
 
-cd workspace
+cd /root/scripts
 pip install -r requirements.txt
 ```
 
@@ -75,7 +75,7 @@ defects4j checkout -p Time -v 18b -w /root/data/Defects4J/repos/Time_18
 
 To checkout all Defects4J versions, run the provided `checkout_d4j.sh` script, as provided below. Note that checking out all versions may take a significant amount of time.
 ```bash
-cd /root/workspace
+cd /root/scripts
 bash checkout_d4j.sh
 ```
 
@@ -104,7 +104,7 @@ wget -O ghrb-gen-tests.tar.gz https://figshare.com/ndownloader/files/37005343?pr
 ## Running LIBRO
 We provide instructions to run LIBRO to verify that the package works. The following instructions assume **running scripts in the Docker container**. After attaching to the container using the script `run_docker_container.sh`, run:
 ```bash
-cd /root/workspace
+cd /root/scripts
 ```
 The resulting directory contains the scripts to run each steps of LIBRO.
  
