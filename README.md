@@ -8,7 +8,17 @@ This repository contains the replication package of **Large Language Models are 
 Simply put, LIBRO accepts a bug report and an existing test suite as input, and produces a ranked list of bug-reproducing test candidates.
 
 ## Setting up LIBRO 
-[Docker](https://docs.docker.com/get-docker/) is required to set up the environment for LIBRO. 
+### Hardware Requirements
+* Tested on 32GB RAM, Intel Core i7-7700 CPU (3.60GHz, 8 cores)
+* \>60GB storage space (due to the size of repositories used in our benchmark)
+
+### Software Requirements 
+* Linux OS (tested on Ubuntu 20.04)
+* [Docker](https://docs.docker.com/get-docker/) (tested on 20.10.12)
+* To generate additional tests through Codex, set your OpenAI API key by edit `env.list` file with your OpenAI API secret key. (Can be skipped if you simply want to reproduce the results in the paper.)
+```
+OPENAI_API_KEY=<your_own_openai_api_key>
+```
 
 ### Option 1: Pull Docker image
 ```bash 
@@ -65,7 +75,7 @@ defects4j checkout -p Time -v 18b -w /root/data/Defects4J/repos/Time_18
 
 To checkout all Defects4J versions, run the provided `checkout_d4j.sh` script, as provided below. Note that checking out all versions may take a significant amount of time.
 ```bash
-cd /root/scripts
+cd /root/workspace
 bash checkout_d4j.sh
 ```
 
