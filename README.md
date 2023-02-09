@@ -23,16 +23,24 @@ OPENAI_API_KEY=<your_own_openai_api_key>
 ### Option 1: Pull Docker image
 ```bash 
 docker pull greenmon/libro-env
-sh run_docker_container.sh
 ```
 
 The pulled Docker image has the `/tmp` directory and Python requirements installed, but the Java version may still need to be adjusted (see below).
 
-### Option 2: Build Docker image from scratch
+### Option 2: Download prebuilt Docker image
+If there is any connection problem when pulling the Docker image from Docker Hub, you can directly download the image from [this link](https://www.dropbox.com/s/35289s10xo6samm/libro_docker_image.tar?dl=0)
+
+### Option 3: Build Docker image from scratch
 Build the Docker image with the Defects4J framework and proper Java/Python versions installed, then run the script `run_docker_container.sh` to run the container and attach to it.
 ```bash 
 cd docker
-docker build -t libro-env .
+docker build -t greenmon/libro-env:latest .
+cd ..
+```
+
+### Run Docker container
+Run a Docker container from the image `greenmon/libro-env:latest` using the given script:
+```bash
 sh run_docker_container.sh
 ```
 
