@@ -94,13 +94,14 @@ if __name__ == '__main__':
     parser.add_argument('--use_html', action='store_true')
     parser.add_argument('--use_plain_text', action='store_true')
     parser.add_argument('--template', default='2example')
+    parser.add_arguemnt('--mode', default='PL')
     parser.add_argument('-o', '--out', default='output.txt')
     args = parser.parse_args()
 
     if args.dataset == 'ghrb':
         BR_DIR = llm_exp_config['bug_report_dir']['ghrb']
 
-    gen_test = query_llm_for_gentest(args.project, args.bug_id, args.template, use_plain_text=args.use_plain_text, use_html=args.use_html)
+    gen_test = query_llm_for_gentest(args.project, args.bug_id, args.template, use_plain_text=args.use_plain_text, use_html=args.use_html, mode=args.mode)
 
     with open(args.out, 'w') as f:
         f.write(gen_test)

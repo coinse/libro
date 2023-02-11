@@ -133,7 +133,7 @@ export OPENAI_API_KEY=<your_openai_api_key>
 
 Upon setting the API key, use the Python script `llm_query.py` to prompt LLM to generate a reproducing test from a bug report. 
 
-The Python script `llm_query.py` prompts LLM to generate a reproducing test from a bug report. 
+The Python script `llm_query.py` prompts LLM to generate a reproducing test from a bug report. (If one does not have access to the Codex language model, one may append `--mode NL` to use the `text-davinci-002` model. Fees may apply in this case.)
 ```bash
 # For the Defects4J benchmark
 python llm_query.py -d d4j -p Time -b 18 --out output.txt
