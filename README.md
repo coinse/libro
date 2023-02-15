@@ -1,11 +1,12 @@
 # LIBRO: LLM Induced Bug Reproduction
 
-
 This repository contains the replication package of **Large Language Models are Few-shot Testers: Exploring LLM-based General Bug Reproduction** (to appear in ICSE 2023, [preprint available in arXiv](https://arxiv.org/abs/2209.11515))
 
 ![](https://coinse.kaist.ac.kr/assets/images/blog/libro_overview.png)
 
 Simply put, LIBRO accepts a bug report and an existing test suite as input, and produces a ranked list of bug-reproducing test candidates.
+
+The experimental results of our paper can also be reproduced and re-analyzed on Google Colab; see the [notebook section](#replicating-evaluation-results-in-paper) for details.
 
 ## Setting up LIBRO 
 ### Hardware Requirements
@@ -243,6 +244,8 @@ Similary, three result files are generated:
     * **Replicate_RQ1:** Replicates Table 3, 4 used to answer RQ1.
     * **Replicate_RQ2:** Replicates Figure 2, 3, 4, and Table 6 used to answer RQ2.
     * **Replicate_RQ3:** Replicates Figure 5 used to answer RQ3.
+
+The Jupyter notebooks may also be found on Google Colab: [[Replicate Motivation](https://colab.research.google.com/drive/1lGpWdBsxdstLIkmPg3cEjlhqgbod5GvF?usp=sharing)] [[Replicate RQ1 (Tab. 3)](https://colab.research.google.com/drive/1lGpWdBsxdstLIkmPg3cEjlhqgbod5GvF?usp=sharing)] [[Replicate RQ1 (Tab. 4)](https://colab.research.google.com/drive/1a3GXUwW8CPzO4iL9rOZUMwWUdQGmRjAh?usp=sharing)] [[Replicate RQ2 (Fig. 2)](https://colab.research.google.com/drive/1NEQZiv2CrD5oHkTJo8RkxvELt8cCFReQ?usp=sharing)] [[Replicate RQ2-3](https://colab.research.google.com/drive/1fyPgdnkGAgkgWwvZJ9suzE6QbaRocYHT?usp=sharing)] [[Replicate RQ3 (Fig. 5)](https://colab.research.google.com/drive/1ogfI1U6_wkCbq9co5_GM3t8s9VaQkNzJ?usp=sharing)].
 
 ### Use separate generated tests
 *   If one wants to run the provided notebooks with the evaluation result with one's separate replicated execution results, e.g., `results/example2_n50_replicate.json`, substitute the value of the variable `RESULT_PATH` to `../../results/<your_replication_result>.json` in the notebook that uses the execution results. 
