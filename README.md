@@ -39,7 +39,7 @@ If there is any connection problem when pulling the Docker image from Docker Hub
 Build the Docker image with the Defects4J framework and proper Java/Python versions installed, then run the script `run_docker_container.sh` to run the container and attach to it.
 ```bash 
 cd docker
-sudo docker build -t greenmon/libro-env:latest .
+docker build -t greenmon/libro-env:latest .
 cd ..
 ```
 
