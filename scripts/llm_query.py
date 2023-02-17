@@ -94,7 +94,7 @@ if __name__ == '__main__':
     parser.add_argument('--use_html', action='store_true')
     parser.add_argument('--use_plain_text', action='store_true')
     parser.add_argument('--template', default='2example')
-    parser.add_arguemnt('--mode', default='PL')
+    parser.add_argument('--mode', default='PL')
     parser.add_argument('-o', '--out', default='output.txt')
     args = parser.parse_args()
 
