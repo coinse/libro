@@ -2,7 +2,7 @@
 
 This repository contains the replication package of **Large Language Models are Few-shot Testers: Exploring LLM-based General Bug Reproduction** (to appear in ICSE 2023, [preprint available in arXiv](https://arxiv.org/abs/2209.11515))
 
-![](https://coinse.kaist.ac.kr/assets/images/blog/libro_overview.png)
+![](./data/figures/libro_overview.png)
 
 Simply put, LIBRO accepts a bug report and an existing test suite as input, and produces a ranked list of bug-reproducing test candidates.
 
