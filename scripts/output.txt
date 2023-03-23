@@ -1,10 +1,10 @@
-public void testDefaultMethod() throws Exception {
-    assertThat(Impl.class).hasMethods("method");
+```
+public void testIssue130() {
+    Chronology gjChrono = GJChronology.getInstanceUTC();
+    DateTime jdt = new DateTime(1500, 2, 29, 0, 0, 0, 0, JulianChronology.getInstanceUTC());
+    DateTime gjdt = new DateTime(1500, 2, 29, 0, 0, 0, 0, gjChrono);
+    assertEquals(1500, gjdt.getYear());
+    assertEquals(2, gjdt.getMonthOfYear());
+    assertEquals(29, gjdt.getDayOfMonth());
 }
-
-static class Impl implements HasDefault {
-}
-
-interface HasDefault {
-    default void method() {}
-}
+```
