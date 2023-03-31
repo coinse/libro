@@ -1,0 +1,26 @@
+[
+    {
+        "role": "system",
+        "content": "You are an assistant for augmenting the test suite in our Java software. You write a JUnit test case that reproduce the failure behavior of the bug report."
+    },
+    {
+        "role": "user",
+        "content": "Generate a self-contained reproducing test case from the following bug report.\n{%examples/1_query.txt%}"
+    },
+    {
+        "role": "assistant",
+        "content": "{%examples/1_response.txt%}"
+    },
+    {
+        "role": "user",
+        "content": "Generate a self-contained reproducing test case from the following bug report.\n{%examples/2_query.txt%}"
+    },
+    {
+        "role": "assistant",
+        "content": "{%examples/2_response.txt%}"
+    },
+    {
+        "role": "user",
+        "content": "Generate a self-contained reproducing test case from the following bug report.\n{{bug_report_content}}"
+    }
+]

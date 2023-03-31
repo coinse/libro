@@ -1,0 +1,13 @@
+# #107 Incorrect date parsed when week and month used together
+## Description
+I have following code snippet :
+
+```
+    DateTimeFormatter dtf = DateTimeFormat.forPattern("xxxxMM'w'ww");
+DateTime dt = dtf.parseDateTime("201101w01");
+System.out.println(dt);
+```
+
+It should print 2011-01-03 but it is printing 2010-01-04.
+
+Please let me know if I am doing something wrong here

@@ -1,0 +1,5 @@
+```
+public void testNumberUtils () {
+    assertEquals(Long.valueOf(0x80000000L),    NumberUtils.createNumber("0x80000000"));
+}
+```

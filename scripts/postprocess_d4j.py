@@ -142,6 +142,7 @@ def twover_run_experiment(proj, bug_id, example_tests, injection=True):
     """
     returns results in order of example_tests.
     """
+    print(f'Running experiment for {proj}-{bug_id} (injection={injection})')
 
     # init
     repo_path = inject_prefix_rootdir(proj, bug_id) if injection else d4j_util.repo_path(proj, bug_id)
@@ -157,7 +158,8 @@ def twover_run_experiment(proj, bug_id, example_tests, injection=True):
     pretag = 'PRE_FIX_COMPILABLE' if injection else 'BUGGY_VERSION'
     cp = sp.run(['git', 'checkout', f'D4J_{proj}_{bug_id}_{pretag}'],
                 cwd=repo_path, stdout=sp.DEVNULL, stderr=sp.DEVNULL)
-    assert cp.returncode == 0
+    if cp.returncode != 0:
+        return None
     buggy_results = []
     for example_test in example_tests:
         git_reset(repo_path)
@@ -179,7 +181,8 @@ def twover_run_experiment(proj, bug_id, example_tests, injection=True):
     if cp.returncode != 0:
         cp = sp.run(['git', 'checkout', f'D4J_{proj}_{bug_id}_POST_FIX_REVISION'],
                 cwd=repo_path, capture_output=True)
-    assert cp.returncode == 0, f'{proj}-{bug_id}: {cp.stderr}'
+    if cp.returncode != 0:
+        return None
     fixed_results = []
     for example_test in example_tests:
         git_reset(repo_path)
@@ -217,9 +220,9 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--project', default='Time')
     parser.add_argument('-b', '--bug_id', type=int, default=18)
     parser.add_argument('-n', '--test_no', type=int, default=None)
-    parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests/')
+    parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests_gpt3.5/')
     parser.add_argument('--all', action='store_true')
-    parser.add_argument('--exp_name', default='example2_n50')
+    parser.add_argument('--exp_name', default='gpt3.5')
     args = parser.parse_args()
 
     GEN_TEST_DIR = args.gen_test_dir
@@ -240,8 +243,16 @@ if __name__ == '__main__':
             example_tests = []
             for test_file in tests:
                 with open(test_file) as f:
-                    example_tests.append(f.read())
+                    test_content = f.read().strip()
+                if test_content.startswith('```'):
+                    test_content = test_content.removeprefix('```')
+                if test_content.endswith('```'):
+                    test_content = test_content.removesuffix('```')
+                
+                example_tests.append(test_content)
             results = twover_run_experiment(project, bug_id, example_tests)
+            if results is None:
+                continue
 
             for test_path, res in zip(tests, results):
                 res_for_bug[os.path.basename(test_path)] = res
@@ -257,7 +268,13 @@ if __name__ == '__main__':
 
         for gen_test_file in test_files:
             with open(gen_test_file) as f:
-                example_tests.append(f.read())
+                test_content = f.read().strip()
+                if test_content.startswith('```'):
+                    test_content = test_content.removeprefix('```')
+                if test_content.endswith('```'):
+                    test_content = test_content.removesuffix('```')
+                
+                example_tests.append(test_content)
 
         results = twover_run_experiment(args.project, args.bug_id, example_tests)
         
