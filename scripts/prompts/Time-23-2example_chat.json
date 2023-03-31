@@ -1,0 +1,26 @@
+[
+  {
+    "role": "system",
+    "content": "You are an assistant for augmenting the test suite in our Java software. You write a JUnit test case that reproduce the failure behavior of the bug report."
+  },
+  {
+    "role": "user",
+    "content": "Generate a self-contained reproducing test case from the following bug report.\n# NumberUtils does not handle Long Hex numbers\n## Description\nNumberUtils.createLong() does not handle hex numbers, but createInteger() handles hex and octal.\nThis seems odd.\n\nNumberUtils.createNumber() assumes that hex numbers can only be Integer.\nAgain, why not handle bigger Hex numbers?\n==\nIt is trivial to fix createLong() - just use Long.decode() instead of valueOf().\nIt's not clear why this was not done originally - the decode() method was added to both Integer and Long in Java 1.2.\nFixing createNumber() is also fairly easy - if the hex string has more than 8 digits, use Long.\nShould we allow for leading zeros in an Integer?\n\nIf not, the length check is trivial."
+  },
+  {
+    "role": "assistant",
+    "content": "```\npublic void testNumberUtils () {\n    assertEquals(Long.valueOf(0x80000000L),    NumberUtils.createNumber(\"0x80000000\"));\n}\n```"
+  },
+  {
+    "role": "user",
+    "content": "Generate a self-contained reproducing test case from the following bug report.\n# #107 Incorrect date parsed when week and month used together\n## Description\nI have following code snippet :\n\n```\n    DateTimeFormatter dtf = DateTimeFormat.forPattern(\"xxxxMM'w'ww\");\nDateTime dt = dtf.parseDateTime(\"201101w01\");\nSystem.out.println(dt);\n```\n\nIt should print 2011-01-03 but it is printing 2010-01-04.\n\nPlease let me know if I am doing something wrong here"
+  },
+  {
+    "role": "assistant",
+    "content": "```\npublic void testIssue107() {\n    DateTimeFormatter dtf = DateTimeFormat.forPattern(\"xxxxMM'w'ww\");\n    DateTime dt = dtf.parseDateTime(\"201101w01\");\n    assertEquals(2011, dt.getYear());\n    assertEquals(1, dt.getMonthOfYear());\n    assertEquals(3, dt.getDayOfMonth());\n}\n```"
+  },
+  {
+    "role": "user",
+    "content": "Generate a self-contained reproducing test case from the following bug report.\n\n        # #112 Incorrect mapping of the MET time zone\n\n\n\n\n        ## Description\n        This timezone is mapped to Asia/Tehran in DateTimeZone. It should be middle europena time.\n\n\nI know that this bug has been raised before (Incorrect mapping of the MET time zone - ID: 2012274), and there is a comment stating that you won't break backward compatibility to fix this bug.\n\n\n1. I disagree that this is a backward compatibility argument\n2. No matter how you look at it, it is a bug.\n\n\nYou could very well state that ALL bugs won't be fixed, because of backward compatibility.\n\n\nI request again that this bug be fixed.\n\n\n        "
+  }
+]
