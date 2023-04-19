@@ -20,7 +20,7 @@ def query_by_prompt(prompt, end_string_list, mode):
     if mode == 'NL':
         engine = 'text-davinci-002'
     elif mode == 'PL':
-        engine = 'code-davinci-002' # deprecated
+        engine = 'code-davinci-002'  # deprecated
     elif mode == 'PL_chat':
         engine = 'gpt-3.5-turbo'
 
@@ -40,7 +40,7 @@ def query_by_prompt(prompt, end_string_list, mode):
     elif engine == 'gpt-3.5-turbo':
         response = openai.ChatCompletion.create(
             model=engine,
-            messages=prompt, # chat-style prompt
+            messages=prompt,  # chat-style prompt
             n=1,
             frequency_penalty=0,
             presence_penalty=0,
@@ -54,8 +54,9 @@ def query_by_prompt(prompt, end_string_list, mode):
         actual_test = gen_test
     return actual_test
 
+
 def make_messages_from_file(rep_title, rep_content,
-                          template_file=TEMPLATE_DIR+'2example_chat.json'):
+                            template_file=TEMPLATE_DIR+'2example_chat.json'):
     rep_title = BeautifulSoup(rep_title.strip(), 'html.parser').get_text()
     rep_content = md(rep_content.strip())
 
@@ -69,7 +70,8 @@ def make_messages_from_file(rep_title, rep_content,
 
                     with open(os.path.join(TEMPLATE_DIR, ef)) as f:
                         example_text = f.read()
-                    msg['content'] = msg['content'].replace('{%'+ef+'%}', example_text)
+                    msg['content'] = msg['content'].replace(
+                        '{%'+ef+'%}', example_text)
 
         current_query = messages[-1]['content']
         bug_report_content = f"""
@@ -77,11 +79,13 @@ def make_messages_from_file(rep_title, rep_content,
         ## Description
         {rep_content}
         """
-        current_query = current_query.replace('{{bug_report_content}}', bug_report_content)
+        current_query = current_query.replace(
+            '{{bug_report_content}}', bug_report_content)
 
         messages[-1]['content'] = current_query
 
     return messages, None
+
 
 def make_prompt_from_file(rep_title, rep_content,
                           use_plain_text, use_html,
@@ -142,13 +146,14 @@ def query_llm_for_gentest(proj, bug_id, template, use_plain_text=False, use_html
     if mode != 'PL_chat':
         gen_test = 'public void test' + query_result
     else:
-        gen_test = query_result
+        gen_test = query_result.strip('```')
     return gen_test
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--dataset', default='d4j', help='dataset to use: d4j or ghrb')
+    parser.add_argument('-d', '--dataset', default='d4j',
+                        help='dataset to use: d4j or ghrb')
     parser.add_argument('-p', '--project', default='Time')
     parser.add_argument('-b', '--bug_id', type=int, default=23)
     parser.add_argument('--use_html', action='store_true')
@@ -163,7 +168,8 @@ if __name__ == '__main__':
     if args.dataset == 'ghrb':
         BR_DIR = llm_exp_config['bug_report_dir']['ghrb']
 
-    gen_test = query_llm_for_gentest(args.project, args.bug_id, args.template, use_plain_text=args.use_plain_text, use_html=args.use_html, mode=args.mode, save_prompt=args.save_prompt, prompt_save_path=args.prompt_out)
+    gen_test = query_llm_for_gentest(args.project, args.bug_id, args.template, use_plain_text=args.use_plain_text,
+                                     use_html=args.use_html, mode=args.mode, save_prompt=args.save_prompt, prompt_save_path=args.prompt_out)
 
     with open(args.out, 'w') as f:
         f.write(gen_test)
