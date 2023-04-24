@@ -258,10 +258,12 @@ Common helper functions
 def normalize_test(test_content):
     '''Removes comments, normalizes method name and
     variable names that are declared within the test method.'''
+    test_content = test_content.strip().strip('```')
     file_lines = test_content.split('\n')
     file_tokens = list(javalang.tokenizer.tokenize(test_content))
     file_parser = javalang.parser.Parser(file_tokens)
     file_parse_tree = file_parser.parse_member_declaration()
+
     replace_to = dict()
     var_counter = 0
 
@@ -461,5 +463,6 @@ def process_result(result_json_path, gen_test_path):
 
 
 def count_test_tokens(test_content):
+    test_content = test_content.strip().strip('```')
     file_tokens = list(javalang.tokenizer.tokenize(test_content))
     return len(file_tokens)
