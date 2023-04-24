@@ -142,7 +142,6 @@ def query_llm_for_gentest(proj, bug_id, template, use_plain_text=False, use_html
     if mode != 'PL_chat':
         gen_test = 'public void test' + query_result
     else:
-        print(query_result)
         if ("```") in query_result:
             gen_test = query_result.split("```")[1]
         else:
