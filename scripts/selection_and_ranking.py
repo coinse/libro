@@ -15,12 +15,14 @@ from process_bug_report import *
 
 RESULT_PATH = '../results/example2_n50.json'
 # GEN_TEST_PATH = '../data/Defects4J/gen_tests_gpt3.5_3example_2/'
+# GEN_TEST_PATH = '../data/Defects4J/gen_tests_gpt3.5_3example_2/'
 
 RESULT_PATH_GHRB = '../results/example2_n50_GHRB.json'
 GEN_TEST_PATH_GHRB = '../data/GHRB/gen_tests/'
 
 BIG_NUMBER = 100000
 SELECTION_THRESHOLD = 1
+
 
 def select_confident_bugs(rank_feature_df, threshold=1):
     max_df = rank_feature_df.groupby('bug_id').max()
@@ -37,14 +39,16 @@ def rank_tests_using_clusters(rank_feature_df, test_clusters, random_baseline=Fa
         if random_baseline:
             sorted_fib_tests = shuffle_fib_tests(fib_tests_features, seed=seed)
         else:
-            sorted_fib_tests = sort_unique_fib_tests(bug_id, fib_tests_features, test_clusters)
+            sorted_fib_tests = sort_unique_fib_tests(
+                bug_id, fib_tests_features, test_clusters)
 
-        success_tests = fib_tests_features[fib_tests_features.success].test_path.tolist()
+        success_tests = fib_tests_features[fib_tests_features.success].test_path.tolist(
+        )
 
         success_ranks = []
         for i, (test, score_first, score_second, score_third) in enumerate(sorted_fib_tests):
             if test in success_tests:
-                success_ranks.append(i+1)    
+                success_ranks.append(i+1)
 
         rows.append({
             'bug_id': bug_id,
@@ -57,8 +61,7 @@ def rank_tests_using_clusters(rank_feature_df, test_clusters, random_baseline=Fa
             'score_third': score_third,
             'sorted_tests': [os.path.basename(test[0]) for test in sorted_fib_tests]
         })
-        
-    
+
     return pd.DataFrame(rows)
 
 
@@ -87,8 +90,10 @@ def collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, p
             features[f'clus_size_output_fib'] = aggreement_scores[bug_id][rep_test]
 
             features[f'num_fib_tests'] = len(test_paths)
-            match_output_result = match_buggy_output_w_report(parsed_output[bug_id][rep_test], OB[bug_id])
-            match_test_result = match_test_body_w_report(test_content, OB[bug_id])
+            match_output_result = match_buggy_output_w_report(
+                parsed_output[bug_id][rep_test], OB[bug_id])
+            match_test_result = match_test_body_w_report(
+                test_content, OB[bug_id])
 
             features['is_crash'] = match_output_result['is_crash']
             features['actual_crash'] = match_output_result['actual_crash']
@@ -102,14 +107,15 @@ def collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, p
                 rows.append(features_ind)
 
         if has_success:
-            success_count += 1    
+            success_count += 1
 
     return pd.DataFrame(rows)
+
 
 def sort_unique_fib_tests(bug_id, test_features, test_clusters):
     output_clusters = dict()
     cluster_feature_map = dict()
-    
+
     final_deliver_list = []
 
     test_features = test_features.set_index('test_path')
@@ -118,8 +124,10 @@ def sort_unique_fib_tests(bug_id, test_features, test_clusters):
         intra_cluster_tests = []
         rep_test_key = os.path.basename(test_paths[0])
         test_feat = test_features.loc[rep_test_key]
-        crash_type_match_score = int(test_feat.exception_type_match and test_feat.is_crash)
-        actual_value_match_score = int(test_feat.actual_value_match and not test_feat.is_crash)
+        crash_type_match_score = int(
+            test_feat.exception_type_match and test_feat.is_crash)
+        actual_value_match_score = int(
+            test_feat.actual_value_match and not test_feat.is_crash)
 
         sum_test_length = 0
         has_test_match = False
@@ -128,9 +136,11 @@ def sort_unique_fib_tests(bug_id, test_features, test_clusters):
             test_key = os.path.basename(test_path)
             if test_key not in test_features.index.tolist():
                 continue
-            assert test_features.loc[test_key].clus_size_output_fib == len(test_paths)
-        
-            intra_cluster_tests.append((test_key, test_features.loc[test_key].test_length, int(test_features.loc[test_key].test_exception_type_match), 0))
+            assert test_features.loc[test_key].clus_size_output_fib == len(
+                test_paths)
+
+            intra_cluster_tests.append((test_key, test_features.loc[test_key].test_length, int(
+                test_features.loc[test_key].test_exception_type_match), 0))
 
             if test_features.loc[test_key].test_exception_type_match:
                 has_test_match = True
@@ -139,12 +149,15 @@ def sort_unique_fib_tests(bug_id, test_features, test_clusters):
 
         bug_report_match = crash_type_match_score + actual_value_match_score
 
-        cluster_feature_map[c] = (bug_report_match, len(test_paths), -sum_test_length/len(test_paths))
+        cluster_feature_map[c] = (bug_report_match, len(
+            test_paths), -sum_test_length/len(test_paths))
 
-        intra_cluster_tests.sort(key=(lambda x: (-x[2], x[1]))) # test-br match => shorter test length
+        # test-br match => shorter test length
+        intra_cluster_tests.sort(key=(lambda x: (-x[2], x[1])))
         output_clusters[c] = intra_cluster_tests
 
-    sorted_cluster_keys = sorted(output_clusters.keys(), key=lambda x: cluster_feature_map[x], reverse=True)
+    sorted_cluster_keys = sorted(output_clusters.keys(
+    ), key=lambda x: cluster_feature_map[x], reverse=True)
     for i in range(max([len(clus) for clus in output_clusters.values()])):
         for c in sorted_cluster_keys:
             if i < len(output_clusters[c]):
@@ -157,12 +170,15 @@ def shuffle_fib_tests(fib_test_features, seed):
     random_test_order = []
 
     for bug_id, test_feat in fib_test_features.iterrows():
-        crash_type_match_score = int(test_feat.exception_type_match and test_feat.is_crash)
-        actual_value_match_score = int(test_feat.actual_value_match and not test_feat.is_crash)
+        crash_type_match_score = int(
+            test_feat.exception_type_match and test_feat.is_crash)
+        actual_value_match_score = int(
+            test_feat.actual_value_match and not test_feat.is_crash)
         output_cluster_size_score = test_feat.clus_size_output_fib
 
-        random_test_order.append((test_feat.test_path, crash_type_match_score + actual_value_match_score, output_cluster_size_score, test_feat.test_path))
-        
+        random_test_order.append((test_feat.test_path, crash_type_match_score +
+                                 actual_value_match_score, output_cluster_size_score, test_feat.test_path))
+
     random.Random(seed).shuffle(random_test_order)
     return random_test_order
 
@@ -207,15 +223,19 @@ def match_buggy_output_w_report(parsed_output, OB):
             if parsed_output['actual'] is not None and len(parsed_output['actual']) > 0:
                 # better cleaninig method..
                 if any(c in parsed_output["actual"] for c in [',', '.', '>', '<', '"', '\'', '(', ')', '[', ']']) and len(parsed_output["actual"]) > 4:
-                        m = re.search(fr'.*{re.escape(parsed_output["actual"])}.*', OB['full_text'])
-                        if m is not None:
-                            matched_actual_values.append((parsed_output["actual"], m.group(0)))
-                            actual_value_match = True
+                    m = re.search(
+                        fr'.*{re.escape(parsed_output["actual"])}.*', OB['full_text'])
+                    if m is not None:
+                        matched_actual_values.append(
+                            (parsed_output["actual"], m.group(0)))
+                        actual_value_match = True
 
                 else:
-                    m = re.search(fr'[\s\.\,\"\'\(\[\<]+{re.escape(parsed_output["actual"])}[\s\n\.\,\"\'\)\]\>]+', OB['full_text'])
+                    m = re.search(
+                        fr'[\s\.\,\"\'\(\[\<]+{re.escape(parsed_output["actual"])}[\s\n\.\,\"\'\)\]\>]+', OB['full_text'])
                     if m is not None:
-                        matched_actual_values.append((parsed_output["actual"], m.group(0)))
+                        matched_actual_values.append(
+                            (parsed_output["actual"], m.group(0)))
                         actual_value_match = True
 
     return {
@@ -260,6 +280,7 @@ def cluster_tests(bug_result, among_fib=True, by='syntax', dataset='d4j'):
 
     return clusters
 
+
 def aggregate_results_from_random_baseline(rank_feature_df_selected, test_clusters):
     seeds = range(100)
     result = {}
@@ -271,9 +292,10 @@ def aggregate_results_from_random_baseline(rank_feature_df_selected, test_cluste
     acc_results = defaultdict(list)
 
     for s in tqdm(seeds):
-        df = rank_tests_using_clusters(rdf, test_clusters, random_baseline=True, seed=s)
+        df = rank_tests_using_clusters(
+            rdf, test_clusters, random_baseline=True, seed=s)
         total = len(df)
-        
+
         for N in Ns:
             rows = []
             for i, row in df.iterrows():
@@ -289,13 +311,13 @@ def aggregate_results_from_random_baseline(rank_feature_df_selected, test_cluste
                     'success': wasted_effort < min(num_clusters, N),
                     'wasted_effort': wasted_effort
                 })
-            
+
             result[N] = pd.DataFrame(rows)
 
         for N in Ns:
-            wasted_effort_results[N].append((float(result[N].wasted_effort.sum()), float(result[N].wasted_effort.mean())))
+            wasted_effort_results[N].append(
+                (float(result[N].wasted_effort.sum()), float(result[N].wasted_effort.mean())))
             acc_results[N].append(float(result[N].success.sum()))
-
 
         list_acc = []
         list_wef = []
@@ -307,7 +329,8 @@ def aggregate_results_from_random_baseline(rank_feature_df_selected, test_cluste
             elif first_success == BIG_NUMBER:
                 wasted_effort = num_clusters
             else:
-                raise Exception('first success rank is bigger than number of the clusters')
+                raise Exception(
+                    'first success rank is bigger than number of the clusters')
 
             list_acc.append(wasted_effort < num_clusters)
             list_wef.append(wasted_effort)
@@ -330,6 +353,8 @@ if __name__ == "__main__":
     parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests_gpt3.5/')
     parser.add_argument('--random', action='store_true', help='Produce random baseline results')
     args = parser.parse_args()
+
+    GEN_TEST_PATH = args.gen_test_dir
 
     GEN_TEST_PATH = args.gen_test_dir
 
@@ -379,21 +404,24 @@ if __name__ == "__main__":
             if test_result['buggy_output'] is not None:
                 if dname == 'd4j':
                     parsed_output[bug_id][name] = parse_buggy_output(test_result['buggy_output'],
-                    mode='d4j')
+                                                                     mode='d4j')
                 elif dname == 'ghrb':
-                    parsed_output[bug_id][name] = parse_buggy_output(test_result['buggy_output'], exception_type=test_result['exception_type'], exception_msg=test_result['exception_msg'], value_matching=test_result['value_matching'], mode='ghrb')
+                    parsed_output[bug_id][name] = parse_buggy_output(test_result['buggy_output'], exception_type=test_result['exception_type'],
+                                                                     exception_msg=test_result['exception_msg'], value_matching=test_result['value_matching'], mode='ghrb')
 
     # 3. group syntactically equivalent tests (syntax clusters)
     fib_clusters = {}
     for bug_id, bug_result in tqdm(result_dict.items()):
-        fib_clusters[bug_id] = cluster_tests(bug_result, among_fib=True, by='syntax', dataset=dname)
+        fib_clusters[bug_id] = cluster_tests(
+            bug_result, among_fib=True, by='syntax', dataset=dname)
 
     # 4. construct output clusters among FIBs
     test_clusters = dict()
     aggreement_scores = defaultdict(dict)
 
     for bug_id, bug_result in tqdm(result_dict.items()):
-        clusters = cluster_tests(bug_result, among_fib=True, by='output', dataset=dname)
+        clusters = cluster_tests(
+            bug_result, among_fib=True, by='output', dataset=dname)
         test_clusters[bug_id] = clusters
         for c, test_paths in clusters.items():
             for test_path in test_paths:
@@ -401,7 +429,8 @@ if __name__ == "__main__":
                 aggreement_scores[bug_id][test_key] = len(test_paths)
 
     # 5. collect rank features and apply intra+inter cluster ranking strategy
-    rank_feature_df = collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, parsed_output)
+    rank_feature_df = collect_ranking_features(
+        fib_bug_ids, fib_clusters, aggreement_scores, OB, parsed_output)
 
     with open(f'../results/ranking_features_{dname}.csv', 'w') as f:
         rank_feature_df.to_csv(f, index=False)
@@ -409,22 +438,27 @@ if __name__ == "__main__":
     rank_df = rank_tests_using_clusters(rank_feature_df, test_clusters)
 
     with open(f'../results/ranking_{dname}.csv', 'w') as f:
-        rank_df[['bug_id', 'first_success_rank', 'total_success_fibs', 'num_clusters']].to_csv(f, index=False)
+        rank_df[['bug_id', 'first_success_rank', 'total_success_fibs',
+                 'num_clusters']].to_csv(f, index=False)
 
     # result before selection
     print(f'\n[Ranking result before selection]')
     Ns = [1, 3, 5]
     for N in Ns:
         print(f'* acc@{N}: {len(rank_df[rank_df.first_success_rank <= N])}')
-    print(f'* Total (success): {len(rank_df[rank_df.first_success_rank < BIG_NUMBER])}')
+    print(
+        f'* Total (success): {len(rank_df[rank_df.first_success_rank < BIG_NUMBER])}')
     print(f'* Total (fib): {len(rank_df)}')
 
     # 6. select bugs to present and rank within them (only confident ones)
-    rank_feature_df_selected = select_confident_bugs(rank_feature_df, threshold=SELECTION_THRESHOLD)
-    rank_df_selected = rank_tests_using_clusters(rank_feature_df_selected, test_clusters)
+    rank_feature_df_selected = select_confident_bugs(
+        rank_feature_df, threshold=SELECTION_THRESHOLD)
+    rank_df_selected = rank_tests_using_clusters(
+        rank_feature_df_selected, test_clusters)
 
     with open(f'../results/ranking_{dname}_selected_th{SELECTION_THRESHOLD}.csv', 'w') as f:
-        rank_df_selected[['bug_id', 'first_success_rank', 'total_success_fibs', 'num_clusters']].to_csv(f, index=False)
+        rank_df_selected[['bug_id', 'first_success_rank',
+                          'total_success_fibs', 'num_clusters']].to_csv(f, index=False)
 
     # result after selection
     print(f'\n[Ranking result after selection]')
@@ -432,12 +466,14 @@ if __name__ == "__main__":
     for N in Ns:
         acc_N = len(rank_df_selected[rank_df_selected.first_success_rank <= N])
         print(f'* acc@{N}: {acc_N} ({round(acc_N / total, 2)})')
-    print(f'* Total (success): {len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER])} ({round(len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER]) / total, 2)}\%)')
+    print(
+        f'* Total (success): {len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER])} ({round(len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER]) / total, 2)}\%)')
     print(f'* Total: {total}')
 
     if args.random:
         # random baseline (metrics precomputed)
-        random_baseline_result = aggregate_results_from_random_baseline(rank_feature_df_selected, test_clusters)
+        random_baseline_result = aggregate_results_from_random_baseline(
+            rank_feature_df_selected, test_clusters)
 
         with open(f'../results/ranking_random_baseline_{dname}.json', 'w') as f:
             json.dump(random_baseline_result, f, indent=2)
