@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import copy
 import random
 import pandas as pd
 import argparse
@@ -13,7 +14,7 @@ from process_failure_output import *
 from process_bug_report import *
 
 RESULT_PATH = '../results/example2_n50.json'
-GEN_TEST_PATH = '../data/Defects4J/gen_tests/'
+# GEN_TEST_PATH = '../data/Defects4J/gen_tests_gpt3.5_3example_2/'
 
 RESULT_PATH_GHRB = '../results/example2_n50_GHRB.json'
 GEN_TEST_PATH_GHRB = '../data/GHRB/gen_tests/'
@@ -81,7 +82,7 @@ def collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, p
             test_content = None
             with open(test_paths[0]) as f:
                 test_content = f.read().strip()
-                features['test_length'] = count_test_tokens(test_content)
+                features['test_length'] = count_test_tokens(test_content.strip())
 
             features[f'clus_size_output_fib'] = aggreement_scores[bug_id][rep_test]
 
@@ -95,7 +96,10 @@ def collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, p
             features['exception_type_match'] = match_output_result['exception_type_match']
             features['test_exception_type_match'] = match_test_result['exception_type_match']
             
-            rows.append(features)
+            for test_path in test_paths:
+                features_ind = copy.deepcopy(features)
+                features_ind['test_path'] = os.path.basename(test_path)
+                rows.append(features_ind)
 
         if has_success:
             success_count += 1    
@@ -240,11 +244,9 @@ def cluster_tests(bug_result, among_fib=True, by='syntax', dataset='d4j'):
             continue
 
         if by == 'syntax':
-            if test_result['parse_error']:
-                continue
             with open(test_result['test_file_path']) as f:
                 gen_test = f.read()
-            rep = normalize_test(gen_test)
+            rep = normalize_test(gen_test.strip())
         elif by == 'output':
             if test_result['buggy_output'] is None:
                 continue
@@ -325,8 +327,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dataset', default='Defects4J', help='Defects4J or GHRB')
     parser.add_argument('-f', '--result_file', default=None, help='Path to the execution result file (e.g., `../results/example2_n50.json`)')
+    parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests_gpt3.5/')
     parser.add_argument('--random', action='store_true', help='Produce random baseline results')
     args = parser.parse_args()
+
+    GEN_TEST_PATH = args.gen_test_dir
 
     if args.dataset == 'Defects4J':
         result_path = RESULT_PATH
