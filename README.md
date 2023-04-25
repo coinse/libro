@@ -138,7 +138,7 @@ export OPENAI_API_KEY=<your_openai_api_key>
 
 Upon setting the API key, use the Python script `llm_query.py` to prompt LLM to generate a reproducing test from a bug report. 
 
-The Python script `llm_query.py` prompts LLM to generate a reproducing test from a bug report. (Due to the deprecation of Codex model from OpenAI, We switched the dependent LLM to ChatGPT (GPT 3.5). One should use either `--mode NL` (`text-davinci-002`) or `--mode PL_chat` (`gpt-3.5-turbo`) to get result from supported models. Fees may apply in theses cases.) Currently, `PL_chat` mode is activated as default.
+The Python script `llm_query.py` prompts LLM to generate a reproducing test from a bug report. While our paper used the Codex model from OpenAI, it has since been deprecated; as a result, we use ChatGPT (GPT-3.5) by default. One can use a specific model from the model list in `llm_api.py` using the `--model` CLI option of `llm_query.py`. Fees may apply; to use Huggingface models, one needs Huggingface API keys.
 
 ```bash
 # For the Defects4J benchmark
