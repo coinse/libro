@@ -109,18 +109,12 @@ def collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, p
 def sort_unique_fib_tests(bug_id, test_features, test_clusters):
     output_clusters = dict()
     cluster_feature_map = dict()
-    
     final_deliver_list = []
-
     test_features = test_features.set_index('test_path')
 
     for c, test_paths in test_clusters[bug_id].items():
         intra_cluster_tests = []
-        rep_test_key = os.path.basename(test_paths[0])
-        test_feat = test_features.loc[rep_test_key]
-        crash_type_match_score = int(test_feat.exception_type_match and test_feat.is_crash)
-        actual_value_match_score = int(test_feat.actual_value_match and not test_feat.is_crash)
-
+        test_keys = []
         sum_test_length = 0
         has_test_match = False
 
@@ -128,6 +122,8 @@ def sort_unique_fib_tests(bug_id, test_features, test_clusters):
             test_key = os.path.basename(test_path)
             if test_key not in test_features.index.tolist():
                 continue
+            
+            test_keys.append(test_key)
             assert test_features.loc[test_key].clus_size_output_fib == len(test_paths)
         
             intra_cluster_tests.append((test_key, test_features.loc[test_key].test_length, int(test_features.loc[test_key].test_exception_type_match), 0))
@@ -137,6 +133,9 @@ def sort_unique_fib_tests(bug_id, test_features, test_clusters):
 
             sum_test_length += test_features.loc[test_key].test_length
 
+        test_feat = test_features.loc[test_keys[0]] # use the first (syntactically unique) test as representative
+        crash_type_match_score = int(test_feat.exception_type_match and test_feat.is_crash)
+        actual_value_match_score = int(test_feat.actual_value_match and not test_feat.is_crash)
         bug_report_match = crash_type_match_score + actual_value_match_score
 
         cluster_feature_map[c] = (bug_report_match, len(test_paths), -sum_test_length/len(test_paths))
@@ -327,7 +326,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dataset', default='Defects4J', help='Defects4J or GHRB')
     parser.add_argument('-f', '--result_file', default=None, help='Path to the execution result file (e.g., `../results/example2_n50.json`)')
-    parser.add_argument('--gen_test_dir', default='/root/data/Defects4J/gen_tests_gpt3.5/')
+    parser.add_argument('-g', '--gen_test_path', default=None, help='Directory that contains raw generated tests (e.g., `../data/Defects4J/gen_tests/`)')
     parser.add_argument('--random', action='store_true', help='Produce random baseline results')
     args = parser.parse_args()
 
@@ -348,6 +347,10 @@ if __name__ == "__main__":
         print(f'Use the custom result file {args.result_file}...')
         result_path = args.result_file
 
+    if args.gen_test_path is not None:
+        print(f'Use the custom generated test path {args.gen_test_path}...')
+        gen_test_path = args.gen_test_path
+        
     result_dict = process_result(result_path, gen_test_path)
 
     # 1. converts test results into dataframe
@@ -432,7 +435,7 @@ if __name__ == "__main__":
     for N in Ns:
         acc_N = len(rank_df_selected[rank_df_selected.first_success_rank <= N])
         print(f'* acc@{N}: {acc_N} ({round(acc_N / total, 2)})')
-    print(f'* Total (success): {len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER])} ({round(len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER]) / total, 2)}\%)')
+    print(f'* Total (success): {len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER])} ({round(len(rank_df_selected[rank_df_selected.first_success_rank < BIG_NUMBER]) / total, 2)})')
     print(f'* Total: {total}')
 
     if args.random:
