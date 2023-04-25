@@ -14,7 +14,7 @@ from process_failure_output import *
 from process_bug_report import *
 
 RESULT_PATH = '../results/example2_n50.json'
-# GEN_TEST_PATH = '../data/Defects4J/gen_tests_gpt3.5_3example_2/'
+GEN_TEST_PATH = '../data/Defects4J/gen_tests/'
 
 RESULT_PATH_GHRB = '../results/example2_n50_GHRB.json'
 GEN_TEST_PATH_GHRB = '../data/GHRB/gen_tests/'
@@ -96,10 +96,7 @@ def collect_ranking_features(fib_bug_ids, fib_clusters, aggreement_scores, OB, p
             features['exception_type_match'] = match_output_result['exception_type_match']
             features['test_exception_type_match'] = match_test_result['exception_type_match']
             
-            for test_path in test_paths:
-                features_ind = copy.deepcopy(features)
-                features_ind['test_path'] = os.path.basename(test_path)
-                rows.append(features_ind)
+            rows.append(features)
 
         if has_success:
             success_count += 1    
@@ -245,7 +242,7 @@ def cluster_tests(bug_result, among_fib=True, by='syntax', dataset='d4j'):
         if by == 'syntax':
             with open(test_result['test_file_path']) as f:
                 gen_test = f.read()
-            rep = normalize_test(gen_test.strip())
+            rep = normalize_test(gen_test)
         elif by == 'output':
             if test_result['buggy_output'] is None:
                 continue
@@ -329,8 +326,6 @@ if __name__ == "__main__":
     parser.add_argument('-g', '--gen_test_path', default=None, help='Directory that contains raw generated tests (e.g., `../data/Defects4J/gen_tests/`)')
     parser.add_argument('--random', action='store_true', help='Produce random baseline results')
     args = parser.parse_args()
-
-    GEN_TEST_PATH = args.gen_test_dir
 
     if args.dataset == 'Defects4J':
         result_path = RESULT_PATH
