@@ -286,7 +286,12 @@ if __name__ == '__main__':
 
     else:
         with open(os.path.join(GEN_TEST_DIR, f'{args.project}_{args.bug_id}_n{args.test_no}.txt')) as f:
-            example_test = f.read()
+            test_content = f.read().strip()
+            if test_content.startswith('```'):
+                test_content = test_content.removeprefix('```')
+            if test_content.endswith('```'):
+                test_content = test_content.removesuffix('```')
 
+            example_test = test_content
         # example experiment execution
         print(twover_run_experiment(args.project, args.bug_id, [example_test]))
