@@ -4,55 +4,15 @@
 import os
 import re
 import json
-import openai
 from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 from config import llm_exp_config
 import argparse
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from llm_api import model_is_chat, query_llm
 
 TEMPLATE_DIR = llm_exp_config['template_dir']
 BR_DIR = llm_exp_config['bug_report_dir']['d4j']
-
-
-def query_by_prompt(prompt, end_string_list, mode):
-    if mode == 'NL':
-        engine = 'text-davinci-002'
-    elif mode == 'PL':
-        engine = 'code-davinci-002' # deprecated
-    elif mode == 'PL_chat':
-        engine = 'gpt-3.5-turbo'
-
-    if engine in ['code-davinci-002', 'text-davinci-002']:
-        response = openai.Completion.create(
-            engine=engine,
-            prompt=prompt,
-            temperature=0.7,
-            max_tokens=256,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=end_string_list
-        )
-        gen_test = response['choices'][0]['text']
-
-    elif engine == 'gpt-3.5-turbo':
-        response = openai.ChatCompletion.create(
-            model=engine,
-            messages=prompt, # chat-style prompt
-            n=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            stop=end_string_list
-        )
-        gen_test = response["choices"][0]["message"]["content"]
-
-    if end_string_list is not None and len(end_string_list) > 0 and end_string_list[0] in gen_test:
-        actual_test = gen_test.split(end_string_list[0])[0]
-    else:
-        actual_test = gen_test
-    return actual_test
 
 def make_messages_from_file(rep_title, rep_content,
                           template_file=TEMPLATE_DIR+'2example_chat.json'):
@@ -109,27 +69,28 @@ def make_prompt_from_file(rep_title, rep_content,
     return prompt, [end_string]
 
 
-def query_llm_for_gentest(proj, bug_id, template, use_plain_text=False, use_html=False, mode='PL_chat', save_prompt=False, prompt_save_path=None):
+def query_llm_for_gentest(proj, bug_id, model, template, use_plain_text=False, use_html=False, save_prompt=False, prompt_save_path=None):
     with open(BR_DIR + proj + '-' + str(bug_id) + '.json') as f:
         br = json.load(f)
+    chat_mode = model_is_chat(model)
 
-    if mode == 'PL_chat':
+    if chat_mode:
         prompt, stop = make_messages_from_file(
             br['title'], br['description'],
             template_file=TEMPLATE_DIR+f'{template}.json')
-    elif 'description_fixed' in br:  # handle exceptional cases in 2022-jsoup
-        prompt, stop = make_prompt_from_file(
-            br['title'], br['description_fixed'],
-            use_plain_text=False,
-            use_html=True, template_file=TEMPLATE_DIR+f'{template}.txt')
     else:
+        # handle exceptional cases in 2022-jsoup
+        use_html = ('description_fixed' in br) or use_html
+        use_plain_text = ('description_fixed' not in br) and use_plain_text
+        desc_key = 'description_fixed' if 'description_fixed' in br else 'description'
+
         prompt, stop = make_prompt_from_file(
-            br['title'], br['description'],
+            br['title'], br[desc_key],
             use_plain_text=use_plain_text,
             use_html=use_html, template_file=TEMPLATE_DIR+f'{template}.txt')
 
     if save_prompt:
-        ext = 'json' if mode == 'PL_chat' else 'txt'
+        ext = 'json' if chat_mode else 'txt'
         if prompt_save_path is None:
             prompt_save_path = f'prompts/{proj}-{bug_id}-{template}.{ext}'
         with open(prompt_save_path, 'w') as f:
@@ -138,8 +99,8 @@ def query_llm_for_gentest(proj, bug_id, template, use_plain_text=False, use_html
             else:
                 f.write(prompt)
 
-    query_result = query_by_prompt(prompt, stop, mode)
-    if mode != 'PL_chat':
+    query_result = query_llm(prompt, model, stop)
+    if not chat_mode:
         gen_test = 'public void test' + query_result
     else:
         if ("```") in query_result:
@@ -158,7 +119,7 @@ if __name__ == '__main__':
     parser.add_argument('--use_plain_text', action='store_true')
     parser.add_argument('--save_prompt', action='store_true')
     parser.add_argument('--template', default='2example_chat')
-    parser.add_argument('--mode', default='PL_chat')
+    parser.add_argument('--model', default='OpenAI/gpt-3.5-turbo')
     parser.add_argument('-o', '--out', default='output.txt')
     parser.add_argument('--prompt_out', default=None)
     args = parser.parse_args()
@@ -166,7 +127,15 @@ if __name__ == '__main__':
     if args.dataset == 'ghrb':
         BR_DIR = llm_exp_config['bug_report_dir']['ghrb']
 
-    gen_test = query_llm_for_gentest(args.project, args.bug_id, args.template, use_plain_text=args.use_plain_text, use_html=args.use_html, mode=args.mode, save_prompt=args.save_prompt, prompt_save_path=args.prompt_out)
+    gen_test = query_llm_for_gentest(
+        args.project, args.bug_id, 
+        args.model,
+        args.template, 
+        use_plain_text=args.use_plain_text, 
+        use_html=args.use_html,
+        save_prompt=args.save_prompt, 
+        prompt_save_path=args.prompt_out
+    )
 
     with open(args.out, 'w') as f:
         f.write(gen_test)
