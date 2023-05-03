@@ -171,7 +171,7 @@ def inject_with_imports(best_classpath, testf_lines, gen_test, unhandled_imports
         new_test_lines[import_loc:]
     )
 
-    # Adding test at the very end
+    # Adding test to the last line of the titular class
     # change test name to avoid collision
     org_test_name = parse_method(gen_test).name
     new_test_name = org_test_name + 'AutoGen'
@@ -182,10 +182,20 @@ def inject_with_imports(best_classpath, testf_lines, gen_test, unhandled_imports
     if '@Test' in ''.join(testf_lines):
         gen_test = '@Test\n' + gen_test.strip()
 
+    # find last line of titular class
+    tree = javalang.parse.parse(''.join(new_test_lines))
+    is_titular_class = [(e.name == best_classpath.split('.')[-1]) for e in tree.types]
+    assert sum(is_titular_class) == 1, f'Class with same name as classpath {best_classpath} not found.'
+    titular_class_idx = is_titular_class.index(True)
+    if titular_class_idx+1 == len(tree.types):
+        start_loc = len(new_test_lines)-1
+    else:
+        start_loc = tree.types[titular_class_idx+1]._position.line-1
+    
     final_paren_loc = 0
-    for idx in range(1, len(testf_lines)+1):
-        if '}' in testf_lines[-idx]:
-            final_paren_loc = -idx
+    for idx in range(start_loc, 0, -1):
+        if '}' in new_test_lines[idx]:
+            final_paren_loc = idx
             break
     assert final_paren_loc != 0
     new_test_lines = (
@@ -194,7 +204,7 @@ def inject_with_imports(best_classpath, testf_lines, gen_test, unhandled_imports
         new_test_lines[final_paren_loc:]
     )
     new_file_content = ''.join(new_test_lines)
-
+    
     return new_file_content, gen_test
 
 
