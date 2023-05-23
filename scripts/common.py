@@ -51,6 +51,20 @@ def inject_test(repo_path, src_dir, test_dir, gen_test, needed_elements, dry=Fal
 
     return test_name
 
+def is_abstract_test_class(file_content, filepath, titular_class_name):
+    tree = javalang.parse.parse(file_content)
+    titular_class_def = None
+    for path, node in tree.filter(javalang.tree.ClassDeclaration):
+        if node.name == titular_class_name:
+            titular_class_def = node
+            break
+    
+    assert titular_class_def is not None, f'Could not find titular class {titular_class_name} in {filepath}'
+    if 'abstract' in titular_class_def.modifiers:
+        return True
+    
+    return False
+
 def get_best_test_class_for_injection(repo_path, test_dir, gen_test):
     # experimental similarity checker
     file_scores = defaultdict(float)
@@ -61,6 +75,9 @@ def get_best_test_class_for_injection(repo_path, test_dir, gen_test):
             filepath = path.join(root, name)
             with codecs.open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
                 file_cont = f.read()
+                if 'abstract' in file_cont:
+                    if is_abstract_test_class(file_cont, filepath, name.removesuffix('.java')):
+                        continue
                 if '@Ignore' in file_cont:
                     continue  # these files are ignored when testing
                 tokens = javalang.tokenizer.tokenize(file_cont)
