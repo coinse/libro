@@ -244,10 +244,12 @@ def cluster_tests(bug_result, among_fib=True, by='syntax', dataset='d4j'):
                 gen_test = f.read()
             rep = normalize_test(gen_test)
         elif by == 'output':
+            fib_test_id = test_result['fib_test_id'].split('::')[0]
             if test_result['buggy_output'] is None:
                 continue
             if dataset == 'd4j':
                 rep = test_result['buggy_output'].split('\n')[1].strip()
+                rep = rep.replace(fib_test_id, '[FIB_TEST_ID]')
             elif dataset == 'ghrb':
                 rep = test_result['exception_msg'].strip()
 
