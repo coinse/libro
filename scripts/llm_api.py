@@ -109,6 +109,10 @@ AVAILABLE_MODEL_INFO = {
         'query_type': 'unknown',
         'uses_chat': True,
     },
+    'Salesforce/codegen2-16B': {
+        'query_type': 'self_hosted',
+        'uses_chat': False,
+    }
 }
 AVAILABLE_MODELS = AVAILABLE_MODEL_INFO.keys() # just for clean code
 
@@ -143,6 +147,19 @@ def query_hf_hosted_llm(prompt, model, stop_tokens, use_cache=False, end_len=100
     earliest_stop_loc = min([len(new_content)] + 
                             [new_content.index(t) for t in stop_tokens if new_content.index(t) >= 0])
     return new_content[:earliest_stop_loc]
+
+def query_self_hosted_llm(prompt, stop_tokens, max_tokens=256):
+    payload = {
+        'text': prompt,
+        'max_new_tokens': max_tokens,
+    }
+    json_payload = json.dumps(payload)
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post('http://localhost:23623', data=json_payload, headers=headers)
+    gen_content = response.json()['result']
+    earliest_stop_loc = min([len(gen_content)] +
+                            [gen_content.index(t) for t in stop_tokens if t in gen_content])
+    return gen_content[:earliest_stop_loc]
 
 def query_chat_llm(prompt, model, stop_tokens):
     assert model in AVAILABLE_MODEL_INFO, f'Unknown model {model}'
@@ -191,6 +208,8 @@ def query_string_llm(prompt, model, stop_tokens):
         gen_result = response['choices'][0]['text']
     elif model_info['query_type'] == 'hf_hosted':
         gen_result = query_hf_hosted_llm(prompt, model, stop_tokens)
+    elif model_info['query_type'] == 'self_hosted':
+        gen_result = query_self_hosted_llm(prompt, stop_tokens, max_tokens=256)
     else:
         raise NotImplementedError(f'Unknown query type {model_info["query_type"]}')
     return gen_result
