@@ -16,7 +16,9 @@ from ghrb_util import config, license_sslcontext_kickstart, fix_build_env, pit, 
 import subprocess as sp
 import argparse
 
-BUG_LIST_PATH = '/root/data/GHRB/verified_bugs.json'
+LIBRO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+BUG_LIST_PATH = f'{LIBRO_PATH}/data/GHRB/verified_bugs.json'
 
 def needed_imports_and_asserts(repo_path, src_dir, gen_test, project_id):
     if 'sslcontext-kickstart' in repo_path:
@@ -182,7 +184,7 @@ def git_clean(repo_dir_path):
 def git_checkout(repo_path, commit_hash, version='buggy'):
     cp = sp.run(['git', 'checkout', commit_hash],
                 cwd=repo_path, capture_output=True)
-    assert cp.returncode == 0, "checkout for {version} commit was not successful"
+    assert cp.returncode == 0, f"checkout for {version} commit was not successful: {cp.stderr.decode()}"
     out = sp.run(['git', 'rev-parse', 'HEAD'],
                  cwd=repo_path, capture_output=True)
     assert commit_hash in out.stdout.decode(
@@ -219,7 +221,7 @@ def run_test(repo_path, test_name, record={}, record_key='stdout'):
         run_command.extend(['-Djacoco.skip=true'])
     test_process = sp.run(run_command, capture_output=True, cwd=repo_path)
 
-    captured_stdout = test_process.stdout.decode()
+    captured_stdout = test_process.stdout.decode('utf-8')
     record[record_key] = captured_stdout
 
     if 'compilation failure' in captured_stdout.lower() or 'compilation error' in captured_stdout.lower():
@@ -291,7 +293,7 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
     compile_success, _ = compile_repo(repo_path)
     if not compile_success:
         raise Exception(
-            "Source Code Compilation failed: {}".format(buggy_commit))
+            "Source Code Compilation failed: {}".format(repo_path))
 
     for example_test in pit(example_tests, color='red'):
         git_reset(repo_path)
@@ -302,9 +304,10 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
                 repo_path, src_dir, test_prefix, example_test, project_id, injection)
         except Exception as e:
             buggy_info = f'[error] {repr(e)}'
-
-        if buggy_info['autogen_failed']:
-            fib_tests.append(example_test)
+        
+        if isinstance(buggy_info, dict):
+            if buggy_info['autogen_failed']:
+                fib_tests.append(example_test)
         buggy_results.append(buggy_info)
 
     # Running experiment for fixed version
@@ -316,7 +319,7 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
     compile_success, _ = compile_repo(repo_path)
     if not compile_success:
         raise Exception(
-            "Source Code Compilation failed: {}".format(fixed_commit))
+            "Source Code Compilation failed: {}".format(repo_path))
 
     for example_test in pit(example_tests, color='green'):
         if example_test not in fib_tests:
@@ -333,27 +336,29 @@ def twover_run_experiment(repo_path, src_dir, test_prefix, example_tests, buggy_
         except Exception as e:
             fixed_info = f'[error] {repr(e)}'
 
-        test_name, _ = fixed_info['testclass']
-        index = example_tests.index(example_test)
-        prev_test_name, _ = buggy_results[index]['testclass']
+        if isinstance(fixed_info, dict):
+            test_name, _ = fixed_info['testclass']
+            index = example_tests.index(example_test)
+            prev_test_name, _ = buggy_results[index]['testclass']
 
-        if test_name != prev_test_name:
-            raise AssertionError(
-                'Injected test class is different between buggy and fixed versions')
+            if test_name != prev_test_name:
+                raise AssertionError(
+                    'Injected test class is different between buggy and fixed versions')
 
-        if fixed_info['compile_error']:
-            # retry by discarding changes in the test code
-            test_name, file_content = fixed_info['testclass']
-            injected_test_class = os.path.join(
-                test_prefix, test_name.split('#')[0].replace('.', '/') + '.java')
+            if fixed_info['compile_error']:
+                # retry by discarding changes in the test code
+                test_name, file_content = fixed_info['testclass']
+                injected_test_class = os.path.join(
+                    test_prefix, test_name.split('#')[0].replace('.', '/') + '.java')
 
-            changed_test_classes = git_staged_diffs(repo_path)
-            for tc in changed_test_classes:
-                if tc != injected_test_class:
-                    remove_file(tc, repo_path)
+                changed_test_classes = git_staged_diffs(repo_path)
+                for tc in changed_test_classes:
+                    if tc != injected_test_class:
+                        remove_file(tc, repo_path)
 
-            fixed_info = get_test_execution_result(
-                repo_path, test_name, file_content)
+                fixed_info = get_test_execution_result(
+                    repo_path, test_name, file_content)
+        
 
         fixed_results.append(fixed_info)
 
@@ -412,7 +417,7 @@ if __name__ == '__main__':
         bug2tests = defaultdict(list)
 
         for gen_test_file in glob.glob(os.path.join(GEN_TEST_DIR, '*.txt')):
-            bug_key = '_'.join(os.path.basename(gen_test_file).split('_')[:-2])
+            bug_key = '_'.join(os.path.basename(gen_test_file).split('_')[:-1])
             project, bug_id = split_project_bug_id(bug_key)
             if project != args.project:
                 continue
@@ -447,7 +452,7 @@ if __name__ == '__main__':
                 res_for_bug[os.path.basename(test_path)] = res
             exec_results[bug_key] = res_for_bug
 
-            with open(f'results/{args.exp_name}_{args.project}.json', 'w') as f:
+            with open(f'{LIBRO_PATH}/results/{args.exp_name}_{args.project}.json', 'w') as f:
                 json.dump(exec_results, f, indent=4)
 
     elif args.test_no is None:
@@ -475,7 +480,7 @@ if __name__ == '__main__':
         for test_path, res in zip(test_files, results):
             res_for_bug[os.path.basename(test_path)] = res
 
-        with open(f'/root/results/{args.exp_name}_{args.project}_{args.bug_id}.json', 'w') as f:
+        with open(f'{LIBRO_PATH}/results/{args.exp_name}_{args.project}_{args.bug_id}.json', 'w') as f:
             json.dump(res_for_bug, f, indent=4)
 
     else:
