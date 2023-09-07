@@ -204,13 +204,24 @@ python postprocess_d4j.py --all --exp_name example2_n50_replicate
 
 #### GHRB
 For GHRB benchmark, the target project must be set (with `-p`, or `--project` option) to run all bugs from the project *(Only project-wise execution is supported because of dependencies to different Java versions.)*
+
+* For projects that require JDK 11:
 ```bash
 update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java 
-# update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java (for other projects requiring JDK 17+)
 source /root/data/GHRB/set_env_gson.sh 
-# source /root/data/GHRB/set_env.sh (for other projects)
 python postprocess_ghrb.py -p google_gson --all --exp_name example2_n50_ghrb_replicate 
-# generates aggregated execution results as a file `results/example2_n50_ghrb_replicate_google_gson.json`
+# generates execution results for the target project as a file `results/example2_n50_ghrb_replicate_google_gson.json`
+```
+
+* For projects that require JDK 17:
+```bash
+wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz # needs specific maven version
+tar -xvzf apache-maven-3.8.6-bin.tar.gz
+mv apache-maven-3.8.6-bin /opt/
+update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+source /root/data/GHRB/set_env.sh
+python postprocess_ghrb.py -p assertj_assertj-core --all --exp_name example2_n50_ghrb_replicate 
+# generates execution results for the project as a file `results/example2_n50_ghrb_replicate_assertj_assertj-core.json`
 ```
 
 ### Get selection and ranking results
